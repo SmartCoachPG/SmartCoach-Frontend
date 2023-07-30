@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<style name="BtnSombra" parent="Widget.AppCompat.Button">
-    <item name="android:background">@drawable/btn_sombra</item>
-    <item name="android:padding">12dp</item>
-    <item name="android:elevation">4dp</item>
-</style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">#FDA400</item>
+
+        <!-- Estilo para el DatePickerDialog -->
+        <item name="android:datePickerDialogTheme">@style/DatePickerDialogTheme</item>
+    </style>
+
+    <!-- Estilo para el DatePickerDialog -->
+    <style name="DatePickerDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <!-- Personaliza los colores del calendario -->
+        <item name="colorAccent">#FDA400</item>
+        <!-- Personaliza el color del header -->
+        <item name="android:headerBackground">@color/custom_date_picker_header_color</item>
+
+        <!-- Personaliza el estilo del botón OK -->
+        <item name="android:buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+
+        <!-- Personaliza el estilo del botón Cancel -->
+        <item name="android:buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">#FDA400</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">#FDA400</item>
+    </style>
+
 </resources>
+
+

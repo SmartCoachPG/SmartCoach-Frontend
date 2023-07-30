@@ -21,14 +21,29 @@
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
-    </activity>
-        <activity android:name=".IniciarSesionActivity"
-            android:label="@string/app_name"
-            android:exported="true">
-
         </activity>
 
+        <activity
+            android:name=".IniciarSesionActivity"
+            android:label="@string/app_name"
+            android:exported="false"/>
 
-</application>
+        <activity
+            android:name=".RegistrarseAdminUnoActivity"
+            android:label="@string/app_name"
+            android:exported="false"/>
+        <activity
+            android:name=".RegistrarseAdminCuatroActivity"
+            android:label="@string/app_name"
+            android:exported="false"/>
+        <activity
+            android:name=".RegistrarseUserUnoActivity"
+            android:label="@string/app_name"
+            android:exported="false"/>
+        <activity
+            android:name=".RegistrarseUserDosActivity"
+            android:label="@string/app_name"
+            android:exported="false"/>
+    </application>
 
 </manifest>
