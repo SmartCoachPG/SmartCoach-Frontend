@@ -1,6 +1,8 @@
 package com.example.smartcoach;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -33,38 +35,101 @@ public class RegistrarseAdminCuatroActivity extends AppCompatActivity {
         barrioGym = findViewById(R.id.barrioGym);
         puestoGym = findViewById(R.id.puestoGym);
         btnsiguiente = findViewById(R.id.btnSiguiente);
+        // Agregar TextWatcher al campo validContra para validar en tiempo real
+        validContra.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
-    }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
-    public void siguiente(View v) {
-        if (validarCampos()) {
-            Toast.makeText(this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
-        } else {
-            // Los datos no se agregaron correctamente
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            View alertDialogView = getLayoutInflater().inflate(R.layout.activity_error_registrarse_admin_cinco, null);
-            alertDialogBuilder.setView(alertDialogView);
-
-            TextView tituloAlerta = alertDialogView.findViewById(R.id.tituloAlerta);
-            tituloAlerta.setText("Error");
-
-            TextView mensajeAlerta = alertDialogView.findViewById(R.id.mensajeAlerta);
-            mensajeAlerta.setText("Lo sentimos, los datos ingresados para crear la cuenta no son válidos. Por favor, revisa la información que has proporcionado e inténtalo de nuevo.");
-
-            Button btnSeguir = alertDialogView.findViewById(R.id.btnSeguir);
-            btnSeguir.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Cerrar el AlertDialog
-                    alertDialog.dismiss();
+            @Override
+            public void afterTextChanged(Editable s) {
+                validarContraseñas(); // Llamar al método para validar contraseñas en tiempo real
+            }
+        });
+        btnsiguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validarCampos() && validarContraseñas()) {
+                    Toast.makeText(RegistrarseAdminCuatroActivity.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
+                } else {
+                    mostrarErrorAlertDialog();
                 }
-            });
+            }
+        });
+    }
+    private void mostrarErrorAlertDialog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        View alertDialogView = getLayoutInflater().inflate(R.layout.activity_error_registrarse_admin_cinco, null);
+        alertDialogBuilder.setView(alertDialogView);
 
-            alertDialog = alertDialogBuilder.create();
-            alertDialog.show();
-        }
+        TextView tituloAlerta = alertDialogView.findViewById(R.id.tituloAlerta);
+        tituloAlerta.setText("Error");
+
+        TextView mensajeAlerta = alertDialogView.findViewById(R.id.mensajeAlerta);
+        mensajeAlerta.setText("Lo sentimos, los datos ingresados para crear la cuenta no son válidos. Por favor, revisa la información que has proporcionado e inténtalo de nuevo.");
+
+        Button btnSeguir = alertDialogView.findViewById(R.id.btnSeguir);
+        btnSeguir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Cerrar el AlertDialog
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
+    private boolean validarContraseñas() {
+        String entradaContraseña = contraseña.getText().toString();
+        String entradaValidContra = validContra.getText().toString();
+
+        // Validar longitud de contraseña
+        if (entradaContraseña.length() < 8 || entradaContraseña.length() > 15) {
+            contraseña.setError("La contraseña debe tener entre 8 y 15 caracteres");
+            return false;
+        }
+
+        // Validar si contiene al menos una mayúscula
+        if (!entradaContraseña.matches(".*[A-Z].*")) {
+            contraseña.setError("La contraseña debe contener al menos una letra mayúscula");
+            return false;
+        }
+
+        // Validar si contiene al menos una minúscula
+        if (!entradaContraseña.matches(".*[a-z].*")) {
+            contraseña.setError("La contraseña debe contener al menos una letra minúscula");
+            return false;
+        }
+
+        // Validar si contiene al menos un número
+        if (!entradaContraseña.matches(".*\\d.*")) {
+            contraseña.setError("La contraseña debe contener al menos un número");
+            return false;
+        }
+
+        // Validar si contiene al menos un símbolo
+        if (!entradaContraseña.matches(".*[@$!%*?&].*")) {
+            contraseña.setError("La contraseña debe contener al menos un símbolo (@$!%*?&)");
+            return false;
+        }
+
+        // Validar si las contraseñas coinciden
+        if (!entradaContraseña.equals(entradaValidContra)) {
+            validContra.setError("Las contraseñas no coinciden");
+            return false;
+        }
+
+        // Si todas las validaciones pasan, limpiar los errores y retornar true
+        contraseña.setError(null);
+        validContra.setError(null);
+        return true;
+    }
 
     public boolean validarCampos(){
 
@@ -102,9 +167,9 @@ public class RegistrarseAdminCuatroActivity extends AppCompatActivity {
         if (entradaCedula.isEmpty()) {
             cedula.setError("Este campo no puede quedar vacío");
             retorno = false;
-        } else if (entradaCedula.length() != 10) {
-            cedula.setError("La cédula debe tener 10 dígitos");
-            retorno = false;
+        } else if (entradaCedula.length() < 8 || entradaCedula.length() > 10) {
+            cedula.setError("La cédula debe tener entre 8 y 10 dígitos");
+            return false;
         }
         if (entradaNombreGym.isEmpty()) {
             nombreGym.setError("Este campo no puede quedar vacío");
