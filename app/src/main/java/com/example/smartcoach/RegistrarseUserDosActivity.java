@@ -1,6 +1,7 @@
 package com.example.smartcoach;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class RegistrarseUserDosActivity extends AppCompatActivity {
@@ -43,7 +45,6 @@ public class RegistrarseUserDosActivity extends AppCompatActivity {
         btnSiguiente = findViewById(R.id.btnSiguiente);
         calendar = Calendar.getInstance();
 
-        // Agregar TextWatcher al campo validContra para validar en tiempo real
         validContra.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -55,7 +56,7 @@ public class RegistrarseUserDosActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                validarContraseñas(); // Llamar al método para validar contraseñas en tiempo real
+                validarContraseñas();
             }
         });
 
@@ -77,11 +78,16 @@ public class RegistrarseUserDosActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (validarCampos() && validarContraseñas()) {
                     Toast.makeText(RegistrarseUserDosActivity.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
+
+                    String generoSeleccionado = spinnerGenero.getSelectedItem().toString();
+                    String fechaNacimiento = editTextFechaNacimiento.getText().toString();
+
+                    // Solo accede a la siguiente pantalla si se cumplen las validaciones
+                    Intent intent = new Intent(RegistrarseUserDosActivity.this, RegistrarseUserTresActivity.class);
+                    startActivity(intent);
                 } else {
                     mostrarErrorAlertDialog();
                 }
-                String generoSeleccionado = spinnerGenero.getSelectedItem().toString();
-                String fechaNacimiento = editTextFechaNacimiento.getText().toString();
             }
         });
     }
@@ -202,33 +208,41 @@ public class RegistrarseUserDosActivity extends AppCompatActivity {
     }
 
     private void showDatePickerDialog() {
-        // Fecha actual para que sea la fecha máxima seleccionable
-        int currentYear = calendar.get(Calendar.YEAR);
-        int currentMonth = calendar.get(Calendar.MONTH);
-        int currentDayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        // Calendario con la fecha actual
+        Calendar currentCalendar = Calendar.getInstance();
+        int currentYear = currentCalendar.get(Calendar.YEAR);
+        int currentMonth = currentCalendar.get(Calendar.MONTH);
+        int currentDayOfMonth = currentCalendar.get(Calendar.DAY_OF_MONTH);
 
-        // Calcular la fecha mínima seleccionable (18 años)
-        Calendar minDateCalendar = Calendar.getInstance();
-        minDateCalendar.add(Calendar.YEAR, -18);
+        // Calendario para la fecha mínima (1 de enero de 1905)
+        Calendar minDateCalendar = new GregorianCalendar(1905, Calendar.JANUARY, 1);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                 R.style.DatePickerDialogTheme, // Usa el nuevo tema personalizado
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        calendar.set(Calendar.YEAR, year);
-                        calendar.set(Calendar.MONTH, month);
-                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        Calendar selectedDate = new GregorianCalendar(year, month, dayOfMonth);
 
-                        // Settear la fecha seleccionada y mostrarla en el EditText
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                        String fechaNacimiento = sdf.format(calendar.getTime());
-                        editTextFechaNacimiento.setText(fechaNacimiento);
+                        // Calendario para verificar si la persona tiene al menos 18 años
+                        Calendar minAgeCalendar = new GregorianCalendar();
+                        minAgeCalendar.add(Calendar.YEAR, -18);
+
+                        // Verificar si la fecha seleccionada es válida (mayor de 18 años)
+                        if (selectedDate.compareTo(minDateCalendar) >= 0 && selectedDate.compareTo(minAgeCalendar) <= 0) {
+                            // Settear la fecha seleccionada y mostrarla en el EditText
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                            String fechaNacimiento = sdf.format(selectedDate.getTime());
+                            editTextFechaNacimiento.setText(fechaNacimiento);
+                        } else {
+                            Toast.makeText(RegistrarseUserDosActivity.this, "Selecciona una fecha válida (mayor de 18 años)", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }, currentYear, currentMonth, currentDayOfMonth);
 
         datePickerDialog.getDatePicker().setMinDate(minDateCalendar.getTimeInMillis());
-        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        datePickerDialog.getDatePicker().setMaxDate(currentCalendar.getTimeInMillis());
         datePickerDialog.show();
     }
 }
+

@@ -15,14 +15,14 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_registrate" />
+        app:srcCompat="@drawable/logo_smartcoach_corto_blanco" />
 
     <View
         android:id="@+id/view"
         android:layout_width="347dp"
         android:layout_height="450dp"
         android:layout_marginTop="28dp"
-        android:background="@drawable/rectangulo"
+        android:background="@drawable/rect_blanco"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
