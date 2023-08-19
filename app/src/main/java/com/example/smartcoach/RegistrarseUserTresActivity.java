@@ -4,7 +4,6 @@ import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,10 +11,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Calendar;
+import java.util.HashMap;
 
 public class RegistrarseUserTresActivity extends AppCompatActivity {
 
@@ -24,7 +24,10 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
     Spinner spinnerLogro, spinnerMasaMuscular;
     ImageButton imageLunes, imageMartes, imageMiercoles, imageJueves, imageViernes, imageSabado, imageDomingo;
     Button btnContinuar;
-
+    private int selectedDay = -1;
+    private boolean editingStartTime = true;
+    private HashMap<Integer, String> startHoursByDay = new HashMap<>();
+    private HashMap<Integer, String> endHoursByDay = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,22 +45,24 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
         imageSabado = findViewById(R.id.imageSabado);
         imageDomingo = findViewById(R.id.imageDomingo);
         btnContinuar = findViewById(R.id.btnContinuar);
+        configureDayClickListeners();
 
 // Asignar los clics a los EditText para abrir el TimePickerDialog
         _editTextTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                open_TimePickerDialog(true); // Indicador para _editTextTime
+                editingStartTime = true;
+                open_TimePickerDialog(); // Indicador para _editTextTime
             }
         });
 
         _editTextTime2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                open_TimePickerDialog(false); // Indicador para _editTextTime2
+                editingStartTime = false;
+                open_TimePickerDialog(); // Indicador para _editTextTime2
             }
         });
-
         //Spinner Logro
         String[] opcionesLogro = new String[]{"Seleccione", "Adelgazar", "no sé xd"};
         ArrayAdapter<String> adapterLogro = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcionesLogro);
@@ -70,26 +75,100 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
         adapterMM.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMasaMuscular.setAdapter(adapterMM);
     }
+    private void configureDayClickListeners() {
+        imageLunes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedDay = Calendar.MONDAY;
+                updateEditTexts();
+            }
+        });
 
-    public void onButtonSelectTimeClick(View view){
-        open_TimePickerDialog(true); // Indicador para _editTextTime
+        imageMartes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedDay = Calendar.TUESDAY;
+                updateEditTexts();
+            }
+        });
+
+        imageMiercoles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedDay = Calendar.WEDNESDAY;
+                updateEditTexts();
+            }
+        });
+
+        imageJueves.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedDay = Calendar.THURSDAY;
+                updateEditTexts();
+            }
+        });
+
+        imageViernes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedDay = Calendar.FRIDAY;
+                updateEditTexts();
+            }
+        });
+
+        imageSabado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedDay = Calendar.SATURDAY;
+                updateEditTexts();
+            }
+        });
+
+        imageDomingo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedDay = Calendar.SUNDAY;
+                updateEditTexts();
+            }
+        });
     }
 
-    public void onButtonSelectTimeClick2(View view){
-        open_TimePickerDialog(false); // Indicador para _editTextTime2
+
+    // Actualizar los campos de texto de hora inicial y final
+    private void updateEditTexts() {
+        String startTime = startHoursByDay.get(selectedDay);
+        String endTime = endHoursByDay.get(selectedDay);
+
+        if (startTime != null) {
+            _editTextTime.setText(startTime);
+        } else {
+            _editTextTime.setText("Hora inicial");
+        }
+
+        if (endTime != null) {
+            _editTextTime2.setText(endTime);
+        } else {
+            _editTextTime2.setText("Hora final");
+        }
     }
-    private void open_TimePickerDialog(final boolean isEditingTime1) {
+    private void open_TimePickerDialog() {
         int hourOfDay = 23;
         int minute = 55;
         boolean is24HourView = true;
 
-        final EditText editTextToUpdate = isEditingTime1 ? _editTextTime : _editTextTime2;
-
         _timePickerDialog = new TimePickerDialog(this, android.R.style.Theme_Holo_Light_DarkActionBar, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int intHourofDay, int intMinute) {
-                editTextToUpdate.setText(intHourofDay + ":" + intMinute);
-               // Toast.makeText(RegistrarseUserTresActivity.this, "i=" + intHourofDay + " i1=" + intMinute, Toast.LENGTH_SHORT).show();
+                String formattedTime = String.format("%02d:%02d", intHourofDay, intMinute);
+
+                if (selectedDay != -1) {
+                    if (editingStartTime) {
+                        startHoursByDay.put(selectedDay, formattedTime);
+                    } else {
+                        endHoursByDay.put(selectedDay, formattedTime);
+                    }
+                    updateEditTexts();
+                }
             }
         }, hourOfDay, minute, is24HourView);
 
@@ -97,5 +176,4 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
         _timePickerDialog.setTitle("Selecciona hora");
         _timePickerDialog.show();
     }
-
 }
