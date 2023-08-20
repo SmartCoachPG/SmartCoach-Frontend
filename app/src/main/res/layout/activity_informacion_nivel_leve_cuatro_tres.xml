@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingStart="@dimen/default_margin"
+    android:paddingEnd="@dimen/default_margin"
+    android:paddingTop="@dimen/default_margin"
+    android:paddingBottom="@dimen/default_margin"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tituloNivel_leve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="76dp"
+        android:text="Leve"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/descripciónLeve"
+        android:layout_width="348dp"
+        android:layout_height="329dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="36dp"
+        android:textAlignment="center"
+        android:text="Si eres una persona que se mantiene sentada la mayor parte del día, no realiza actividad física regularmente y evita las oportunidades de moverse, entonces probablemente se pueda considerar que tienes un estilo de vida sedentario."
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageLeve" />
+
+    <ImageButton
+        android:id="@+id/btnSalir"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="Seleccionar para salir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintStart_toEndOf="@+id/tituloNivel_leve"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_x_ne" />
+
+    <ImageView
+        android:id="@+id/imageLeve"
+        android:layout_width="143dp"
+        android:layout_height="171dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloNivel_leve"
+        app:srcCompat="@drawable/icon_leve" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
