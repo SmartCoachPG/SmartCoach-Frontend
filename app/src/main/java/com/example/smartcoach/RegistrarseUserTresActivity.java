@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,16 +65,35 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
             }
         });
         //Spinner Logro
-        String[] opcionesLogro = new String[]{"Seleccione", "Adelgazar", "no sé xd"};
+        String[] opcionesLogro = new String[]{"Seleccione", "Bajar peso", "Aumentar músculo", "Aumentar fuerza"};
         ArrayAdapter<String> adapterLogro = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcionesLogro);
         adapterLogro.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerLogro.setAdapter(adapterLogro);
 
         //Spinner Masa muscular
-        String[] opcionesMasaMuscular = new String[]{"Seleccione", "no sé xd", "no sé xd"};
+        String[] opcionesMasaMuscular = new String[]{"Seleccione", "Pectorales", "Glúteos", "Cuádriceps", "Abdominales"};
         ArrayAdapter<String> adapterMM = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcionesMasaMuscular);
         adapterMM.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMasaMuscular.setAdapter(adapterMM);
+        // Configurar el Listener para el spinnerLogro
+        spinnerLogro.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String selectedLogro = spinnerLogro.getSelectedItem().toString();
+
+                if (selectedLogro.equals("Aumentar músculo") || selectedLogro.equals("Aumentar fuerza")) {
+                    spinnerMasaMuscular.setVisibility(View.VISIBLE);
+                } else {
+                    spinnerMasaMuscular.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // No se necesita implementar en este caso
+            }
+        });
+
     }
     private void configureDayClickListeners() {
         imageLunes.setOnClickListener(new View.OnClickListener() {

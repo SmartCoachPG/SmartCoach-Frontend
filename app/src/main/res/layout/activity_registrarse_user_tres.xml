@@ -61,6 +61,7 @@
         android:backgroundTint="@color/white"
         android:spinnerMode="dropdown"
         android:textColor="@android:color/white"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"

@@ -42,7 +42,6 @@ public class RegistrarseUserDosActivity extends AppCompatActivity {
         spinnerGenero = findViewById(R.id.spinnerGenero);
         btnSiguiente = findViewById(R.id.btnSiguiente);
         editTextFechaNacimiento = findViewById(R.id.editTextFechaNacimiento);
-        btnSiguiente = findViewById(R.id.btnSiguiente);
         calendar = Calendar.getInstance();
 
         validContra.addTextChangedListener(new TextWatcher() {
