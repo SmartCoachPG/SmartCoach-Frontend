@@ -168,6 +168,8 @@ public class RegistrarseUserDosActivity extends AppCompatActivity {
         String entradaCorreo = email.getText().toString().trim();
         String entradaContraseña = contraseña.getText().toString();
         String entradaValidContra = validContra.getText().toString();
+        String generoSeleccionado = spinnerGenero.getSelectedItem().toString();
+        String fechaNacimiento = editTextFechaNacimiento.getText().toString();
 
         if(entradaNombre.isEmpty()) {
             nombre.setError("Este campo no puede quedar vacio");
@@ -189,20 +191,16 @@ public class RegistrarseUserDosActivity extends AppCompatActivity {
             retorno = false;
         }
         // Validar el género seleccionado en el Spinner
-        String generoSeleccionado = spinnerGenero.getSelectedItem().toString();
         if (generoSeleccionado.equals("Seleccione")) {
             ((TextView) spinnerGenero.getSelectedView()).setError("Por favor, seleccione un género");
             return false;
         }
-
-        String fechaNacimiento = editTextFechaNacimiento.getText().toString();
         if (fechaNacimiento.isEmpty()) {
             editTextFechaNacimiento.setError("Este campo no puede quedar vacío");
             return false;
         } else {
             editTextFechaNacimiento.setError(null);
         }
-
         return retorno;
     }
 
