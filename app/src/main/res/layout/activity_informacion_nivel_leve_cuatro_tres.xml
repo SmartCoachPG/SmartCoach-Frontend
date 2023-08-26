@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageLeve" />
 
     <ImageButton
-        android:id="@+id/btnSalir"
+        android:id="@+id/btnSalirLeve"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginTop="4dp"

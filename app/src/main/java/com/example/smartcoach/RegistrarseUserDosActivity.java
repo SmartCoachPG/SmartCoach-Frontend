@@ -95,12 +95,6 @@ public class RegistrarseUserDosActivity extends AppCompatActivity {
         View alertDialogView = getLayoutInflater().inflate(R.layout.activity_error_registrarse_admin_cinco, null);
         alertDialogBuilder.setView(alertDialogView);
 
-        TextView tituloAlerta = alertDialogView.findViewById(R.id.tituloAlerta);
-        tituloAlerta.setText("Error");
-
-        TextView mensajeAlerta = alertDialogView.findViewById(R.id.mensajeAlerta);
-        mensajeAlerta.setText("Lo sentimos, los datos ingresados para crear la cuenta no son válidos. Por favor, revisa la información que has proporcionado e inténtalo de nuevo.");
-
         Button btnSeguir = alertDialogView.findViewById(R.id.btnSeguir);
         btnSeguir.setOnClickListener(new View.OnClickListener() {
             @Override
