@@ -169,6 +169,8 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
         imageLunes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectedDay = Calendar.MONDAY;
+                updateEditTexts();
                 restoreOriginalImages();
                 updateSelectedImage(imageLunes);
             }
@@ -176,6 +178,8 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
         imageMartes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectedDay = Calendar.TUESDAY;
+                updateEditTexts();
                 restoreOriginalImages();
                 updateSelectedImage(imageMartes);
             }
@@ -183,6 +187,8 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
         imageMiercoles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectedDay = Calendar.WEDNESDAY;
+                updateEditTexts();
                 restoreOriginalImages();
                 updateSelectedImage(imageMiercoles);
             }
@@ -190,6 +196,8 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
         imageJueves.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectedDay = Calendar.THURSDAY;
+                updateEditTexts();
                 restoreOriginalImages();
                 updateSelectedImage(imageJueves);
             }
@@ -197,6 +205,8 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
         imageViernes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectedDay = Calendar.FRIDAY;
+                updateEditTexts();
                 restoreOriginalImages();
                 updateSelectedImage(imageViernes);
             }
@@ -204,6 +214,8 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
         imageSabado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectedDay = Calendar.SATURDAY;
+                updateEditTexts();
                 restoreOriginalImages();
                 updateSelectedImage(imageSabado);
             }
@@ -213,6 +225,8 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
             public void onClick(View v) {
                 restoreOriginalImages();
                 updateSelectedImage(imageDomingo);
+                selectedDay = Calendar.SUNDAY;
+                updateEditTexts();
             }
         });
     }
