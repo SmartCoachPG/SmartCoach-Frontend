@@ -1,7 +1,6 @@
 package com.example.smartcoach;
 
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -21,19 +20,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Map;
 
 public class RegistrarseUserTresActivity extends AppCompatActivity {
 
     TimePickerDialog _timePickerDialog;
     EditText _editTextTime, _editTextTime2;
     Spinner spinnerLogro, spinnerMusculo;
-    ImageButton imageLunes, imageMartes, imageMiercoles, imageJueves, imageViernes, imageSabado, imageDomingo;
+    ImageButton imageLunes, imageMartes, imageMiercoles, imageJueves, imageViernes, imageSabado, imageDomingo, imageLeve, imageModerada, imagenEnergica;
     Button btnContinuar;
     private int selectedDay = -1;
+
     private boolean editingStartTime = true;
     private HashMap<Integer, String> startHoursByDay = new HashMap<>();
     private HashMap<Integer, String> endHoursByDay = new HashMap<>();
-
+    private Map<ImageButton, Integer> originalImages = new HashMap<>();
+    private Map<ImageButton, Integer> selectedImages = new HashMap<>();
     private AlertDialog alertDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +53,28 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
         imageViernes = findViewById(R.id.imageViernes);
         imageSabado = findViewById(R.id.imageSabado);
         imageDomingo = findViewById(R.id.imageDomingo);
+        imageLeve = findViewById(R.id.imagenLeve);
+        imageModerada = findViewById(R.id.imageModerado);
+        imagenEnergica = findViewById(R.id.imageEnergico);
         btnContinuar = findViewById(R.id.btnContinuar);
+        // Inicializar las imagenes originales
+        originalImages.put(findViewById(R.id.imageLunes), R.drawable.icon_lunes_b);
+        originalImages.put(findViewById(R.id.imageMartes), R.drawable.icon_martes_b);
+        originalImages.put(findViewById(R.id.imageMiercoles), R.drawable.icon_miercoles_b);
+        originalImages.put(findViewById(R.id.imageJueves), R.drawable.icon_jueves_b);
+        originalImages.put(findViewById(R.id.imageViernes), R.drawable.icon_viernes_b);
+        originalImages.put(findViewById(R.id.imageSabado), R.drawable.icon_sabado_b);
+        originalImages.put(findViewById(R.id.imageDomingo), R.drawable.icon_domingo_b);
+
+        // Inicializar las imágenes seleccionadas
+        selectedImages.put(findViewById(R.id.imageLunes), R.drawable.icon_lunes_ne);
+        selectedImages.put(findViewById(R.id.imageMartes), R.drawable.icon_martes_ne);
+        selectedImages.put(findViewById(R.id.imageMiercoles), R.drawable.icon_miercoles_ne);
+        selectedImages.put(findViewById(R.id.imageJueves), R.drawable.icon_jueves_ne);
+        selectedImages.put(findViewById(R.id.imageViernes), R.drawable.icon_viernes_ne);
+        selectedImages.put(findViewById(R.id.imageSabado), R.drawable.icon_sabado_ne);
+        selectedImages.put(findViewById(R.id.imageDomingo), R.drawable.icon_domingo_ne);
+
         configureDayClickListeners();
 
 // Asignar los clics a los EditText para abrir el TimePickerDialog
@@ -132,64 +155,81 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
+
     private void configureDayClickListeners() {
+        ImageButton imageLunes = findViewById(R.id.imageLunes);
+        ImageButton imageMartes = findViewById(R.id.imageMartes);
+        ImageButton imageMiercoles = findViewById(R.id.imageMiercoles);
+        ImageButton imageJueves = findViewById(R.id.imageJueves);
+        ImageButton imageViernes = findViewById(R.id.imageViernes);
+        ImageButton imageSabado = findViewById(R.id.imageSabado);
+        ImageButton imageDomingo = findViewById(R.id.imageDomingo);
+
+
         imageLunes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedDay = Calendar.MONDAY;
-                updateEditTexts();
+                restoreOriginalImages();
+                updateSelectedImage(imageLunes);
             }
         });
-
         imageMartes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedDay = Calendar.TUESDAY;
-                updateEditTexts();
+                restoreOriginalImages();
+                updateSelectedImage(imageMartes);
             }
         });
-
         imageMiercoles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedDay = Calendar.WEDNESDAY;
-                updateEditTexts();
+                restoreOriginalImages();
+                updateSelectedImage(imageMiercoles);
             }
         });
-
         imageJueves.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedDay = Calendar.THURSDAY;
-                updateEditTexts();
+                restoreOriginalImages();
+                updateSelectedImage(imageJueves);
             }
         });
-
         imageViernes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedDay = Calendar.FRIDAY;
-                updateEditTexts();
+                restoreOriginalImages();
+                updateSelectedImage(imageViernes);
             }
         });
-
         imageSabado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedDay = Calendar.SATURDAY;
-                updateEditTexts();
+                restoreOriginalImages();
+                updateSelectedImage(imageSabado);
             }
         });
-
         imageDomingo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedDay = Calendar.SUNDAY;
-                updateEditTexts();
+                restoreOriginalImages();
+                updateSelectedImage(imageDomingo);
             }
         });
     }
+    private void restoreOriginalImages() {
+        for (Map.Entry<ImageButton, Integer> entry : originalImages.entrySet()) {
+            ImageButton button = entry.getKey();
+            int drawableId = entry.getValue();
+            button.setImageResource(drawableId);
+        }
+    }
 
+    private void updateSelectedImage(ImageButton button) {
+        if (button != null && selectedImages.containsKey(button)) {
+            int drawableId = selectedImages.get(button);
+            button.setImageResource(drawableId);
+        }
+    }
 
     // Actualizar los campos de texto de hora inicial y final
     private void updateEditTexts() {
