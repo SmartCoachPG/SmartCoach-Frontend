@@ -44,6 +44,7 @@
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginTop="4dp"
+        android:background="@null"
         android:scaleType="fitCenter"
         android:contentDescription="Seleccionar para salir"
         app:layout_constraintEnd_toEndOf="parent"
