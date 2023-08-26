@@ -252,7 +252,6 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
         int hourOfDay = 23;
         int minute = 55;
         boolean is24HourView = true;
-
         _timePickerDialog = new TimePickerDialog(this, android.R.style.Theme_Holo_Light_DarkActionBar, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int intHourofDay, int intMinute) {
