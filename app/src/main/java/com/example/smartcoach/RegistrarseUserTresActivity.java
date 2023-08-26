@@ -1,5 +1,6 @@
 package com.example.smartcoach;
 
+import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -32,10 +33,10 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
     private int selectedDay = -1;
 
     private boolean editingStartTime = true;
-    private HashMap<Integer, String> startHoursByDay = new HashMap<>();
-    private HashMap<Integer, String> endHoursByDay = new HashMap<>();
-    private Map<ImageButton, Integer> originalImages = new HashMap<>();
-    private Map<ImageButton, Integer> selectedImages = new HashMap<>();
+    private final HashMap<Integer, String> startHoursByDay = new HashMap<>();
+    private final HashMap<Integer, String> endHoursByDay = new HashMap<>();
+    private final Map<ImageButton, Integer> originalImages = new HashMap<>();
+    private final Map<ImageButton, Integer> selectedImages = new HashMap<>();
     private AlertDialog alertDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,22 +59,22 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
         imagenEnergica = findViewById(R.id.imageEnergico);
         btnContinuar = findViewById(R.id.btnContinuar);
         // Inicializar las imagenes originales
-        originalImages.put(findViewById(R.id.imageLunes), R.drawable.icon_lunes_b);
-        originalImages.put(findViewById(R.id.imageMartes), R.drawable.icon_martes_b);
-        originalImages.put(findViewById(R.id.imageMiercoles), R.drawable.icon_miercoles_b);
-        originalImages.put(findViewById(R.id.imageJueves), R.drawable.icon_jueves_b);
-        originalImages.put(findViewById(R.id.imageViernes), R.drawable.icon_viernes_b);
-        originalImages.put(findViewById(R.id.imageSabado), R.drawable.icon_sabado_b);
-        originalImages.put(findViewById(R.id.imageDomingo), R.drawable.icon_domingo_b);
+        originalImages.put((ImageButton) findViewById(R.id.imageLunes), R.drawable.icon_lunes_b);
+        originalImages.put((ImageButton) findViewById(R.id.imageMartes), R.drawable.icon_martes_b);
+        originalImages.put((ImageButton)findViewById(R.id.imageMiercoles), R.drawable.icon_miercoles_b);
+        originalImages.put((ImageButton)findViewById(R.id.imageJueves), R.drawable.icon_jueves_b);
+        originalImages.put((ImageButton)findViewById(R.id.imageViernes), R.drawable.icon_viernes_b);
+        originalImages.put((ImageButton)findViewById(R.id.imageSabado), R.drawable.icon_sabado_b);
+        originalImages.put((ImageButton)findViewById(R.id.imageDomingo), R.drawable.icon_domingo_b);
 
         // Inicializar las imágenes seleccionadas
-        selectedImages.put(findViewById(R.id.imageLunes), R.drawable.icon_lunes_ne);
-        selectedImages.put(findViewById(R.id.imageMartes), R.drawable.icon_martes_ne);
-        selectedImages.put(findViewById(R.id.imageMiercoles), R.drawable.icon_miercoles_ne);
-        selectedImages.put(findViewById(R.id.imageJueves), R.drawable.icon_jueves_ne);
-        selectedImages.put(findViewById(R.id.imageViernes), R.drawable.icon_viernes_ne);
-        selectedImages.put(findViewById(R.id.imageSabado), R.drawable.icon_sabado_ne);
-        selectedImages.put(findViewById(R.id.imageDomingo), R.drawable.icon_domingo_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageLunes), R.drawable.icon_lunes_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageMartes), R.drawable.icon_martes_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageMiercoles), R.drawable.icon_miercoles_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageJueves), R.drawable.icon_jueves_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageViernes), R.drawable.icon_viernes_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageSabado), R.drawable.icon_sabado_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageDomingo), R.drawable.icon_domingo_ne);
 
         configureDayClickListeners();
 
@@ -246,6 +247,7 @@ public class RegistrarseUserTresActivity extends AppCompatActivity {
     }
 
     // Actualizar los campos de texto de hora inicial y final
+    @SuppressLint("SetTextI18n")
     private void updateEditTexts() {
         String startTime = startHoursByDay.get(selectedDay);
         String endTime = endHoursByDay.get(selectedDay);
