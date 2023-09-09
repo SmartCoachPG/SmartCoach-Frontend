@@ -44,7 +44,7 @@ import java.util.Map;
             @Override
             protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
-                setContentView(R.layout.activity_registrarse_user_cuatro_dos);
+                setContentView(R.layout.activity_cuatro_dos_registrarse_user);
 
                 _editTextTime=findViewById(R.id.editTextHoraInicio);
                 _editTextTime2 = findViewById(R.id.editTextHoraFinal);
@@ -88,7 +88,7 @@ import java.util.Map;
                         Log.d("Debug", "btnInfoLeve clickeado");
                         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(RegistrarseUserTresActivity.this);
                         // Inflar el diseño del diálogo directamente
-                        View dialogView = getLayoutInflater().inflate(R.layout.activity_informacion_nivel_leve_cuatro_tres, null);
+                        View dialogView = getLayoutInflater().inflate(R.layout.activity_cuatro_tres_informacion_nivel_leve, null);
                         dialogBuilder.setView(dialogView);
 
                         AlertDialog dialog = dialogBuilder.create();
@@ -114,7 +114,7 @@ import java.util.Map;
                         Log.d("Debug", "btnInfoModerada clickeado");
                         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(RegistrarseUserTresActivity.this);
                         // Inflar el diseño del diálogo directamente
-                        View dialogView = getLayoutInflater().inflate(R.layout.activity_informacion_nivel_moderado_cuatro_cuatro, null);
+                        View dialogView = getLayoutInflater().inflate(R.layout.activity_cuatro_cuatro_informacion_nivel_moderado, null);
                         dialogBuilder.setView(dialogView);
 
                         AlertDialog dialog = dialogBuilder.create();
@@ -140,7 +140,7 @@ import java.util.Map;
                         Log.d("Debug", "btnInfoModerada clickeado");
                         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(RegistrarseUserTresActivity.this);
                         // Inflar el diseño del diálogo directamente
-                        View dialogView = getLayoutInflater().inflate(R.layout.activity_informacion_nivel_energica_cuatro_cuatro, null);
+                        View dialogView = getLayoutInflater().inflate(R.layout.activity_cuatro_cuatro_informacion_nivel_energica, null);
                         dialogBuilder.setView(dialogView);
 
                         AlertDialog dialog = dialogBuilder.create();

@@ -33,7 +33,7 @@ public class RegistrarseUserDosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrarse_user_cuatro_cero);
+        setContentView(R.layout.activity_cuatro_cero_registrarse_user);
 
         nombre = findViewById(R.id.nombre);
         email = findViewById(R.id.email);
@@ -92,7 +92,7 @@ public class RegistrarseUserDosActivity extends AppCompatActivity {
     }
     private void mostrarErrorAlertDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        View alertDialogView = getLayoutInflater().inflate(R.layout.activity_error_registrarse_admin_cinco, null);
+        View alertDialogView = getLayoutInflater().inflate(R.layout.activity_cinco_error_registrarse_admin, null);
         alertDialogBuilder.setView(alertDialogView);
 
         Button btnSeguir = alertDialogView.findViewById(R.id.btnSeguir);

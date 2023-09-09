@@ -23,7 +23,7 @@ public class RegistrarseAdminCuatroActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrarse_admin_cuatro);
+        setContentView(R.layout.activity_cuatro_registrarse_admin);
 
         nombre = findViewById(R.id.nombre);
         email = findViewById(R.id.email);
@@ -63,7 +63,7 @@ public class RegistrarseAdminCuatroActivity extends AppCompatActivity {
     }
     private void mostrarErrorAlertDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        View alertDialogView = getLayoutInflater().inflate(R.layout.activity_error_registrarse_admin_cinco, null);
+        View alertDialogView = getLayoutInflater().inflate(R.layout.activity_cinco_error_registrarse_admin, null);
         alertDialogBuilder.setView(alertDialogView);
 
         TextView tituloAlerta = alertDialogView.findViewById(R.id.tituloAlerta);
