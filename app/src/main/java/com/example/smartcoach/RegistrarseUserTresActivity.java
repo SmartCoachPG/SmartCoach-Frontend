@@ -44,7 +44,7 @@ import java.util.Map;
             @Override
             protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
-                setContentView(R.layout.activity_registrarse_user_tres);
+                setContentView(R.layout.activity_registrarse_user_cuatro_dos);
 
                 _editTextTime=findViewById(R.id.editTextHoraInicio);
                 _editTextTime2 = findViewById(R.id.editTextHoraFinal);

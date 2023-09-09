@@ -33,7 +33,7 @@ public class RegistrarseUserDosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrarse_user_dos);
+        setContentView(R.layout.activity_registrarse_user_cuatro_cero);
 
         nombre = findViewById(R.id.nombre);
         email = findViewById(R.id.email);
