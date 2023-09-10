@@ -24,7 +24,7 @@ public class inicioAdminSeisActivity extends AppCompatActivity {
         flechaRegresar = findViewById(R.id.flechaRegresar);
         cerrarSesionAdmin = findViewById(R.id.cerrarSesionAdmin);
         info_admin = findViewById(R.id.info_admin);
-        verificacion = findViewById(R.id.verificacion);
+        verificacion = findViewById(R.id.limitacionesFisicas);
         eliminarCuenta = findViewById(R.id.eliminarCuenta);
         imagePP = findViewById(R.id.imagePP);
         btnMapaBI = findViewById(R.id.btnMapaBI);
@@ -32,9 +32,9 @@ public class inicioAdminSeisActivity extends AppCompatActivity {
         btnPerfilBI = findViewById(R.id.btnPerfilBI);
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
         btnEliminarCuenta = findViewById(R.id.btnEliminarCuenta);
-        btnVerificacion = findViewById(R.id.btnVerificacion);
+        btnVerificacion = findViewById(R.id.btnLimitacionesFisicas);
         btnInfoPersonal = findViewById(R.id.btnInfoPersonal);
         nombreAdmin = findViewById(R.id.nombreAdmin);
-        cargoAdmin = findViewById(R.id.cargoAdmin);
+        cargoAdmin = findViewById(R.id.objetivoUser);
     }
 }
