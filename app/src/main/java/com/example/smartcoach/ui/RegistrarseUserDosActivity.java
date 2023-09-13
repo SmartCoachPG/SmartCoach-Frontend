@@ -1,4 +1,4 @@
-package com.example.smartcoach;
+package com.example.smartcoach.ui;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smartcoach.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

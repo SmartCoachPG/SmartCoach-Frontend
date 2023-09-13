@@ -1,4 +1,4 @@
-package com.example.smartcoach;
+package com.example.smartcoach.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smartcoach.R;
 
 public class RegistrarseUserUnoActivity extends AppCompatActivity {
     Button btncomenzar;

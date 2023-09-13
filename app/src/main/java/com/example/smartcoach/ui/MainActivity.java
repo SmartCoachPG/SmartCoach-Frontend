@@ -1,4 +1,4 @@
-package com.example.smartcoach;
+package com.example.smartcoach.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,9 +6,15 @@ import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.smartcoach.R;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MainActivity extends AppCompatActivity {
 
     Button comenzar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

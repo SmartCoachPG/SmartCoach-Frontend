@@ -1,4 +1,4 @@
-package com.example.smartcoach;
+package com.example.smartcoach.ui;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,6 +8,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smartcoach.R;
 
 public class RegistrarseAdminUnoActivity extends AppCompatActivity {
 

@@ -1,5 +1,5 @@
 
- package com.example.smartcoach;
+ package com.example.smartcoach.ui;
 
 import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
@@ -21,6 +21,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
+
+import com.example.smartcoach.R;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -209,7 +211,7 @@ import java.util.Map;
                             mostrarErrorAlertDialog();
                         } else {
                             // Solo accede a la siguiente pantalla si se cumplen las validaciones
-                            Toast.makeText(com.example.smartcoach.RegistrarseUserTresActivity.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegistrarseUserTresActivity.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
                             // Intent intent = new Intent(RegistrarseUserTresActivity.this, IniciarSesionActivity.class);
                             // startActivity(intent);
                         }

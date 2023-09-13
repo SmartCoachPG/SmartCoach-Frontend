@@ -1,4 +1,4 @@
-package com.example.smartcoach;
+package com.example.smartcoach.ui;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.smartcoach.R;
 
 public class RegistrarseAdminCuatroActivity extends AppCompatActivity {
 
