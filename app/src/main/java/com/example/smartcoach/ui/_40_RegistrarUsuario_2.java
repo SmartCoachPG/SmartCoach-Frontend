@@ -25,7 +25,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-public class RegistrarseUserDosActivity extends AppCompatActivity {
+public class _40_RegistrarUsuario_2 extends AppCompatActivity {
 
     EditText nombre, email, editTextFechaNacimiento, contraseña, validContra;
     Spinner spinnerGenero;
@@ -35,7 +35,7 @@ public class RegistrarseUserDosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cuatro_cero_registrarse_user);
+        setContentView(R.layout._40_registrar_usuario_2);
 
         nombre = findViewById(R.id.nombre);
         email = findViewById(R.id.email);
@@ -78,13 +78,13 @@ public class RegistrarseUserDosActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (validarCampos() && validarContraseñas()) {
-                    Toast.makeText(RegistrarseUserDosActivity.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(_40_RegistrarUsuario_2.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
 
                     String generoSeleccionado = spinnerGenero.getSelectedItem().toString();
                     String fechaNacimiento = editTextFechaNacimiento.getText().toString();
 
                     // Solo accede a la siguiente pantalla si se cumplen las validaciones
-                    Intent intent = new Intent(RegistrarseUserDosActivity.this, RegistrarseUserTresActivity.class);
+                    Intent intent = new Intent(_40_RegistrarUsuario_2.this, _42_RegistrarUsuario_3.class);
                     startActivity(intent);
                 } else {
                     mostrarErrorAlertDialog();
@@ -94,7 +94,7 @@ public class RegistrarseUserDosActivity extends AppCompatActivity {
     }
     private void mostrarErrorAlertDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        View alertDialogView = getLayoutInflater().inflate(R.layout.activity_cinco_error_registrarse_admin, null);
+        View alertDialogView = getLayoutInflater().inflate(R.layout._41_mensaje_error_datos_invalidos, null);
         alertDialogBuilder.setView(alertDialogView);
 
         Button btnSeguir = alertDialogView.findViewById(R.id.btnSeguir);
@@ -228,7 +228,7 @@ public class RegistrarseUserDosActivity extends AppCompatActivity {
                             String fechaNacimiento = sdf.format(selectedDate.getTime());
                             editTextFechaNacimiento.setText(fechaNacimiento);
                         } else {
-                            Toast.makeText(RegistrarseUserDosActivity.this, "Selecciona una fecha válida (mayor de 18 años)", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(_40_RegistrarUsuario_2.this, "Selecciona una fecha válida (mayor de 18 años)", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }, currentYear, currentMonth, currentDayOfMonth);

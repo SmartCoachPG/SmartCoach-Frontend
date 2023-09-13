@@ -10,8 +10,6 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +24,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class IniciarSesionActivity extends AppCompatActivity {
+public class _2_IniciarSesionRegistrarse extends AppCompatActivity {
 
     EditText email, contraseña;
     Button unete, iniciarSesion, registrate;
@@ -48,7 +46,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_iniciar_sesion);
+        setContentView(R.layout._2_iniciar_sesion_registrarse);
 
         email = findViewById(R.id.email);
         contraseña = findViewById(R.id.contraseña);
@@ -69,14 +67,14 @@ public class IniciarSesionActivity extends AppCompatActivity {
         unete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(IniciarSesionActivity.this, RegistrarseAdminUnoActivity.class);
+                Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _63_PrincipalUsuario.class);
                 startActivity(intent);
             }
         });
         registrate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(IniciarSesionActivity.this, RegistrarseUserUnoActivity.class);
+                Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _6_PrincipalAdmi.class);
                 startActivity(intent);
             }
         });
@@ -111,11 +109,11 @@ public class IniciarSesionActivity extends AppCompatActivity {
                         if (tipoUsuario != null) {
                             if (tipoUsuario == 1) {
                                 Log.d("IniciarSesionActivity", "Administrador inició sesión: " + usuarioResponse.getId());
-                                Intent intent = new Intent(IniciarSesionActivity.this, RegistrarseAdminUnoActivity.class);
+                                Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _3_RegistrarseAdmi_1.class);
                                 startActivity(intent);
                             } else if (tipoUsuario == 0) {
                                 Log.d("IniciarSesionActivity", "Cliente inició sesión: " + usuarioResponse.getId());
-                                Intent intent = new Intent(IniciarSesionActivity.this, RegistrarseUserDosActivity.class);
+                                Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _40_RegistrarUsuario_2.class);
                                 startActivity(intent);
                             } else {
                                 Log.d("IniciarSesionActivity", "Tipo de usuario desconocido");

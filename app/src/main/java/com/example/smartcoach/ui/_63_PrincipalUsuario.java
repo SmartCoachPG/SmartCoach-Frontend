@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
 
-public class seis_tres_pantalla_principal_user extends AppCompatActivity {
+public class _63_PrincipalUsuario extends AppCompatActivity {
 
     View rectanguloSup, barraInf;
     ImageButton flechaRegresar, cerrarSesionAdmin, info_admin, verificacion, eliminarCuenta, imagePP, btnMapaBI, btnMancuernaBI, btnPerfilBI, limitacionesFisicas, horariosRutinas, registroProgreso, objetivos, composicionCorporal;
@@ -20,7 +20,7 @@ public class seis_tres_pantalla_principal_user extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seis_tres_pantalla_principal_user);
+        setContentView(R.layout._63_principal_usuario);
 
         rectanguloSup = findViewById(R.id.rectangulo_naranja_superior);
         barraInf = findViewById(R.id.barraInferior);

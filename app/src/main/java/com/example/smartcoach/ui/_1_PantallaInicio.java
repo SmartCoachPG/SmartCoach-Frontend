@@ -8,10 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
 
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-public class MainActivity extends AppCompatActivity {
+public class _1_PantallaInicio extends AppCompatActivity {
 
     Button comenzar;
 
@@ -19,14 +16,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pantalla_inicio);
+        setContentView(R.layout._1_pantalla_inicio);
 
         comenzar = findViewById(R.id.btnComenzar);
 
         comenzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, IniciarSesionActivity.class));
+                startActivity(new Intent(_1_PantallaInicio.this, _2_IniciarSesionRegistrarse.class));
             }
         });
     }

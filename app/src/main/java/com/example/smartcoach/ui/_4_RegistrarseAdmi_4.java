@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
 
-public class RegistrarseAdminCuatroActivity extends AppCompatActivity {
+public class _4_RegistrarseAdmi_4 extends AppCompatActivity {
 
     EditText nombre, email, contraseña, validContra, cedula, nombreGym, direccionGym, barrioGym, puestoGym;
     Button btnsiguiente;
@@ -25,7 +25,7 @@ public class RegistrarseAdminCuatroActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cuatro_registrarse_admin);
+        setContentView(R.layout._4_registrarse_admi_4);
 
         nombre = findViewById(R.id.nombre);
         email = findViewById(R.id.email);
@@ -56,7 +56,7 @@ public class RegistrarseAdminCuatroActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validarCampos() && validarContraseñas()) {
-                    Toast.makeText(RegistrarseAdminCuatroActivity.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(_4_RegistrarseAdmi_4.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
                 } else {
                     mostrarErrorAlertDialog();
                 }
@@ -65,7 +65,7 @@ public class RegistrarseAdminCuatroActivity extends AppCompatActivity {
     }
     private void mostrarErrorAlertDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        View alertDialogView = getLayoutInflater().inflate(R.layout.activity_cinco_error_registrarse_admin, null);
+        View alertDialogView = getLayoutInflater().inflate(R.layout._41_mensaje_error_datos_invalidos, null);
         alertDialogBuilder.setView(alertDialogView);
 
         TextView tituloAlerta = alertDialogView.findViewById(R.id.tituloAlerta);

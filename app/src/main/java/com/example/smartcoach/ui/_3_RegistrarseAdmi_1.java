@@ -11,14 +11,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
 
-public class RegistrarseAdminUnoActivity extends AppCompatActivity {
+public class _3_RegistrarseAdmi_1 extends AppCompatActivity {
 
     Button btncontinuar, btncancelar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrarse_admin);
+        setContentView(R.layout._3_registrarse_admi_1);
 
         btncontinuar = findViewById(R.id.btnContinuar);
         btncancelar = findViewById(R.id.btnCancelar);
@@ -26,7 +26,7 @@ public class RegistrarseAdminUnoActivity extends AppCompatActivity {
         btncontinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegistrarseAdminUnoActivity.this, RegistrarseAdminCuatroActivity.class);
+                Intent intent = new Intent(_3_RegistrarseAdmi_1.this, _4_RegistrarseAdmi_4.class);
                 startActivity(intent);
             }
         });
@@ -53,7 +53,7 @@ public class RegistrarseAdminUnoActivity extends AppCompatActivity {
         builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(RegistrarseAdminUnoActivity.this, MainActivity.class);
+                Intent intent = new Intent(_3_RegistrarseAdmi_1.this, _1_PantallaInicio.class);
                 startActivity(intent);
                 finish();
             }

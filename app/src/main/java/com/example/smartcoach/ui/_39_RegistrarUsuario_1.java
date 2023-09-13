@@ -9,20 +9,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
 
-public class RegistrarseUserUnoActivity extends AppCompatActivity {
+public class _39_RegistrarUsuario_1 extends AppCompatActivity {
     Button btncomenzar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registrar_usuario);
+        setContentView(R.layout._39_registrar_usuario_1);
 
         btncomenzar = findViewById(R.id.btnComenzarUser);
 
         btncomenzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegistrarseUserUnoActivity.this, RegistrarseUserDosActivity.class);
+                Intent intent = new Intent(_39_RegistrarUsuario_1.this, _40_RegistrarUsuario_2.class);
                  startActivity(intent);
             }
         });
