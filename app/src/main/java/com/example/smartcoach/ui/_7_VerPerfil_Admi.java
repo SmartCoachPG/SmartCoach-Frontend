@@ -13,8 +13,8 @@ import com.example.smartcoach.R;
 
 public class _7_VerPerfil_Admi extends AppCompatActivity {
 
-    EditText texoIngresoNombre, textoIngresoEmail,textoIngresoCedula, textoIngresoPuesto;
-    TextView nombreAdmi, puestoAdmi;
+    TextView texoIngresoNombre, textoIngresoEmail,textoIngresoCedula, textoIngresoPuesto,nombreAdmi, puestoAdmi;
+
     ImageButton flechaRegresar, imagePP, botonModificar;
 
     @Override

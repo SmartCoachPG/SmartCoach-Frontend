@@ -76,5 +76,11 @@
             android:label="@string/app_name"
             android:exported="false"/>
 
-        </application>
+
+        <activity
+            android:name=".ui._65_ModificarPerfil_Usuario"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+    </application>
 </manifest>

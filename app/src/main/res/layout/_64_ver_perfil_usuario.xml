@@ -95,6 +95,7 @@
     </FrameLayout>
 
     <ImageButton
+        android:id="@id/botonModificar"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/icon_modificar"
@@ -118,7 +119,7 @@
             android:textColor="@color/black"
             ></TextView>
 
-        <EditText
+        <TextView
             android:id="@+id/textoIngresoNombre"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -137,7 +138,7 @@
             android:textColor="@color/black"
             ></TextView>
 
-        <EditText
+        <TextView
             android:id="@+id/textoIngresoEmail"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -156,7 +157,7 @@
             android:textColor="@color/black"
             ></TextView>
 
-        <EditText
+        <TextView
             android:id="@+id/textoIngresoGenero"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -175,7 +176,7 @@
             android:textColor="@color/black"
             ></TextView>
 
-        <EditText
+        <TextView
             android:id="@+id/textoFechaNacimiento"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -194,7 +195,7 @@
             android:textColor="@color/black"
             ></TextView>
 
-        <EditText
+        <TextView
             android:id="@+id/textoIngresoObjetivo"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
