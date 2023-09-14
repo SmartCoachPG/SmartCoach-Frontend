@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
 
-public class _3_RegistrarseAdmi_1 extends AppCompatActivity {
+public class _3_Registrarse_Admi_1 extends AppCompatActivity {
 
     Button btncontinuar, btncancelar;
 
@@ -27,7 +27,7 @@ public class _3_RegistrarseAdmi_1 extends AppCompatActivity {
         btncontinuar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(_3_RegistrarseAdmi_1.this, _4_RegistrarseAdmi_4.class);
+                Intent intent = new Intent(_3_Registrarse_Admi_1.this, _4_Registrarse_Admi_4.class);
                 startActivity(intent);
             }
         });
@@ -54,7 +54,7 @@ public class _3_RegistrarseAdmi_1 extends AppCompatActivity {
         builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(_3_RegistrarseAdmi_1.this, _1_PantallaInicio.class);
+                Intent intent = new Intent(_3_Registrarse_Admi_1.this, _1_PantallaInicio.class);
                 startActivity(intent);
                 finish();
             }

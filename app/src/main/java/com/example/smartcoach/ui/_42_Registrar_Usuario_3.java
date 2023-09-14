@@ -28,7 +28,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-        public class _42_RegistrarUsuario_3 extends AppCompatActivity {
+        public class _42_Registrar_Usuario_3 extends AppCompatActivity {
 
             TimePickerDialog _timePickerDialog;
             EditText _editTextTime, _editTextTime2;
@@ -89,7 +89,7 @@ import java.util.Map;
                     @Override
                     public void onClick(View v) {
                         Log.d("Debug", "btnInfoLeve clickeado");
-                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_42_RegistrarUsuario_3.this);
+                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_42_Registrar_Usuario_3.this);
                         // Inflar el diseño del diálogo directamente
                         View dialogView = getLayoutInflater().inflate(R.layout._43_informacion_nivel_actividad_leve, null);
                         dialogBuilder.setView(dialogView);
@@ -115,7 +115,7 @@ import java.util.Map;
                     @Override
                     public void onClick(View v) {
                         Log.d("Debug", "btnInfoModerada clickeado");
-                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_42_RegistrarUsuario_3.this);
+                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_42_Registrar_Usuario_3.this);
                         // Inflar el diseño del diálogo directamente
                         View dialogView = getLayoutInflater().inflate(R.layout._44_informacion_nivel_actividad_moderado, null);
                         dialogBuilder.setView(dialogView);
@@ -141,7 +141,7 @@ import java.util.Map;
                     @Override
                     public void onClick(View v) {
                         Log.d("Debug", "btnInfoModerada clickeado");
-                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_42_RegistrarUsuario_3.this);
+                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_42_Registrar_Usuario_3.this);
                         // Inflar el diseño del diálogo directamente
                         View dialogView = getLayoutInflater().inflate(R.layout._44_informacion_nivel_actividad_energico, null);
                         dialogBuilder.setView(dialogView);
@@ -212,7 +212,7 @@ import java.util.Map;
                             mostrarErrorAlertDialog();
                         } else {
                             // Solo accede a la siguiente pantalla si se cumplen las validaciones
-                            Toast.makeText(_42_RegistrarUsuario_3.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(_42_Registrar_Usuario_3.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
                             // Intent intent = new Intent(RegistrarseUserTresActivity.this, IniciarSesionActivity.class);
                             // startActivity(intent);
                         }
@@ -396,7 +396,7 @@ import java.util.Map;
                         (horaInicioHoras == horaFinalHoras && horaInicioMinutos >= horaFinalMinutos)) {
                     _editTextTime.setError("La hora inicial debe ser menor que la hora final");
                     _editTextTime2.setError("La hora final debe ser mayor que la hora inicial");
-                    Toast.makeText(_42_RegistrarUsuario_3.this, "La hora inicial debe ser menor que la hora final", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(_42_Registrar_Usuario_3.this, "La hora inicial debe ser menor que la hora final", Toast.LENGTH_SHORT).show();
                     retorno = false;
                 }
             } catch (NumberFormatException e) {

@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
 
-public class _6_PrincipalAdmi extends AppCompatActivity {
+public class _6_Principal_Admi extends AppCompatActivity {
 
     ImageButton flechaRegresar, eliminarCuenta, imagePP,verificacionAdmin,cerrarSesion,infoAdmi;
     TextView nombreAdmi, puestoAdmi, infoAdmiTexto,verificacionAdmiTexto,eliminarCuentaTexto,cerrarSesionTexto;
@@ -38,7 +38,7 @@ public class _6_PrincipalAdmi extends AppCompatActivity {
         infoAdmi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(_6_PrincipalAdmi.this, _7_VerPerfil_admi.class));
+                startActivity(new Intent(_6_Principal_Admi.this, _7_VerPerfil_Admi.class));
             }
         });
 
@@ -46,7 +46,7 @@ public class _6_PrincipalAdmi extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(_6_PrincipalAdmi.this, _7_VerPerfil_admi.class));
+                        startActivity(new Intent(_6_Principal_Admi.this, _7_VerPerfil_Admi.class));
                     }
                 });
     }

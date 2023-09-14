@@ -11,11 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
 
-public class _7_VerPerfil_admi extends AppCompatActivity {
+public class _7_VerPerfil_Admi extends AppCompatActivity {
 
     EditText texoIngresoNombre, textoIngresoEmail,textoIngresoCedula, textoIngresoPuesto;
     TextView nombreAdmi, puestoAdmi;
-    ImageButton flechaRegresar, imagePP;
+    ImageButton flechaRegresar, imagePP, botonModificar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +32,21 @@ public class _7_VerPerfil_admi extends AppCompatActivity {
         puestoAdmi = findViewById(R.id.puestoAdmi);
         flechaRegresar = findViewById(R.id.flechaRegresar);
         imagePP = findViewById(R.id.imagePP);
-
+        botonModificar = findViewById(R.id.botonModificar);
 
         flechaRegresar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(_7_VerPerfil_admi.this, _6_PrincipalAdmi.class));
+                        startActivity(new Intent(_7_VerPerfil_Admi.this, _6_Principal_Admi.class));
                     }
                 });
 
+        botonModificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(_7_VerPerfil_Admi.this, _8_ModificarPerfil_Admi.class));
+            }
+        });
 
     }
 

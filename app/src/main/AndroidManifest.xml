@@ -32,42 +32,47 @@
             android:exported="false"/>
 
         <activity
-            android:name=".ui._3_RegistrarseAdmi_1"
+            android:name=".ui._3_Registrarse_Admi_1"
             android:label="@string/app_name"
             android:exported="false"/>
         <activity
-            android:name=".ui._4_RegistrarseAdmi_4"
+            android:name=".ui._4_Registrarse_Admi_4"
             android:label="@string/app_name"
             android:exported="false"/>
         <activity
-            android:name=".ui._39_RegistrarUsuario_1"
+            android:name=".ui._39_Registrar_Usuario_1"
             android:label="@string/app_name"
             android:exported="false"/>
         <activity
-            android:name=".ui._40_RegistrarUsuario_2"
+            android:name=".ui._40_Registrar_Usuario_2"
             android:label="@string/app_name"
             android:exported="false"/>
         <activity
-            android:name=".ui._42_RegistrarUsuario_3"
+            android:name=".ui._42_Registrar_Usuario_3"
             android:label="@string/app_name"
             android:exported="false"/>
         <activity
-            android:name=".ui._63_PrincipalUsuario"
-            android:label="@string/app_name"
-            android:exported="false"/>
-
-        <activity
-            android:name=".ui._6_PrincipalAdmi"
+            android:name=".ui._63_Principal_Usuario"
             android:label="@string/app_name"
             android:exported="false"/>
 
         <activity
-            android:name=".ui._7_VerPerfil_admi"
+            android:name=".ui._6_Principal_Admi"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui._7_VerPerfil_Admi"
             android:label="@string/app_name"
             android:exported="false"/>
 
         <activity
             android:name=".ui._64_VerPerfil_Usuario"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui._8_ModificarPerfil_Admi"
             android:label="@string/app_name"
             android:exported="false"/>
 

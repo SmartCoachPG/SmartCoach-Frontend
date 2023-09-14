@@ -33,7 +33,7 @@ public class _64_VerPerfil_Usuario extends AppCompatActivity {
         flechaRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(_64_VerPerfil_Usuario.this, _63_PrincipalUsuario.class));
+                startActivity(new Intent(_64_VerPerfil_Usuario.this, _63_Principal_Usuario.class));
             }
         });
 

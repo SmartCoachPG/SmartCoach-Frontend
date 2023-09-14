@@ -67,14 +67,14 @@ public class _2_IniciarSesionRegistrarse extends AppCompatActivity {
         unete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _39_RegistrarUsuario_1.class);
+                Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _39_Registrar_Usuario_1.class);
                 startActivity(intent);
             }
         });
         registrate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _3_RegistrarseAdmi_1.class);
+                Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _3_Registrarse_Admi_1.class);
                 startActivity(intent);
             }
         });
@@ -109,11 +109,11 @@ public class _2_IniciarSesionRegistrarse extends AppCompatActivity {
                         if (tipoUsuario != null) {
                             if (tipoUsuario == 1) {
                                 Log.d("IniciarSesionActivity", "Administrador inició sesión: " + usuarioResponse.getId());
-                                Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _6_PrincipalAdmi.class);
+                                Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _6_Principal_Admi.class);
                                 startActivity(intent);
                             } else if (tipoUsuario == 0) {
                                 Log.d("IniciarSesionActivity", "Cliente inició sesión: " + usuarioResponse.getId());
-                                Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _63_PrincipalUsuario.class);
+                                Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _63_Principal_Usuario.class);
                                 startActivity(intent);
                             } else {
                                 Log.d("IniciarSesionActivity", "Tipo de usuario desconocido");

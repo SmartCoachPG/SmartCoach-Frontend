@@ -3,7 +3,6 @@ package com.example.smartcoach.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -11,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
 
-public class _63_PrincipalUsuario extends AppCompatActivity {
+public class _63_Principal_Usuario extends AppCompatActivity {
 
     ImageButton imagePP, infoUser,limitacionesFisicas,horarioRutinas,registroProgreso,objetivos,composicionCorporal,eliminarCuenta,cerrarSesion;
     TextView nombreUser,infoUserTexto,limitacionesFisicasTexto,horarioRutinasTexto,registroProgresoTexto,composicionCorporalTexo,eliminarCuentaTexto,cerrarSesionTexto, objetivosTexto;
@@ -45,14 +44,14 @@ public class _63_PrincipalUsuario extends AppCompatActivity {
         infoUser.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(_63_PrincipalUsuario.this, _64_VerPerfil_Usuario.class));
+                        startActivity(new Intent(_63_Principal_Usuario.this, _64_VerPerfil_Usuario.class));
                     }
                 });
 
         infoUserTexto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(_63_PrincipalUsuario.this, _64_VerPerfil_Usuario.class));
+                startActivity(new Intent(_63_Principal_Usuario.this, _64_VerPerfil_Usuario.class));
             }
         });
 
