@@ -1,115 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/f5">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingStart="0dp"
-        android:paddingTop="0dp"
-        android:paddingEnd="0dp"
-        android:paddingBottom="0dp">
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <View
             android:id="@+id/rectangulo_naranja_superior"
-            android:layout_width="429dp"
-            android:layout_height="185dp"
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
             android:background="@drawable/rectangulo_naranja"
-            app:layout_constraintBottom_toTopOf="@+id/barraInferior"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <View
-            android:id="@+id/barraInferior"
-            android:layout_width="535dp"
-            android:layout_height="99dp"
-            android:layout_marginTop="650dp"
-            android:background="@drawable/rectangulo_naranja"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/objetivoUser" />
-
-        <TextView
-            android:id="@+id/nombreUser"
-            android:layout_width="134dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="140dp"
-            android:text="TextView"
-            android:textColor="@color/white"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.27"
-            app:layout_constraintStart_toEndOf="@+id/imagePP"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/objetivoUser"
-            android:layout_width="154dp"
-            android:layout_height="23dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="TextView"
-            android:textColor="#FDA400"
-            android:textSize="20sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imagePP"
-            app:layout_constraintTop_toBottomOf="@+id/nombreUser" />
-
-        <ImageButton
-            android:id="@+id/flechaRegresar"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="28dp"
-            android:background="@null"
-            android:contentDescription="Seleccionar imagen de perfil"
-            android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.078"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/flecha_regresar" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/imagePP"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="56dp"
+                android:layout_marginTop="55dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.18"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/icon_pp_predeterminado" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/nombreUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="TextView"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.27"
+                    app:layout_constraintStart_toEndOf="@+id/imagePP"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/objetivoUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="-10dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="TextView"
+                    android:textColor="@color/orange"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.27"
+                    app:layout_constraintStart_toEndOf="@+id/imagePP"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="32dp">
 
         <ImageButton
-            android:id="@+id/imagePP"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="76dp"
-            android:background="@null"
-            android:contentDescription="Seleccionar imagen de perfil"
-            android:scaleType="fitCenter"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/rectangulo_naranja_superior"
-            app:srcCompat="@drawable/icon_pp_predeterminado" />
-
-        <Button
-            android:id="@+id/btnInfoPersonal"
-            android:layout_width="281dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="28dp"
-            android:background="@android:color/transparent"
-            android:text="Información personal"
-            android:textColor="#3A3A3A"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.175"
-            app:layout_constraintStart_toEndOf="@+id/info_admin"
-            app:layout_constraintTop_toBottomOf="@+id/imagePP" />
-
-        <ImageButton
-            android:id="@+id/info_admin"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="28dp"
+            android:id="@+id/info_user"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@null"
             android:contentDescription="Seleccionar para ver información personal"
             android:scaleType="fitCenter"
@@ -117,233 +99,249 @@
             app:layout_constraintTop_toBottomOf="@+id/imagePP"
             app:srcCompat="@drawable/icon_user_ne" />
 
+        <TextView
+            android:id="@+id/info_user_texto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Información Personal"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"></TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="40dp">
+
         <ImageButton
-            android:id="@+id/limitacionesFisicas"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="28dp"
+            android:id="@+id/limitaciones_fisicas"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@null"
-            android:contentDescription="Seleccionar para ver información sobre su verificación"
+            android:contentDescription="Seleccionar para ver la informacion de verificacion"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/info_admin"
+            app:layout_constraintTop_toBottomOf="@+id/imagePP"
             app:srcCompat="@drawable/icon_lim_fisicas_ne" />
 
-        <Button
-            android:id="@+id/btnLimitacionesFisicas"
-            android:layout_width="281dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="28dp"
-            android:background="@android:color/transparent"
+        <TextView
+            android:id="@+id/limitaciones_fisicas_texto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Limitaciones Físicas"
-            android:textColor="#3A3A3A"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.018"
-            app:layout_constraintStart_toEndOf="@+id/limitacionesFisicas"
-            app:layout_constraintTop_toBottomOf="@+id/btnInfoPersonal" />
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"></TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="40dp">
 
         <ImageButton
-            android:id="@+id/horariosRutinas"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="28dp"
+            android:id="@+id/horario_rutinas"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@null"
-            android:contentDescription="Seleccionar para ver información sobre su verificación"
+            android:contentDescription="Seleccionar para ver la informacion de verificacion"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/limitacionesFisicas"
+            app:layout_constraintTop_toBottomOf="@+id/imagePP"
             app:srcCompat="@drawable/icon_reloj_ne" />
 
-        <Button
-            android:id="@+id/btnHorariosRutinas"
-            android:layout_width="281dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="36dp"
-            android:background="@android:color/transparent"
-            android:text="Horarios Rutinas"
-            android:textColor="#3A3A3A"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnLimitacionesFisicas" />
+        <TextView
+            android:id="@+id/horario_rutinas_texto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Horario Rutinas"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"></TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="40dp">
 
         <ImageButton
-            android:id="@+id/registroProgreso"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="28dp"
+            android:id="@+id/registro_progreso"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@null"
-            android:contentDescription="Seleccionar para ver información sobre su verificación"
+            android:contentDescription="Seleccionar para ver la informacion de verificacion"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horariosRutinas"
+            app:layout_constraintTop_toBottomOf="@+id/imagePP"
             app:srcCompat="@drawable/icon_registro_progreso_ne" />
 
-        <Button
-            android:id="@+id/btnRegistroProgreso"
-            android:layout_width="281dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="36dp"
-            android:background="@android:color/transparent"
+        <TextView
+            android:id="@+id/registro_progreso_texto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Registro Progreso"
-            android:textColor="#3A3A3A"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnHorariosRutinas" />
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"></TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="40dp">
 
         <ImageButton
             android:id="@+id/objetivos"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@null"
-            android:contentDescription="Seleccionar para ver información sobre su verificación"
+            android:contentDescription="Seleccionar para ver la informacion de verificacion"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registroProgreso"
+            app:layout_constraintTop_toBottomOf="@+id/imagePP"
             app:srcCompat="@drawable/icon_objetivos_ne" />
 
-        <Button
-            android:id="@+id/btnObjetivos"
-            android:layout_width="281dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="40dp"
-            android:background="@android:color/transparent"
+        <TextView
+            android:id="@+id/objetivos_texto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Objetivos"
-            android:textColor="#3A3A3A"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnRegistroProgreso" />
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"></TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="40dp">
 
         <ImageButton
-            android:id="@+id/composicionCorporal"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="28dp"
+            android:id="@+id/composicion_corporal"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@null"
-            android:contentDescription="Seleccionar para ver información sobre su verificación"
+            android:contentDescription="Seleccionar para ver la informacion de verificacion"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/objetivos"
+            app:layout_constraintTop_toBottomOf="@+id/imagePP"
             app:srcCompat="@drawable/icon_composicion_corporal_ne" />
 
-        <Button
-            android:id="@+id/btnComposicionCorporal"
-            android:layout_width="281dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="40dp"
-            android:background="@android:color/transparent"
-            android:text="Composicion Corporal"
-            android:textColor="#3A3A3A"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnObjetivos" />
+        <TextView
+            android:id="@+id/composicion_corporal_texto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Composición Corporal"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"></TextView>
 
-        <Button
-            android:id="@+id/btnEliminarCuenta"
-            android:layout_width="281dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="28dp"
-            android:background="@android:color/transparent"
-            android:text="Eliminar Cuenta"
-            android:textColor="#3A3A3A"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
-            app:layout_constraintStart_toEndOf="@+id/eliminarCuenta"
-            app:layout_constraintTop_toBottomOf="@+id/btnComposicionCorporal" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="32dp">
 
         <ImageButton
-            android:id="@+id/eliminarCuenta"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="28dp"
+            android:id="@+id/eliminar_cuenta"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@null"
-            android:contentDescription="Seleccionar para eliminar su cuenta."
+            android:contentDescription="Seleccionar para eliminar cuenta"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/composicionCorporal"
+            app:layout_constraintTop_toBottomOf="@+id/imagePP"
             app:srcCompat="@drawable/icon_basura_x_ne" />
 
+        <TextView
+            android:id="@+id/eliminar_cuenta_texto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eliminar cuenta"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"></TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="32dp">
+
         <ImageButton
-            android:id="@+id/cerrarSesionAdmin"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="16dp"
+            android:id="@+id/cerrar_sesion"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@null"
-            android:contentDescription="Seleccionar para cerrar sesión."
+            android:contentDescription="Seleccionar para cerrar sesion"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/eliminarCuenta"
+            app:layout_constraintTop_toBottomOf="@+id/imagePP"
             app:srcCompat="@drawable/icon_x_fondo_ne" />
 
-        <Button
-            android:id="@+id/btnCerrarSesion"
-            android:layout_width="281dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="24dp"
-            android:background="@android:color/transparent"
+        <TextView
+            android:id="@+id/cerrar_sesion_texto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Cerrar Sesión"
-            android:textColor="#3A3A3A"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.312"
-            app:layout_constraintStart_toEndOf="@+id/cerrarSesionAdmin"
-            app:layout_constraintTop_toBottomOf="@+id/btnEliminarCuenta" />
-
-        <ImageButton
-            android:id="@+id/btnMapaBI"
-            android:layout_width="75dp"
-            android:layout_height="59dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="28dp"
-            android:background="@null"
-            android:contentDescription="Seleccionar imagen de perfil"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/barraInferior"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/icon_mapa" />
-
-        <ImageButton
-            android:id="@+id/btnMancuernaBI"
-            android:layout_width="75dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginBottom="10dp"
-            android:background="@null"
-            android:contentDescription="Seleccionar imagen de perfil"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnPerfilBI"
-            app:layout_constraintHorizontal_bias="0.525"
-            app:layout_constraintStart_toEndOf="@+id/btnMapaBI"
-            app:layout_constraintTop_toTopOf="@+id/barraInferior"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/icon_mancuerna_b" />
-
-        <ImageButton
-            android:id="@+id/btnPerfilBI"
-            android:layout_width="75dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="52dp"
-            android:layout_marginBottom="10dp"
-            android:background="@null"
-            android:contentDescription="Seleccionar imagen de perfil"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/barraInferior"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/icon_perfil_b" />
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"></TextView>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+        <include
+            layout="@layout/_otros_menu_usuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -87,12 +87,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="85dp"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/icon_check_blanco"/>
+
 
 
         </LinearLayout>
@@ -127,7 +122,7 @@
             android:id="@+id/textoIngresoNombre"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="Nombre admi"
+            android:hint="Nombre usuario"
             android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
@@ -146,7 +141,7 @@
             android:id="@+id/textoIngresoEmail"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="Email admi"
+            android:hint="Email usuario"
             android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
@@ -157,15 +152,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22dp"
-            android:text="Cedula"
+            android:text="Genero"
             android:textColor="@color/black"
             ></TextView>
 
         <EditText
-            android:id="@+id/textoIngresoCedula"
+            android:id="@+id/textoIngresoGenero"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="Cedula admi"
+            android:hint="Genero usuario"
             android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
@@ -176,22 +171,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="22dp"
-            android:text="Puesto"
+            android:text="Fecha Nacimiento"
             android:textColor="@color/black"
             ></TextView>
 
         <EditText
-            android:id="@+id/textoIngresoPuesto"
+            android:id="@+id/textoFechaNacimiento"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="Puesto admi"
+            android:hint="Fecha nacimiento usuairo"
             android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
             android:background="@drawable/rectangulonaranja"/>
 
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22dp"
+            android:text="Objetivo"
+            android:textColor="@color/black"
+            ></TextView>
+
+        <EditText
+            android:id="@+id/textoIngresoObjetivo"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Objetivo Usuario"
+            android:textSize="12dp"
+            android:inputType="text"
+            android:textColor="@color/grisClaro"
+            android:background="@drawable/rectangulonaranja"/>
     </LinearLayout>
-
 
 
     <LinearLayout
@@ -202,7 +214,7 @@
         android:gravity="bottom">
 
         <include
-            layout="@layout/_otros_menu_admi"
+            layout="@layout/_otros_menu_usuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -210,5 +222,3 @@
 
 
 </LinearLayout>
-
-

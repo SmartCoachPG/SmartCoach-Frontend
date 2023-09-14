@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+
+        <View
+            android:id="@+id/rectangulo_naranja_superior"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@drawable/rectangulo_naranja"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="4">
+
+
+            <ImageButton
+                android:id="@+id/boton_mapa"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_ubi_b"
+                android:scaleType="centerInside"
+                android:background="@null"
+                android:layout_weight="1" >
+            </ImageButton>
+
+            <ImageButton
+                android:id="@+id/boton_casa"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_casita_b"
+                android:scaleType="centerInside"
+                android:background="@null"
+                android:layout_weight="1" >
+            </ImageButton>
+
+            <ImageButton
+                android:id="@+id/boton_equipo"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_mancuerna_b"
+                android:scaleType="centerInside"
+                android:background="@null"
+                android:layout_weight="1" >
+            </ImageButton>
+
+            <ImageButton
+                android:id="@+id/boton_perfil"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:src="@drawable/icon_perfil_b"
+                android:scaleType="centerInside"
+                android:background="@null"
+                android:layout_weight="1" >
+            </ImageButton>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

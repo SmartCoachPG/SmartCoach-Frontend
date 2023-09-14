@@ -62,7 +62,12 @@
             android:exported="false"/>
 
         <activity
-            android:name=".ui._7_ver_perfil_admi"
+            android:name=".ui._7_VerPerfil_admi"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui._64_VerPerfil_Usuario"
             android:label="@string/app_name"
             android:exported="false"/>
 

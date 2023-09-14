@@ -3,9 +3,6 @@ package com.example.smartcoach.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EdgeEffect;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -41,7 +38,7 @@ public class _6_PrincipalAdmi extends AppCompatActivity {
         infoAdmi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(_6_PrincipalAdmi.this, _7_ver_perfil_admi.class));
+                startActivity(new Intent(_6_PrincipalAdmi.this, _7_VerPerfil_admi.class));
             }
         });
 
@@ -49,7 +46,7 @@ public class _6_PrincipalAdmi extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(_6_PrincipalAdmi.this, _7_ver_perfil_admi.class));
+                        startActivity(new Intent(_6_PrincipalAdmi.this, _7_VerPerfil_admi.class));
                     }
                 });
     }

@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
 
-public class _7_ver_perfil_admi extends AppCompatActivity {
+public class _7_VerPerfil_admi extends AppCompatActivity {
 
     EditText texoIngresoNombre, textoIngresoEmail,textoIngresoCedula, textoIngresoPuesto;
     TextView nombreAdmi, puestoAdmi;
@@ -37,7 +37,7 @@ public class _7_ver_perfil_admi extends AppCompatActivity {
         flechaRegresar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(_7_ver_perfil_admi.this, _6_PrincipalAdmi.class));
+                        startActivity(new Intent(_7_VerPerfil_admi.this, _6_PrincipalAdmi.class));
                     }
                 });
 
