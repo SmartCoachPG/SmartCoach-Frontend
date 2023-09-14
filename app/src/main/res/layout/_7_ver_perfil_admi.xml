@@ -20,6 +20,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageButton
+            android:id="@+id/flechaRegresar"
+            android:layout_width="10.85dp"
+            android:layout_height="18.95dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginLeft="28dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.078"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/flecha_regresar" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,7 +59,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/nombreAdmin"
+                    android:id="@+id/nombreAdmi"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:layout_marginTop="80dp"
@@ -86,129 +99,100 @@
 
     </FrameLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="32dp">
+    <ImageButton
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/icon_modificar"
+        android:scaleType="centerInside"
+        android:background="@null"
+        android:layout_marginLeft="350dp"></ImageButton>
 
-        <ImageButton
-            android:id="@+id/info_admi"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@null"
-            android:contentDescription="Seleccionar para ver información personal"
-            android:scaleType="fitCenter"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagePP"
-            app:srcCompat="@drawable/icon_user_ne" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:orientation="vertical">
+
 
         <TextView
-            android:id="@+id/info_admi_texto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Información Personal"
-            android:textSize="18sp"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/grey"></TextView>
+            android:textSize="22dp"
+            android:text="Nombre"
+            android:textColor="@color/black"
+            ></TextView>
 
+        <EditText
+            android:id="@+id/textoIngresoNombre"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Nombre admi"
+            android:textSize="12dp"
+            android:inputType="text"
+            android:textColor="@color/grisClaro"
+            android:background="@drawable/rectangulonaranja"/>
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22dp"
+            android:text="Email"
+            android:textColor="@color/black"
+            ></TextView>
+
+        <EditText
+            android:id="@+id/textoIngresoEmail"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Nombre admi"
+            android:textSize="12dp"
+            android:inputType="text"
+            android:textColor="@color/grisClaro"
+            android:background="@drawable/rectangulonaranja"/>
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22dp"
+            android:text="Cedula"
+            android:textColor="@color/black"
+            ></TextView>
+
+        <EditText
+            android:id="@+id/textoIngresoCedula"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Nombre admi"
+            android:textSize="12dp"
+            android:inputType="text"
+            android:textColor="@color/grisClaro"
+            android:background="@drawable/rectangulonaranja"/>
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22dp"
+            android:text="Puesto"
+            android:textColor="@color/black"
+            ></TextView>
+
+        <EditText
+            android:id="@+id/textoIngresoPuesto"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Nombre admi"
+            android:textSize="12dp"
+            android:inputType="text"
+            android:textColor="@color/grisClaro"
+            android:background="@drawable/rectangulonaranja"/>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="32dp">
 
-        <ImageButton
-            android:id="@+id/verificacion_admi"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@null"
-            android:contentDescription="Seleccionar para ver la informacion de verificacion"
-            android:scaleType="fitCenter"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagePP"
-            app:srcCompat="@drawable/icon_verificacion_ne" />
-
-        <TextView
-            android:id="@+id/verificacion_admi_texto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Verificación"
-            android:textSize="18sp"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/grey"></TextView>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="32dp">
-
-        <ImageButton
-            android:id="@+id/eliminar_cuenta"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@null"
-            android:contentDescription="Seleccionar para eliminar cuenta"
-            android:scaleType="fitCenter"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagePP"
-            app:srcCompat="@drawable/icon_basura_x_ne" />
-
-        <TextView
-            android:id="@+id/eliminar_cuenta_texto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Eliminar cuenta"
-            android:textSize="18sp"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/grey"></TextView>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="56dp"
-        android:layout_marginTop="32dp">
-
-        <ImageButton
-            android:id="@+id/cerrar_sesion"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@null"
-            android:contentDescription="Seleccionar para cerrar sesion"
-            android:scaleType="fitCenter"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagePP"
-            app:srcCompat="@drawable/icon_x_fondo_ne" />
-
-        <TextView
-            android:id="@+id/cerrar_sesion_texto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Informacion Personal"
-            android:textSize="18sp"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/grey"></TextView>
-
-
-    </LinearLayout>
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

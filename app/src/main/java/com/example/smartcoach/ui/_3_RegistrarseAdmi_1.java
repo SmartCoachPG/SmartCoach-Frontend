@@ -18,6 +18,7 @@ public class _3_RegistrarseAdmi_1 extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout._3_registrarse_admi_1);
 
         btncontinuar = findViewById(R.id.btnContinuar);

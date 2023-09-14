@@ -7,11 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="grey">#5C5C5C</color>
+    <color name="grey">#3A3A3A</color>
+    <color name="orange">#FFA500</color>
     <!--Color para el calendario-->
     <color name="colorPrimary">#FDA400</color>
     <color name="colorPrimaryDark">#FDA400</color>
     <color name="colorAccent">#FDA400</color>
     <color name="custom_date_picker_header_color">#FDA400</color>
+    <color name="grisClaro">#979797</color>
 
 </resources>

@@ -25,6 +25,7 @@ public class _4_RegistrarseAdmi_4 extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout._4_registrarse_admi_4);
 
         nombre = findViewById(R.id.nombre);

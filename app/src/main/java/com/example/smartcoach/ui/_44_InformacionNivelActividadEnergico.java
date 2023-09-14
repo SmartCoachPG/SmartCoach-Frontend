@@ -17,6 +17,7 @@ public class _44_InformacionNivelActividadEnergico extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout._44_informacion_nivel_actividad_energico);
 
         // Asignación de los elementos de la vista a las variables

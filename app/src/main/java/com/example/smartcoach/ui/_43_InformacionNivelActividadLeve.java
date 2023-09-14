@@ -18,6 +18,7 @@ public class _43_InformacionNivelActividadLeve extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout._43_informacion_nivel_actividad_leve);
 
         // Asignación de los elementos de la vista a las variables

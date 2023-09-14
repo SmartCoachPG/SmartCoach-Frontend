@@ -20,6 +20,7 @@ public class _63_PrincipalUsuario extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout._63_principal_usuario);
 
         rectanguloSup = findViewById(R.id.rectangulo_naranja_superior);

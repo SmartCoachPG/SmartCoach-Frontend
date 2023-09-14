@@ -15,6 +15,7 @@ public class _39_RegistrarUsuario_1 extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout._39_registrar_usuario_1);
 
         btncomenzar = findViewById(R.id.btnComenzarUser);

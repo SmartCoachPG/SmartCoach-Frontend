@@ -1,8 +1,11 @@
 package com.example.smartcoach.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EdgeEffect;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -11,32 +14,43 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.smartcoach.R;
 
 public class _6_PrincipalAdmi extends AppCompatActivity {
-    View rectanguloSup, barraInf;
-    ImageButton flechaRegresar, cerrarSesionAdmin, info_admin, verificacion, eliminarCuenta, imagePP, btnMapaBI, btnMancuernaBI, btnPerfilBI;
-    Button btnCerrarSesion, btnEliminarCuenta, btnVerificacion, btnInfoPersonal;
-    TextView nombreAdmin, cargoAdmin;
+
+    ImageButton flechaRegresar, eliminarCuenta, imagePP,verificacionAdmin,cerrarSesion,infoAdmi;
+    TextView nombreAdmi, puestoAdmi, infoAdmiTexto,verificacionAdmiTexto,eliminarCuentaTexto,cerrarSesionTexto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout._6_principal_admi);
 
-        rectanguloSup = findViewById(R.id.rectangulo_naranja_superior);
-        barraInf = findViewById(R.id.barraInferior);
+        // Inicializa las vistas
         flechaRegresar = findViewById(R.id.flechaRegresar);
-        cerrarSesionAdmin = findViewById(R.id.cerrarSesionAdmin);
-        info_admin = findViewById(R.id.info_admin);
-        verificacion = findViewById(R.id.limitacionesFisicas);
-        eliminarCuenta = findViewById(R.id.eliminarCuenta);
         imagePP = findViewById(R.id.imagePP);
-        btnMapaBI = findViewById(R.id.btnMapaBI);
-        btnMancuernaBI = findViewById(R.id.btnMancuernaBI);
-        btnPerfilBI = findViewById(R.id.btnPerfilBI);
-        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
-        btnEliminarCuenta = findViewById(R.id.btnEliminarCuenta);
-        btnVerificacion = findViewById(R.id.btnLimitacionesFisicas);
-        btnInfoPersonal = findViewById(R.id.btnInfoPersonal);
-        nombreAdmin = findViewById(R.id.nombreAdmin);
-        cargoAdmin = findViewById(R.id.objetivoUser);
+        nombreAdmi = findViewById(R.id.nombreAdmin);
+        puestoAdmi = findViewById(R.id.puestoAdmi);
+        infoAdmi = findViewById(R.id.info_admi);
+        verificacionAdmin = findViewById(R.id.verificacion_admi);
+        eliminarCuenta = findViewById(R.id.eliminar_cuenta);
+        cerrarSesion = findViewById(R.id.cerrar_sesion);
+        infoAdmiTexto = findViewById(R.id.info_admi_texto);
+        verificacionAdmiTexto = findViewById(R.id.verificacion_admi_texto);
+        eliminarCuentaTexto = findViewById(R.id.eliminar_cuenta_texto);
+        cerrarSesionTexto = findViewById(R.id.cerrar_sesion_texto);
+
+        infoAdmi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(_6_PrincipalAdmi.this, _7_ver_perfil_admi.class));
+            }
+        });
+
+        infoAdmiTexto.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(_6_PrincipalAdmi.this, _7_ver_perfil_admi.class));
+                    }
+                });
     }
-}
+    }

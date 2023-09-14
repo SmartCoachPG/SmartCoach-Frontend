@@ -35,6 +35,7 @@ public class _40_RegistrarUsuario_2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout._40_registrar_usuario_2);
 
         nombre = findViewById(R.id.nombre);

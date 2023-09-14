@@ -46,6 +46,7 @@ import java.util.Map;
             @Override
             protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
+                getSupportActionBar().hide();
                 setContentView(R.layout._42_registrar_usuario_3);
 
                 _editTextTime=findViewById(R.id.editTextHoraInicio);

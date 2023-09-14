@@ -16,6 +16,7 @@ public class _1_PantallaInicio extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout._1_pantalla_inicio);
 
         comenzar = findViewById(R.id.btnComenzar);
