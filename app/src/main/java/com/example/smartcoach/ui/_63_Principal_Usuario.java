@@ -1,8 +1,14 @@
 package com.example.smartcoach.ui;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ClipDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -55,7 +61,52 @@ public class _63_Principal_Usuario extends AppCompatActivity {
             }
         });
 
+        eliminarCuenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
+            }
+        });
+
+        eliminarCuentaTexto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
+            }
+        });
 
 
     }
+
+    private void showDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout._84_confirmacion_eliminacion_cuenta); // Usa el nombre de tu archivo XML
+        dialog.getWindow().setBackgroundDrawable(null);
+
+        Button botonConfirmar = dialog.findViewById(R.id.botonConfirmar);
+        botonConfirmar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Acciones a realizar cuando se presiona "Confirmar"
+                dialog.dismiss();
+            }
+        });
+
+        Button botonCancelar = dialog.findViewById(R.id.botonCancelar);
+        botonCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Acciones a realizar cuando se presiona "Cancelar"
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+
+
+
 }
