@@ -163,6 +163,38 @@ import java.util.Map;
                         dialog.show();
                     }
                 });
+                imageLeve.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Cambiar la imagen de imageLeve
+                        imageLeve.setImageResource(R.drawable.icon_completo_leve_na);
+                        // Restaurar las imágenes originales de imageModerada e imageEnergica
+                        imageModerada.setImageResource(R.drawable.icon_completo_moderada);
+                        imagenEnergica.setImageResource(R.drawable.icon_completo_energica);
+                    }
+                });
+
+                imageModerada.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Cambiar la imagen de imageModerada
+                        imageModerada.setImageResource(R.drawable.icon_completo_moderada_na);
+                        // Restaurar las imágenes originales de imageLeve e imagenEnergica
+                        imageLeve.setImageResource(R.drawable.icon_completo_leve);
+                        imagenEnergica.setImageResource(R.drawable.icon_completo_energica);
+                    }
+                });
+
+                imagenEnergica.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Cambiar la imagen de imagenEnergica
+                        imagenEnergica.setImageResource(R.drawable.icon_completo_energica_na);
+                        // Restaurar las imágenes originales de imageLeve e imageModerada
+                        imageLeve.setImageResource(R.drawable.icon_completo_leve);
+                        imageModerada.setImageResource(R.drawable.icon_completo_moderada);
+                    }
+                });
                 _editTextTime.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
