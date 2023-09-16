@@ -195,6 +195,7 @@ import java.util.Map;
                         imageModerada.setImageResource(R.drawable.icon_completo_moderada);
                     }
                 });
+
                 _editTextTime.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
