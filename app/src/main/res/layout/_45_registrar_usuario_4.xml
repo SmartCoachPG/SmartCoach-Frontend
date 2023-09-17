@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/f1">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingTop="@dimen/default_margin"
+        android:paddingEnd="@dimen/default_margin"
+        android:paddingBottom="@dimen/default_margin">
+
+
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="365dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:text="Composición Corporal"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/descripcionCC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="-50dp"
+            android:text="Si tienes algún informe de valoración física, puedes ingresar tus datos aquí.\nNosotros nos encargaremos de llevar tu registro.\n Si no tienes ninguno, no te preocupes, solo oprime continuar."
+            app:layout_constraintBottom_toTopOf="@+id/rectangulo_c_c"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.312"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titulo"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/rectangulo_c_c"
+            android:layout_width="440dp"
+            android:layout_height="548dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.517"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titulo"
+            app:layout_constraintVertical_bias="0.428"
+            app:srcCompat="@drawable/rectangulo_c_c" />
+
+        <TextView
+            android:id="@+id/tituloPeso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="64dp"
+            android:text="Peso"
+            android:textColor="#FDA400"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/rectangulo_c_c" />
+
+        <EditText
+            android:id="@+id/infoPeso"
+            android:layout_width="91dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="#00000000"
+            android:ems="10"
+            android:hint="00"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloPeso" />
+
+        <TextView
+            android:id="@+id/kgPeso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="kg"
+            android:textColor="#FDA400"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/infoPeso"
+            app:layout_constraintTop_toBottomOf="@+id/tituloPeso" />
+
+        <TextView
+            android:id="@+id/tituloAltura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="108dp"
+            android:layout_marginEnd="88dp"
+            android:text="Altura"
+            android:textColor="#FDA400"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titulo" />
+
+        <EditText
+            android:id="@+id/infoAltura"
+            android:layout_width="91dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="72dp"
+            android:backgroundTint="#00000000"
+            android:ems="10"
+            android:hint="00"
+            android:inputType="number"
+            app:layout_constraintStart_toEndOf="@+id/kgPeso"
+            app:layout_constraintTop_toBottomOf="@+id/tituloAltura" />
+
+        <TextView
+            android:id="@+id/cmAltura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="cm"
+            android:textColor="#FDA400"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.093"
+            app:layout_constraintStart_toEndOf="@+id/infoAltura"
+            app:layout_constraintTop_toBottomOf="@+id/tituloAltura" />
+
+        <TextView
+            android:id="@+id/tituloIMC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="3dp"
+            android:text="IMC"
+            android:textColor="#FDA400"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/infoPeso" />
+
+        <EditText
+            android:id="@+id/infoIMC"
+            android:layout_width="91dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="#00000000"
+            android:ems="10"
+            android:hint="00"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloIMC" />
+
+        <TextView
+            android:id="@+id/tituloGrasaCorporal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="56dp"
+            android:text="Grasa Corporal"
+            android:textColor="#FDA400"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/infoAltura" />
+
+        <EditText
+            android:id="@+id/infoGrasaCorporal"
+            android:layout_width="91dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="-5dp"
+            android:backgroundTint="#00000000"
+            android:ems="10"
+            android:hint="00"
+            android:inputType="number"
+            app:layout_constraintStart_toEndOf="@+id/infoIMC"
+            app:layout_constraintTop_toBottomOf="@+id/tituloGrasaCorporal" />
+
+        <TextView
+            android:id="@+id/porcentajeGC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="%"
+            android:textColor="#FDA400"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.222"
+            app:layout_constraintStart_toEndOf="@+id/infoGrasaCorporal"
+            app:layout_constraintTop_toBottomOf="@+id/tituloGrasaCorporal" />
+
+        <TextView
+            android:id="@+id/tituloAgua"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:text="Agua"
+            android:textColor="#FDA400"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/infoIMC" />
+
+        <TextView
+            android:id="@+id/porcentajeAgua"
+            android:layout_width="19dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="8dp"
+            android:text="%"
+            android:textColor="#FDA400"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.039"
+            app:layout_constraintStart_toEndOf="@+id/infoAgua"
+            app:layout_constraintTop_toBottomOf="@+id/tituloAgua" />
+
+        <EditText
+            android:id="@+id/infoAgua"
+            android:layout_width="91dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="#00000000"
+            android:ems="10"
+            android:hint="00"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloAgua" />
+
+        <TextView
+            android:id="@+id/tituloMasaMuscular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="52dp"
+            android:text="Masa Muscular"
+            android:textColor="#FDA400"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/infoGrasaCorporal" />
+
+        <EditText
+            android:id="@+id/infoMasaMuscular"
+            android:layout_width="91dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="64dp"
+            android:backgroundTint="#00000000"
+            android:ems="10"
+            android:hint="00"
+            android:inputType="number"
+            app:layout_constraintStart_toEndOf="@+id/porcentajeAgua"
+            app:layout_constraintTop_toBottomOf="@+id/tituloMasaMuscular" />
+
+        <TextView
+            android:id="@+id/porcentajeMM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="56dp"
+            android:text="%"
+            android:textColor="#FDA400"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.812"
+            app:layout_constraintStart_toEndOf="@+id/infoMasaMuscular"
+            app:layout_constraintTop_toBottomOf="@+id/tituloMasaMuscular" />
+
+        <TextView
+            android:id="@+id/tituloMasaOsea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="88dp"
+            android:text="Masa Ósea"
+            android:textColor="#FDA400"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/rectangulo_c_c"
+            app:layout_constraintTop_toBottomOf="@+id/infoAgua" />
+
+        <EditText
+            android:id="@+id/infoMasaOsea"
+            android:layout_width="91dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="#00000000"
+            android:ems="10"
+            android:hint="00"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloMasaOsea" />
+
+        <TextView
+            android:id="@+id/porcentajeMO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="%"
+            android:textColor="#FDA400"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.036"
+            app:layout_constraintStart_toEndOf="@+id/infoMasaOsea"
+            app:layout_constraintTop_toBottomOf="@+id/tituloMasaOsea" />
+
+        <TextView
+            android:id="@+id/tituloMB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="144dp"
+            android:text="MB"
+            android:textColor="#FDA400"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tituloMasaOsea"
+            app:layout_constraintTop_toBottomOf="@+id/infoMasaMuscular" />
+
+        <EditText
+            android:id="@+id/infoMB"
+            android:layout_width="91dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="68dp"
+            android:backgroundTint="#00000000"
+            android:ems="10"
+            android:hint="0000"
+            android:inputType="number"
+
+            app:layout_constraintStart_toEndOf="@+id/porcentajeMO"
+            app:layout_constraintTop_toBottomOf="@+id/tituloMB" />
+
+        <TextView
+            android:id="@+id/tituloGV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:text="Grasa Visceral"
+            android:textColor="#FDA400"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/infoMasaOsea" />
+
+        <EditText
+            android:id="@+id/infoGV"
+            android:layout_width="91dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="#00000000"
+            android:ems="10"
+            android:hint="00"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloGV" />
+
+        <TextView
+            android:id="@+id/tituloMMC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="4dp"
+            android:text="Masa Magra Corporal"
+            android:textColor="#FDA400"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tituloGV"
+            app:layout_constraintTop_toBottomOf="@+id/infoMB" />
+
+        <EditText
+            android:id="@+id/infoMMC"
+            android:layout_width="91dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="97dp"
+            android:backgroundTint="#00000000"
+            android:ems="10"
+            android:hint="00"
+            android:inputType="number"
+            app:layout_constraintStart_toEndOf="@+id/infoGV"
+            app:layout_constraintTop_toBottomOf="@+id/tituloMMC" />
+
+        <TextView
+            android:id="@+id/kgMMC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="kg"
+            android:textColor="#FDA400"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.166"
+            app:layout_constraintStart_toEndOf="@+id/infoMMC"
+            app:layout_constraintTop_toBottomOf="@+id/tituloMMC" />
+
+        <TextView
+            android:id="@+id/tituloMGC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="Masa Grasa Corporal"
+            android:textColor="#FDA400"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/infoGV" />
+
+        <EditText
+            android:id="@+id/infoMGC"
+            android:layout_width="91dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:backgroundTint="#00000000"
+            android:ems="10"
+            android:hint="00"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloMGC" />
+
+        <TextView
+            android:id="@+id/kgMGC"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="kg"
+            android:textColor="#FDA400"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/infoMGC"
+            app:layout_constraintTop_toBottomOf="@+id/tituloMGC" />
+
+        <TextView
+            android:id="@+id/tituloMasaOseaKg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="85dp"
+            android:text="Masa Ósea"
+            android:textColor="#FDA400"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/tituloMGC"
+            app:layout_constraintTop_toBottomOf="@+id/infoMMC" />
+
+        <TextView
+            android:id="@+id/kgMasaOsea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="44dp"
+            android:text="kg"
+            android:textColor="#FDA400"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloMasaOseaKg" />
+
+        <EditText
+            android:id="@+id/infoMasaOseaKg"
+            android:layout_width="91dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="#00000000"
+            android:ems="10"
+            android:hint="00"
+            android:inputType="number"
+            app:layout_constraintEnd_toStartOf="@+id/kgMasaOsea"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/kgMGC"
+            app:layout_constraintTop_toBottomOf="@+id/tituloMasaOseaKg" />
+
+        <TextView
+            android:id="@+id/tituloMasaMuscularKg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masa Muscular"
+            android:textColor="#FDA400"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/kgMGC" />
+
+        <EditText
+            android:id="@+id/infoMM"
+            android:layout_width="188dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="-6dp"
+            android:backgroundTint="#00000000"
+            android:ems="10"
+            android:hint="00"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.367"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloMasaMuscularKg" />
+
+        <TextView
+            android:id="@+id/kgMM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="kg"
+            android:textColor="#FDA400"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.222"
+            app:layout_constraintStart_toEndOf="@+id/infoMM"
+            tools:layout_editor_absoluteY="559dp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="357dp"
+            android:layout_height="59dp"
+            android:layout_marginBottom="28dp"
+            android:backgroundTint="#FDA400"
+            android:text="Siguiente"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.444"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/infoMM" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
