@@ -100,92 +100,86 @@
     </FrameLayout>
 
 
-
     <LinearLayout
-        android:layout_marginTop="24dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
+        android:layout_marginTop="24dp"
         android:orientation="vertical">
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22dp"
             android:text="Nombre"
             android:textColor="@color/black"
-            ></TextView>
+            android:textSize="22dp"></TextView>
 
         <EditText
             android:id="@+id/textoIngresoNombre"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/rectangulonaranja"
             android:hint="Nombre admi"
-            android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
-            android:background="@drawable/rectangulonaranja"/>
+            android:textSize="12dp" />
 
         <TextView
-            android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22dp"
+            android:layout_marginTop="30dp"
             android:text="Email"
             android:textColor="@color/black"
-            ></TextView>
+            android:textSize="22dp"></TextView>
 
         <EditText
             android:id="@+id/textoIngresoEmail"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/rectangulonaranja"
             android:hint="Email admi"
-            android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
-            android:background="@drawable/rectangulonaranja"/>
+            android:textSize="12dp" />
 
         <TextView
-            android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22dp"
+            android:layout_marginTop="30dp"
             android:text="Cedula"
             android:textColor="@color/black"
-            ></TextView>
+            android:textSize="22dp"></TextView>
 
         <EditText
             android:id="@+id/textoIngresoCedula"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/rectangulonaranja"
             android:hint="Cedula admi"
-            android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
-            android:background="@drawable/rectangulonaranja"/>
+            android:textSize="12dp" />
 
         <TextView
-            android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="22dp"
+            android:layout_marginTop="30dp"
             android:text="Puesto"
             android:textColor="@color/black"
-            ></TextView>
+            android:textSize="22dp"></TextView>
 
         <EditText
             android:id="@+id/textoIngresoPuesto"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/rectangulonaranja"
             android:hint="Puesto admi"
-            android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
-            android:background="@drawable/rectangulonaranja"/>
+            android:textSize="12dp" />
 
     </LinearLayout>
-
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/botonGuardarCambios"
