@@ -414,27 +414,25 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
     public boolean validarCampos() {
         boolean retorno = true;
         String objetivoSeleccionado = spinnerLogro.getSelectedItem().toString();
-        String musculoSeleccionado = spinnerMusculo.getSelectedItem().toString();
 
-        // Validación spinners
         if (objetivoSeleccionado.equals("Seleccione")) {
             ((TextView) spinnerLogro.getSelectedView()).setError("Por favor, seleccione un logro");
-            retorno = false;
-        } else {
-            ((TextView) spinnerLogro.getSelectedView()).setError(null); // Limpiar el error si es válido
+            return false;
         }
 
-        if (musculoSeleccionado.equals("Seleccione")) {
-            ((TextView) spinnerMusculo.getSelectedView()).setError("Por favor, seleccione un género");
-            retorno = false;
-        } else {
-            ((TextView) spinnerMusculo.getSelectedView()).setError(null); // Limpiar el error si es válido
+        // Validación específica para "Aumentar Masa Muscular"
+        if (objetivoSeleccionado.equals("Aumentar músculo")) {
+            String musculoSeleccionado = spinnerMusculo.getSelectedItem().toString();
+            if (musculoSeleccionado.equals("Seleccione")) {
+                ((TextView) spinnerMusculo.getSelectedView()).setError("Por favor, seleccione un género");
+                return false;
+            }
         }
 
         String horaInicio = _editTextTime.getText().toString();
         String horaFinal = _editTextTime2.getText().toString();
 
-        // Validación horas (hora inicial < hora final)
+        // Validar si se ha seleccionado una hora inicial y una hora final
         if (!horaInicio.equals("Hora inicial") && !horaFinal.equals("Hora final")) {
             try {
                 int horaInicioHoras = Integer.parseInt(horaInicio.substring(0, 2));
@@ -448,20 +446,14 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
                     _editTextTime2.setError("La hora final debe ser mayor que la hora inicial");
                     Toast.makeText(_42_Registrar_Usuario_3.this, "La hora inicial debe ser menor que la hora final", Toast.LENGTH_SHORT).show();
                     retorno = false;
-                } else {
-                    _editTextTime.setError(null); // Limpiar el error si es válido
-                    _editTextTime2.setError(null); // Limpiar el error si es válido
                 }
             } catch (NumberFormatException e) {
                 // Manejo de excepción si hay problemas al convertir las horas y minutos a enteros
                 e.printStackTrace();
-                retorno = false;
+            } catch (StringIndexOutOfBoundsException e) {
+                // Manejo de excepción si la cadena de horaInicio o horaFinal es demasiado corta
+                e.printStackTrace();
             }
-        } else {
-            // Mostrar error si las horas no han sido seleccionadas
-            _editTextTime.setError("Seleccione una hora inicial");
-            _editTextTime2.setError("Seleccione una hora final");
-            retorno = false;
         }
 
         return retorno;

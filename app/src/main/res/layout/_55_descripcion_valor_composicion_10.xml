@@ -11,12 +11,12 @@
     android:background="@color/white">
 
     <TextView
-        android:id="@+id/tituloPeso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/tituloMMCkg"
+        android:layout_width="305dp"
+        android:layout_height="89dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="76dp"
-        android:text="Peso   kg"
+        android:text="Masa Magra Corporal            kg"
         android:textColor="#FDA400"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -26,22 +26,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/descripciónPeso"
-        android:layout_width="263dp"
-        android:layout_height="328dp"
+        android:id="@+id/descripciónMMCkg"
+        android:layout_width="261dp"
+        android:layout_height="453dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="32dp"
-        android:text="El peso hace referencia al peso total del cuerpo."
+        android:text="La masa magra corporal hace referencia al peso total de todos los componentes de su cuerpo, menos la grasa. Se relaciona positivamente con el ejercicio fiisco y los atletas suelen tener un alto porcentaje de masa magra corporal."
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloPeso" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloMMCkg" />
 
     <ImageButton
-        android:id="@+id/btnSalirPeso"
+        android:id="@+id/btnSalirMMCkg"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginTop="4dp"
@@ -50,7 +50,7 @@
         android:contentDescription="Seleccionar para salir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.894"
-        app:layout_constraintStart_toEndOf="@+id/tituloPeso"
+        app:layout_constraintStart_toEndOf="@+id/tituloMMCkg"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_x_ne" />
 

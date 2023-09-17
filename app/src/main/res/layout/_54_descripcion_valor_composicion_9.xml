@@ -11,12 +11,12 @@
     android:background="@color/white">
 
     <TextView
-        android:id="@+id/tituloPeso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/tituloMGCkg"
+        android:layout_width="305dp"
+        android:layout_height="94dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="76dp"
-        android:text="Peso   kg"
+        android:text="Masa Grasa Corporal           kg"
         android:textColor="#FDA400"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -26,22 +26,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/descripciónPeso"
-        android:layout_width="263dp"
-        android:layout_height="328dp"
+        android:id="@+id/descripciónMGCkg"
+        android:layout_width="255dp"
+        android:layout_height="391dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="32dp"
-        android:text="El peso hace referencia al peso total del cuerpo."
+        android:text="Este es el peso total de toda la grasa de su cuerpo, incluida la grasa visceral. La grasa es importante para almacenar energía, oxígeno y calor. También ayuda a aislar y proteger los organos, además de regular los niveles de hormonas."
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloPeso" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloMGCkg" />
 
     <ImageButton
-        android:id="@+id/btnSalirPeso"
+        android:id="@+id/btnSalirMGCkg"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginTop="4dp"
@@ -50,7 +50,7 @@
         android:contentDescription="Seleccionar para salir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.894"
-        app:layout_constraintStart_toEndOf="@+id/tituloPeso"
+        app:layout_constraintStart_toEndOf="@+id/tituloMGCkg"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_x_ne" />
 

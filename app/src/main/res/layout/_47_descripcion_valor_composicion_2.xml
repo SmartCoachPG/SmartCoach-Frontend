@@ -11,12 +11,12 @@
     android:background="@color/white">
 
     <TextView
-        android:id="@+id/tituloPeso"
+        android:id="@+id/tituloAgua"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="76dp"
-        android:text="Peso   kg"
+        android:text="Masa Muscular   %"
         android:textColor="#FDA400"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -26,22 +26,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/descripciónPeso"
+        android:id="@+id/descripciónAgua"
         android:layout_width="263dp"
         android:layout_height="328dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="32dp"
-        android:text="El peso hace referencia al peso total del cuerpo."
+        android:text="El porcentaje (%) de masa múscular es similar al porcentaje de grasa corporal, y la masa múscular total corresponde a un porcentaje de su peso total."
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloPeso" />
+        app:layout_constraintTop_toBottomOf="@+id/tituloAgua" />
 
     <ImageButton
-        android:id="@+id/btnSalirPeso"
+        android:id="@+id/btnSalirMMP"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginTop="4dp"
@@ -50,7 +50,7 @@
         android:contentDescription="Seleccionar para salir"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.894"
-        app:layout_constraintStart_toEndOf="@+id/tituloPeso"
+        app:layout_constraintStart_toEndOf="@+id/tituloAgua"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_x_ne" />
 

@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.smartcoach.R;
@@ -122,6 +121,268 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+        btnInfoIMC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Debug", "btnInfoIMC clickeado");
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
+
+                View dialogView = getLayoutInflater().inflate(R.layout._58_descripcion_valor_composicion_13, null);
+                dialogBuilder.setView(dialogView);
+
+                AlertDialog dialog = dialogBuilder.create();
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirIMC);
+
+                btnCerrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Cierra el diálogo
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+
+
+        btnInfoGC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Debug", "btnInfoGrasaCorporal clickeado");
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
+
+                View dialogView = getLayoutInflater().inflate(R.layout._48_descripcion_valor_composicion_3, null);
+                dialogBuilder.setView(dialogView);
+
+                AlertDialog dialog = dialogBuilder.create();
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirGC);
+
+                btnCerrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Cierra el diálogo
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+
+        btnInfoAgua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Debug", "btnInfoAgua clickeado");
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
+
+                View dialogView = getLayoutInflater().inflate(R.layout._53_descripcion_valor_composicion_8, null);
+                dialogBuilder.setView(dialogView);
+
+                AlertDialog dialog = dialogBuilder.create();
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirAgua);
+
+                btnCerrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Cierra el diálogo
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+
+        btnInfoMMP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Debug", "btnInfoMasaMuscularPorcentaje clickeado");
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
+
+                View dialogView = getLayoutInflater().inflate(R.layout._47_descripcion_valor_composicion_2, null);
+                dialogBuilder.setView(dialogView);
+
+                AlertDialog dialog = dialogBuilder.create();
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirMMP);
+
+                btnCerrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Cierra el diálogo
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+
+        btnInfoMOP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Debug", "btnInfoMasaOseaPorcentaje clickeado");
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
+
+                View dialogView = getLayoutInflater().inflate(R.layout._46_descripcion_valor_composicion_1, null);
+                dialogBuilder.setView(dialogView);
+
+                AlertDialog dialog = dialogBuilder.create();
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirMOP);
+
+                btnCerrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Cierra el diálogo
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+
+        btnInfoMB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Debug", "btnInfoMB clickeado");
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
+
+                View dialogView = getLayoutInflater().inflate(R.layout._49_descripcion_valor_composicion_4, null);
+                dialogBuilder.setView(dialogView);
+
+                AlertDialog dialog = dialogBuilder.create();
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirMBkcal);
+
+                btnCerrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Cierra el diálogo
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+        btnInfoGV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Debug", "btnInfoGrasaVisceral clickeado");
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
+
+                View dialogView = getLayoutInflater().inflate(R.layout._52_descripcion_valor_composicion_7, null);
+                dialogBuilder.setView(dialogView);
+
+                AlertDialog dialog = dialogBuilder.create();
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirGV);
+
+                btnCerrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Cierra el diálogo
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+
+        btnInfoMMC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Debug", "btnInfoMasaMagraCorporal clickeado");
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
+
+                View dialogView = getLayoutInflater().inflate(R.layout._55_descripcion_valor_composicion_10, null);
+                dialogBuilder.setView(dialogView);
+
+                AlertDialog dialog = dialogBuilder.create();
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirMMCkg);
+
+                btnCerrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Cierra el diálogo
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+        btnInfoMGC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Debug", "btnInfoMasaGrasaCorporal clickeado");
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
+
+                View dialogView = getLayoutInflater().inflate(R.layout._54_descripcion_valor_composicion_9, null);
+                dialogBuilder.setView(dialogView);
+
+                AlertDialog dialog = dialogBuilder.create();
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirMGCkg);
+
+                btnCerrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Cierra el diálogo
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+        btnInfoMOKG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Debug", "btnInfoMasaOseaKg clickeado");
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
+
+                View dialogView = getLayoutInflater().inflate(R.layout._56_descripcion_valor_composicion_11, null);
+                dialogBuilder.setView(dialogView);
+
+                AlertDialog dialog = dialogBuilder.create();
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirMOkg);
+
+                btnCerrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Cierra el diálogo
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+        btnInfoMMKG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Debug", "btnInfoMasaMuscularKg clickeado");
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
+
+                View dialogView = getLayoutInflater().inflate(R.layout._51_descripcion_valor_composicion_6, null);
+                dialogBuilder.setView(dialogView);
+
+                AlertDialog dialog = dialogBuilder.create();
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirMMkg);
+
+                btnCerrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Cierra el diálogo
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+
 
     }
 }

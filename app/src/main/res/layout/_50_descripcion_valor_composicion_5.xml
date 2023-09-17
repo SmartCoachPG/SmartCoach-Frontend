@@ -27,8 +27,8 @@
 
     <TextView
         android:id="@+id/descripciónAltura"
-        android:layout_width="348dp"
-        android:layout_height="329dp"
+        android:layout_width="291dp"
+        android:layout_height="321dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="32dp"
         android:text="La altura es la medida vertical de un objeto o persona desde su base o nivel inferior hasta su punto más alto."
