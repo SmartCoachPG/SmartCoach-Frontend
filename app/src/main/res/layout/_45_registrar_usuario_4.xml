@@ -19,8 +19,8 @@
             android:id="@+id/titulo"
             android:layout_width="365dp"
             android:layout_height="57dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="48dp"
             android:text="Composición Corporal"
             android:textColor="@color/black"
             android:textSize="28sp"
@@ -339,7 +339,7 @@
             android:id="@+id/tituloGV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="36dp"
             android:text="Grasa Visceral"
             android:textColor="#FDA400"
             android:textSize="15sp"
@@ -402,7 +402,7 @@
             android:id="@+id/tituloMGC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="4dp"
             android:text="Masa Grasa Corporal"
             android:textColor="#FDA400"
             android:textSize="15sp"
@@ -440,7 +440,7 @@
             android:id="@+id/tituloMasaOseaKg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="85dp"
+            android:layout_marginStart="96dp"
             android:text="Masa Ósea"
             android:textColor="#FDA400"
             android:textSize="15sp"
@@ -505,15 +505,14 @@
             android:id="@+id/kgMM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
             android:text="kg"
             android:textColor="#FDA400"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.222"
             app:layout_constraintStart_toEndOf="@+id/infoMM"
-            tools:layout_editor_absoluteY="559dp" />
+            app:layout_constraintTop_toBottomOf="@+id/kgMasaOsea" />
 
         <Button
             android:id="@+id/button"
@@ -529,6 +528,177 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/infoMM" />
 
+        <ImageButton
+            android:id="@+id/btnInfoPeso"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="12dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar icon 'i' para tener más información acerca del índice peso"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toStartOf="@+id/tituloAltura"
+            app:layout_constraintHorizontal_bias="0.43"
+            app:layout_constraintStart_toEndOf="@+id/tituloPeso"
+            app:layout_constraintTop_toBottomOf="@+id/descripcionCC"
+            app:srcCompat="@drawable/icon_informacion" />
 
+        <ImageButton
+            android:id="@+id/btnInfoAltura"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="12dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar icon 'i' para tener más información acerca del índice altura"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toEndOf="@+id/tituloAltura"
+            app:layout_constraintTop_toBottomOf="@+id/descripcionCC"
+            app:srcCompat="@drawable/icon_informacion" />
+
+        <ImageButton
+            android:id="@+id/btnInfoMB"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="32dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar icon 'i' para tener más información acerca del índice MB"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toEndOf="@+id/tituloMB"
+            app:layout_constraintTop_toBottomOf="@+id/btnInfoMMP"
+            app:srcCompat="@drawable/icon_informacion" />
+
+        <ImageButton
+            android:id="@+id/btnInfoGC"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar icon 'i' para tener más información acerca del índice IMC"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toEndOf="@+id/tituloGrasaCorporal"
+            app:layout_constraintTop_toBottomOf="@+id/btnInfoAltura"
+            app:srcCompat="@drawable/icon_informacion" />
+
+        <ImageButton
+            android:id="@+id/btnInfoIMC"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="32dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar icon 'i' para tener más información acerca del índice IMC"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toEndOf="@+id/tituloIMC"
+            app:layout_constraintTop_toBottomOf="@+id/btnInfoPeso"
+            app:srcCompat="@drawable/icon_informacion" />
+
+        <ImageButton
+            android:id="@+id/btnInfoAgua"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="28dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Agua"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toEndOf="@+id/tituloAgua"
+            app:layout_constraintTop_toBottomOf="@+id/btnInfoIMC"
+            app:srcCompat="@drawable/icon_informacion" />
+        <!--Masa muscular porcentaje-->
+
+        <ImageButton
+            android:id="@+id/btnInfoMMP"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Masa muscular en porcentaje"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toEndOf="@+id/tituloMasaMuscular"
+            app:layout_constraintTop_toBottomOf="@+id/btnInfoGC"
+            app:srcCompat="@drawable/icon_informacion" />
+
+        <!--Masa Ósea porcentaje-->
+        <ImageButton
+            android:id="@+id/btnInfoMOP"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Masa Ósea en porcentaje"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toEndOf="@+id/tituloMasaOsea"
+            app:layout_constraintTop_toBottomOf="@+id/btnInfoAgua"
+            app:srcCompat="@drawable/icon_informacion" />
+
+        <ImageButton
+            android:id="@+id/btnInfoGV"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Grasa Visceral"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toEndOf="@+id/tituloGV"
+            app:layout_constraintTop_toBottomOf="@+id/btnInfoMOP"
+            app:srcCompat="@drawable/icon_informacion" />
+        <!--Masa Magra Corporal kg-->
+
+        <ImageButton
+            android:id="@+id/btnInfoMMC"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="32dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Masa Magra Corporal en kg"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toEndOf="@+id/tituloMMC"
+            app:layout_constraintTop_toBottomOf="@+id/btnInfoMB"
+            app:srcCompat="@drawable/icon_informacion" />
+
+        <ImageButton
+            android:id="@+id/btnInfoMGC"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="25dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Masa Grasa Corporal en kg"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toEndOf="@+id/tituloMGC"
+            app:layout_constraintTop_toBottomOf="@+id/btnInfoGV"
+            app:srcCompat="@drawable/icon_informacion" />
+
+        <ImageButton
+            android:id="@+id/btnInfoMOKG"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="32dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Masa Ósea en kg"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toEndOf="@+id/tituloMasaOseaKg"
+            app:layout_constraintTop_toBottomOf="@+id/btnInfoMMC"
+            app:srcCompat="@drawable/icon_informacion" />
+
+        <ImageButton
+            android:id="@+id/btnInfoMMKG"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="24dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Masa Muscular en kg"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toEndOf="@+id/kgMM"
+            app:layout_constraintTop_toBottomOf="@+id/btnInfoMOKG"
+            app:srcCompat="@drawable/icon_informacion" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

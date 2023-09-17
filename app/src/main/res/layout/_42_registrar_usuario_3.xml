@@ -310,14 +310,14 @@
 
     <ImageButton
         android:id="@+id/imageInfoLeve"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
         android:background="@null"
         android:contentDescription="Seleccionar icon 'i' para tener más información acerca del nivel de actividad física Leve"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/imagenLeve"
         app:layout_constraintEnd_toEndOf="@+id/imagenLeve"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="@+id/imagenLeve"
         app:layout_constraintTop_toTopOf="@+id/imagenLeve"
         app:layout_constraintVertical_bias="0.0"
@@ -325,32 +325,32 @@
 
     <ImageButton
         android:id="@+id/imageInfoModerada"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
         android:background="@null"
         android:contentDescription="Seleccionar icon 'i' para tener más información acerca del nivel de actividad física Moderada"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/imageModerado"
         app:layout_constraintEnd_toEndOf="@+id/imageModerado"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="@+id/imageModerado"
         app:layout_constraintTop_toTopOf="@+id/imageModerado"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.017"
         app:srcCompat="@drawable/icon_informacion" />
 
     <ImageButton
         android:id="@+id/imageInfoEnergica"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
         android:background="@null"
         android:contentDescription="Seleccionar icon 'i' para tener más información acerca del nivel de actividad física Enérgica"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/imageEnergico"
         app:layout_constraintEnd_toEndOf="@+id/imageEnergico"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="@+id/imageEnergico"
         app:layout_constraintTop_toTopOf="@+id/imageEnergico"
-        app:layout_constraintVertical_bias="0.009"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/icon_informacion" />
 
 
