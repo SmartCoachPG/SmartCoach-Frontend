@@ -1,8 +1,9 @@
 
- package com.example.smartcoach.ui;
+package com.example.smartcoach.ui;
 
 import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -28,278 +29,283 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-        public class _42_Registrar_Usuario_3 extends AppCompatActivity {
+public class _42_Registrar_Usuario_3 extends AppCompatActivity {
 
-            TimePickerDialog _timePickerDialog;
-            EditText _editTextTime, _editTextTime2;
-            Spinner spinnerLogro, spinnerMusculo;
-            ImageButton imageLunes, imageMartes, imageMiercoles, imageJueves, imageViernes, imageSabado, imageDomingo, imageLeve, imageModerada, imagenEnergica, btnInfoLeve, btnInfoModerada, btnInfoEnergica;
-            Button btnContinuar;
-            private int selectedDay = -1;
+    TimePickerDialog _timePickerDialog;
+    EditText _editTextTime, _editTextTime2;
+    Spinner spinnerLogro, spinnerMusculo;
+    ImageButton imageLunes, imageMartes, imageMiercoles, imageJueves, imageViernes, imageSabado, imageDomingo, imageLeve, imageModerada, imagenEnergica, btnInfoLeve, btnInfoModerada, btnInfoEnergica;
+    Button btnContinuar;
+    private int selectedDay = -1;
 
-            private boolean editingStartTime = true;
-            private final HashMap<Integer, String> startHoursByDay = new HashMap<>();
-            private final HashMap<Integer, String> endHoursByDay = new HashMap<>();
-            private final Map<ImageButton, Integer> originalImages = new HashMap<>();
-            private final Map<ImageButton, Integer> selectedImages = new HashMap<>();
-            private AlertDialog alertDialog;
+    private boolean editingStartTime = true;
+    private final HashMap<Integer, String> startHoursByDay = new HashMap<>();
+    private final HashMap<Integer, String> endHoursByDay = new HashMap<>();
+    private final Map<ImageButton, Integer> originalImages = new HashMap<>();
+    private final Map<ImageButton, Integer> selectedImages = new HashMap<>();
+    private AlertDialog alertDialog;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
+        setContentView(R.layout._42_registrar_usuario_3);
+
+        _editTextTime = findViewById(R.id.editTextHoraInicio);
+        _editTextTime2 = findViewById(R.id.editTextHoraFinal);
+        spinnerLogro = findViewById(R.id.spinnerLogro);
+        spinnerMusculo = findViewById(R.id.spinnerMasaMuscular);
+        imageLunes = findViewById(R.id.imageLunes);
+        imageMartes = findViewById(R.id.imageMartes);
+        imageMiercoles = findViewById(R.id.imageMiercoles);
+        imageJueves = findViewById(R.id.imageJueves);
+        imageViernes = findViewById(R.id.imageViernes);
+        imageSabado = findViewById(R.id.imageSabado);
+        imageDomingo = findViewById(R.id.imageDomingo);
+        imageLeve = findViewById(R.id.imagenLeve);
+        imageModerada = findViewById(R.id.imageModerado);
+        imagenEnergica = findViewById(R.id.imageEnergico);
+        btnContinuar = findViewById(R.id.btnContinuar);
+        btnInfoLeve = findViewById(R.id.imageInfoLeve);
+        btnInfoModerada = findViewById(R.id.imageInfoModerada);
+        btnInfoEnergica = findViewById(R.id.imageInfoEnergica);
+        // Inicializar las imagenes originales
+        originalImages.put((ImageButton) findViewById(R.id.imageLunes), R.drawable.icon_lunes_b);
+        originalImages.put((ImageButton) findViewById(R.id.imageMartes), R.drawable.icon_martes_b);
+        originalImages.put((ImageButton) findViewById(R.id.imageMiercoles), R.drawable.icon_miercoles_b);
+        originalImages.put((ImageButton) findViewById(R.id.imageJueves), R.drawable.icon_jueves_b);
+        originalImages.put((ImageButton) findViewById(R.id.imageViernes), R.drawable.icon_viernes_b);
+        originalImages.put((ImageButton) findViewById(R.id.imageSabado), R.drawable.icon_sabado_b);
+        originalImages.put((ImageButton) findViewById(R.id.imageDomingo), R.drawable.icon_domingo_b);
+        // Inicializar las imágenes seleccionadas
+        selectedImages.put((ImageButton) findViewById(R.id.imageLunes), R.drawable.icon_lunes_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageMartes), R.drawable.icon_martes_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageMiercoles), R.drawable.icon_miercoles_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageJueves), R.drawable.icon_jueves_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageViernes), R.drawable.icon_viernes_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageSabado), R.drawable.icon_sabado_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageDomingo), R.drawable.icon_domingo_ne);
+
+        configureDayClickListeners();
+        btnInfoLeve.setOnClickListener(new View.OnClickListener() {
             @Override
-            protected void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-                getSupportActionBar().hide();
-                setContentView(R.layout._42_registrar_usuario_3);
+            public void onClick(View v) {
+                Log.d("Debug", "btnInfoLeve clickeado");
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_42_Registrar_Usuario_3.this);
+                // Inflar el diseño del diálogo directamente
+                View dialogView = getLayoutInflater().inflate(R.layout._43_informacion_nivel_actividad_leve, null);
+                dialogBuilder.setView(dialogView);
 
-                _editTextTime=findViewById(R.id.editTextHoraInicio);
-                _editTextTime2 = findViewById(R.id.editTextHoraFinal);
-                spinnerLogro = findViewById(R.id.spinnerLogro);
-                spinnerMusculo = findViewById(R.id.spinnerMasaMuscular);
-                imageLunes = findViewById(R.id.imageLunes);
-                imageMartes = findViewById(R.id.imageMartes);
-                imageMiercoles = findViewById(R.id.imageMiercoles);
-                imageJueves = findViewById(R.id.imageJueves);
-                imageViernes = findViewById(R.id.imageViernes);
-                imageSabado = findViewById(R.id.imageSabado);
-                imageDomingo = findViewById(R.id.imageDomingo);
-                imageLeve = findViewById(R.id.imagenLeve);
-                imageModerada = findViewById(R.id.imageModerado);
-                imagenEnergica = findViewById(R.id.imageEnergico);
-                btnContinuar = findViewById(R.id.btnContinuar);
-                btnInfoLeve = findViewById(R.id.imageInfoLeve);
-                btnInfoModerada = findViewById(R.id.imageInfoModerada);
-                btnInfoEnergica = findViewById(R.id.imageInfoEnergica);
-                // Inicializar las imagenes originales
-                originalImages.put((ImageButton) findViewById(R.id.imageLunes), R.drawable.icon_lunes_b);
-                originalImages.put((ImageButton) findViewById(R.id.imageMartes), R.drawable.icon_martes_b);
-                originalImages.put((ImageButton)findViewById(R.id.imageMiercoles), R.drawable.icon_miercoles_b);
-                originalImages.put((ImageButton)findViewById(R.id.imageJueves), R.drawable.icon_jueves_b);
-                originalImages.put((ImageButton)findViewById(R.id.imageViernes), R.drawable.icon_viernes_b);
-                originalImages.put((ImageButton)findViewById(R.id.imageSabado), R.drawable.icon_sabado_b);
-                originalImages.put((ImageButton)findViewById(R.id.imageDomingo), R.drawable.icon_domingo_b);
-                // Inicializar las imágenes seleccionadas
-                selectedImages.put((ImageButton) findViewById(R.id.imageLunes), R.drawable.icon_lunes_ne);
-                selectedImages.put((ImageButton) findViewById(R.id.imageMartes), R.drawable.icon_martes_ne);
-                selectedImages.put((ImageButton) findViewById(R.id.imageMiercoles), R.drawable.icon_miercoles_ne);
-                selectedImages.put((ImageButton) findViewById(R.id.imageJueves), R.drawable.icon_jueves_ne);
-                selectedImages.put((ImageButton) findViewById(R.id.imageViernes), R.drawable.icon_viernes_ne);
-                selectedImages.put((ImageButton) findViewById(R.id.imageSabado), R.drawable.icon_sabado_ne);
-                selectedImages.put((ImageButton) findViewById(R.id.imageDomingo), R.drawable.icon_domingo_ne);
+                AlertDialog dialog = dialogBuilder.create();
 
-                configureDayClickListeners();
-                btnInfoLeve.setOnClickListener(new View.OnClickListener() {
+                // Obtiene la referencia al botón de cerrar del diálogo
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirLeve);
+
+                // Agregar OnClickListener para el botón de cerrar
+                btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.d("Debug", "btnInfoLeve clickeado");
-                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_42_Registrar_Usuario_3.this);
-                        // Inflar el diseño del diálogo directamente
-                        View dialogView = getLayoutInflater().inflate(R.layout._43_informacion_nivel_actividad_leve, null);
-                        dialogBuilder.setView(dialogView);
-
-                        AlertDialog dialog = dialogBuilder.create();
-
-                        // Obtiene la referencia al botón de cerrar del diálogo
-                        AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirLeve);
-
-                        // Agregar OnClickListener para el botón de cerrar
-                        btnCerrar.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                // Cierra el diálogo
-                                dialog.dismiss();
-                            }
-                        });
-
-                        dialog.show();
-                    }
-                });
-                btnInfoModerada.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.d("Debug", "btnInfoModerada clickeado");
-                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_42_Registrar_Usuario_3.this);
-                        // Inflar el diseño del diálogo directamente
-                        View dialogView = getLayoutInflater().inflate(R.layout._44_informacion_nivel_actividad_moderado, null);
-                        dialogBuilder.setView(dialogView);
-
-                        AlertDialog dialog = dialogBuilder.create();
-
-                        // Obtiene la referencia al botón de cerrar del diálogo
-                        AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirModerado);
-
-                        // Agregar OnClickListener para el botón de cerrar
-                        btnCerrar.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                // Cierra el diálogo
-                                dialog.dismiss();
-                            }
-                        });
-
-                        dialog.show();
-                    }
-                });
-                btnInfoEnergica.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Log.d("Debug", "btnInfoModerada clickeado");
-                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_42_Registrar_Usuario_3.this);
-                        // Inflar el diseño del diálogo directamente
-                        View dialogView = getLayoutInflater().inflate(R.layout._44_informacion_nivel_actividad_energico, null);
-                        dialogBuilder.setView(dialogView);
-
-                        AlertDialog dialog = dialogBuilder.create();
-
-                        // Obtiene la referencia al botón de cerrar del diálogo
-                        AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirEnergico);
-
-                        // Agregar OnClickListener para el botón de cerrar
-                        btnCerrar.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                // Cierra el diálogo
-                                dialog.dismiss();
-                            }
-                        });
-
-                        dialog.show();
-                    }
-                });
-                imageLeve.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Cambiar la imagen de imageLeve
-                        imageLeve.setImageResource(R.drawable.icon_completo_leve_na);
-                        // Restaurar las imágenes originales de imageModerada e imageEnergica
-                        imageModerada.setImageResource(R.drawable.icon_completo_moderada);
-                        imagenEnergica.setImageResource(R.drawable.icon_completo_energica);
+                        // Cierra el diálogo
+                        dialog.dismiss();
                     }
                 });
 
-                imageModerada.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Cambiar la imagen de imageModerada
-                        imageModerada.setImageResource(R.drawable.icon_completo_moderada_na);
-                        // Restaurar las imágenes originales de imageLeve e imagenEnergica
-                        imageLeve.setImageResource(R.drawable.icon_completo_leve);
-                        imagenEnergica.setImageResource(R.drawable.icon_completo_energica);
-                    }
-                });
-
-                imagenEnergica.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // Cambiar la imagen de imagenEnergica
-                        imagenEnergica.setImageResource(R.drawable.icon_completo_energica_na);
-                        // Restaurar las imágenes originales de imageLeve e imageModerada
-                        imageLeve.setImageResource(R.drawable.icon_completo_leve);
-                        imageModerada.setImageResource(R.drawable.icon_completo_moderada);
-                    }
-                });
-
-                _editTextTime.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        editingStartTime = true;
-                        open_TimePickerDialog();
-                    }
-                });
-                _editTextTime2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        editingStartTime = false;
-                        open_TimePickerDialog();
-                    }
-                });
-                //Spinner Logro
-                String[] opcionesLogro = new String[]{"Seleccione", "Bajar peso", "Aumentar músculo", "Aumentar fuerza"};
-                ArrayAdapter<String> adapterLogro = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcionesLogro);
-                adapterLogro.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinnerLogro.setAdapter(adapterLogro);
-
-                //Spinner Masa muscular
-                String[] opcionesMasaMuscular = new String[]{"Seleccione", "Pectorales", "Glúteos", "Cuádriceps", "Abdominales"};
-                ArrayAdapter<String> adapterMM = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcionesMasaMuscular);
-                adapterMM.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinnerMusculo.setAdapter(adapterMM);
-
-                // Configurar el Listener para el spinnerLogro
-                spinnerLogro.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                        String selectedLogro = spinnerLogro.getSelectedItem().toString();
-
-                        if (selectedLogro.equals("Aumentar músculo") || selectedLogro.equals("Aumentar fuerza")) {
-                            spinnerMusculo.setVisibility(View.VISIBLE);
-                        } else {
-                            spinnerMusculo.setVisibility(View.GONE);
-                        }
-                    }
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parentView) {}
-                });
-
-                btnContinuar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (!validarCampos()) {
-                            mostrarErrorAlertDialog();
-                        } else {
-                            // Solo accede a la siguiente pantalla si se cumplen las validaciones
-                            Toast.makeText(_42_Registrar_Usuario_3.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
-                            // Intent intent = new Intent(RegistrarseUserTresActivity.this, IniciarSesionActivity.class);
-                            // startActivity(intent);
-                        }
-                    }
-                });
-
+                dialog.show();
             }
-            private void mostrarErrorAlertDialog() {
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                View alertDialogView = getLayoutInflater().inflate(R.layout._5_registrarse_admin_5, null);
-                alertDialogBuilder.setView(alertDialogView);
+        });
+        btnInfoModerada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Debug", "btnInfoModerada clickeado");
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_42_Registrar_Usuario_3.this);
+                // Inflar el diseño del diálogo directamente
+                View dialogView = getLayoutInflater().inflate(R.layout._44_informacion_nivel_actividad_moderado, null);
+                dialogBuilder.setView(dialogView);
 
-                Button btnSeguir = alertDialogView.findViewById(R.id.btnSeguirCamposVacios);
-                btnSeguir.setOnClickListener(new View.OnClickListener() {
+                AlertDialog dialog = dialogBuilder.create();
+
+                // Obtiene la referencia al botón de cerrar del diálogo
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirModerado);
+
+                // Agregar OnClickListener para el botón de cerrar
+                btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        // Cerrar el AlertDialog
-                        alertDialog.dismiss();
+                    public void onClick(View v) {
+                        // Cierra el diálogo
+                        dialog.dismiss();
                     }
                 });
 
-                alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+                dialog.show();
+            }
+        });
+        btnInfoEnergica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("Debug", "btnInfoModerada clickeado");
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_42_Registrar_Usuario_3.this);
+                // Inflar el diseño del diálogo directamente
+                View dialogView = getLayoutInflater().inflate(R.layout._44_informacion_nivel_actividad_energico, null);
+                dialogBuilder.setView(dialogView);
+
+                AlertDialog dialog = dialogBuilder.create();
+
+                // Obtiene la referencia al botón de cerrar del diálogo
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirEnergico);
+
+                // Agregar OnClickListener para el botón de cerrar
+                btnCerrar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Cierra el diálogo
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+        imageLeve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Cambiar la imagen de imageLeve
+                imageLeve.setImageResource(R.drawable.icon_completo_leve_na);
+                // Restaurar las imágenes originales de imageModerada e imageEnergica
+                imageModerada.setImageResource(R.drawable.icon_completo_moderada);
+                imagenEnergica.setImageResource(R.drawable.icon_completo_energica);
+            }
+        });
+
+        imageModerada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Cambiar la imagen de imageModerada
+                imageModerada.setImageResource(R.drawable.icon_completo_moderada_na);
+                // Restaurar las imágenes originales de imageLeve e imagenEnergica
+                imageLeve.setImageResource(R.drawable.icon_completo_leve);
+                imagenEnergica.setImageResource(R.drawable.icon_completo_energica);
+            }
+        });
+
+        imagenEnergica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Cambiar la imagen de imagenEnergica
+                imagenEnergica.setImageResource(R.drawable.icon_completo_energica_na);
+                // Restaurar las imágenes originales de imageLeve e imageModerada
+                imageLeve.setImageResource(R.drawable.icon_completo_leve);
+                imageModerada.setImageResource(R.drawable.icon_completo_moderada);
+            }
+        });
+
+        _editTextTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editingStartTime = true;
+                open_TimePickerDialog();
+            }
+        });
+        _editTextTime2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editingStartTime = false;
+                open_TimePickerDialog();
+            }
+        });
+        //Spinner Logro
+        String[] opcionesLogro = new String[]{"Seleccione", "Bajar peso", "Aumentar músculo", "Aumentar fuerza"};
+        ArrayAdapter<String> adapterLogro = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcionesLogro);
+        adapterLogro.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerLogro.setAdapter(adapterLogro);
+
+        //Spinner Masa muscular
+        String[] opcionesMasaMuscular = new String[]{"Seleccione", "Pectorales", "Glúteos", "Cuádriceps", "Abdominales"};
+        ArrayAdapter<String> adapterMM = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcionesMasaMuscular);
+        adapterMM.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerMusculo.setAdapter(adapterMM);
+
+        // Configurar el Listener para el spinnerLogro
+        spinnerLogro.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String selectedLogro = spinnerLogro.getSelectedItem().toString();
+
+                if (selectedLogro.equals("Aumentar músculo") || selectedLogro.equals("Aumentar fuerza")) {
+                    spinnerMusculo.setVisibility(View.VISIBLE);
+                } else {
+                    spinnerMusculo.setVisibility(View.GONE);
+                }
             }
 
-            private void configureDayClickListeners() {
-                ImageButton imageLunes = findViewById(R.id.imageLunes);
-                ImageButton imageMartes = findViewById(R.id.imageMartes);
-                ImageButton imageMiercoles = findViewById(R.id.imageMiercoles);
-                ImageButton imageJueves = findViewById(R.id.imageJueves);
-                ImageButton imageViernes = findViewById(R.id.imageViernes);
-                ImageButton imageSabado = findViewById(R.id.imageSabado);
-                ImageButton imageDomingo = findViewById(R.id.imageDomingo);
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+            }
+        });
+
+        btnContinuar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (validarCampos()) {
+                    Toast.makeText(_42_Registrar_Usuario_3.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
+
+                    // Solo accede a la siguiente pantalla si se cumplen las validaciones
+                    Intent intent = new Intent(_42_Registrar_Usuario_3.this, _45_Registrar_Usuario_4.class);
+                    startActivity(intent);
+                } else {
+                    mostrarErrorAlertDialog();
+                }
+            }
+        });
+
+    }
+
+    private void mostrarErrorAlertDialog() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        View alertDialogView = getLayoutInflater().inflate(R.layout._5_registrarse_admin_5, null);
+        alertDialogBuilder.setView(alertDialogView);
+
+        Button btnSeguir = alertDialogView.findViewById(R.id.btnSeguirCamposVacios);
+        btnSeguir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Cerrar el AlertDialog
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void configureDayClickListeners() {
+        ImageButton imageLunes = findViewById(R.id.imageLunes);
+        ImageButton imageMartes = findViewById(R.id.imageMartes);
+        ImageButton imageMiercoles = findViewById(R.id.imageMiercoles);
+        ImageButton imageJueves = findViewById(R.id.imageJueves);
+        ImageButton imageViernes = findViewById(R.id.imageViernes);
+        ImageButton imageSabado = findViewById(R.id.imageSabado);
+        ImageButton imageDomingo = findViewById(R.id.imageDomingo);
 
 
-                imageLunes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        selectedDay = Calendar.MONDAY;
-                        updateEditTexts();
-                        restoreOriginalImages();
-                        updateSelectedImage(imageLunes);
-                    }
-                });
-                imageMartes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        selectedDay = Calendar.TUESDAY;
-                        updateEditTexts();
-                        restoreOriginalImages();
-                        updateSelectedImage(imageMartes);
-                    }
-                });
-                imageMiercoles.setOnClickListener(new View.OnClickListener() {
+        imageLunes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedDay = Calendar.MONDAY;
+                updateEditTexts();
+                restoreOriginalImages();
+                updateSelectedImage(imageLunes);
+            }
+        });
+        imageMartes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedDay = Calendar.TUESDAY;
+                updateEditTexts();
+                restoreOriginalImages();
+                updateSelectedImage(imageMartes);
+            }
+        });
+        imageMiercoles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectedDay = Calendar.WEDNESDAY;
@@ -345,6 +351,7 @@ import java.util.Map;
             }
         });
     }
+
     private void restoreOriginalImages() {
         for (Map.Entry<ImageButton, Integer> entry : originalImages.entrySet()) {
             ImageButton button = entry.getKey();
@@ -378,6 +385,7 @@ import java.util.Map;
             _editTextTime2.setText("Hora final");
         }
     }
+
     private void open_TimePickerDialog() {
         int hourOfDay = 23;
         int minute = 55;
@@ -402,21 +410,30 @@ import java.util.Map;
         _timePickerDialog.setTitle("Selecciona hora");
         _timePickerDialog.show();
     }
-    public boolean validarCampos(){
+
+    public boolean validarCampos() {
         boolean retorno = true;
         String objetivoSeleccionado = spinnerLogro.getSelectedItem().toString();
         String musculoSeleccionado = spinnerMusculo.getSelectedItem().toString();
+
         // Validación spinners
         if (objetivoSeleccionado.equals("Seleccione")) {
             ((TextView) spinnerLogro.getSelectedView()).setError("Por favor, seleccione un logro");
-            return false;
+            retorno = false;
+        } else {
+            ((TextView) spinnerLogro.getSelectedView()).setError(null); // Limpiar el error si es válido
         }
+
         if (musculoSeleccionado.equals("Seleccione")) {
             ((TextView) spinnerMusculo.getSelectedView()).setError("Por favor, seleccione un género");
-            return false;
+            retorno = false;
+        } else {
+            ((TextView) spinnerMusculo.getSelectedView()).setError(null); // Limpiar el error si es válido
         }
+
         String horaInicio = _editTextTime.getText().toString();
         String horaFinal = _editTextTime2.getText().toString();
+
         // Validación horas (hora inicial < hora final)
         if (!horaInicio.equals("Hora inicial") && !horaFinal.equals("Hora final")) {
             try {
@@ -431,10 +448,14 @@ import java.util.Map;
                     _editTextTime2.setError("La hora final debe ser mayor que la hora inicial");
                     Toast.makeText(_42_Registrar_Usuario_3.this, "La hora inicial debe ser menor que la hora final", Toast.LENGTH_SHORT).show();
                     retorno = false;
+                } else {
+                    _editTextTime.setError(null); // Limpiar el error si es válido
+                    _editTextTime2.setError(null); // Limpiar el error si es válido
                 }
             } catch (NumberFormatException e) {
                 // Manejo de excepción si hay problemas al convertir las horas y minutos a enteros
                 e.printStackTrace();
+                retorno = false;
             }
         } else {
             // Mostrar error si las horas no han sido seleccionadas
@@ -442,8 +463,7 @@ import java.util.Map;
             _editTextTime2.setError("Seleccione una hora final");
             retorno = false;
         }
+
         return retorno;
     }
-
 }
-

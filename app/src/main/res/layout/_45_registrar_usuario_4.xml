@@ -14,13 +14,22 @@
         android:paddingEnd="@dimen/default_margin"
         android:paddingBottom="@dimen/default_margin">
 
+        <ImageView
+            android:id="@+id/rectangulo_c_c"
+            android:layout_width="423dp"
+            android:layout_height="573dp"
+            android:layout_marginTop="17dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descripcionCC"
+            app:srcCompat="@drawable/rectangulo_c_c" />
 
         <TextView
             android:id="@+id/titulo"
             android:layout_width="365dp"
             android:layout_height="57dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
             android:text="Composición Corporal"
             android:textColor="@color/black"
             android:textSize="28sp"
@@ -33,33 +42,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="9dp"
-            android:layout_marginBottom="-50dp"
+            android:textColor="@color/black"
             android:text="Si tienes algún informe de valoración física, puedes ingresar tus datos aquí.\nNosotros nos encargaremos de llevar tu registro.\n Si no tienes ninguno, no te preocupes, solo oprime continuar."
-            app:layout_constraintBottom_toTopOf="@+id/rectangulo_c_c"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.312"
+            app:layout_constraintHorizontal_bias="0.812"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titulo"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <ImageView
-            android:id="@+id/rectangulo_c_c"
-            android:layout_width="440dp"
-            android:layout_height="548dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.517"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titulo"
-            app:layout_constraintVertical_bias="0.428"
-            app:srcCompat="@drawable/rectangulo_c_c" />
+            app:layout_constraintTop_toBottomOf="@+id/titulo" />
 
         <TextView
             android:id="@+id/tituloPeso"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="4dp"
             android:text="Peso"
             android:textColor="#FDA400"
             android:textSize="15sp"
@@ -77,7 +72,8 @@
             android:hint="00"
             android:inputType="number"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloPeso" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloPeso"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/kgPeso"
@@ -95,8 +91,8 @@
             android:id="@+id/tituloAltura"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="108dp"
-            android:layout_marginEnd="88dp"
+            android:layout_marginTop="124dp"
+            android:layout_marginEnd="100dp"
             android:text="Altura"
             android:textColor="#FDA400"
             android:textSize="15sp"
@@ -114,7 +110,8 @@
             android:hint="00"
             android:inputType="number"
             app:layout_constraintStart_toEndOf="@+id/kgPeso"
-            app:layout_constraintTop_toBottomOf="@+id/tituloAltura" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloAltura"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/cmAltura"
@@ -134,8 +131,8 @@
             android:id="@+id/tituloIMC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="76dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="24dp"
             android:text="IMC"
             android:textColor="#FDA400"
             android:textSize="15sp"
@@ -153,13 +150,14 @@
             android:hint="00"
             android:inputType="number"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloIMC" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloIMC"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/tituloGrasaCorporal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="15dp"
             android:layout_marginEnd="56dp"
             android:text="Grasa Corporal"
             android:textColor="#FDA400"
@@ -179,7 +177,8 @@
             android:hint="00"
             android:inputType="number"
             app:layout_constraintStart_toEndOf="@+id/infoIMC"
-            app:layout_constraintTop_toBottomOf="@+id/tituloGrasaCorporal" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloGrasaCorporal"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/porcentajeGC"
@@ -199,7 +198,8 @@
             android:id="@+id/tituloAgua"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="76dp"
+            android:layout_marginStart="68dp"
+            android:layout_marginTop="12dp"
             android:text="Agua"
             android:textColor="#FDA400"
             android:textSize="15sp"
@@ -231,12 +231,14 @@
             android:hint="00"
             android:inputType="number"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloAgua" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloAgua"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/tituloMasaMuscular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="52dp"
             android:text="Masa Muscular"
             android:textColor="#FDA400"
@@ -255,7 +257,8 @@
             android:hint="00"
             android:inputType="number"
             app:layout_constraintStart_toEndOf="@+id/porcentajeAgua"
-            app:layout_constraintTop_toBottomOf="@+id/tituloMasaMuscular" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloMasaMuscular"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/porcentajeMM"
@@ -276,7 +279,8 @@
             android:id="@+id/tituloMasaOsea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="88dp"
+            android:layout_marginStart="84dp"
+            android:layout_marginTop="24dp"
             android:text="Masa Ósea"
             android:textColor="#FDA400"
             android:textSize="15sp"
@@ -288,13 +292,15 @@
             android:id="@+id/infoMasaOsea"
             android:layout_width="91dp"
             android:layout_height="44dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="#00000000"
             android:ems="10"
             android:hint="00"
             android:inputType="number"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloMasaOsea" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloMasaOsea"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/porcentajeMO"
@@ -315,6 +321,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="144dp"
+            android:layout_marginTop="20dp"
             android:text="MB"
             android:textColor="#FDA400"
             android:textSize="15sp"
@@ -333,13 +340,15 @@
             android:inputType="number"
 
             app:layout_constraintStart_toEndOf="@+id/porcentajeMO"
-            app:layout_constraintTop_toBottomOf="@+id/tituloMB" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloMB"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/tituloGV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
             android:text="Grasa Visceral"
             android:textColor="#FDA400"
             android:textSize="15sp"
@@ -357,14 +366,15 @@
             android:hint="00"
             android:inputType="number"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloGV" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloGV"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/tituloMMC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="25dp"
             android:text="Masa Magra Corporal"
             android:textColor="#FDA400"
             android:textSize="15sp"
@@ -382,7 +392,8 @@
             android:hint="00"
             android:inputType="number"
             app:layout_constraintStart_toEndOf="@+id/infoGV"
-            app:layout_constraintTop_toBottomOf="@+id/tituloMMC" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloMMC"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/kgMMC"
@@ -402,7 +413,8 @@
             android:id="@+id/tituloMGC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
             android:text="Masa Grasa Corporal"
             android:textColor="#FDA400"
             android:textSize="15sp"
@@ -414,21 +426,23 @@
             android:id="@+id/infoMGC"
             android:layout_width="91dp"
             android:layout_height="44dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="#00000000"
             android:ems="10"
             android:hint="00"
             android:inputType="number"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloMGC" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloMGC"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/kgMGC"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
             android:text="kg"
             android:textColor="#FDA400"
             android:textSize="20sp"
@@ -441,6 +455,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="96dp"
+            android:layout_marginTop="20dp"
             android:text="Masa Ósea"
             android:textColor="#FDA400"
             android:textSize="15sp"
@@ -472,17 +487,20 @@
             app:layout_constraintEnd_toStartOf="@+id/kgMasaOsea"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/kgMGC"
-            app:layout_constraintTop_toBottomOf="@+id/tituloMasaOseaKg" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloMasaOseaKg"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/tituloMasaMuscularKg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="Masa Muscular"
             android:textColor="#FDA400"
             android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/kgMGC" />
 
@@ -491,22 +509,22 @@
             android:layout_width="188dp"
             android:layout_height="44dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="-6dp"
             android:backgroundTint="#00000000"
             android:ems="10"
             android:hint="00"
             android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.367"
+            app:layout_constraintHorizontal_bias="0.299"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloMasaMuscularKg" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloMasaMuscularKg"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/kgMM"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
             android:text="kg"
             android:textColor="#FDA400"
             android:textSize="20sp"
@@ -518,187 +536,203 @@
             android:id="@+id/button"
             android:layout_width="357dp"
             android:layout_height="59dp"
-            android:layout_marginBottom="28dp"
+            android:layout_marginBottom="16dp"
             android:backgroundTint="#FDA400"
             android:text="Siguiente"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/infoMM" />
+            app:layout_constraintTop_toBottomOf="@+id/infoMM"
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageButton
             android:id="@+id/btnInfoPeso"
             android:layout_width="34dp"
             android:layout_height="34dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="28dp"
             android:background="@null"
             android:contentDescription="Seleccionar icon 'i' para tener más información acerca del índice peso"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toStartOf="@+id/tituloAltura"
-            app:layout_constraintHorizontal_bias="0.43"
+            app:layout_constraintHorizontal_bias="0.447"
             app:layout_constraintStart_toEndOf="@+id/tituloPeso"
             app:layout_constraintTop_toBottomOf="@+id/descripcionCC"
-            app:srcCompat="@drawable/icon_informacion" />
+            app:srcCompat="@drawable/icon_informacion"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/btnInfoAltura"
             android:layout_width="34dp"
             android:layout_height="34dp"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="25dp"
             android:background="@null"
             android:contentDescription="Seleccionar icon 'i' para tener más información acerca del índice altura"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toEndOf="@+id/tituloAltura"
             app:layout_constraintTop_toBottomOf="@+id/descripcionCC"
-            app:srcCompat="@drawable/icon_informacion" />
+            app:srcCompat="@drawable/icon_informacion"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/btnInfoMB"
             android:layout_width="34dp"
             android:layout_height="34dp"
             android:layout_marginStart="44dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="50dp"
             android:background="@null"
             android:contentDescription="Seleccionar icon 'i' para tener más información acerca del índice MB"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toEndOf="@+id/tituloMB"
             app:layout_constraintTop_toBottomOf="@+id/btnInfoMMP"
-            app:srcCompat="@drawable/icon_informacion" />
+            app:srcCompat="@drawable/icon_informacion"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/btnInfoGC"
             android:layout_width="34dp"
             android:layout_height="34dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="50dp"
             android:background="@null"
             android:contentDescription="Seleccionar icon 'i' para tener más información acerca del índice IMC"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toEndOf="@+id/tituloGrasaCorporal"
             app:layout_constraintTop_toBottomOf="@+id/btnInfoAltura"
-            app:srcCompat="@drawable/icon_informacion" />
+            app:srcCompat="@drawable/icon_informacion"
+            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/btnInfoIMC"
             android:layout_width="34dp"
             android:layout_height="34dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="48dp"
             android:background="@null"
             android:contentDescription="Seleccionar icon 'i' para tener más información acerca del índice IMC"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toEndOf="@+id/tituloIMC"
             app:layout_constraintTop_toBottomOf="@+id/btnInfoPeso"
-            app:srcCompat="@drawable/icon_informacion" />
+            app:srcCompat="@drawable/icon_informacion"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <!--Masa muscular porcentaje-->
 
         <ImageButton
             android:id="@+id/btnInfoAgua"
             android:layout_width="34dp"
             android:layout_height="34dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="52dp"
             android:background="@null"
             android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Agua"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toEndOf="@+id/tituloAgua"
             app:layout_constraintTop_toBottomOf="@+id/btnInfoIMC"
-            app:srcCompat="@drawable/icon_informacion" />
-        <!--Masa muscular porcentaje-->
+            app:srcCompat="@drawable/icon_informacion"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/btnInfoMMP"
             android:layout_width="34dp"
             android:layout_height="34dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="50dp"
             android:background="@null"
             android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Masa muscular en porcentaje"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toEndOf="@+id/tituloMasaMuscular"
             app:layout_constraintTop_toBottomOf="@+id/btnInfoGC"
-            app:srcCompat="@drawable/icon_informacion" />
+            app:srcCompat="@drawable/icon_informacion"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <!--Masa Ósea porcentaje-->
+
         <ImageButton
             android:id="@+id/btnInfoMOP"
             android:layout_width="34dp"
             android:layout_height="34dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="48dp"
             android:background="@null"
             android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Masa Ósea en porcentaje"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toEndOf="@+id/tituloMasaOsea"
             app:layout_constraintTop_toBottomOf="@+id/btnInfoAgua"
-            app:srcCompat="@drawable/icon_informacion" />
+            app:srcCompat="@drawable/icon_informacion"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <!--Masa Magra Corporal kg-->
 
         <ImageButton
             android:id="@+id/btnInfoGV"
             android:layout_width="34dp"
             android:layout_height="34dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="52dp"
             android:background="@null"
             android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Grasa Visceral"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toEndOf="@+id/tituloGV"
             app:layout_constraintTop_toBottomOf="@+id/btnInfoMOP"
-            app:srcCompat="@drawable/icon_informacion" />
-        <!--Masa Magra Corporal kg-->
+            app:srcCompat="@drawable/icon_informacion"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/btnInfoMMC"
             android:layout_width="34dp"
             android:layout_height="34dp"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="50dp"
             android:background="@null"
             android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Masa Magra Corporal en kg"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toEndOf="@+id/tituloMMC"
             app:layout_constraintTop_toBottomOf="@+id/btnInfoMB"
-            app:srcCompat="@drawable/icon_informacion" />
+            app:srcCompat="@drawable/icon_informacion"
+            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/btnInfoMGC"
             android:layout_width="34dp"
             android:layout_height="34dp"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="45dp"
             android:background="@null"
             android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Masa Grasa Corporal en kg"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toEndOf="@+id/tituloMGC"
             app:layout_constraintTop_toBottomOf="@+id/btnInfoGV"
-            app:srcCompat="@drawable/icon_informacion" />
+            app:srcCompat="@drawable/icon_informacion"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/btnInfoMOKG"
             android:layout_width="34dp"
             android:layout_height="34dp"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="50dp"
             android:background="@null"
             android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Masa Ósea en kg"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toEndOf="@+id/tituloMasaOseaKg"
             app:layout_constraintTop_toBottomOf="@+id/btnInfoMMC"
-            app:srcCompat="@drawable/icon_informacion" />
+            app:srcCompat="@drawable/icon_informacion"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/btnInfoMMKG"
             android:layout_width="34dp"
             android:layout_height="34dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
             android:background="@null"
             android:contentDescription="Seleccionar icon 'i' para tener más información acerca del indice Masa Muscular en kg"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toEndOf="@+id/kgMM"
             app:layout_constraintTop_toBottomOf="@+id/btnInfoMOKG"
-            app:srcCompat="@drawable/icon_informacion" />
+            app:srcCompat="@drawable/icon_informacion"
+            tools:ignore="TouchTargetSizeCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
