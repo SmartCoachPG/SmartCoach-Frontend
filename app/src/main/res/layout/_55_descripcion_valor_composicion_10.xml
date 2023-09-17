@@ -42,8 +42,8 @@
 
     <ImageButton
         android:id="@+id/btnSalirMMCkg"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_marginTop="4dp"
         android:scaleType="fitCenter"
         android:background="@null"
