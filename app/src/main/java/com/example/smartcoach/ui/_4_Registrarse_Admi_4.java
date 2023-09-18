@@ -66,7 +66,7 @@ public class _4_Registrarse_Admi_4 extends AppCompatActivity {
     }
     private void mostrarErrorAlertDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        View alertDialogView = getLayoutInflater().inflate(R.layout._41_mensaje_error_datos_invalidos, null);
+        View alertDialogView = getLayoutInflater().inflate(R.layout._5_mensaje_error_datos_invalidos, null);
         alertDialogBuilder.setView(alertDialogView);
 
         TextView tituloAlerta = alertDialogView.findViewById(R.id.tituloAlerta);
