@@ -111,5 +111,15 @@ public class _65_ModificarPerfil_Usuario extends AppCompatActivity {
         datePickerDialog.getDatePicker().setMinDate(minDateCalendar.getTimeInMillis());
         datePickerDialog.getDatePicker().setMaxDate(currentCalendar.getTimeInMillis());
         datePickerDialog.show();
+
+        botonGuardarCambios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Aquí puedes agregar el código para guardar los cambios en el perfil del administrador.
+
+                // Muestra un Toast para confirmar que los cambios se han guardado.
+                Toast.makeText(_65_ModificarPerfil_Usuario.this, "Cambios guardados correctamente", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -16,7 +16,7 @@ public class _8_ModificarPerfil_Admi extends AppCompatActivity {
 
     ImageButton flechaRegresar,imagePP;
     TextView nombreAdmi,puestoAdmi,textoIngresoNombre,textoIngresoEmail,textoIngresoCedula,textoIngresoPuesto;
-    AppCompatButton botonGuardardCambios;
+    AppCompatButton botonGuardarCambios;
 
 
     @Override
@@ -34,7 +34,7 @@ public class _8_ModificarPerfil_Admi extends AppCompatActivity {
         textoIngresoNombre = findViewById(R.id.texto_Ingreso_Nombre_admin_8);
         textoIngresoEmail = findViewById(R.id.textoIngresoEmail_admin_8);
         textoIngresoPuesto = findViewById(R.id.textoIngresoPuesto_admin_8);
-        botonGuardardCambios = findViewById(R.id.botonGuardarCambios_admin_8);
+        botonGuardarCambios = findViewById(R.id.botonGuardarCambios_admin_8);
 
         flechaRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +43,7 @@ public class _8_ModificarPerfil_Admi extends AppCompatActivity {
             }
         });
 
-        botonGuardardCambios.setOnClickListener(new View.OnClickListener() {
+        botonGuardarCambios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Aquí puedes agregar el código para guardar los cambios en el perfil del administrador.
