@@ -1,7 +1,6 @@
 package com.example.smartcoach.ui;
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,13 +12,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.smartcoach.R;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -30,7 +26,7 @@ public class _65_ModificarPerfil_Usuario extends AppCompatActivity {
 
     ImageButton flechaRegresar, imagePP;
 
-    TextView nombreAdmi, puestoAdmi;
+    TextView nombreUser, puestoAdmi;
 
     EditText  textoIngresoNombre, textoIngresoEmail, textoFechaNacimiento, textoIngresoObjetivo;
 
@@ -48,13 +44,13 @@ public class _65_ModificarPerfil_Usuario extends AppCompatActivity {
         flechaRegresar = findViewById(R.id.flechaRegresar);
         imagePP = findViewById(R.id.imagePP);
         spinnerGenero = findViewById(R.id.spinnerGenero);
-        nombreAdmi = findViewById(R.id.nombreAdmin);
-        puestoAdmi = findViewById(R.id.puestoAdmi);
-        textoIngresoNombre = findViewById(R.id.textoIngresoNombre);
-        textoIngresoEmail = findViewById(R.id.textoIngresoEmail);
-        textoFechaNacimiento = findViewById(R.id.textoFechaNacimiento);
-        textoIngresoObjetivo = findViewById(R.id.textoIngresoObjetivo);
-        botonGuardarCambios = findViewById(R.id.botonGuardarCambios);
+        nombreUser = findViewById(R.id.nombre_user_65);
+        puestoAdmi = findViewById(R.id.puesto_user_65);
+        textoIngresoNombre = findViewById(R.id.texto_Ingreso_Nombre_user_65);
+        textoIngresoEmail = findViewById(R.id.textoIngresoEmail_user_65);
+        textoFechaNacimiento = findViewById(R.id.textoFechaNacimiento_user_65);
+        textoIngresoObjetivo = findViewById(R.id.textoIngresoObjetivo_user_65);
+        botonGuardarCambios = findViewById(R.id.botonGuardarCambios_65);
 
         flechaRegresar.setOnClickListener(new View.OnClickListener() {
             @Override

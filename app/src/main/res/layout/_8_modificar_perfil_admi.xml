@@ -59,7 +59,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/nombreAdmi"
+                    android:id="@+id/nombre_admin_8"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:layout_marginTop="80dp"
@@ -73,7 +73,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/puestoAdmi"
+                    android:id="@+id/puesto_admin_8"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:layout_marginTop="-10dp"
@@ -116,11 +116,11 @@
             android:textSize="22dp"></TextView>
 
         <EditText
-            android:id="@+id/textoIngresoNombre"
+            android:id="@+id/texto_Ingreso_Nombre_admin_8"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangulonaranja"
-            android:hint="Nombre admi"
+            android:hint="Nombre admin"
             android:inputType="text"
             android:textColor="@color/grisClaro"
             android:textSize="12dp" />
@@ -134,12 +134,12 @@
             android:textSize="22dp"></TextView>
 
         <EditText
-            android:id="@+id/textoIngresoEmail"
+            android:id="@+id/textoIngresoEmail_admin_8"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangulonaranja"
-            android:hint="Email admi"
-            android:inputType="text"
+            android:hint="Email admin"
+            android:inputType="textEmailAddress"
             android:textColor="@color/grisClaro"
             android:textSize="12dp" />
 
@@ -152,12 +152,12 @@
             android:textSize="22dp"></TextView>
 
         <EditText
-            android:id="@+id/textoIngresoCedula"
+            android:id="@+id/textoIngresoCedula_admin_8"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangulonaranja"
-            android:hint="Cedula admi"
-            android:inputType="text"
+            android:hint="Cedula"
+            android:inputType="number"
             android:textColor="@color/grisClaro"
             android:textSize="12dp" />
 
@@ -170,11 +170,11 @@
             android:textSize="22dp"></TextView>
 
         <EditText
-            android:id="@+id/textoIngresoPuesto"
+            android:id="@+id/textoIngresoPuesto_admin_8"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:background="@drawable/rectangulonaranja"
-            android:hint="Puesto admi"
+            android:hint="Puesto admin"
             android:inputType="text"
             android:textColor="@color/grisClaro"
             android:textSize="12dp" />
@@ -182,7 +182,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/botonGuardarCambios"
+        android:id="@+id/botonGuardarCambios_admin_8"
         android:layout_width="311dp"
         android:layout_height="40dp"
         android:layout_gravity="center"

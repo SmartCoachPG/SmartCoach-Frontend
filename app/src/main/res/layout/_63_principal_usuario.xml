@@ -46,7 +46,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/nombreUser"
+                    android:id="@+id/nombreUser_63"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:layout_marginTop="80dp"
@@ -60,7 +60,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/objetivoUser"
+                    android:id="@+id/objetivoUser_63"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:layout_marginTop="-10dp"
@@ -89,7 +89,7 @@
         android:layout_marginTop="32dp">
 
         <ImageButton
-            android:id="@+id/info_user"
+            android:id="@+id/info_user_63"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@null"
@@ -100,7 +100,7 @@
             app:srcCompat="@drawable/icon_user_ne" />
 
         <TextView
-            android:id="@+id/info_user_texto"
+            android:id="@+id/info_user_texto_63"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Información Personal"
@@ -120,7 +120,7 @@
         android:layout_marginTop="40dp">
 
         <ImageButton
-            android:id="@+id/limitaciones_fisicas"
+            android:id="@+id/limitaciones_fisicas_63"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@null"
@@ -131,7 +131,7 @@
             app:srcCompat="@drawable/icon_lim_fisicas_ne" />
 
         <TextView
-            android:id="@+id/limitaciones_fisicas_texto"
+            android:id="@+id/limitaciones_fisicas_texto_63"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Limitaciones Físicas"
@@ -151,7 +151,7 @@
         android:layout_marginTop="40dp">
 
         <ImageButton
-            android:id="@+id/horario_rutinas"
+            android:id="@+id/horario_rutinas_63"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@null"
@@ -162,7 +162,7 @@
             app:srcCompat="@drawable/icon_reloj_ne" />
 
         <TextView
-            android:id="@+id/horario_rutinas_texto"
+            android:id="@+id/horario_rutinas_texto_63"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Horario Rutinas"
@@ -182,7 +182,7 @@
         android:layout_marginTop="40dp">
 
         <ImageButton
-            android:id="@+id/registro_progreso"
+            android:id="@+id/registro_progreso_63"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@null"
@@ -193,7 +193,7 @@
             app:srcCompat="@drawable/icon_registro_progreso_ne" />
 
         <TextView
-            android:id="@+id/registro_progreso_texto"
+            android:id="@+id/registro_progreso_texto_63"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Registro Progreso"
@@ -213,7 +213,7 @@
         android:layout_marginTop="40dp">
 
         <ImageButton
-            android:id="@+id/objetivos"
+            android:id="@+id/objetivos_63"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@null"
@@ -224,7 +224,7 @@
             app:srcCompat="@drawable/icon_objetivos_ne" />
 
         <TextView
-            android:id="@+id/objetivos_texto"
+            android:id="@+id/objetivos_texto_63"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Objetivos"
@@ -244,7 +244,7 @@
         android:layout_marginTop="40dp">
 
         <ImageButton
-            android:id="@+id/composicion_corporal"
+            android:id="@+id/composicion_corporal_63"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@null"
@@ -255,7 +255,7 @@
             app:srcCompat="@drawable/icon_composicion_corporal_ne" />
 
         <TextView
-            android:id="@+id/composicion_corporal_texto"
+            android:id="@+id/composicion_corporal_texto_63"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Composición Corporal"
@@ -287,7 +287,7 @@
             app:srcCompat="@drawable/icon_basura_x_ne" />
 
         <TextView
-            android:id="@+id/eliminar_cuenta_texto"
+            android:id="@+id/eliminar_cuenta_texto_63"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Eliminar cuenta"
@@ -307,7 +307,7 @@
         android:layout_marginTop="32dp">
 
         <ImageButton
-            android:id="@+id/cerrar_sesion"
+            android:id="@+id/cerrar_sesion_63"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@null"
@@ -318,7 +318,7 @@
             app:srcCompat="@drawable/icon_x_fondo_ne" />
 
         <TextView
-            android:id="@+id/cerrar_sesion_texto"
+            android:id="@+id/cerrar_sesion_texto_63"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cerrar Sesión"
@@ -337,7 +337,7 @@
         android:gravity="bottom">
 
         <include
-            layout="@layout/_otros_menu_usuario"
+            layout="@layout/_otros_menu_usuario_63"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

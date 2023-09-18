@@ -40,7 +40,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/imagePP"
+                android:id="@+id/imagePP_admin_7"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="56dp"
@@ -59,7 +59,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/nombreAdmi"
+                    android:id="@+id/nombre_admin_7"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:layout_marginTop="80dp"
@@ -69,11 +69,11 @@
                     android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.27"
-                    app:layout_constraintStart_toEndOf="@+id/imagePP"
+                    app:layout_constraintStart_toEndOf="@+id/imagePP_admin_7"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/puestoAdmi"
+                    android:id="@+id/puesto_admin_7"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:layout_marginTop="-10dp"
@@ -83,7 +83,7 @@
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.27"
-                    app:layout_constraintStart_toEndOf="@+id/imagePP"
+                    app:layout_constraintStart_toEndOf="@+id/imagePP_admin_7"
                     app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>
 
@@ -100,13 +100,13 @@
     </FrameLayout>
 
     <ImageButton
-        android:id="@+id/botonModificar"
+        android:id="@+id/boton_modificar_admin_7"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/icon_modificar"
         android:scaleType="centerInside"
         android:background="@null"
-        android:layout_marginLeft="350dp"></ImageButton>
+        android:layout_marginLeft="350dp"/>
 
 
     <LinearLayout
@@ -125,10 +125,10 @@
             ></TextView>
 
         <TextView
-            android:id="@+id/textoIngresoNombre"
+            android:id="@+id/texto_Ingreso_Nombre_admin_7"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="Nombre admi"
+            android:hint="Nombre admin"
             android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
@@ -144,7 +144,7 @@
             ></TextView>
 
         <TextView
-            android:id="@+id/textoIngresoEmail"
+            android:id="@+id/textoIngresoEmail_admin_7"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="Email admi"
@@ -163,7 +163,7 @@
             ></TextView>
 
         <TextView
-            android:id="@+id/textoIngresoCedula"
+            android:id="@+id/textoIngresoCedula_admin_7"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="Cedula admi"
@@ -182,7 +182,7 @@
             ></TextView>
 
         <TextView
-            android:id="@+id/textoIngresoPuesto"
+            android:id="@+id/textoIngresoPuesto_admin_7"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="Puesto admi"

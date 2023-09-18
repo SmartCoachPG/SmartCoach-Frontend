@@ -27,7 +27,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/imagePP"
+                android:id="@+id/imagePP_admin_6"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="56dp"
@@ -46,7 +46,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/nombreAdmin"
+                    android:id="@+id/nombreAdmin_admin_6"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:layout_marginTop="80dp"
@@ -56,11 +56,11 @@
                     android:textSize="22sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.27"
-                    app:layout_constraintStart_toEndOf="@+id/imagePP"
+                    app:layout_constraintStart_toEndOf="@+id/imagePP_admin_6"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/puestoAdmi"
+                    android:id="@+id/puesto_admin_6"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:layout_marginTop="-10dp"
@@ -70,7 +70,7 @@
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.27"
-                    app:layout_constraintStart_toEndOf="@+id/imagePP"
+                    app:layout_constraintStart_toEndOf="@+id/imagePP_admin_6"
                     app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>
 
@@ -102,11 +102,11 @@
             android:contentDescription="Seleccionar para ver información personal"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagePP"
+            app:layout_constraintTop_toBottomOf="@+id/imagePP_admin_6"
             app:srcCompat="@drawable/icon_user_ne" />
 
         <TextView
-            android:id="@+id/info_admi_texto"
+            android:id="@+id/info_admi_texto_admin_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Información Personal"
@@ -126,18 +126,18 @@
         android:layout_marginTop="32dp">
 
         <ImageButton
-            android:id="@+id/verificacion_admi"
+            android:id="@+id/verificacion_admin_6"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@null"
             android:contentDescription="Seleccionar para ver la informacion de verificacion"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagePP"
+            app:layout_constraintTop_toBottomOf="@+id/imagePP_admin_6"
             app:srcCompat="@drawable/icon_verificacion_ne" />
 
         <TextView
-            android:id="@+id/verificacion_admi_texto"
+            android:id="@+id/verificacion_admi_texto_admin_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Verificación"
@@ -157,18 +157,18 @@
         android:layout_marginTop="32dp">
 
         <ImageButton
-            android:id="@+id/eliminar_cuenta"
+            android:id="@+id/eliminar_cuenta_admin_6"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@null"
             android:contentDescription="Seleccionar para eliminar cuenta"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagePP"
+            app:layout_constraintTop_toBottomOf="@+id/imagePP_admin_6"
             app:srcCompat="@drawable/icon_basura_x_ne" />
 
         <TextView
-            android:id="@+id/eliminar_cuenta_texto"
+            android:id="@+id/eliminar_cuenta_texto_admin_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Eliminar cuenta"
@@ -188,18 +188,18 @@
         android:layout_marginTop="32dp">
 
         <ImageButton
-            android:id="@+id/cerrar_sesion"
+            android:id="@+id/cerrar_sesion_admin_6"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@null"
             android:contentDescription="Seleccionar para cerrar sesion"
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imagePP"
+            app:layout_constraintTop_toBottomOf="@+id/imagePP_admin_6"
             app:srcCompat="@drawable/icon_x_fondo_ne" />
 
         <TextView
-            android:id="@+id/cerrar_sesion_texto"
+            android:id="@+id/cerrar_sesion_texto_admin_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Informacion Personal"

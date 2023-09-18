@@ -3,7 +3,6 @@ package com.example.smartcoach.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -24,13 +23,13 @@ public class _64_VerPerfil_Usuario extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout._64_ver_perfil_usuario);
 
-        textoIngresoNombre = findViewById(R.id.textoIngresoNombre);
-        textoIngresoEmail = findViewById(R.id.textoIngresoEmail);
-        textoIngresoGenero = findViewById(R.id.textoIngresoGenero);
-        textoFechaNacimiento = findViewById(R.id.textoFechaNacimiento);
-        textoIngresoObjetivo = findViewById(R.id.textoIngresoObjetivo);
+        textoIngresoNombre = findViewById(R.id.textoIngresoNombre_user_64);
+        textoIngresoEmail = findViewById(R.id.textoIngresoEmail_user_64);
+        textoIngresoGenero = findViewById(R.id.textoIngresoGenero_user_64);
+        textoFechaNacimiento = findViewById(R.id.textoFechaNacimiento_user_64);
+        textoIngresoObjetivo = findViewById(R.id.textoIngresoObjetivo_user_64);
         flechaRegresar = findViewById(R.id.flechaRegresar);
-        botonModificar = findViewById(R.id.botonModificar);
+        botonModificar = findViewById(R.id.boton_modificar_user_64);
 
         flechaRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,9 +44,6 @@ public class _64_VerPerfil_Usuario extends AppCompatActivity {
                 startActivity(new Intent(_64_VerPerfil_Usuario.this, _65_ModificarPerfil_Usuario.class));
             }
         });
-
-
-
 
     }
 

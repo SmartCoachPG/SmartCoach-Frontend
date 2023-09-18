@@ -3,7 +3,6 @@ package com.example.smartcoach.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -24,15 +23,15 @@ public class _7_VerPerfil_Admi extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout._7_ver_perfil_admi);
 
-        texoIngresoNombre = findViewById(R.id.textoIngresoNombre);
-        textoIngresoEmail = findViewById(R.id.textoIngresoEmail);
-        textoIngresoCedula = findViewById(R.id.textoIngresoCedula);
-        textoIngresoPuesto = findViewById(R.id.textoIngresoPuesto);
-        nombreAdmi = findViewById(R.id.nombreAdmi);
-        puestoAdmi = findViewById(R.id.puestoAdmi);
+        texoIngresoNombre = findViewById(R.id.texto_Ingreso_Nombre_admin_7);
+        textoIngresoEmail = findViewById(R.id.textoIngresoEmail_admin_7);
+        textoIngresoCedula = findViewById(R.id.textoIngresoCedula_admin_7);
+        textoIngresoPuesto = findViewById(R.id.textoIngresoPuesto_admin_7);
+        nombreAdmi = findViewById(R.id.nombre_admin_7);
+        puestoAdmi = findViewById(R.id.puesto_admin_7);
         flechaRegresar = findViewById(R.id.flechaRegresar);
-        imagePP = findViewById(R.id.imagePP);
-        botonModificar = findViewById(R.id.botonModificar);
+        imagePP = findViewById(R.id.imagePP_admin_7);
+        botonModificar = findViewById(R.id.boton_modificar_admin_7);
 
         flechaRegresar.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -26,17 +26,17 @@ public class _6_Principal_Admi extends AppCompatActivity {
 
         // Inicializa las vistas
         flechaRegresar = findViewById(R.id.flechaRegresar);
-        imagePP = findViewById(R.id.imagePP);
-        nombreAdmi = findViewById(R.id.nombreAdmin);
-        puestoAdmi = findViewById(R.id.puestoAdmi);
+        imagePP = findViewById(R.id.imagePP_admin_6);
+        nombreAdmi = findViewById(R.id.nombreAdmin_admin_6);
+        puestoAdmi = findViewById(R.id.puesto_admin_6);
         infoAdmi = findViewById(R.id.info_admi);
-        verificacionAdmin = findViewById(R.id.verificacion_admi);
-        eliminarCuenta = findViewById(R.id.eliminar_cuenta);
-        cerrarSesion = findViewById(R.id.cerrar_sesion);
-        infoAdmiTexto = findViewById(R.id.info_admi_texto);
-        verificacionAdmiTexto = findViewById(R.id.verificacion_admi_texto);
-        eliminarCuentaTexto = findViewById(R.id.eliminar_cuenta_texto);
-        cerrarSesionTexto = findViewById(R.id.cerrar_sesion_texto);
+        verificacionAdmin = findViewById(R.id.verificacion_admin_6);
+        eliminarCuenta = findViewById(R.id.eliminar_cuenta_admin_6);
+        cerrarSesion = findViewById(R.id.cerrar_sesion_admin_6);
+        infoAdmiTexto = findViewById(R.id.info_admi_texto_admin_6);
+        verificacionAdmiTexto = findViewById(R.id.verificacion_admi_texto_admin_6);
+        eliminarCuentaTexto = findViewById(R.id.eliminar_cuenta_texto_admin_6);
+        cerrarSesionTexto = findViewById(R.id.cerrar_sesion_texto_admin_6);
 
         infoAdmi.setOnClickListener(new View.OnClickListener() {
             @Override

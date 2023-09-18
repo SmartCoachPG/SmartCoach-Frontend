@@ -59,7 +59,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/nombreAdmi"
+                    android:id="@+id/nombre_user_64"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:layout_marginTop="80dp"
@@ -73,7 +73,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/puestoAdmi"
+                    android:id="@+id/puesto_user_64"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:layout_marginTop="-10dp"
@@ -95,13 +95,13 @@
     </FrameLayout>
 
     <ImageButton
-        android:id="@id/botonModificar"
+        android:id="@+id/boton_modificar_user_64"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/icon_modificar"
         android:scaleType="centerInside"
         android:background="@null"
-        android:layout_marginLeft="350dp"></ImageButton>
+        android:layout_marginLeft="350dp"/>
 
 
     <LinearLayout
@@ -120,7 +120,7 @@
             ></TextView>
 
         <TextView
-            android:id="@+id/textoIngresoNombre"
+            android:id="@+id/textoIngresoNombre_user_64"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="Nombre usuario"
@@ -139,7 +139,7 @@
             ></TextView>
 
         <TextView
-            android:id="@+id/textoIngresoEmail"
+            android:id="@+id/textoIngresoEmail_user_64"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="Email usuario"
@@ -158,7 +158,7 @@
             ></TextView>
 
         <TextView
-            android:id="@+id/textoIngresoGenero"
+            android:id="@+id/textoIngresoGenero_user_64"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="Genero usuario"
@@ -177,7 +177,7 @@
             ></TextView>
 
         <TextView
-            android:id="@+id/textoFechaNacimiento"
+            android:id="@+id/textoFechaNacimiento_user_64"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="Fecha nacimiento usuairo"
@@ -196,7 +196,7 @@
             ></TextView>
 
         <TextView
-            android:id="@+id/textoIngresoObjetivo"
+            android:id="@+id/textoIngresoObjetivo_user_64"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="Objetivo Usuario"
