@@ -88,7 +88,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tituloPeso" />
 
         <TextView
-            android:id="@+id/tituloAltura"
+            android:id="@+id/tituloComposicionCorporal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="124dp"
@@ -110,7 +110,7 @@
             android:hint="00"
             android:inputType="number"
             app:layout_constraintStart_toEndOf="@+id/kgPeso"
-            app:layout_constraintTop_toBottomOf="@+id/tituloAltura"
+            app:layout_constraintTop_toBottomOf="@+id/tituloComposicionCorporal"
             tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
@@ -125,7 +125,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.093"
             app:layout_constraintStart_toEndOf="@+id/infoAltura"
-            app:layout_constraintTop_toBottomOf="@+id/tituloAltura" />
+            app:layout_constraintTop_toBottomOf="@+id/tituloComposicionCorporal" />
 
         <TextView
             android:id="@+id/tituloIMC"
@@ -554,7 +554,7 @@
             android:background="@null"
             android:contentDescription="Seleccionar icon 'i' para tener más información acerca del índice peso"
             android:scaleType="fitCenter"
-            app:layout_constraintEnd_toStartOf="@+id/tituloAltura"
+            app:layout_constraintEnd_toStartOf="@+id/tituloComposicionCorporal"
             app:layout_constraintHorizontal_bias="0.447"
             app:layout_constraintStart_toEndOf="@+id/tituloPeso"
             app:layout_constraintTop_toBottomOf="@+id/descripcionCC"
@@ -570,7 +570,7 @@
             android:background="@null"
             android:contentDescription="Seleccionar icon 'i' para tener más información acerca del índice altura"
             android:scaleType="fitCenter"
-            app:layout_constraintStart_toEndOf="@+id/tituloAltura"
+            app:layout_constraintStart_toEndOf="@+id/tituloComposicionCorporal"
             app:layout_constraintTop_toBottomOf="@+id/descripcionCC"
             app:srcCompat="@drawable/icon_informacion"
             tools:ignore="TouchTargetSizeCheck" />

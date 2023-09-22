@@ -27,7 +27,7 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
         descripcionCC = findViewById(R.id.descripcionCC);
         tituloPeso = findViewById(R.id.tituloPeso);
         kgPeso = findViewById(R.id.kgPeso);
-        tituloAltura = findViewById(R.id.tituloAltura);
+        tituloAltura = findViewById(R.id.tituloComposicionCorporal);
         cmAltura = findViewById(R.id.cmAltura);
         tituloIMC = findViewById(R.id.tituloIMC);
         tituloGrasaCorporal = findViewById(R.id.tituloGrasaCorporal);
@@ -81,11 +81,11 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 Log.d("Debug", "btnInfoPeso clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
 
-                View dialogView = getLayoutInflater().inflate(R.layout._57_descripcion_valor_composicion_12, null);
+                View dialogView = getLayoutInflater().inflate(R.layout._50_descripcion_valor_composicion_5, null);
                 dialogBuilder.setView(dialogView);
 
                 AlertDialog dialog = dialogBuilder.create();
-                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirPeso);
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirComposicionCorporal);
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -108,7 +108,7 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 dialogBuilder.setView(dialogView);
 
                 AlertDialog dialog = dialogBuilder.create();
-                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirAltura);
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirComposicionCorporal);
 
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -128,11 +128,11 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 Log.d("Debug", "btnInfoIMC clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
 
-                View dialogView = getLayoutInflater().inflate(R.layout._58_descripcion_valor_composicion_13, null);
+                View dialogView = getLayoutInflater().inflate(R.layout._50_descripcion_valor_composicion_5, null);
                 dialogBuilder.setView(dialogView);
 
                 AlertDialog dialog = dialogBuilder.create();
-                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirIMC);
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirComposicionCorporal);
 
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -153,11 +153,11 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 Log.d("Debug", "btnInfoGrasaCorporal clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
 
-                View dialogView = getLayoutInflater().inflate(R.layout._48_descripcion_valor_composicion_3, null);
+                View dialogView = getLayoutInflater().inflate(R.layout._50_descripcion_valor_composicion_5, null);
                 dialogBuilder.setView(dialogView);
 
                 AlertDialog dialog = dialogBuilder.create();
-                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirGC);
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirComposicionCorporal);
 
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -177,11 +177,11 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 Log.d("Debug", "btnInfoAgua clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
 
-                View dialogView = getLayoutInflater().inflate(R.layout._53_descripcion_valor_composicion_8, null);
+                View dialogView = getLayoutInflater().inflate(R.layout._50_descripcion_valor_composicion_5, null);
                 dialogBuilder.setView(dialogView);
 
                 AlertDialog dialog = dialogBuilder.create();
-                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirAgua);
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirComposicionCorporal);
 
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -201,11 +201,11 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 Log.d("Debug", "btnInfoMasaMuscularPorcentaje clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
 
-                View dialogView = getLayoutInflater().inflate(R.layout._47_descripcion_valor_composicion_2, null);
+                View dialogView = getLayoutInflater().inflate(R.layout._50_descripcion_valor_composicion_5, null);
                 dialogBuilder.setView(dialogView);
 
                 AlertDialog dialog = dialogBuilder.create();
-                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirMMP);
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirComposicionCorporal);
 
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -225,11 +225,11 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 Log.d("Debug", "btnInfoMasaOseaPorcentaje clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
 
-                View dialogView = getLayoutInflater().inflate(R.layout._46_descripcion_valor_composicion_1, null);
+                View dialogView = getLayoutInflater().inflate(R.layout._50_descripcion_valor_composicion_5, null);
                 dialogBuilder.setView(dialogView);
 
                 AlertDialog dialog = dialogBuilder.create();
-                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirMOP);
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirComposicionCorporal);
 
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -249,11 +249,11 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 Log.d("Debug", "btnInfoMB clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
 
-                View dialogView = getLayoutInflater().inflate(R.layout._49_descripcion_valor_composicion_4, null);
+                View dialogView = getLayoutInflater().inflate(R.layout._50_descripcion_valor_composicion_5, null);
                 dialogBuilder.setView(dialogView);
 
                 AlertDialog dialog = dialogBuilder.create();
-                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirMBkcal);
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirComposicionCorporal);
 
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -272,11 +272,11 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 Log.d("Debug", "btnInfoGrasaVisceral clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
 
-                View dialogView = getLayoutInflater().inflate(R.layout._52_descripcion_valor_composicion_7, null);
+                View dialogView = getLayoutInflater().inflate(R.layout._50_descripcion_valor_composicion_5, null);
                 dialogBuilder.setView(dialogView);
 
                 AlertDialog dialog = dialogBuilder.create();
-                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirGV);
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirComposicionCorporal);
 
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -296,11 +296,11 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 Log.d("Debug", "btnInfoMasaMagraCorporal clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
 
-                View dialogView = getLayoutInflater().inflate(R.layout._55_descripcion_valor_composicion_10, null);
+                View dialogView = getLayoutInflater().inflate(R.layout._50_descripcion_valor_composicion_5, null);
                 dialogBuilder.setView(dialogView);
 
                 AlertDialog dialog = dialogBuilder.create();
-                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirMMCkg);
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirComposicionCorporal);
 
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -319,11 +319,11 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 Log.d("Debug", "btnInfoMasaGrasaCorporal clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
 
-                View dialogView = getLayoutInflater().inflate(R.layout._54_descripcion_valor_composicion_9, null);
+                View dialogView = getLayoutInflater().inflate(R.layout._50_descripcion_valor_composicion_5, null);
                 dialogBuilder.setView(dialogView);
 
                 AlertDialog dialog = dialogBuilder.create();
-                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirMGCkg);
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirComposicionCorporal);
 
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -342,11 +342,11 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 Log.d("Debug", "btnInfoMasaOseaKg clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
 
-                View dialogView = getLayoutInflater().inflate(R.layout._56_descripcion_valor_composicion_11, null);
+                View dialogView = getLayoutInflater().inflate(R.layout._50_descripcion_valor_composicion_5, null);
                 dialogBuilder.setView(dialogView);
 
                 AlertDialog dialog = dialogBuilder.create();
-                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirMOkg);
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirComposicionCorporal);
 
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -365,11 +365,11 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 Log.d("Debug", "btnInfoMasaMuscularKg clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_45_Registrar_Usuario_4.this);
 
-                View dialogView = getLayoutInflater().inflate(R.layout._51_descripcion_valor_composicion_6, null);
+                View dialogView = getLayoutInflater().inflate(R.layout._50_descripcion_valor_composicion_5, null);
                 dialogBuilder.setView(dialogView);
 
                 AlertDialog dialog = dialogBuilder.create();
-                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirMMkg);
+                AppCompatImageButton btnCerrar = dialogView.findViewById(R.id.btnSalirComposicionCorporal);
 
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override

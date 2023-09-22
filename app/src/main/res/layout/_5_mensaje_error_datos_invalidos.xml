@@ -28,13 +28,13 @@
         android:text="Lo sentimos, los datos ingresados para crear la cuenta no son válidos. Por favor, revisa la información que has proporcionado e inténtalo de nuevo."
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnSeguir"
+        app:layout_constraintBottom_toTopOf="@+id/btnSeguirCamposVacios"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloAlerta" />
 
     <Button
-        android:id="@+id/btnSeguir"
+        android:id="@+id/btnSeguirCamposVacios"
         android:layout_width="264dp"
         android:layout_height="49dp"
         android:layout_gravity="center_horizontal"

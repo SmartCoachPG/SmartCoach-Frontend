@@ -261,7 +261,7 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
 
     private void mostrarErrorAlertDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        View alertDialogView = getLayoutInflater().inflate(R.layout._5_registrarse_admin_5, null);
+        View alertDialogView = getLayoutInflater().inflate(R.layout._5_mensaje_error_datos_invalidos, null);
         alertDialogBuilder.setView(alertDialogView);
 
         Button btnSeguir = alertDialogView.findViewById(R.id.btnSeguirCamposVacios);
