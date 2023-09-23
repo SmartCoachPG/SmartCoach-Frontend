@@ -21,7 +21,6 @@ public class _43_InformacionNivelActividadLeve extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout._43_informacion_nivel_actividad_leve);
 
-        // Asignación de los elementos de la vista a las variables
         tituloNivelLeve = findViewById(R.id.tituloNivel_leve);
         descripcionLeve = findViewById(R.id.descripciónLeve);
         btnSalirLeve = findViewById(R.id.btnSalirLeve);

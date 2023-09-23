@@ -98,7 +98,7 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
         View alertDialogView = getLayoutInflater().inflate(R.layout._5_mensaje_error_datos_invalidos, null);
         alertDialogBuilder.setView(alertDialogView);
 
-        Button btnSeguir = alertDialogView.findViewById(R.id.btnSeguir);
+        Button btnSeguir = alertDialogView.findViewById(R.id.btnSeguirCamposVacios);
         btnSeguir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,8 +1,10 @@
 package com.example.smartcoach.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -17,11 +19,12 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
     TextView titulo, descripcionCC, tituloPeso, kgPeso, tituloAltura, cmAltura, tituloIMC, tituloGrasaCorporal, porcentajeGC, tituloAgua, porcentajeAgua, tituloMasaMuscular, porcentajeMM, tituloMasaOsea, porcentajeMO, tituloMB, tituloGV, tituloMMC, kgMMC, tituloMGC, kgMGC, tituloMasaOseaKg, kgMasaOsea, tituloMasaMuscularKg, kgMM;
     EditText infoPeso, infoAltura, infoIMC, infoGrasaCorporal, infoAgua, infoMasaMuscular, infoMasaOsea, infoMB, infoGV, infoMMC, infoMGC, infoMasaOseaKg, infoMM;
     ImageButton btnInfoPeso, btnInfoAltura, btnInfoMB, btnInfoGC, btnInfoIMC, btnInfoAgua, btnInfoMMP, btnInfoMOP, btnInfoGV, btnInfoMMC, btnInfoMGC, btnInfoMOKG, btnInfoMMKG;
-
+    Button btnSiguiente;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout._45_registrar_usuario_4);
+        getSupportActionBar().hide();
 
         titulo = findViewById(R.id.titulo);
         descripcionCC = findViewById(R.id.descripcionCC);
@@ -74,6 +77,7 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
         btnInfoMGC = findViewById(R.id.btnInfoMGC);
         btnInfoMOKG = findViewById(R.id.btnInfoMOKG);
         btnInfoMMKG = findViewById(R.id.btnInfoMMKG);
+        btnSiguiente = findViewById(R.id.btnSiguienteCC);
 
        btnInfoPeso.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -382,7 +386,13 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 dialog.show();
             }
         });
-
+        btnSiguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(_45_Registrar_Usuario_4.this, _59_registrar_usuario_5.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

@@ -75,7 +75,7 @@ public class _4_Registrarse_Admi_4 extends AppCompatActivity {
         TextView mensajeAlerta = alertDialogView.findViewById(R.id.mensajeAlerta);
         mensajeAlerta.setText("Lo sentimos, los datos ingresados para crear la cuenta no son válidos. Por favor, revisa la información que has proporcionado e inténtalo de nuevo.");
 
-        Button btnSeguir = alertDialogView.findViewById(R.id.btnSeguir);
+        Button btnSeguir = alertDialogView.findViewById(R.id.btnSeguirCamposVacios);
         btnSeguir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
