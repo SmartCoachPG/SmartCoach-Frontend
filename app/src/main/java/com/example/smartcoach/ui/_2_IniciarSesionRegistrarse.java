@@ -14,6 +14,7 @@ import com.example.smartcoach.R;
 import java.util.HashMap;
 import java.util.Map;
 
+import api.SharedPreferencesUtil;
 import api.User.UsuarioApiService;
 import api.retro;
 import model.User.Usuario;
@@ -84,6 +85,8 @@ public class _2_IniciarSesionRegistrarse extends AppCompatActivity {
     {
         String emailStr = email.getText().toString();
         String contraseñaStr = contraseña.getText().toString();
+        SharedPreferencesUtil sharedpreferencesutil = new SharedPreferencesUtil();
+
 
         credenciales.put("email", emailStr);
         credenciales.put("contrasenna", contraseñaStr);
@@ -109,6 +112,9 @@ public class _2_IniciarSesionRegistrarse extends AppCompatActivity {
                         if (tipoUsuario != null) {
                             if (tipoUsuario == 1) {
                                 Log.d("IniciarSesionActivity", "Administrador inició sesión: " + usuarioResponse.getId());
+                                sharedpreferencesutil.saveToken(_2_IniciarSesionRegistrarse.this,usuarioResponse.getToken());
+                                sharedpreferencesutil.saveUserId(_2_IniciarSesionRegistrarse.this,usuarioResponse.getId());
+
                                 Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _6_Principal_Admi.class);
                                 startActivity(intent);
                             } else if (tipoUsuario == 0) {

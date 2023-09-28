@@ -3,6 +3,7 @@ package com.example.smartcoach.ui;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -13,16 +14,37 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
 
+import api.Admi.UsuarioAdministradorApiService;
+import api.SharedPreferencesUtil;
+import api.User.UsuarioApiService;
+import api.retro;
+import model.Admi.UsuarioAdministrador;
+import model.User.Usuario;
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class _6_Principal_Admi extends AppCompatActivity {
 
     ImageButton flechaRegresar, eliminarCuenta, imagePP,verificacionAdmin,cerrarSesion,infoAdmi;
     TextView nombreAdmi, puestoAdmi, infoAdmiTexto,verificacionAdmiTexto,eliminarCuentaTexto,cerrarSesionTexto;
+
+    Long userId = SharedPreferencesUtil.getUserId(_6_Principal_Admi.this);
+    String token = SharedPreferencesUtil.getToken(_6_Principal_Admi.this);
+
+    UsuarioApiService usuarioApiService;
+    UsuarioAdministradorApiService usuarioAdministradorApiService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout._6_principal_admi);
+        iniciarPeticiones();
 
         // Inicializa las vistas
         flechaRegresar = findViewById(R.id.flechaRegresar);
@@ -38,6 +60,7 @@ public class _6_Principal_Admi extends AppCompatActivity {
         eliminarCuentaTexto = findViewById(R.id.eliminar_cuenta_texto_admin_6);
         cerrarSesionTexto = findViewById(R.id.cerrar_sesion_texto_admin_6);
 
+        cargarInfo();
         infoAdmi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,4 +121,50 @@ public class _6_Principal_Admi extends AppCompatActivity {
         dialog.show();
     }
 
+    private void iniciarPeticiones()
+    {
+
+        OkHttpClient okHttpClient = retro.getUnsafeOkHttpClientWithToken(token);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://10.0.2.2:8043/api/")
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+
+        usuarioApiService = retrofit.create(UsuarioApiService.class);
+        usuarioAdministradorApiService = retrofit.create(UsuarioAdministradorApiService.class);
+
+    }
+
+    private void cargarInfo()
+    {
+        Call<UsuarioAdministrador> call = usuarioAdministradorApiService.getUsuarioById(userId);
+
+        call.enqueue(new Callback<UsuarioAdministrador>() {
+            @Override
+            public void onResponse(Call<UsuarioAdministrador> call, Response<UsuarioAdministrador> response) {
+                if (response.isSuccessful()) {
+                    UsuarioAdministrador usuario = response.body();
+                    // Haz algo con el objeto Usuario, por ejemplo:
+                    Log.d("Usuario", "Nombre: " + usuario.getNombre());
+
+                    nombreAdmi.setText(usuario.getNombre());
+                    puestoAdmi.setText(usuario.getPuesto());
+
+
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UsuarioAdministrador> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
 }

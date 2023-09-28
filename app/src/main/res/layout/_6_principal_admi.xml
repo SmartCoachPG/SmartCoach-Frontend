@@ -202,7 +202,7 @@
             android:id="@+id/cerrar_sesion_texto_admin_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Informacion Personal"
+            android:text="Cerrar sesión"
             android:textSize="18sp"
             android:layout_marginLeft="20dp"
             android:textColor="@color/grey"></TextView>
