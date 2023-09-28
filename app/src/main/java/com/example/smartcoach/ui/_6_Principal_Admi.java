@@ -2,6 +2,14 @@ package com.example.smartcoach.ui;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.smartcoach.R;
 
@@ -148,6 +157,23 @@ public class _6_Principal_Admi extends AppCompatActivity {
                     nombreAdmi.setText(usuario.getNombre());
                     puestoAdmi.setText(usuario.getPuesto());
 
+                    // Poner la imagen y que quede bien cortada
+                    String imagenBase64 = usuario.getFotoPerfil(); // Cadena base64 recuperada del servidor
+                    byte[] decodedString = android.util.Base64.decode(imagenBase64, android.util.Base64.DEFAULT);
+                    Bitmap originalBitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                    int targetSize = (int) (100 * getResources().getDisplayMetrics().density);
+                    Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, targetSize, targetSize, true);
+                    Bitmap circularBitmap = Bitmap.createBitmap(targetSize, targetSize, Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(circularBitmap);
+                    Paint paint = new Paint();
+                    paint.setAntiAlias(true);
+                    paint.setShader(new BitmapShader(scaledBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
+                    float radius = targetSize / 2f;
+                    canvas.drawCircle(radius, radius, radius, paint);
+                    imagePP.setImageBitmap(circularBitmap);
+
+
+
 
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
@@ -162,4 +188,6 @@ public class _6_Principal_Admi extends AppCompatActivity {
             }
         });
     }
+
+
 }

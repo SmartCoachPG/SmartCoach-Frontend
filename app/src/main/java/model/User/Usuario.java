@@ -9,7 +9,7 @@ public class Usuario {
     private String nombre;
     private String email;
     private String contrasenna;
-    private byte[] fotoPerfil;
+    private String fotoPerfil;
     @SerializedName("admi")
     private Integer admi;
     private String token;
@@ -18,7 +18,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String email, String contrasenna, byte[] fotoPerfil,Integer admi) {
+    public Usuario(String nombre, String email, String contrasenna, String fotoPerfil,Integer admi) {
         this.nombre = nombre;
         this.email = email;
         this.contrasenna = contrasenna;
@@ -66,11 +66,11 @@ public class Usuario {
         this.contrasenna = contrasenna;
     }
 
-    public byte[] getFotoPerfil() {
+    public String getFotoPerfil() {
         return fotoPerfil;
     }
 
-    public void setFotoPerfil(byte[] fotoPerfil) {
+    public void setFotoPerfil(String fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
     }
 

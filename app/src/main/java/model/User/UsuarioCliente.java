@@ -25,7 +25,7 @@ public class UsuarioCliente extends Usuario{
         this.objetivoRutinaid = objetivoRutinaid;
     }
 
-    public UsuarioCliente(String nombre, String email, String contrasenna, byte[] fotoPerfil, Integer admi, String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid) {
+    public UsuarioCliente(String nombre, String email, String contrasenna, String fotoPerfil, Integer admi, String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid) {
         super(nombre, email, contrasenna, fotoPerfil, admi);
         this.genero = genero;
         this.fechaDeNacimiento = fechaDeNacimiento;

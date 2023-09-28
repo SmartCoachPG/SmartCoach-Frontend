@@ -172,6 +172,8 @@ public class _8_ModificarPerfil_Admi extends AppCompatActivity {
                     UsuarioAdministrador usuarioAdministrador1 = response.body();
                     Log.d("UsuarioActualizado", "Nombre: " + usuarioAdministrador1.getNombre());
                     Toast.makeText(_8_ModificarPerfil_Admi.this, "Cambios guardados correctamente", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(_8_ModificarPerfil_Admi.this, _7_VerPerfil_Admi.class));
+
                 } else {
                     Log.e("Error", "Error en la respuesta: " + response.code());
                 }
