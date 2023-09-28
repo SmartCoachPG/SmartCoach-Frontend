@@ -18,4 +18,5 @@ public interface UsuarioApiService {
         @GET("usuarios/{id}")
         Call<Usuario> getUsuarioById(@Path("id") Long id);
 
+
 }

@@ -151,7 +151,7 @@
             android:textColor="@color/black"
             android:textSize="22dp"></TextView>
 
-        <EditText
+        <TextView
             android:id="@+id/textoIngresoCedula_admin_8"
             android:layout_width="300dp"
             android:layout_height="wrap_content"

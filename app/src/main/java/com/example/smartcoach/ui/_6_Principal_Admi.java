@@ -16,10 +16,8 @@ import com.example.smartcoach.R;
 
 import api.Admi.UsuarioAdministradorApiService;
 import api.SharedPreferencesUtil;
-import api.User.UsuarioApiService;
 import api.retro;
 import model.Admi.UsuarioAdministrador;
-import model.User.Usuario;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,7 +33,6 @@ public class _6_Principal_Admi extends AppCompatActivity {
     Long userId = SharedPreferencesUtil.getUserId(_6_Principal_Admi.this);
     String token = SharedPreferencesUtil.getToken(_6_Principal_Admi.this);
 
-    UsuarioApiService usuarioApiService;
     UsuarioAdministradorApiService usuarioAdministradorApiService;
 
 
@@ -132,8 +129,6 @@ public class _6_Principal_Admi extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-
-        usuarioApiService = retrofit.create(UsuarioApiService.class);
         usuarioAdministradorApiService = retrofit.create(UsuarioAdministradorApiService.class);
 
     }
