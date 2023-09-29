@@ -1,10 +1,17 @@
 package com.example.smartcoach.ui;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Shader;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +35,8 @@ public class _7_VerPerfil_Admi extends AppCompatActivity {
 
     ImageButton flechaRegresar, imagePP, botonModificar;
 
+    ImageView admiCheck;
+
     Long userId = SharedPreferencesUtil.getUserId(_7_VerPerfil_Admi.this);
     String token = SharedPreferencesUtil.getToken(_7_VerPerfil_Admi.this);
 
@@ -50,6 +59,7 @@ public class _7_VerPerfil_Admi extends AppCompatActivity {
         flechaRegresar = findViewById(R.id.flechaRegresar);
         imagePP = findViewById(R.id.imagePP_admin_7);
         botonModificar = findViewById(R.id.boton_modificar_admin_7);
+        admiCheck = findViewById(R.id.admiCheck_7);
 
         cargarInfo();
 
@@ -103,6 +113,29 @@ public class _7_VerPerfil_Admi extends AppCompatActivity {
                     textoIngresoCedula.setText(Long.toString(usuario.getCedula()));
                     textoIngresoPuesto.setText(usuario.getPuesto());
 
+                    // Poner la imagen y que quede bien cortada
+                    String imagenBase64 = usuario.getFotoPerfil(); // Cadena base64 recuperada del servidor
+                    byte[] decodedString = android.util.Base64.decode(imagenBase64, android.util.Base64.DEFAULT);
+                    Bitmap originalBitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                    int targetSize = (int) (100 * getResources().getDisplayMetrics().density);
+                    Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, targetSize, targetSize, true);
+                    Bitmap circularBitmap = Bitmap.createBitmap(targetSize, targetSize, Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(circularBitmap);
+                    Paint paint = new Paint();
+                    paint.setAntiAlias(true);
+                    paint.setShader(new BitmapShader(scaledBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
+                    float radius = targetSize / 2f;
+                    canvas.drawCircle(radius, radius, radius, paint);
+                    imagePP.setImageBitmap(circularBitmap);
+
+                    if(usuario.getVerificado()==1)
+                    {
+                        admiCheck.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        admiCheck.setVisibility(View.GONE);
+                    }
 
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.

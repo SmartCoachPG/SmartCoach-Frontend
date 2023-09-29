@@ -3,9 +3,11 @@ package com.example.smartcoach.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -132,6 +134,11 @@ public class _2_IniciarSesionRegistrarse extends AppCompatActivity {
                     }
                 } else {
                     Log.d("IniciarSesionActivity", "Inicio de sesión fallido");
+                    Toast toast = Toast.makeText(getApplicationContext(), "Correo o contraseña incorrecta,por favor vuelve a intentar", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
+
                 }
             }
             @Override

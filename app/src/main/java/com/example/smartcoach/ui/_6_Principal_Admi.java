@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +40,7 @@ public class _6_Principal_Admi extends AppCompatActivity {
     ImageButton flechaRegresar, eliminarCuenta, imagePP,verificacionAdmin,cerrarSesion,infoAdmi;
     TextView nombreAdmi, puestoAdmi, infoAdmiTexto,verificacionAdmiTexto,eliminarCuentaTexto,cerrarSesionTexto;
 
+    ImageView admiCheck;
     Long userId = SharedPreferencesUtil.getUserId(_6_Principal_Admi.this);
     String token = SharedPreferencesUtil.getToken(_6_Principal_Admi.this);
 
@@ -65,6 +67,7 @@ public class _6_Principal_Admi extends AppCompatActivity {
         verificacionAdmiTexto = findViewById(R.id.verificacion_admi_texto_admin_6);
         eliminarCuentaTexto = findViewById(R.id.eliminar_cuenta_texto_admin_6);
         cerrarSesionTexto = findViewById(R.id.cerrar_sesion_texto_admin_6);
+        admiCheck = findViewById(R.id.admiCheck_6);
 
         cargarInfo();
         infoAdmi.setOnClickListener(new View.OnClickListener() {
@@ -172,8 +175,14 @@ public class _6_Principal_Admi extends AppCompatActivity {
                     canvas.drawCircle(radius, radius, radius, paint);
                     imagePP.setImageBitmap(circularBitmap);
 
-
-
+                    if(usuario.getVerificado()==1)
+                    {
+                        admiCheck.setVisibility(View.VISIBLE);
+                    }
+                    else
+                    {
+                        admiCheck.setVisibility(View.GONE);
+                    }
 
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
