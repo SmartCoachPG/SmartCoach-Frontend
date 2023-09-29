@@ -62,6 +62,20 @@ public class SharedPreferencesUtil {
         return sharedPreferences.getLong("user_id_key", -1);
     }
 
+    public static void deleteToken(Context context) {
+        SharedPreferences sharedPreferences = getEncryptedSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("token_key");
+        editor.apply();
+    }
+
+    public static void deleteUserId(Context context) {
+        SharedPreferences sharedPreferences = getEncryptedSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("user_id_key");
+        editor.apply();
+    }
+
 
 }
 

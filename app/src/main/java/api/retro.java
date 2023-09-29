@@ -42,10 +42,15 @@ public class retro {
             SSLContext sslContext = SSLContext.getInstance("TLS");
             sslContext.init(null, trustAllCertificates, new java.security.SecureRandom());
 
+            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+
             // Configura el cliente OkHttpClient para utilizar el contexto SSL personalizado
             return new OkHttpClient.Builder()
                     .sslSocketFactory(sslContext.getSocketFactory(), (X509TrustManager) trustAllCertificates[0])
                     .hostnameVerifier((hostname, session) -> true)
+                    .addInterceptor(loggingInterceptor)
                     .build();
         } catch (Exception e) {
             throw new RuntimeException(e);

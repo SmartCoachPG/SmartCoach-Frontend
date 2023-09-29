@@ -93,9 +93,6 @@ public class _2_IniciarSesionRegistrarse extends AppCompatActivity {
         credenciales.put("email", emailStr);
         credenciales.put("contrasenna", contraseñaStr);
 
-        Log.d("IniciarSesionActivity", "Email: " + emailStr);
-        Log.d("IniciarSesionActivity", "Contraseña: " + contraseñaStr);
-
 
         Call<Usuario> call = usuarioApiService.iniciarSesion(credenciales);
         call.enqueue(new Callback<Usuario>() {

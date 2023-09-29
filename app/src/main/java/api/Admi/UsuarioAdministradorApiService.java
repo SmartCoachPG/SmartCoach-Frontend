@@ -4,7 +4,9 @@ import api.User.UsuarioApiService;
 import model.Admi.UsuarioAdministrador;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
@@ -17,6 +19,11 @@ public interface UsuarioAdministradorApiService {
     @PUT("usuarioadministrador/{id}")
     Call<UsuarioAdministrador> updateUsuarioAdministrador(@Path("id") Long id, @Body UsuarioAdministrador usuarioAdministrador);
 
+    @POST("usuarioadministrador")
+    Call<UsuarioAdministrador> createUsuarioAdministrador(@Body UsuarioAdministrador usuarioAdministrador);
+
+    @DELETE("usuarioadministrador/{id}")
+    Call<Void> deleteUsuarioAdministrador(@Path("id")Long id);
 
 }
 

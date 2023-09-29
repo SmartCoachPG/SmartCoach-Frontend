@@ -1,9 +1,12 @@
 package com.example.smartcoach.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,19 +17,46 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import api.Admi.UsuarioAdministradorApiService;
+import api.DateSerializer;
+import api.SharedPreferencesUtil;
+import api.User.UsuarioApiService;
+import api.retro;
+import model.Admi.UsuarioAdministrador;
+import model.User.Usuario;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class _4_Registrarse_Admi_4 extends AppCompatActivity {
 
     EditText nombre, email, contraseña, validContra, cedula, nombreGym, direccionGym, barrioGym, puestoGym;
     Button btnsiguiente;
 
+    UsuarioAdministradorApiService usuarioAdministradorApiService;
+    UsuarioApiService usuarioApiService;
     private AlertDialog alertDialog;
+
+    UsuarioAdministrador newUser = new UsuarioAdministrador();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout._4_registrarse_admi_4);
+        iniciarPeticiones();
 
         nombre = findViewById(R.id.nombre);
         email = findViewById(R.id.email);
@@ -57,7 +87,7 @@ public class _4_Registrarse_Admi_4 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validarCampos() && validarContraseñas()) {
-                    Toast.makeText(_4_Registrarse_Admi_4.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
+                    crearUsuarioAdministrador();
                 } else {
                     mostrarErrorAlertDialog();
                 }
@@ -192,4 +222,117 @@ public class _4_Registrarse_Admi_4 extends AppCompatActivity {
         }
         return retorno;
     }
+
+    private void iniciarPeticiones()
+    {
+
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Date.class, new DateSerializer())
+                .create();
+
+        OkHttpClient okHttpClient = retro.getUnsafeOkHttpClient();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://10.0.2.2:8043/api/")
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        usuarioAdministradorApiService = retrofit.create(UsuarioAdministradorApiService.class);
+        usuarioApiService = retrofit.create(UsuarioApiService.class);
+    }
+
+
+    public void crearUsuarioAdministrador()
+    {
+        newUser.setNombre(nombre.getText().toString());
+        newUser.setEmail(email.getText().toString());
+        newUser.setContrasenna(contraseña.getText().toString());
+        newUser.setFotoPerfil(null);
+        newUser.setToken(null);
+        newUser.setCedula(Long.parseLong(cedula.getText().toString()));
+        newUser.setPuesto(puestoGym.getText().toString());
+        newUser.setVerificado(0);
+        newUser.setAdmi(1);
+        Date currentDate = new Date();
+        newUser.setFechaDeRenovacion(currentDate);
+
+        newUser.setGimnasioId(null);
+        Call<UsuarioAdministrador> call = usuarioAdministradorApiService.createUsuarioAdministrador(newUser);
+
+        call.enqueue(new Callback<UsuarioAdministrador>() {
+            @Override
+            public void onResponse(Call<UsuarioAdministrador> call, Response<UsuarioAdministrador> response) {
+                if (response.isSuccessful()) {
+                    UsuarioAdministrador usuarioAdministrador1 = response.body();
+                    Log.d("Usuario Creado", "Nombre: " + usuarioAdministrador1.getNombre());
+                    Toast.makeText(_4_Registrarse_Admi_4.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
+                    iniciarSesion();
+
+                } else {
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UsuarioAdministrador> call, Throwable t) {
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+
+    }
+
+    public void iniciarSesion()
+    {
+        String emailStr = newUser.getEmail();
+        String contraseñaStr= newUser.getContrasenna();
+        SharedPreferencesUtil sharedpreferencesutil = new SharedPreferencesUtil();
+        Map<String, String> credenciales = new HashMap<>();
+        credenciales.put("email", emailStr);
+        credenciales.put("contrasenna", contraseñaStr);
+
+        Call<Usuario> call = usuarioApiService.iniciarSesion(credenciales);
+        call.enqueue(new Callback<Usuario>() {
+            @Override
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                if (response.isSuccessful()) {
+                    Log.d("IniciarSesionActivity", "Respuesta recibida: " + response.toString());
+
+                    Usuario usuarioResponse = response.body();
+
+                    if (usuarioResponse != null) {
+                        Log.d("IniciarSesionActivity", "Respuesta recibida: " + usuarioResponse.toString());
+
+                        Integer tipoUsuario = usuarioResponse.getAdmi();
+
+                        if (tipoUsuario != null) {
+                                Log.d("IniciarSesionActivity", "Administrador inició sesión: " + usuarioResponse.getId());
+                                sharedpreferencesutil.saveToken(_4_Registrarse_Admi_4.this,usuarioResponse.getToken());
+                                sharedpreferencesutil.saveUserId(_4_Registrarse_Admi_4.this,usuarioResponse.getId());
+                                Intent intent = new Intent(_4_Registrarse_Admi_4.this, _6_Principal_Admi.class);
+                                startActivity(intent);
+
+                        } else {
+                            Log.d("IniciarSesionActivity", "Campo 'admi' es null");
+                        }
+                    } else {
+                        Log.d("IniciarSesionActivity", "Respuesta recibida pero el cuerpo es null");
+                    }
+                } else {
+                    Log.d("IniciarSesionActivity", "Inicio de sesión fallido");
+                    Toast toast = Toast.makeText(getApplicationContext(), "Correo o contraseña incorrecta,por favor vuelve a intentar", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+
+
+                }
+            }
+            @Override
+            public void onFailure(Call<Usuario> call, Throwable t) {
+                Log.d("IniciarSesionActivity", "Error en la llamada API", t);
+            }
+
+        });
+    }
+
 }

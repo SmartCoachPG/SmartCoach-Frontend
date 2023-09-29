@@ -2,6 +2,7 @@ package com.example.smartcoach.ui;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,6 +19,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -41,8 +43,8 @@ public class _6_Principal_Admi extends AppCompatActivity {
     TextView nombreAdmi, puestoAdmi, infoAdmiTexto,verificacionAdmiTexto,eliminarCuentaTexto,cerrarSesionTexto;
 
     ImageView admiCheck;
-    Long userId = SharedPreferencesUtil.getUserId(_6_Principal_Admi.this);
-    String token = SharedPreferencesUtil.getToken(_6_Principal_Admi.this);
+    Long userId;
+    String token;
 
     UsuarioAdministradorApiService usuarioAdministradorApiService;
 
@@ -52,6 +54,8 @@ public class _6_Principal_Admi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout._6_principal_admi);
+        userId = SharedPreferencesUtil.getUserId(_6_Principal_Admi.this);
+        token = SharedPreferencesUtil.getToken(_6_Principal_Admi.this);
         iniciarPeticiones();
 
         // Inicializa las vistas
@@ -68,6 +72,7 @@ public class _6_Principal_Admi extends AppCompatActivity {
         eliminarCuentaTexto = findViewById(R.id.eliminar_cuenta_texto_admin_6);
         cerrarSesionTexto = findViewById(R.id.cerrar_sesion_texto_admin_6);
         admiCheck = findViewById(R.id.admiCheck_6);
+
 
         cargarInfo();
         infoAdmi.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +105,22 @@ public class _6_Principal_Admi extends AppCompatActivity {
                         showDialog();
                     }
                 });
+
+        cerrarSesionTexto.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        cerrarSesion();
+                    }
+                });
+
+        cerrarSesion.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        cerrarSesion();
+                    }
+                });
     }
 
     private void showDialog() {
@@ -114,7 +135,7 @@ public class _6_Principal_Admi extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Acciones a realizar cuando se presiona "Confirmar"
-                dialog.dismiss();
+                eliminarCuenta();
             }
         });
 
@@ -130,6 +151,27 @@ public class _6_Principal_Admi extends AppCompatActivity {
         dialog.show();
     }
 
+    private void eliminarCuenta()
+    {
+        Call<Void> call = usuarioAdministradorApiService.deleteUsuarioAdministrador(userId);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(_6_Principal_Admi.this, "Cuenta eliminada", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(_6_Principal_Admi.this, _1_PantallaInicio.class));
+                } else {
+                    Toast.makeText(_6_Principal_Admi.this, "Error al eliminar la cuenta", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(_6_Principal_Admi.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
     private void iniciarPeticiones()
     {
 
@@ -160,20 +202,22 @@ public class _6_Principal_Admi extends AppCompatActivity {
                     nombreAdmi.setText(usuario.getNombre());
                     puestoAdmi.setText(usuario.getPuesto());
 
-                    // Poner la imagen y que quede bien cortada
-                    String imagenBase64 = usuario.getFotoPerfil(); // Cadena base64 recuperada del servidor
-                    byte[] decodedString = android.util.Base64.decode(imagenBase64, android.util.Base64.DEFAULT);
-                    Bitmap originalBitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                    int targetSize = (int) (100 * getResources().getDisplayMetrics().density);
-                    Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, targetSize, targetSize, true);
-                    Bitmap circularBitmap = Bitmap.createBitmap(targetSize, targetSize, Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(circularBitmap);
-                    Paint paint = new Paint();
-                    paint.setAntiAlias(true);
-                    paint.setShader(new BitmapShader(scaledBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
-                    float radius = targetSize / 2f;
-                    canvas.drawCircle(radius, radius, radius, paint);
-                    imagePP.setImageBitmap(circularBitmap);
+                    if (usuario.getFotoPerfil() != null && !usuario.getFotoPerfil().isEmpty()) {
+                        // Poner la imagen y que quede bien cortada
+                        String imagenBase64 = usuario.getFotoPerfil(); // Cadena base64 recuperada del servidor
+                        byte[] decodedString = android.util.Base64.decode(imagenBase64, android.util.Base64.DEFAULT);
+                        Bitmap originalBitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                        int targetSize = (int) (100 * getResources().getDisplayMetrics().density);
+                        Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, targetSize, targetSize, true);
+                        Bitmap circularBitmap = Bitmap.createBitmap(targetSize, targetSize, Bitmap.Config.ARGB_8888);
+                        Canvas canvas = new Canvas(circularBitmap);
+                        Paint paint = new Paint();
+                        paint.setAntiAlias(true);
+                        paint.setShader(new BitmapShader(scaledBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
+                        float radius = targetSize / 2f;
+                        canvas.drawCircle(radius, radius, radius, paint);
+                        imagePP.setImageBitmap(circularBitmap);
+                    }
 
                     if(usuario.getVerificado()==1)
                     {
@@ -199,4 +243,12 @@ public class _6_Principal_Admi extends AppCompatActivity {
     }
 
 
+    private void cerrarSesion()
+    {
+        SharedPreferencesUtil.deleteToken(_6_Principal_Admi.this);
+        SharedPreferencesUtil.deleteUserId(_6_Principal_Admi.this);
+        Toast.makeText(_6_Principal_Admi.this, "Cesion Cerrada", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(_6_Principal_Admi.this, _2_IniciarSesionRegistrarse.class);
+        startActivity(intent);
+    }
 }
