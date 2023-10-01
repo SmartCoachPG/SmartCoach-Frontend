@@ -346,6 +346,7 @@ public class _65_ModificarPerfil_Usuario extends AppCompatActivity {
             usuarioCliente.setGenero("M");
         }
 
+        usuarioCliente.setObjetivoRutinaid(spinnerObjetivo.getSelectedItemPosition()+1);
 
         Call<UsuarioCliente> call = usuarioClienteApiService.updateUsuarioCliente(userId, usuarioCliente);
 
