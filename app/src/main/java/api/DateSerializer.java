@@ -7,6 +7,7 @@ import com.google.gson.JsonSerializer;
 
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -17,11 +18,17 @@ public class DateSerializer implements JsonSerializer<Date> {
 
     public DateSerializer() {
         dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-        dateFormat.setTimeZone((TimeZone.getDefault()));
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
     }
 
     @Override
     public JsonElement serialize(Date src, Type typeOfSrc, JsonSerializationContext context) {
-        return new JsonPrimitive(dateFormat.format(src));
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+        calendar.setTime(src);
+        calendar.add(Calendar.DAY_OF_MONTH, 1); // Suma 1 día
+        Date updatedDate = calendar.getTime();
+
+        return new JsonPrimitive(dateFormat.format(updatedDate));
     }
 }
+

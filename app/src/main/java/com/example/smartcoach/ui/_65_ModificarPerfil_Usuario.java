@@ -33,6 +33,7 @@ import androidx.core.content.ContextCompat;
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonPrimitive;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -152,28 +153,35 @@ public class _65_ModificarPerfil_Usuario extends AppCompatActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        Calendar selectedDate = new GregorianCalendar(year, month, dayOfMonth);
+                        Calendar selectedDateUTC = new GregorianCalendar(TimeZone.getTimeZone("UTC"));
+                        selectedDateUTC.set(year, month, dayOfMonth, 0, 0, 0);
+                        selectedDateUTC.set(Calendar.MILLISECOND, 0);
 
                         // Calendario para verificar si la persona tiene al menos 18 años
                         Calendar minAgeCalendar = new GregorianCalendar();
                         minAgeCalendar.add(Calendar.YEAR, -18);
 
                         // Verificar si la fecha seleccionada es válida (mayor de 18 años)
-                        if (!selectedDate.before(minDateCalendar) && selectedDate.before(minAgeCalendar)) {
+                        if (!selectedDateUTC.before(minDateCalendar) && selectedDateUTC.before(minAgeCalendar)) {
                             // Settear la fecha seleccionada y mostrarla en el EditText
                             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                            String fechaNacimiento = sdf.format(selectedDate.getTime());
+                            String fechaNacimiento = sdf.format(selectedDateUTC.getTime());
                             textoFechaNacimiento.setText(fechaNacimiento);
+                            Log.d("DateSerializer", "Formatted date: " + fechaNacimiento);
+
+                            // Aquí es donde estableces la fecha de nacimiento en usuarioCliente
+                            usuarioCliente.setFechaDeNacimiento(selectedDateUTC.getTime());
+
                         } else {
                             Toast.makeText(_65_ModificarPerfil_Usuario.this, "Selecciona una fecha válida (mayor de 18 años)", Toast.LENGTH_SHORT).show();
                         }
                     }
+
                 }, currentYear, currentMonth, currentDayOfMonth);
 
         datePickerDialog.getDatePicker().setMinDate(minDateCalendar.getTimeInMillis());
         datePickerDialog.getDatePicker().setMaxDate(currentCalendar.getTimeInMillis());
         datePickerDialog.show();
-
     }
 
     private void iniciarPeticiones()
@@ -330,16 +338,6 @@ public class _65_ModificarPerfil_Usuario extends AppCompatActivity {
         usuarioCliente.setNombre(textoIngresoNombre.getText().toString());
         usuarioCliente.setEmail(textoIngresoEmail.getText().toString());
 
-        String fechaString = textoFechaNacimiento.getText().toString();
-        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-
-
-        try {
-            Date fecha = formato.parse(fechaString);
-            usuarioCliente.setFechaDeNacimiento(fecha);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         // genero
         if(spinnerGenero.getSelectedItemPosition()==1)
         {
