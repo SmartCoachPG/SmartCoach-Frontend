@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/flechaRegresar"
+            android:id="@+id/flechaRegresar_65"
             android:layout_width="10.85dp"
             android:layout_height="18.95dp"
             android:layout_marginTop="19dp"
@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageButton
-                    android:id="@+id/imagePP_63"
+                    android:id="@+id/imagePP_65"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginLeft="56dp"
@@ -85,7 +85,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/puesto_user_65"
+                    android:id="@+id/Objetivo_user_65"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:layout_marginTop="-10dp"
@@ -161,7 +161,7 @@
 
 
             <Spinner
-                android:id="@+id/spinnerGenero"
+                android:id="@+id/spinnerGenero_65"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rectangulonaranja"
@@ -201,15 +201,17 @@
             android:textColor="@color/black"
             ></TextView>
 
-        <EditText
-            android:id="@+id/textoIngresoObjetivo_user_65"
+        <Spinner
+            android:id="@+id/spinnerObjetivo_65"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:hint="Objetivo Usuario"
-            android:textSize="12dp"
-            android:inputType="text"
-            android:textColor="@color/grisClaro"
-            android:background="@drawable/rectangulonaranja"/>
+            android:background="@drawable/rectangulonaranja"
+            android:spinnerMode="dropdown"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"></Spinner>
+
+
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -240,7 +242,5 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-
-
 
 </LinearLayout>
