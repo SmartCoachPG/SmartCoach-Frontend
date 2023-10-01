@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,10 +21,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+
+import model.User.UsuarioCliente;
 
 public class _40_Registrar_Usuario_2 extends AppCompatActivity {
 
@@ -31,6 +36,8 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
     Spinner spinnerGenero;
     Button btnSiguiente;
     Calendar calendar;
+
+    UsuarioCliente usuarioCliente = new UsuarioCliente();
     private AlertDialog alertDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +45,13 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout._40_registrar_usuario_2);
 
-        nombre = findViewById(R.id.nombre);
-        email = findViewById(R.id.email);
-        contraseña = findViewById(R.id.contraseña);
-        validContra = findViewById(R.id.validacionContraseña);
-        spinnerGenero = findViewById(R.id.spinnerGenero);
-        btnSiguiente = findViewById(R.id.btnSiguiente);
-        editTextFechaNacimiento = findViewById(R.id.editTextFechaNacimiento);
+        nombre = findViewById(R.id.nombre_40);
+        email = findViewById(R.id.email_40);
+        contraseña = findViewById(R.id.contraseña_40);
+        validContra = findViewById(R.id.validacionContraseña_40);
+        spinnerGenero = findViewById(R.id.spinnerGenero_40);
+        btnSiguiente = findViewById(R.id.btnSiguiente_40);
+        editTextFechaNacimiento = findViewById(R.id.editTextFechaNacimiento_40);
         calendar = Calendar.getInstance();
 
         validContra.addTextChangedListener(new TextWatcher() {
@@ -65,7 +72,7 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
         //Spinner
         String[] opcionesGenero = new String[]{"Seleccione", "Femenino", "Masculino"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcionesGenero);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerGenero.setAdapter(adapter);
 
         //Calendario
@@ -79,13 +86,12 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (validarCampos() && validarContraseñas()) {
-                    Toast.makeText(_40_Registrar_Usuario_2.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
 
                     String generoSeleccionado = spinnerGenero.getSelectedItem().toString();
                     String fechaNacimiento = editTextFechaNacimiento.getText().toString();
-
-                    // Solo accede a la siguiente pantalla si se cumplen las validaciones
+                    crearUsuario();
                     Intent intent = new Intent(_40_Registrar_Usuario_2.this, _42_Registrar_Usuario_3.class);
+                    intent.putExtra("usuarioCliente", usuarioCliente);
                     startActivity(intent);
                 } else {
                     mostrarErrorAlertDialog();
@@ -225,9 +231,12 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
                         // Verificar si la fecha seleccionada es válida (mayor de 18 años)
                         if (selectedDate.compareTo(minDateCalendar) >= 0 && selectedDate.compareTo(minAgeCalendar) <= 0) {
                             // Settear la fecha seleccionada y mostrarla en el EditText
-                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
                             String fechaNacimiento = sdf.format(selectedDate.getTime());
                             editTextFechaNacimiento.setText(fechaNacimiento);
+
+                            // Aquí agregamos la fecha al objeto usuarioCliente
+                            usuarioCliente.setFechaDeNacimiento(selectedDate.getTime());
                         } else {
                             Toast.makeText(_40_Registrar_Usuario_2.this, "Selecciona una fecha válida (mayor de 18 años)", Toast.LENGTH_SHORT).show();
                         }
@@ -237,6 +246,23 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
         datePickerDialog.getDatePicker().setMinDate(minDateCalendar.getTimeInMillis());
         datePickerDialog.getDatePicker().setMaxDate(currentCalendar.getTimeInMillis());
         datePickerDialog.show();
+    }
+
+
+    private void crearUsuario()
+    {
+        usuarioCliente.setNombre(nombre.getText().toString());
+        usuarioCliente.setEmail(email.getText().toString());
+        usuarioCliente.setContrasenna(contraseña.getText().toString());
+
+        if(spinnerGenero.getSelectedItemPosition()==1)
+        {
+            usuarioCliente.setGenero("F");
+        }
+        else {
+            usuarioCliente.setGenero("M");
+        }
+
     }
 }
 

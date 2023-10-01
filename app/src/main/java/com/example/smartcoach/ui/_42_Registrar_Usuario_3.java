@@ -29,6 +29,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import model.User.UsuarioCliente;
+
 public class _42_Registrar_Usuario_3 extends AppCompatActivity {
 
     TimePickerDialog _timePickerDialog;
@@ -85,6 +87,13 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
         selectedImages.put((ImageButton) findViewById(R.id.imageViernes), R.drawable.icon_viernes_ne);
         selectedImages.put((ImageButton) findViewById(R.id.imageSabado), R.drawable.icon_sabado_ne);
         selectedImages.put((ImageButton) findViewById(R.id.imageDomingo), R.drawable.icon_domingo_ne);
+
+        UsuarioCliente usuarioCliente = (UsuarioCliente) getIntent().getSerializableExtra("usuarioCliente");
+        Log.d("UsuarioInfo", "Nombre: " + usuarioCliente.getNombre());
+        Log.d("UsuarioInfo", "Email: " + usuarioCliente.getEmail());
+        Log.d("UsuarioInfo", "Contraseña: " + usuarioCliente.getContrasenna()); // ¡Cuidado con imprimir contraseñas en logs!
+        Log.d("UsuarioInfo", "Género: " + usuarioCliente.getGenero());
+        Log.d("UsuarioInfo", "Fecha de Nacimiento: " + usuarioCliente.getFechaDeNacimiento());
 
         configureDayClickListeners();
         btnInfoLeve.setOnClickListener(new View.OnClickListener() {
