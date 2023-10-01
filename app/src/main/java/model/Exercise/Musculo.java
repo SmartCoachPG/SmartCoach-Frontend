@@ -27,4 +27,12 @@ public class Musculo {
     public void setNombreMusculo(String nombreMusculo) {
         this.nombreMusculo = nombreMusculo;
     }
+
+    @Override
+    public String toString() {
+        return "Musculo{" +
+                "id=" + id +
+                ", nombreMusculo='" + nombreMusculo + '\'' +
+                '}';
+    }
 }

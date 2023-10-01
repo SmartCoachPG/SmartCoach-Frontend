@@ -15,7 +15,7 @@
     android:paddingBottom="@dimen/default_margin">
 
     <TextView
-        android:id="@+id/tusObjetivos"
+        android:id="@+id/tusObjetivos_42"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/descripTusObj"
+        android:id="@+id/descripTusObj_42"
         android:layout_width="347dp"
         android:layout_height="71dp"
         android:layout_marginTop="8dp"
@@ -39,10 +39,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tusObjetivos" />
+        app:layout_constraintTop_toBottomOf="@+id/tusObjetivos_42" />
 
     <Spinner
-        android:id="@+id/spinnerLogro"
+        android:id="@+id/spinnerLogro_42"
         android:layout_width="363dp"
         android:layout_height="54dp"
         android:layout_marginTop="12dp"
@@ -51,10 +51,10 @@
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descripTusObj" />
+        app:layout_constraintTop_toBottomOf="@+id/descripTusObj_42" />
 
     <Spinner
-        android:id="@+id/spinnerMasaMuscular"
+        android:id="@+id/spinnerMasaMuscular_42"
         android:layout_width="363dp"
         android:layout_height="54dp"
         android:layout_marginTop="28dp"
@@ -65,10 +65,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerLogro" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerLogro_42" />
 
     <TextView
-        android:id="@+id/seleccionaNivelAct"
+        android:id="@+id/seleccionaNivelAct_42"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
@@ -76,10 +76,10 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerMasaMuscular" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerMasaMuscular_42" />
 
     <TextView
-        android:id="@+id/textDisponibilidad"
+        android:id="@+id/textDisponibilidad_42"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
@@ -88,10 +88,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seleccionaNivelAct" />
+        app:layout_constraintTop_toBottomOf="@+id/seleccionaNivelAct_42" />
 
     <ImageButton
-        android:id="@+id/imageLunes"
+        android:id="@+id/imageLunes_42"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="4dp"
@@ -100,14 +100,14 @@
         android:background="@null"
         android:contentDescription="Seleccionar para el lunes"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/editTextHoraFinal"
+        app:layout_constraintBottom_toTopOf="@+id/editTextHoraFinal_42"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad"
+        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad_42"
         app:layout_constraintVertical_bias="0.666"
         app:srcCompat="@drawable/icon_lunes_b" />
 
     <ImageButton
-        android:id="@+id/imageMartes"
+        android:id="@+id/imageMartes_42"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="4dp"
@@ -116,14 +116,14 @@
         android:background="@null"
         android:contentDescription="Seleccionar para el martes"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/editTextHoraFinal"
-        app:layout_constraintStart_toEndOf="@+id/imageLunes"
-        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad"
+        app:layout_constraintBottom_toTopOf="@+id/editTextHoraFinal_42"
+        app:layout_constraintStart_toEndOf="@+id/imageLunes_42"
+        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad_42"
         app:layout_constraintVertical_bias="0.666"
         app:srcCompat="@drawable/icon_martes_b" />
 
     <ImageButton
-        android:id="@+id/imageMiercoles"
+        android:id="@+id/imageMiercoles_42"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="4dp"
@@ -132,14 +132,14 @@
         android:contentDescription="Seleccionar para el miercoles"
         android:scaleType="fitCenter"
         android:background="@null"
-        app:layout_constraintBottom_toTopOf="@+id/editTextHoraFinal"
-        app:layout_constraintStart_toEndOf="@+id/imageMartes"
-        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad"
+        app:layout_constraintBottom_toTopOf="@+id/editTextHoraFinal_42"
+        app:layout_constraintStart_toEndOf="@+id/imageMartes_42"
+        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad_42"
         app:layout_constraintVertical_bias="0.666"
         app:srcCompat="@drawable/icon_miercoles_b" />
 
     <ImageButton
-        android:id="@+id/imageJueves"
+        android:id="@+id/imageJueves_42"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="4dp"
@@ -148,14 +148,14 @@
         android:background="@null"
         android:contentDescription="Seleccionar para el jueves"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/editTextHoraFinal"
-        app:layout_constraintStart_toEndOf="@+id/imageMiercoles"
-        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad"
+        app:layout_constraintBottom_toTopOf="@+id/editTextHoraFinal_42"
+        app:layout_constraintStart_toEndOf="@+id/imageMiercoles_42"
+        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad_42"
         app:layout_constraintVertical_bias="0.666"
         app:srcCompat="@drawable/icon_jueves_b" />
 
     <ImageButton
-        android:id="@+id/imageViernes"
+        android:id="@+id/imageViernes_42"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="4dp"
@@ -164,14 +164,14 @@
         android:background="@null"
         android:contentDescription="Seleccionar para el viernes"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/editTextHoraFinal"
-        app:layout_constraintStart_toEndOf="@+id/imageJueves"
-        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad"
+        app:layout_constraintBottom_toTopOf="@+id/editTextHoraFinal_42"
+        app:layout_constraintStart_toEndOf="@+id/imageJueves_42"
+        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad_42"
         app:layout_constraintVertical_bias="0.666"
         app:srcCompat="@drawable/icon_viernes_b" />
 
     <ImageButton
-        android:id="@+id/imageSabado"
+        android:id="@+id/imageSabado_42"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="4dp"
@@ -180,14 +180,14 @@
         android:background="@null"
         android:contentDescription="Seleccionar para el Sabado"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/editTextHoraFinal"
-        app:layout_constraintStart_toEndOf="@+id/imageViernes"
-        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad"
+        app:layout_constraintBottom_toTopOf="@+id/editTextHoraFinal_42"
+        app:layout_constraintStart_toEndOf="@+id/imageViernes_42"
+        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad_42"
         app:layout_constraintVertical_bias="0.666"
         app:srcCompat="@drawable/icon_sabado_b" />
 
     <ImageButton
-        android:id="@+id/imageDomingo"
+        android:id="@+id/imageDomingo_42"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="4dp"
@@ -196,14 +196,14 @@
         android:background="@null"
         android:contentDescription="Seleccionar para el Domingo"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/editTextHoraFinal"
-        app:layout_constraintStart_toEndOf="@+id/imageSabado"
-        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad"
+        app:layout_constraintBottom_toTopOf="@+id/editTextHoraFinal_42"
+        app:layout_constraintStart_toEndOf="@+id/imageSabado_42"
+        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad_42"
         app:layout_constraintVertical_bias="0.666"
         app:srcCompat="@drawable/icon_domingo_b" />
 
     <EditText
-        android:id="@+id/editTextHoraInicio"
+        android:id="@+id/editTextHoraInicio_42"
         android:layout_width="154dp"
         android:layout_height="56dp"
         android:layout_marginTop="76dp"
@@ -216,10 +216,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad" />
+        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad_42" />
 
     <TextView
-        android:id="@+id/textHasta"
+        android:id="@+id/textHasta_42"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
@@ -228,12 +228,12 @@
         android:text="Hasta"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnContinuar"
-        app:layout_constraintEnd_toStartOf="@+id/editTextHoraFinal"
-        app:layout_constraintStart_toEndOf="@+id/editTextHoraInicio" />
+        app:layout_constraintBottom_toTopOf="@+id/btnContinuar_42"
+        app:layout_constraintEnd_toStartOf="@+id/editTextHoraFinal_42"
+        app:layout_constraintStart_toEndOf="@+id/editTextHoraInicio_42" />
 
     <EditText
-        android:id="@+id/editTextHoraFinal"
+        android:id="@+id/editTextHoraFinal_42"
         android:layout_width="154dp"
         android:layout_height="54dp"
         android:layout_marginTop="80dp"
@@ -247,11 +247,11 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textHasta"
-        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad" />
+        app:layout_constraintStart_toEndOf="@+id/textHasta_42"
+        app:layout_constraintTop_toBottomOf="@+id/textDisponibilidad_42" />
 
     <Button
-        android:id="@+id/btnContinuar"
+        android:id="@+id/btnContinuar_42"
         android:layout_width="334dp"
         android:layout_height="57dp"
         android:layout_marginTop="40dp"
@@ -261,10 +261,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.376"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextHoraFinal" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextHoraFinal_42" />
 
     <ImageButton
-        android:id="@+id/imagenLeve"
+        android:id="@+id/imagenLeve_42"
         android:layout_width="120dp"
         android:layout_height="150dp"
         android:layout_marginStart="2dp"
@@ -272,14 +272,14 @@
         android:background="@null"
         android:contentDescription="Seleccionar imagen leve para el nivel de actividad fisica"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/textDisponibilidad"
+        app:layout_constraintBottom_toTopOf="@+id/textDisponibilidad_42"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seleccionaNivelAct"
+        app:layout_constraintTop_toBottomOf="@+id/seleccionaNivelAct_42"
         app:layout_constraintVertical_bias="0.547"
         app:srcCompat="@drawable/icon_completo_leve" />
 
     <ImageButton
-        android:id="@+id/imageModerado"
+        android:id="@+id/imageModerado_42"
         android:layout_width="120dp"
         android:layout_height="150dp"
         android:layout_marginStart="12dp"
@@ -287,13 +287,13 @@
         android:background="@null"
         android:contentDescription="Seleccionar imagen moderado para el nivel de actividad fisica"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/textDisponibilidad"
-        app:layout_constraintStart_toEndOf="@+id/imagenLeve"
-        app:layout_constraintTop_toBottomOf="@+id/seleccionaNivelAct"
+        app:layout_constraintBottom_toTopOf="@+id/textDisponibilidad_42"
+        app:layout_constraintStart_toEndOf="@+id/imagenLeve_42"
+        app:layout_constraintTop_toBottomOf="@+id/seleccionaNivelAct_42"
         app:srcCompat="@drawable/icon_completo_moderada" />
 
     <ImageButton
-        android:id="@+id/imageEnergico"
+        android:id="@+id/imageEnergico_42"
         android:layout_width="120dp"
         android:layout_height="150dp"
         android:layout_marginStart="11dp"
@@ -301,55 +301,55 @@
         android:background="@null"
         android:contentDescription="Seleccionar imagen Energico para el nivel de actividad fisica"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toTopOf="@+id/textDisponibilidad"
+        app:layout_constraintBottom_toTopOf="@+id/textDisponibilidad_42"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageModerado"
-        app:layout_constraintTop_toBottomOf="@+id/seleccionaNivelAct"
+        app:layout_constraintStart_toEndOf="@+id/imageModerado_42"
+        app:layout_constraintTop_toBottomOf="@+id/seleccionaNivelAct_42"
         app:srcCompat="@drawable/icon_completo_energica" />
 
     <ImageButton
-        android:id="@+id/imageInfoLeve"
+        android:id="@+id/imageInfoLeve_42"
         android:layout_width="34dp"
         android:layout_height="34dp"
         android:background="@null"
         android:contentDescription="Seleccionar icon 'i' para tener más información acerca del nivel de actividad física Leve"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/imagenLeve"
-        app:layout_constraintEnd_toEndOf="@+id/imagenLeve"
+        app:layout_constraintBottom_toBottomOf="@+id/imagenLeve_42"
+        app:layout_constraintEnd_toEndOf="@+id/imagenLeve_42"
         app:layout_constraintHorizontal_bias="0.069"
-        app:layout_constraintStart_toStartOf="@+id/imagenLeve"
-        app:layout_constraintTop_toTopOf="@+id/imagenLeve"
+        app:layout_constraintStart_toStartOf="@+id/imagenLeve_42"
+        app:layout_constraintTop_toTopOf="@+id/imagenLeve_42"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/icon_informacion" />
 
     <ImageButton
-        android:id="@+id/imageInfoModerada"
+        android:id="@+id/imageInfoModerada_42"
         android:layout_width="34dp"
         android:layout_height="34dp"
         android:background="@null"
         android:contentDescription="Seleccionar icon 'i' para tener más información acerca del nivel de actividad física Moderada"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/imageModerado"
-        app:layout_constraintEnd_toEndOf="@+id/imageModerado"
+        app:layout_constraintBottom_toBottomOf="@+id/imageModerado_42"
+        app:layout_constraintEnd_toEndOf="@+id/imageModerado_42"
         app:layout_constraintHorizontal_bias="0.104"
-        app:layout_constraintStart_toStartOf="@+id/imageModerado"
-        app:layout_constraintTop_toTopOf="@+id/imageModerado"
+        app:layout_constraintStart_toStartOf="@+id/imageModerado_42"
+        app:layout_constraintTop_toTopOf="@+id/imageModerado_42"
         app:layout_constraintVertical_bias="0.017"
         app:srcCompat="@drawable/icon_informacion" />
 
     <ImageButton
-        android:id="@+id/imageInfoEnergica"
+        android:id="@+id/imageInfoEnergica_42"
         android:layout_width="34dp"
         android:layout_height="34dp"
         android:background="@null"
         android:contentDescription="Seleccionar icon 'i' para tener más información acerca del nivel de actividad física Enérgica"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/imageEnergico"
-        app:layout_constraintEnd_toEndOf="@+id/imageEnergico"
+        app:layout_constraintBottom_toBottomOf="@+id/imageEnergico_42"
+        app:layout_constraintEnd_toEndOf="@+id/imageEnergico_42"
         app:layout_constraintHorizontal_bias="0.069"
-        app:layout_constraintStart_toStartOf="@+id/imageEnergico"
-        app:layout_constraintTop_toTopOf="@+id/imageEnergico"
+        app:layout_constraintStart_toStartOf="@+id/imageEnergico_42"
+        app:layout_constraintTop_toTopOf="@+id/imageEnergico_42"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/icon_informacion" />
 

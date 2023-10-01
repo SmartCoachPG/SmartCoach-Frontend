@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,12 +25,33 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
 
 import com.example.smartcoach.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import api.Admi.UsuarioAdministradorApiService;
+import api.DateSerializer;
+import api.Exercise.MusculoApiService;
+import api.User.ObjetivoRutinaApiService;
+import api.User.UsuarioApiService;
+import api.retro;
+import model.Exercise.Musculo;
+import model.Exercise.Rutina;
+import model.User.ObjetivoRutina;
 import model.User.UsuarioCliente;
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class _42_Registrar_Usuario_3 extends AppCompatActivity {
 
@@ -40,6 +62,8 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
     Button btnContinuar;
     private int selectedDay = -1;
 
+    UsuarioCliente usuarioCliente;
+
     private boolean editingStartTime = true;
     private final HashMap<Integer, String> startHoursByDay = new HashMap<>();
     private final HashMap<Integer, String> endHoursByDay = new HashMap<>();
@@ -47,53 +71,53 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
     private final Map<ImageButton, Integer> selectedImages = new HashMap<>();
     private AlertDialog alertDialog;
 
+    ObjetivoRutinaApiService objetivoRutinaApiService;
+    MusculoApiService musculoApiService;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout._42_registrar_usuario_3);
+        iniciarPeticiones();
 
-        _editTextTime = findViewById(R.id.editTextHoraInicio);
-        _editTextTime2 = findViewById(R.id.editTextHoraFinal);
-        spinnerLogro = findViewById(R.id.spinnerLogro);
-        spinnerMusculo = findViewById(R.id.spinnerMasaMuscular);
-        imageLunes = findViewById(R.id.imageLunes);
-        imageMartes = findViewById(R.id.imageMartes);
-        imageMiercoles = findViewById(R.id.imageMiercoles);
-        imageJueves = findViewById(R.id.imageJueves);
-        imageViernes = findViewById(R.id.imageViernes);
-        imageSabado = findViewById(R.id.imageSabado);
-        imageDomingo = findViewById(R.id.imageDomingo);
-        imageLeve = findViewById(R.id.imagenLeve);
-        imageModerada = findViewById(R.id.imageModerado);
-        imagenEnergica = findViewById(R.id.imageEnergico);
-        btnContinuar = findViewById(R.id.btnContinuar);
-        btnInfoLeve = findViewById(R.id.imageInfoLeve);
-        btnInfoModerada = findViewById(R.id.imageInfoModerada);
-        btnInfoEnergica = findViewById(R.id.imageInfoEnergica);
+        _editTextTime = findViewById(R.id.editTextHoraInicio_42);
+        _editTextTime2 = findViewById(R.id.editTextHoraFinal_42);
+        spinnerLogro = findViewById(R.id.spinnerLogro_42);
+        spinnerMusculo = findViewById(R.id.spinnerMasaMuscular_42);
+        imageLunes = findViewById(R.id.imageLunes_42);
+        imageMartes = findViewById(R.id.imageMartes_42);
+        imageMiercoles = findViewById(R.id.imageMiercoles_42);
+        imageJueves = findViewById(R.id.imageJueves_42);
+        imageViernes = findViewById(R.id.imageViernes_42);
+        imageSabado = findViewById(R.id.imageSabado_42);
+        imageDomingo = findViewById(R.id.imageDomingo_42);
+        imageLeve = findViewById(R.id.imagenLeve_42);
+        imageModerada = findViewById(R.id.imageModerado_42);
+        imagenEnergica = findViewById(R.id.imageEnergico_42);
+        btnContinuar = findViewById(R.id.btnContinuar_42);
+        btnInfoLeve = findViewById(R.id.imageInfoLeve_42);
+        btnInfoModerada = findViewById(R.id.imageInfoModerada_42);
+        btnInfoEnergica = findViewById(R.id.imageInfoEnergica_42);
         // Inicializar las imagenes originales
-        originalImages.put((ImageButton) findViewById(R.id.imageLunes), R.drawable.icon_lunes_b);
-        originalImages.put((ImageButton) findViewById(R.id.imageMartes), R.drawable.icon_martes_b);
-        originalImages.put((ImageButton) findViewById(R.id.imageMiercoles), R.drawable.icon_miercoles_b);
-        originalImages.put((ImageButton) findViewById(R.id.imageJueves), R.drawable.icon_jueves_b);
-        originalImages.put((ImageButton) findViewById(R.id.imageViernes), R.drawable.icon_viernes_b);
-        originalImages.put((ImageButton) findViewById(R.id.imageSabado), R.drawable.icon_sabado_b);
-        originalImages.put((ImageButton) findViewById(R.id.imageDomingo), R.drawable.icon_domingo_b);
+        originalImages.put((ImageButton) findViewById(R.id.imageLunes_42), R.drawable.icon_lunes_b);
+        originalImages.put((ImageButton) findViewById(R.id.imageMartes_42), R.drawable.icon_martes_b);
+        originalImages.put((ImageButton) findViewById(R.id.imageMiercoles_42), R.drawable.icon_miercoles_b);
+        originalImages.put((ImageButton) findViewById(R.id.imageJueves_42), R.drawable.icon_jueves_b);
+        originalImages.put((ImageButton) findViewById(R.id.imageViernes_42), R.drawable.icon_viernes_b);
+        originalImages.put((ImageButton) findViewById(R.id.imageSabado_42), R.drawable.icon_sabado_b);
+        originalImages.put((ImageButton) findViewById(R.id.imageDomingo_42), R.drawable.icon_domingo_b);
         // Inicializar las imágenes seleccionadas
-        selectedImages.put((ImageButton) findViewById(R.id.imageLunes), R.drawable.icon_lunes_ne);
-        selectedImages.put((ImageButton) findViewById(R.id.imageMartes), R.drawable.icon_martes_ne);
-        selectedImages.put((ImageButton) findViewById(R.id.imageMiercoles), R.drawable.icon_miercoles_ne);
-        selectedImages.put((ImageButton) findViewById(R.id.imageJueves), R.drawable.icon_jueves_ne);
-        selectedImages.put((ImageButton) findViewById(R.id.imageViernes), R.drawable.icon_viernes_ne);
-        selectedImages.put((ImageButton) findViewById(R.id.imageSabado), R.drawable.icon_sabado_ne);
-        selectedImages.put((ImageButton) findViewById(R.id.imageDomingo), R.drawable.icon_domingo_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageLunes_42), R.drawable.icon_lunes_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageMartes_42), R.drawable.icon_martes_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageMiercoles_42), R.drawable.icon_miercoles_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageJueves_42), R.drawable.icon_jueves_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageViernes_42), R.drawable.icon_viernes_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageSabado_42), R.drawable.icon_sabado_ne);
+        selectedImages.put((ImageButton) findViewById(R.id.imageDomingo_42), R.drawable.icon_domingo_ne);
 
-        UsuarioCliente usuarioCliente = (UsuarioCliente) getIntent().getSerializableExtra("usuarioCliente");
-        Log.d("UsuarioInfo", "Nombre: " + usuarioCliente.getNombre());
-        Log.d("UsuarioInfo", "Email: " + usuarioCliente.getEmail());
-        Log.d("UsuarioInfo", "Contraseña: " + usuarioCliente.getContrasenna()); // ¡Cuidado con imprimir contraseñas en logs!
-        Log.d("UsuarioInfo", "Género: " + usuarioCliente.getGenero());
-        Log.d("UsuarioInfo", "Fecha de Nacimiento: " + usuarioCliente.getFechaDeNacimiento());
+        usuarioCliente = (UsuarioCliente) getIntent().getSerializableExtra("usuarioCliente");
 
         configureDayClickListeners();
         btnInfoLeve.setOnClickListener(new View.OnClickListener() {
@@ -178,35 +202,35 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Cambiar la imagen de imageLeve
+                usuarioCliente.setNivelActividadFisicaid(1);
                 imageLeve.setImageResource(R.drawable.icon_completo_leve_na);
                 // Restaurar las imágenes originales de imageModerada e imageEnergica
                 imageModerada.setImageResource(R.drawable.icon_completo_moderada);
                 imagenEnergica.setImageResource(R.drawable.icon_completo_energica);
             }
         });
-
         imageModerada.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Cambiar la imagen de imageModerada
+                usuarioCliente.setNivelActividadFisicaid(2);
                 imageModerada.setImageResource(R.drawable.icon_completo_moderada_na);
                 // Restaurar las imágenes originales de imageLeve e imagenEnergica
                 imageLeve.setImageResource(R.drawable.icon_completo_leve);
                 imagenEnergica.setImageResource(R.drawable.icon_completo_energica);
             }
         });
-
         imagenEnergica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Cambiar la imagen de imagenEnergica
+                usuarioCliente.setNivelActividadFisicaid(3);
                 imagenEnergica.setImageResource(R.drawable.icon_completo_energica_na);
                 // Restaurar las imágenes originales de imageLeve e imageModerada
                 imageLeve.setImageResource(R.drawable.icon_completo_leve);
                 imageModerada.setImageResource(R.drawable.icon_completo_moderada);
             }
         });
-
         _editTextTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -221,17 +245,8 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
                 open_TimePickerDialog();
             }
         });
-        //Spinner Logro
-        String[] opcionesLogro = new String[]{"Seleccione", "Bajar peso", "Aumentar músculo", "Aumentar fuerza"};
-        ArrayAdapter<String> adapterLogro = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcionesLogro);
-        adapterLogro.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerLogro.setAdapter(adapterLogro);
 
-        //Spinner Masa muscular
-        String[] opcionesMasaMuscular = new String[]{"Seleccione", "Pectorales", "Glúteos", "Cuádriceps", "Abdominales"};
-        ArrayAdapter<String> adapterMM = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcionesMasaMuscular);
-        adapterMM.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerMusculo.setAdapter(adapterMM);
+        cargarSpinner();
 
         // Configurar el Listener para el spinnerLogro
         spinnerLogro.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -239,7 +254,7 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedLogro = spinnerLogro.getSelectedItem().toString();
 
-                if (selectedLogro.equals("Aumentar músculo") || selectedLogro.equals("Aumentar fuerza")) {
+                if (selectedLogro.equals(spinnerLogro.getItemAtPosition(1).toString()) || selectedLogro.equals(spinnerLogro.getItemAtPosition(2).toString())) {
                     spinnerMusculo.setVisibility(View.VISIBLE);
                 } else {
                     spinnerMusculo.setVisibility(View.GONE);
@@ -255,11 +270,7 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (validarCampos()) {
-                    Toast.makeText(_42_Registrar_Usuario_3.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
-
-                    // Solo accede a la siguiente pantalla si se cumplen las validaciones
-                    Intent intent = new Intent(_42_Registrar_Usuario_3.this, _45_Registrar_Usuario_4.class);
-                    startActivity(intent);
+                    pasarInfo();
                 } else {
                     mostrarErrorAlertDialog();
                 }
@@ -287,13 +298,13 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
     }
 
     private void configureDayClickListeners() {
-        ImageButton imageLunes = findViewById(R.id.imageLunes);
-        ImageButton imageMartes = findViewById(R.id.imageMartes);
-        ImageButton imageMiercoles = findViewById(R.id.imageMiercoles);
-        ImageButton imageJueves = findViewById(R.id.imageJueves);
-        ImageButton imageViernes = findViewById(R.id.imageViernes);
-        ImageButton imageSabado = findViewById(R.id.imageSabado);
-        ImageButton imageDomingo = findViewById(R.id.imageDomingo);
+        ImageButton imageLunes = findViewById(R.id.imageLunes_42);
+        ImageButton imageMartes = findViewById(R.id.imageMartes_42);
+        ImageButton imageMiercoles = findViewById(R.id.imageMiercoles_42);
+        ImageButton imageJueves = findViewById(R.id.imageJueves_42);
+        ImageButton imageViernes = findViewById(R.id.imageViernes_42);
+        ImageButton imageSabado = findViewById(R.id.imageSabado_42);
+        ImageButton imageDomingo = findViewById(R.id.imageDomingo_42);
 
 
         imageLunes.setOnClickListener(new View.OnClickListener() {
@@ -467,4 +478,173 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
 
         return retorno;
     }
-}
+
+    private void iniciarPeticiones()
+    {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Date.class, new DateSerializer())
+                .create();
+
+        OkHttpClient okHttpClient = retro.getUnsafeOkHttpClient();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://10.0.2.2:8043/api/")
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        objetivoRutinaApiService = retrofit.create(ObjetivoRutinaApiService.class);
+        musculoApiService = retrofit.create(MusculoApiService.class);
+
+    }
+    private void cargarSpinner(){
+
+        cargarObjetivos();
+        cargarMusculos();
+    }
+
+    private void cargarObjetivos()
+    {
+        Call<List<ObjetivoRutina>> call = objetivoRutinaApiService.getAllCreate();
+        call.enqueue(new Callback<List<ObjetivoRutina>>() {
+            @Override
+            public void onResponse(Call<List<ObjetivoRutina>> call, Response<List<ObjetivoRutina>> response) {
+                if (response.isSuccessful()) {
+                    int posi=0;
+                    List<ObjetivoRutina> objetivoRutina = response.body();
+                    String[] opcionesObjetivos = new String[objetivoRutina.size()];
+                    for (int i = 0; i < objetivoRutina.size(); i++) {
+                        opcionesObjetivos[i] = objetivoRutina.get(i).getNombre();
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(_42_Registrar_Usuario_3.this, R.layout.spinner_item, opcionesObjetivos);
+                    adapter.setDropDownViewResource(R.layout.spinner_item);
+                    spinnerLogro.setAdapter(adapter);
+
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ObjetivoRutina>> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+
+    }
+
+    private void cargarMusculos()
+    {
+        Call<List<Musculo>> call = musculoApiService.getAllCreate();
+        call.enqueue(new Callback<List<Musculo>>() {
+            @Override
+            public void onResponse(Call<List<Musculo>> call, Response<List<Musculo>> response) {
+                if (response.isSuccessful()) {
+                    int posi=0;
+                    List<Musculo> musculos = response.body();
+                    String[] opcionesMusculos = new String[musculos.size()];
+                    for (int i = 0; i < musculos.size(); i++) {
+                        opcionesMusculos[i] = musculos.get(i).getNombreMusculo();
+                    }
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(_42_Registrar_Usuario_3.this, R.layout.spinner_item, opcionesMusculos);
+                    adapter.setDropDownViewResource(R.layout.spinner_item);
+                    spinnerMusculo.setAdapter(adapter);
+
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Musculo>> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
+
+    private void pasarInfo()
+    {
+        usuarioCliente.setObjetivoRutinaid(spinnerLogro.getSelectedItemPosition()+1);
+        List<Rutina> listaRutinas = new ArrayList<>();
+        Map<Integer, Pair<String, String>> userSelectedDaysAndHours = collectUserInput();
+
+        for (Map.Entry<Integer, Pair<String, String>> entry : userSelectedDaysAndHours.entrySet()) {
+            Integer dayInt = entry.getKey();
+            String dayString = convertDayIntToString(dayInt); // Función para convertir el día en String
+            Pair<String, String> hours = entry.getValue();
+
+            Rutina rutina = new Rutina();
+            rutina.setDia(dayString);
+
+            String formattedStartHour = hours.first + (hours.first.length() == 5 ? ":00" : "");
+            String formattedEndHour = hours.second + (hours.second.length() == 5 ? ":00" : "");
+
+            rutina.setHoraI(Time.valueOf(formattedStartHour));
+            rutina.setHoraF(Time.valueOf(formattedEndHour));
+
+
+            listaRutinas.add(rutina);
+        }
+
+        Log.d("Debug", "usuarioCliente: " + usuarioCliente.toString());
+
+        // Visualizar el contenido de musculoObjetivo
+        int musculoObjetivo = spinnerMusculo.getSelectedItemPosition() + 1;
+        Log.d("Debug", "musculoObjetivo: " + musculoObjetivo);
+
+        // Visualizar el contenido de listaRutinas
+        for (Rutina rutina : listaRutinas) {
+            Log.d("Debug", "Rutina: " + rutina.toString());
+        }
+
+        Intent intent = new Intent(_42_Registrar_Usuario_3.this, _45_Registrar_Usuario_4.class);
+        intent.putExtra("usuarioCliente",usuarioCliente);
+        intent.putExtra("musculoObjetivo",spinnerMusculo.getSelectedItemPosition()+1);
+        intent.putExtra("listaRutinas", new ArrayList<>(listaRutinas));
+        startActivity(intent);
+
+
+    }
+
+    private Map<Integer, Pair<String, String>> collectUserInput() {
+        Map<Integer, Pair<String, String>> userSelectedDaysAndHours = new HashMap<>();
+
+        for (Map.Entry<Integer, String> entry : startHoursByDay.entrySet()) {
+            Integer day = entry.getKey();
+            String startTime = entry.getValue();
+            String endTime = endHoursByDay.get(day);
+
+            if (startTime != null && endTime != null) {
+                userSelectedDaysAndHours.put(day, new Pair<>(startTime, endTime));
+            }
+        }
+
+        return userSelectedDaysAndHours;
+    }
+
+
+    private String convertDayIntToString(int dayInt) {
+        switch (dayInt) {
+            case Calendar.MONDAY:
+                return "Lunes";
+            case Calendar.TUESDAY:
+                return "Martes";
+            case Calendar.WEDNESDAY:
+                return "Miércoles";
+            case Calendar.THURSDAY:
+                return "Jueves";
+            case Calendar.FRIDAY:
+                return "Viernes";
+            case Calendar.SATURDAY:
+                return "Sábado";
+            case Calendar.SUNDAY:
+                return "Domingo";
+            default:
+                return "Desconocido";
+        }
+
+    }}

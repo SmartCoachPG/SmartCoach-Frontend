@@ -1,8 +1,9 @@
 package model.Exercise;
 
+import java.io.Serializable;
 import java.sql.Time;
 
-public class Rutina {
+public class Rutina implements Serializable {
 
     private int id;
     private String nombre;
@@ -88,5 +89,19 @@ public class Rutina {
 
     public void setUsuarioClienteId(int usuarioClienteId) {
         this.usuarioClienteId = usuarioClienteId;
+    }
+
+    @Override
+    public String toString() {
+        return "Rutina{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", horaI=" + horaI +
+                ", horaF=" + horaF +
+                ", dia='" + dia + '\'' +
+                ", duracion=" + duracion +
+                ", cantEjercicios=" + cantEjercicios +
+                ", usuarioClienteId=" + usuarioClienteId +
+                '}';
     }
 }

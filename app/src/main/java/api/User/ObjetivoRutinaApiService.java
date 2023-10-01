@@ -15,4 +15,8 @@ public interface ObjetivoRutinaApiService {
 
     @GET("objetivorutina")
     Call<List<ObjetivoRutina>> getAll();
+
+    @GET("objetivorutina/crear")
+    Call<List<ObjetivoRutina>> getAllCreate();
+
 }

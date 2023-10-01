@@ -74,5 +74,14 @@ public class UsuarioCliente extends Usuario{
         this.objetivoRutinaid = objetivoRutinaid;
     }
 
-
+    @Override
+    public String toString() {
+        return "UsuarioCliente{" +
+                "genero='" + genero + '\'' +
+                ", fechaDeNacimiento=" + fechaDeNacimiento +
+                ", gimnasioid=" + gimnasioid +
+                ", nivelActividadFisicaid=" + nivelActividadFisicaid +
+                ", objetivoRutinaid=" + objetivoRutinaid +
+                '}';
+    }
 }
