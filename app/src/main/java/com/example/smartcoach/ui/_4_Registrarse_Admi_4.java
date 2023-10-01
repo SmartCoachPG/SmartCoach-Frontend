@@ -63,9 +63,6 @@ public class _4_Registrarse_Admi_4 extends AppCompatActivity {
         contraseña = findViewById(R.id.contraseña);
         validContra = findViewById(R.id.validacionContraseña);
         cedula = findViewById(R.id.cedula);
-        nombreGym = findViewById(R.id.nombreGym);
-        direccionGym = findViewById(R.id.direccionGym);
-        barrioGym = findViewById(R.id.barrioGym);
         puestoGym = findViewById(R.id.puestoGym);
         btnsiguiente = findViewById(R.id.btnSiguiente);
         // Agregar TextWatcher al campo validContra para validar en tiempo real
