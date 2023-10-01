@@ -16,7 +16,6 @@ public interface UsuarioClienteApiService {
     @GET("usuariocliente/{id}")
     Call<UsuarioCliente> getUsuarioById(@Path("id") Long id);
 
-
     @PUT("usuariocliente/{id}")
     Call<UsuarioCliente> updateUsuarioCliente(@Path("id") Long id, @Body UsuarioCliente usuarioCliente);
 

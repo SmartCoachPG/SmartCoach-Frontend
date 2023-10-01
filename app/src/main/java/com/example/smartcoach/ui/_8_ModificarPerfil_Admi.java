@@ -30,14 +30,11 @@ import androidx.core.content.ContextCompat;
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.internal.bind.DateTypeAdapter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 import java.util.Date;
-import java.util.Locale;
 
 import api.Admi.UsuarioAdministradorApiService;
 import api.DateSerializer;
@@ -45,7 +42,6 @@ import api.SharedPreferencesUtil;
 import api.retro;
 import model.Admi.UsuarioAdministrador;
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -126,7 +122,6 @@ public class _8_ModificarPerfil_Admi extends AppCompatActivity {
 
     private void iniciarPeticiones()
     {
-
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Date.class, new DateSerializer())
                 .create();
@@ -138,13 +133,6 @@ public class _8_ModificarPerfil_Admi extends AppCompatActivity {
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-
-
-        UsuarioAdministrador testUser = new UsuarioAdministrador();
-        testUser.setFechaDeRenovacion(new Date()); // Establece una fecha de prueba
-        String json = gson.toJson(testUser);
-        Log.d("TEST_JSON", json);
-
 
         usuarioAdministradorApiService = retrofit.create(UsuarioAdministradorApiService.class);
 
@@ -215,8 +203,6 @@ public class _8_ModificarPerfil_Admi extends AppCompatActivity {
         usuarioAdministrador.setEmail(textoIngresoEmail.getText().toString());
         usuarioAdministrador.setCedula(Long.parseLong(textoIngresoCedula.getText().toString()));
         usuarioAdministrador.setPuesto(textoIngresoPuesto.getText().toString());
-
-        Log.d("UsuarioActualizado", "Fecha de renovacion: " + usuarioAdministrador.getFechaDeRenovacion());
 
         Call<UsuarioAdministrador> call = usuarioAdministradorApiService.updateUsuarioAdministrador(userId, usuarioAdministrador);
 

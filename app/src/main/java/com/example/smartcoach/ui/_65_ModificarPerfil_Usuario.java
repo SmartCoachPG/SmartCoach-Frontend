@@ -1,14 +1,19 @@
 package com.example.smartcoach.ui;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Shader;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,21 +24,32 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.smartcoach.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
+import api.DateSerializer;
 import api.SharedPreferencesUtil;
 import api.User.ObjetivoRutinaApiService;
 import api.User.UsuarioClienteApiService;
 import api.retro;
+import model.Admi.UsuarioAdministrador;
 import model.User.ObjetivoRutina;
 import model.User.UsuarioCliente;
 import okhttp3.OkHttpClient;
@@ -54,8 +70,13 @@ public class _65_ModificarPerfil_Usuario extends AppCompatActivity {
     Long userId;
     String token;
 
+    UsuarioCliente usuarioCliente;
+
     UsuarioClienteApiService usuarioClienteApiService;
     ObjetivoRutinaApiService objetivoRutinaApiService;
+
+    private static final int REQUEST_CODE = 100; // Para la solicitud de permiso
+    private static final int PICK_IMAGE_REQUEST = 101; // Para identificar la solicitud de selección de imagen
 
 
     @Override
@@ -100,6 +121,20 @@ public class _65_ModificarPerfil_Usuario extends AppCompatActivity {
             }
         });
 
+        botonGuardarCambios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                modificarInfo();
+            }
+        });
+
+        imagePP.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cambiarImagen();
+            }
+        });
+
     }
 
     private void showDatePickerDialog() {
@@ -124,9 +159,9 @@ public class _65_ModificarPerfil_Usuario extends AppCompatActivity {
                         minAgeCalendar.add(Calendar.YEAR, -18);
 
                         // Verificar si la fecha seleccionada es válida (mayor de 18 años)
-                        if (selectedDate.compareTo(minDateCalendar) >= 0 && selectedDate.compareTo(minAgeCalendar) <= 0) {
+                        if (!selectedDate.before(minDateCalendar) && selectedDate.before(minAgeCalendar)) {
                             // Settear la fecha seleccionada y mostrarla en el EditText
-                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
                             String fechaNacimiento = sdf.format(selectedDate.getTime());
                             textoFechaNacimiento.setText(fechaNacimiento);
                         } else {
@@ -139,26 +174,20 @@ public class _65_ModificarPerfil_Usuario extends AppCompatActivity {
         datePickerDialog.getDatePicker().setMaxDate(currentCalendar.getTimeInMillis());
         datePickerDialog.show();
 
-        botonGuardarCambios.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Aquí puedes agregar el código para guardar los cambios en el perfil del administrador.
-
-                // Muestra un Toast para confirmar que los cambios se han guardado.
-                Toast.makeText(_65_ModificarPerfil_Usuario.this, "Cambios guardados correctamente", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     private void iniciarPeticiones()
     {
 
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Date.class, new DateSerializer())
+                .create();
         OkHttpClient okHttpClient = retro.getUnsafeOkHttpClientWithToken(token);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://10.0.2.2:8043/api/")
                 .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         usuarioClienteApiService = retrofit.create(UsuarioClienteApiService.class);
@@ -173,16 +202,15 @@ public class _65_ModificarPerfil_Usuario extends AppCompatActivity {
             @Override
             public void onResponse(Call<UsuarioCliente> call, Response<UsuarioCliente> response) {
                 if (response.isSuccessful()) {
-                    UsuarioCliente usuario = response.body();
+                    usuarioCliente = response.body();
                     // Haz algo con el objeto Usuario, por ejemplo:
-                    Log.d("Usuario", "Nombre: " + usuario.getNombre());
+                    Log.d("Usuario", "Nombre: " + usuarioCliente.getNombre());
 
-                    nombreUser.setText(usuario.getNombre());
-                    textoIngresoNombre.setText(usuario.getNombre());
-                    textoIngresoEmail.setText(usuario.getEmail());
+                    nombreUser.setText(usuarioCliente.getNombre());
+                    textoIngresoNombre.setText(usuarioCliente.getNombre());
+                    textoIngresoEmail.setText(usuarioCliente.getEmail());
 
-
-                    if(usuario.getGenero().equals("F"))
+                    if(usuarioCliente.getGenero().equals("F"))
                     {
                         spinnerGenero.setSelection(1);
                     }
@@ -192,12 +220,12 @@ public class _65_ModificarPerfil_Usuario extends AppCompatActivity {
                     }
 
                     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                    String dateString = sdf.format(usuario.getFechaDeNacimiento());
+                    String dateString = sdf.format(usuarioCliente.getFechaDeNacimiento());
                     textoFechaNacimiento.setText(dateString);
 
-                    if (usuario.getFotoPerfil() != null && !usuario.getFotoPerfil().isEmpty()) {
+                    if (usuarioCliente.getFotoPerfil() != null && !usuarioCliente.getFotoPerfil().isEmpty()) {
                         // Poner la imagen y que quede bien cortada
-                        String imagenBase64 = usuario.getFotoPerfil(); // Cadena base64 recuperada del servidor
+                        String imagenBase64 = usuarioCliente.getFotoPerfil(); // Cadena base64 recuperada del servidor
                         byte[] decodedString = android.util.Base64.decode(imagenBase64, android.util.Base64.DEFAULT);
                         Bitmap originalBitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                         int targetSize = (int) (100 * getResources().getDisplayMetrics().density);
@@ -212,8 +240,8 @@ public class _65_ModificarPerfil_Usuario extends AppCompatActivity {
                         imagePP.setImageBitmap(circularBitmap);
                     }
 
-                    cargarInfoObjetivoRutina((long)usuario.getObjetivoRutinaid());
-                    cargarObjetivos((long)usuario.getObjetivoRutinaid());
+                    cargarInfoObjetivoRutina((long)usuarioCliente.getObjetivoRutinaid());
+                    cargarObjetivos((long)usuarioCliente.getObjetivoRutinaid());
 
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
@@ -295,6 +323,93 @@ public class _65_ModificarPerfil_Usuario extends AppCompatActivity {
 
 
 
+    }
+
+    private void modificarInfo()
+    {
+        usuarioCliente.setNombre(textoIngresoNombre.getText().toString());
+        usuarioCliente.setEmail(textoIngresoEmail.getText().toString());
+
+        String fechaString = textoFechaNacimiento.getText().toString();
+        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+
+
+        try {
+            Date fecha = formato.parse(fechaString);
+            usuarioCliente.setFechaDeNacimiento(fecha);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // genero
+        if(spinnerGenero.getSelectedItemPosition()==1)
+        {
+            usuarioCliente.setGenero("F");
+        }else {
+            usuarioCliente.setGenero("M");
+        }
+
+
+        Call<UsuarioCliente> call = usuarioClienteApiService.updateUsuarioCliente(userId, usuarioCliente);
+
+        call.enqueue(new Callback<UsuarioCliente>() {
+            @Override
+            public void onResponse(Call<UsuarioCliente> call, Response<UsuarioCliente> response) {
+                if (response.isSuccessful()) {
+                    UsuarioCliente usuarioCliente1 = response.body();
+                    Log.d("UsuarioActualizado", "Nombre: " + usuarioCliente1.getNombre());
+                    Toast.makeText(_65_ModificarPerfil_Usuario.this, "Cambios guardados correctamente", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(_65_ModificarPerfil_Usuario.this, _64_VerPerfil_Usuario.class));
+
+                } else {
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UsuarioCliente> call, Throwable t) {
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
+
+    public void cambiarImagen()
+    {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE);
+        } else {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri imageUri = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] imageBytes = baos.toByteArray();
+                String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+                byte[] decodedString = android.util.Base64.decode(imageString, android.util.Base64.DEFAULT);
+                Bitmap originalBitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                int targetSize = (int) (100 * getResources().getDisplayMetrics().density);
+                Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, targetSize, targetSize, true);
+                Bitmap circularBitmap = Bitmap.createBitmap(targetSize, targetSize, Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(circularBitmap);
+                Paint paint = new Paint();
+                paint.setAntiAlias(true);
+                paint.setShader(new BitmapShader(scaledBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
+                float radius = targetSize / 2f;
+                canvas.drawCircle(radius, radius, radius, paint);
+                imagePP.setImageBitmap(circularBitmap);
+                usuarioCliente.setFotoPerfil(imageString);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

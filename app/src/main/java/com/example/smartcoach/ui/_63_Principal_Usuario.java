@@ -16,13 +16,19 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import api.DateSerializer;
 import api.SharedPreferencesUtil;
 
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+
+import java.util.Date;
 
 import api.User.ObjetivoRutinaApiService;
 import api.User.UsuarioClienteApiService;
@@ -30,6 +36,7 @@ import api.retro;
 import model.User.ObjetivoRutina;
 import model.User.UsuarioCliente;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -157,10 +164,16 @@ public class _63_Principal_Usuario extends AppCompatActivity {
 
     }
 
-    private void iniciarPeticiones()
-    {
+    private void iniciarPeticiones() {
 
-        OkHttpClient okHttpClient = retro.getUnsafeOkHttpClientWithToken(token);
+
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient okHttpClient = retro.getUnsafeOkHttpClientWithToken(token)
+                .newBuilder()
+                .addInterceptor(logging)
+                .build();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://10.0.2.2:8043/api/")
@@ -170,8 +183,8 @@ public class _63_Principal_Usuario extends AppCompatActivity {
 
         usuarioClienteApiService = retrofit.create(UsuarioClienteApiService.class);
         objetivoRutinaApiService = retrofit.create(ObjetivoRutinaApiService.class);
-
     }
+
 
     private void cargarInfo()
     {
