@@ -52,7 +52,6 @@ public class _63_Principal_Usuario extends AppCompatActivity {
         setContentView(R.layout._63_principal_usuario);
         userId = SharedPreferencesUtil.getUserId(_63_Principal_Usuario.this);
         token = SharedPreferencesUtil.getToken(_63_Principal_Usuario.this);
-        Log.d("PRINCIPAL", "Id: "+userId);
         iniciarPeticiones();
 
         imagePP = findViewById(R.id.imagePP_63);

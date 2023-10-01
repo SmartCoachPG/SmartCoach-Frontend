@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/flechaRegresar"
+            android:id="@+id/flechaRegresar_64"
             android:layout_width="10.85dp"
             android:layout_height="18.95dp"
             android:layout_marginTop="19dp"
@@ -39,19 +39,32 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/imagePP"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="56dp"
-                android:layout_marginTop="55dp"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.18"
-                app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/icon_pp_predeterminado" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/imagePP_64"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="56dp"
+                    android:layout_marginTop="55dp"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.18"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/icon_pp_predeterminado" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="56dp"
+                    android:layout_marginTop="83dp"
+                    android:src="@drawable/semi_circle"/>
+            </RelativeLayout>
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -73,7 +86,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/puesto_user_64"
+                    android:id="@+id/objetivoUser_64"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
                     android:layout_marginTop="-10dp"
