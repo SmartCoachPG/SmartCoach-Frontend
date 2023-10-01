@@ -27,14 +27,14 @@
 
     <TextView
         android:id="@+id/descripciónModerado"
-        android:layout_width="348dp"
-        android:layout_height="380dp"
+        android:layout_width="271dp"
+        android:layout_height="319dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="36dp"
         android:text="Este nivel de actividad física es para personas que realizan ejercicios de alta intensidad como correr, levantar pesas, practicar deportes de equipo intensos, entre otros. Si eres una persona que realiza este tipo de actividades a un ritmo vigoroso y con una frecuencia regular, entonces se puede considerar que tienes un nivel de actividad física energética."
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="25sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageEnergico" />

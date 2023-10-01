@@ -27,14 +27,14 @@
 
     <TextView
         android:id="@+id/descripciónLeve"
-        android:layout_width="348dp"
-        android:layout_height="329dp"
+        android:layout_width="294dp"
+        android:layout_height="251dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="36dp"
-        android:textAlignment="center"
         android:text="Si eres una persona que se mantiene sentada la mayor parte del día, no realiza actividad física regularmente y evita las oportunidades de moverse, entonces probablemente se pueda considerar que tienes un estilo de vida sedentario."
+        android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="25sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageLeve" />

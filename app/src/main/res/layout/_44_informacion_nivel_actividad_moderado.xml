@@ -27,14 +27,14 @@
 
     <TextView
         android:id="@+id/descripciónModerado"
-        android:layout_width="348dp"
-        android:layout_height="329dp"
+        android:layout_width="284dp"
+        android:layout_height="260dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="36dp"
-        android:textAlignment="center"
         android:text="Si eres una persona que realiza actividades físicas que aumentan tu ritmo cardíaco y respiración, como caminar rápido, andar en bicicleta, bailar, nadar, entre otras, durante al menos 20  minutos al dia, entonces se puede considerar que tienes un nivel de actividad física moderada."
+        android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="25sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageModerado" />
