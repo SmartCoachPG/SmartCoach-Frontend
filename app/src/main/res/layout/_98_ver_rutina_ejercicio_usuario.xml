@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/f3">
+
+
+        <TextView
+            android:id="@+id/tituloPt2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="¿Listo para cumplir tus metas?"
+            android:textColor="@color/black"
+            android:textSize="23sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bienvenida" />
+
+        <TextView
+            android:id="@+id/setTextNombreUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-20dp"
+            android:layout_marginTop="32dp"
+            android:text="Nombre User"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.515"
+            app:layout_constraintStart_toEndOf="@+id/bienvenida"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/bienvenida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="32dp"
+            android:text="¡Bienvenido!"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/_otros_dias_semana_ne"
+            android:layout_width="389dp"
+            android:layout_height="74dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloPt2" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="367dp"
+            android:layout_height="80dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include"
+            app:srcCompat="@drawable/rectrangulo_alargado_b" />
+
+        <TextView
+            android:id="@+id/tituloRutinaDia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            android:text="Rutina del día"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/include"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/setTextDuracionRutina"
+            android:layout_width="28dp"
+            android:layout_height="33dp"
+            android:text="TextView"
+            android:textColor="#FDA400"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toStartOf="@+id/horas"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tituloRutinaDia"
+            app:layout_constraintTop_toBottomOf="@+id/include"
+            app:layout_constraintVertical_bias="0.608" />
+
+        <TextView
+            android:id="@+id/horas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="horas"
+            android:textColor="#FDA400"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/include"
+            app:layout_constraintVertical_bias="0.608" />
+
+        <Button
+            android:id="@+id/btnIniciarRutina"
+            android:layout_width="351dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="28dp"
+            android:backgroundTint="#FDA400"
+            android:elevation="50dp"
+            android:text="Iniciar rutina"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include5" />
+
+        <include
+            android:id="@+id/menuUser"
+            layout="@layout/_otros_menu_usuario"
+            android:layout_width="417dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnIniciarRutina"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageButton
+            android:id="@+id/btnModificarRutina"
+            android:layout_width="30dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="12dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar para el martes"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/tituloRutinaDia"
+            app:layout_constraintTop_toBottomOf="@+id/include"
+            app:layout_constraintVertical_bias="0.666"
+            app:srcCompat="@drawable/icon_modificar" />
+
+        <include
+            android:id="@+id/include2"
+            layout="@layout/caja_ejercicio_rutina"
+            android:layout_width="357dp"
+            android:layout_height="133dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <include
+            android:id="@+id/include3"
+            layout="@layout/caja_ejercicio_rutina"
+            android:layout_width="357dp"
+            android:layout_height="133dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include2" />
+
+        <include
+            android:id="@+id/include4"
+            layout="@layout/caja_ejercicio_rutina"
+            android:layout_width="357dp"
+            android:layout_height="133dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include3" />
+
+        <include
+            android:id="@+id/include5"
+            layout="@layout/caja_ejercicio_rutina"
+            android:layout_width="357dp"
+            android:layout_height="133dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include4" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

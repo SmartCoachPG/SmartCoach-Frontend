@@ -93,5 +93,20 @@
             android:label="@string/app_name"
             android:exported="false"/>
 
+        <activity
+            android:name=".ui._95_crear_rutina_usuario"
+            android:label="@string/app_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui._98_ver_rutina_ejercicio_usuario"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
     </application>
 </manifest>
