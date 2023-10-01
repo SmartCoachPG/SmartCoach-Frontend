@@ -8,7 +8,7 @@
     android:paddingEnd="@dimen/default_margin"
     android:paddingTop="@dimen/default_margin"
     android:paddingBottom="@dimen/default_margin"
-    android:background="@drawable/fondo_blanco_ovalo">
+    android:background="@drawable/f1">
 
     <Button
         android:id="@+id/btnSiguiente_40"

@@ -13,6 +13,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -41,10 +42,10 @@ public class _6_Principal_Admi extends AppCompatActivity {
 
     ImageButton flechaRegresar, eliminarCuenta, imagePP,verificacionAdmin,cerrarSesion,infoAdmi;
     TextView nombreAdmi, puestoAdmi, infoAdmiTexto,verificacionAdmiTexto,eliminarCuentaTexto,cerrarSesionTexto;
-
     ImageView admiCheck;
     Long userId;
     String token;
+    //ImageButton btnMapa, btnEquipo, btnPerfil;
 
     UsuarioAdministradorApiService usuarioAdministradorApiService;
 
@@ -73,6 +74,21 @@ public class _6_Principal_Admi extends AppCompatActivity {
         cerrarSesionTexto = findViewById(R.id.cerrar_sesion_texto_admin_6);
         admiCheck = findViewById(R.id.admiCheck_6);
 
+ /* Errores de intercepción con OkHttp y retro = NullPointerException
+        View menuAdmin_View = LayoutInflater.from(this).inflate(R.layout._otros_menu_admi, null);
+
+        btnMapa = menuAdmin_View.findViewById(R.id.boton_mapa);
+        btnEquipo = menuAdmin_View.findViewById(R.id.boton_equipo);
+        btnPerfil = menuAdmin_View.findViewById(R.id.boton_perfil);
+
+        btnMapa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(_6_Principal_Admi.this, _27_configurar_mapa_admin.class);
+                startActivity(intent);
+            }
+        });
+    */
 
         cargarInfo();
         infoAdmi.setOnClickListener(new View.OnClickListener() {
