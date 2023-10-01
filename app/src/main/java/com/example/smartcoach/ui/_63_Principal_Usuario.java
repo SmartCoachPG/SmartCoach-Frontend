@@ -110,6 +110,22 @@ public class _63_Principal_Usuario extends AppCompatActivity {
             }
         });
 
+        cerrarSesionTexto.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        cerrarSesion();
+                    }
+                });
+
+        cerrarSesion.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        cerrarSesion();
+                    }
+                });
+
 
     }
 
@@ -257,5 +273,14 @@ public class _63_Principal_Usuario extends AppCompatActivity {
                 Log.e("Error", "Fallo en la petición: " + t.getMessage());
             }
         });
+    }
+
+    private void cerrarSesion()
+    {
+        SharedPreferencesUtil.deleteToken(_63_Principal_Usuario.this);
+        SharedPreferencesUtil.deleteUserId(_63_Principal_Usuario.this);
+        Toast.makeText(_63_Principal_Usuario.this, "Cesion Cerrada", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(_63_Principal_Usuario.this, _2_IniciarSesionRegistrarse.class);
+        startActivity(intent);
     }
 }
