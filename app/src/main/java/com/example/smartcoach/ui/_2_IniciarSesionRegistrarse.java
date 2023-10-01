@@ -109,15 +109,16 @@ public class _2_IniciarSesionRegistrarse extends AppCompatActivity {
                         Integer tipoUsuario = usuarioResponse.getAdmi();
 
                         if (tipoUsuario != null) {
+                            sharedpreferencesutil.saveToken(_2_IniciarSesionRegistrarse.this,usuarioResponse.getToken());
+                            sharedpreferencesutil.saveUserId(_2_IniciarSesionRegistrarse.this,usuarioResponse.getId());
                             if (tipoUsuario == 1) {
                                 Log.d("IniciarSesionActivity", "Administrador inició sesión: " + usuarioResponse.getId());
-                                sharedpreferencesutil.saveToken(_2_IniciarSesionRegistrarse.this,usuarioResponse.getToken());
-                                sharedpreferencesutil.saveUserId(_2_IniciarSesionRegistrarse.this,usuarioResponse.getId());
 
                                 Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _6_Principal_Admi.class);
                                 startActivity(intent);
                             } else if (tipoUsuario == 0) {
                                 Log.d("IniciarSesionActivity", "Cliente inició sesión: " + usuarioResponse.getId());
+
                                 Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _63_Principal_Usuario.class);
                                 startActivity(intent);
                             } else {

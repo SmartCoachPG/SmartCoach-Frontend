@@ -27,7 +27,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/imagePP"
+                android:id="@+id/imagePP_63"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="56dp"
@@ -276,7 +276,7 @@
         android:layout_marginTop="32dp">
 
         <ImageButton
-            android:id="@+id/eliminar_cuenta"
+            android:id="@+id/eliminar_cuenta_63"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@null"

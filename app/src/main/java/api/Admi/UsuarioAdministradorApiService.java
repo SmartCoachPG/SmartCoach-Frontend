@@ -19,7 +19,7 @@ public interface UsuarioAdministradorApiService {
     @PUT("usuarioadministrador/{id}")
     Call<UsuarioAdministrador> updateUsuarioAdministrador(@Path("id") Long id, @Body UsuarioAdministrador usuarioAdministrador);
 
-    @POST("usuarioadministrador")
+    @POST("usuarioadministrador/crear")
     Call<UsuarioAdministrador> createUsuarioAdministrador(@Body UsuarioAdministrador usuarioAdministrador);
 
     @DELETE("usuarioadministrador/{id}")
