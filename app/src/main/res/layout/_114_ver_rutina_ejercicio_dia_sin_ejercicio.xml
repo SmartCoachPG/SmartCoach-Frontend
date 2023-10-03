@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/f3">
+
+        <TextView
+            android:id="@+id/tituloPt2_114"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="¿Listo para cumplir tus metas?"
+            android:textColor="@color/black"
+            android:textSize="23sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bienvenida_114" />
+
+        <TextView
+            android:id="@+id/setTextNombreUser_114"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-20dp"
+            android:layout_marginTop="32dp"
+            android:text="Nombre User"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.515"
+            app:layout_constraintStart_toEndOf="@+id/bienvenida_114"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/bienvenida_114"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="32dp"
+            android:text="¡Bienvenido!"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/includeDiasSemana_114"
+            layout="@layout/_otros_dias_semana_ne"
+            android:layout_width="389dp"
+            android:layout_height="74dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tituloPt2_114" />
+
+    <ImageView
+        android:id="@+id/rectanguloRutinaDia_114"
+        android:layout_width="367dp"
+        android:layout_height="80dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/includeDiasSemana_114"
+        app:srcCompat="@drawable/rectrangulo_alargado_b" />
+
+        <TextView
+            android:id="@+id/tituloRutinaDia_114"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            android:text="Rutina del día"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/rectanguloRutinaDia_114"
+            app:layout_constraintStart_toStartOf="@+id/rectanguloRutinaDia_114"
+            app:layout_constraintTop_toBottomOf="@+id/includeDiasSemana_114"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/setTextDuracionRutina_114"
+            android:layout_width="28dp"
+            android:layout_height="33dp"
+            android:text="TextView"
+            android:textColor="#FDA400"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/rectanguloRutinaDia_114"
+            app:layout_constraintEnd_toStartOf="@+id/horas_144"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tituloRutinaDia_114"
+            app:layout_constraintTop_toBottomOf="@+id/includeDiasSemana_114"
+            app:layout_constraintVertical_bias="0.608" />
+
+        <TextView
+            android:id="@+id/horas_144"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="horas"
+            android:textColor="#FDA400"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="@+id/rectanguloRutinaDia_114"
+            app:layout_constraintEnd_toEndOf="@+id/rectanguloRutinaDia_114"
+            app:layout_constraintTop_toBottomOf="@+id/includeDiasSemana_114"
+            app:layout_constraintVertical_bias="0.608" />
+
+    <Button
+        android:id="@+id/btnIniciarRutina_114"
+        android:layout_width="351dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="13dp"
+        android:backgroundTint="#FDA400"
+        android:elevation="50dp"
+        android:text="Iniciar rutina"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectangulofondo_114" />
+
+    <include
+            android:id="@+id/menuUser_114"
+            layout="@layout/_otros_menu_usuario"
+            android:layout_width="417dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnIniciarRutina_114"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageButton
+            android:id="@+id/btnModificarRutina_114"
+            android:layout_width="30dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="12dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar para el martes"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="@+id/rectanguloRutinaDia_114"
+            app:layout_constraintStart_toEndOf="@+id/tituloRutinaDia_114"
+            app:layout_constraintTop_toBottomOf="@+id/includeDiasSemana_114"
+            app:layout_constraintVertical_bias="0.666"
+            app:srcCompat="@drawable/icon_modificar" />
+
+    <ImageView
+        android:id="@+id/rectangulofondo_114"
+        android:layout_width="360dp"
+        android:layout_height="366dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectanguloRutinaDia_114"
+        app:srcCompat="@drawable/rect_blanco" />
+
+    <TextView
+        android:id="@+id/descripcionDiaSinEjercicio"
+        android:layout_width="286dp"
+        android:layout_height="69dp"
+        android:text="Para este día no tienes ninguna rutina asignada"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/rectangulofondo_114"
+        app:layout_constraintEnd_toEndOf="@+id/rectangulofondo_114"
+        app:layout_constraintStart_toStartOf="@+id/rectangulofondo_114"
+        app:layout_constraintTop_toTopOf="@+id/rectangulofondo_114" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
