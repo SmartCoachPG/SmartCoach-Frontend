@@ -1,13 +1,8 @@
 package com.example.smartcoach.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Pair;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,22 +13,15 @@ import com.google.gson.GsonBuilder;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageButton;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import api.DateSerializer;
-import api.Exercise.MusculoApiService;
-import api.User.ObjetivoRutinaApiService;
 import api.User.UnidadMetricaApiService;
 import api.User.ValorEvaluacionFisicaApiService;
 import api.retro;
-import model.Exercise.Musculo;
-import model.Exercise.Rutina;
 import model.User.UnidadMetrica;
 import model.User.ValorEvaluacionFisica;
 import okhttp3.OkHttpClient;
@@ -180,7 +168,7 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         // Inflar el layout para el dialog
-        View view = getLayoutInflater().inflate(R.layout._50_descripcion_valor_composicion_5, null);
+        View view = getLayoutInflater().inflate(R.layout._46_descripcion_composicion, null);
 
         TextView nombreTextView = view.findViewById(R.id.tituloComposicionCorporal); // Asume que tienes un TextView con este id en tu layout _50
         TextView descripcionTextView = view.findViewById(R.id.descripciónComposicionCorporal);
