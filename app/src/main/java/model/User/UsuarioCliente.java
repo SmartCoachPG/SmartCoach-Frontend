@@ -77,6 +77,7 @@ public class UsuarioCliente extends Usuario{
     @Override
     public String toString() {
         return "UsuarioCliente{" +
+                "Usuario"+super.toString()+
                 "genero='" + genero + '\'' +
                 ", fechaDeNacimiento=" + fechaDeNacimiento +
                 ", gimnasioid=" + gimnasioid +
@@ -84,4 +85,5 @@ public class UsuarioCliente extends Usuario{
                 ", objetivoRutinaid=" + objetivoRutinaid +
                 '}';
     }
+
 }

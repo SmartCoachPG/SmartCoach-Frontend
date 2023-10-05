@@ -1,11 +1,13 @@
 package model.User;
 
+import java.net.Inet4Address;
+
 public class ValorEvaluacionFisica {
 
     private int id;
     private String nombre;
     private String descripcion;
-    private int unidadMetricaId;
+    private Integer unidadMetricaId;
 
     public ValorEvaluacionFisica(int id, String nombre, String descripcion, int unidadMetricaId) {
         this.id = id;
@@ -40,11 +42,11 @@ public class ValorEvaluacionFisica {
         this.descripcion = descripcion;
     }
 
-    public int getUnidadMetricaId() {
+    public Integer getUnidadMetricaId() {
         return unidadMetricaId;
     }
 
-    public void setUnidadMetricaId(int unidadMetricaId) {
+    public void setUnidadMetricaId(Integer unidadMetricaId) {
         this.unidadMetricaId = unidadMetricaId;
     }
 }
