@@ -607,7 +607,6 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
         intent.putExtra("listaRutinas", new ArrayList<>(listaRutinas));
         startActivity(intent);
 
-
     }
 
     private Map<Integer, Pair<String, String>> collectUserInput() {

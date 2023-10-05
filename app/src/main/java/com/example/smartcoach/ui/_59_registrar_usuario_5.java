@@ -15,6 +15,12 @@ import android.widget.TextView;
 import com.example.smartcoach.R;
 import android.view.View;
 
+import java.util.ArrayList;
+
+import model.Exercise.Rutina;
+import model.User.UsuarioCliente;
+import model.User.Valor;
+
 public class _59_registrar_usuario_5 extends AppCompatActivity {
 
     TextView tituloLimitacionesFisicas, descripcionLimitacionesFisicas, condicionesMedicas;
@@ -28,6 +34,20 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout._59_registrar_usuario_5);
         getSupportActionBar().hide();
+
+        /*
+        UsuarioCliente usuarioCliente = (UsuarioCliente) getIntent().getSerializableExtra("usuarioCliente");
+        Log.d("InfoRecibida", "UsuarioCliente: " + usuarioCliente.toString()); // Asegúrate de que UsuarioCliente tenga un método toString() adecuado.
+
+        int musculoObjetivo = getIntent().getIntExtra("musculoObjetivo", 0); // 0 es un valor predeterminado en caso de que no se encuentre el extra.
+        Log.d("InfoRecibida", "MusculoObjetivo: " + musculoObjetivo);
+
+        ArrayList<Rutina> listaRutinas = (ArrayList<Rutina>) getIntent().getSerializableExtra("listaRutinas");
+        Log.d("InfoRecibida", "ListaRutinas: " + listaRutinas.toString()); // Asegúrate de que Rutina tenga un método toString() adecuado.
+
+        ArrayList<Valor> listaValores = (ArrayList<Valor>) getIntent().getSerializableExtra("listaValoresComposicionCorporal");
+        Log.d("InfoRecibida", "ListaValores: " + listaValores.toString()); // Asegúrate de que Valor tenga un método toString() adecuado.
+        */
 
         tituloLimitacionesFisicas = findViewById(R.id.tituloLimitacionesFisicas_59);
         descripcionLimitacionesFisicas = findViewById(R.id.descripcionLimitacionesFisicas_59);

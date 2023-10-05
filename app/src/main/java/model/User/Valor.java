@@ -1,6 +1,8 @@
 package model.User;
 
-public class Valor {
+import java.io.Serializable;
+
+public class Valor implements Serializable {
 
     private int id;
     private float valor;
@@ -48,5 +50,15 @@ public class Valor {
 
     public void setValorEvaluacionFisicaid(int valorEvaluacionFisicaid) {
         this.valorEvaluacionFisicaid = valorEvaluacionFisicaid;
+    }
+
+    @Override
+    public String toString() {
+        return "Valor{" +
+                "id=" + id +
+                ", valor=" + valor +
+                ", perfilMedicoid=" + perfilMedicoid +
+                ", valorEvaluacionFisicaid=" + valorEvaluacionFisicaid +
+                '}';
     }
 }

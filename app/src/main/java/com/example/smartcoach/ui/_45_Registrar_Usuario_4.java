@@ -1,8 +1,10 @@
 package com.example.smartcoach.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,7 +24,10 @@ import api.DateSerializer;
 import api.User.UnidadMetricaApiService;
 import api.User.ValorEvaluacionFisicaApiService;
 import api.retro;
+import model.Exercise.Rutina;
 import model.User.UnidadMetrica;
+import model.User.UsuarioCliente;
+import model.User.Valor;
 import model.User.ValorEvaluacionFisica;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -39,7 +44,12 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
     ValorEvaluacionFisicaApiService valorEvaluacionFisicaApiService;
     List<UnidadMetrica> listaUnidadMetrica = new ArrayList<>();
     List<ValorEvaluacionFisica> listaValorEvaluacionF = new ArrayList<>();
+    private List<Valor> listaValores = new ArrayList<>();
+
     private int apiCallsCompleted = 0;
+
+    ImageButton botonSiguiente;
+    LinearLayout caja;
 
 
     @Override
@@ -50,6 +60,14 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
         iniciarPeticiones();
         llenarListaVEF();
         llenarListaUM();
+
+        botonSiguiente = findViewById(R.id.boton_siguiente_45);
+        botonSiguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                guardarInfo();
+            }
+        });
 }
 
     private void iniciarPeticiones()
@@ -127,7 +145,7 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
         {
             for (int i = 0; i < listaValorEvaluacionF.size(); i++) {
                 final ValorEvaluacionFisica pasar = listaValorEvaluacionF.get(i); // Declara 'pasar' aquí como final
-                LinearLayout caja = findViewById(getResources().getIdentifier("caja_composicion_corporal_" + (i + 1) + "_45", "id", getPackageName()));
+                caja = findViewById(getResources().getIdentifier("caja_composicion_corporal_" + (i + 1) + "_45", "id", getPackageName()));
                 TextView nombreValorTextView = caja.findViewById(R.id.nombreValor_45);
                 TextView unidadTextView = caja.findViewById(R.id.unidad_45);
                 ImageButton botonInformacion = caja.findViewById(R.id.boton_informacion_45);
@@ -190,7 +208,34 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
         });
     }
 
+    private void guardarInfo()
+    {
 
+        String valorString;
+        for (int i = 0; i < listaValorEvaluacionF.size(); i++) {
+            caja = findViewById(getResources().getIdentifier("caja_composicion_corporal_" + (i + 1) + "_45", "id", getPackageName()));
+            EditText textoIngreso = caja.findViewById(R.id.valor_45);
+            Valor nuevo = new Valor();
+            nuevo.setValorEvaluacionFisicaid(i+1);
+            valorString = textoIngreso.getText().toString().replace(',', '.');
+            nuevo.setValor(Float.parseFloat(valorString));
+            listaValores.add(nuevo);
+        }
+
+        Log.d("Valores composicion", "estos son: "+listaValores);
+
+        UsuarioCliente usuarioCliente = (UsuarioCliente) getIntent().getSerializableExtra("usuarioCliente");
+        int musculoObjetivo = getIntent().getIntExtra("musculoObjetivo", 0); // 0 es un valor predeterminado en caso de que no se encuentre el extra.
+        ArrayList<Rutina> listaRutinas = (ArrayList<Rutina>) getIntent().getSerializableExtra("listaRutinas");
+
+        Intent intent = new Intent(_45_Registrar_Usuario_4.this, _59_registrar_usuario_5.class);
+
+        intent.putExtra("usuarioCliente",usuarioCliente);
+        intent.putExtra("musculoObjetivo",musculoObjetivo);
+        intent.putExtra("listaRutinas", new ArrayList<>(listaRutinas));
+        intent.putExtra("listaValoresComposicionCorporal",new ArrayList<>(listaValores));
+        startActivity(intent);
+    }
 }
 
 
