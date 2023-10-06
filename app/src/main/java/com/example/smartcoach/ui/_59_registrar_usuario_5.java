@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -132,10 +133,23 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
             Log.e("Error", "La lista de restricciones médicas seleccionadas es null");
             return;
         } else {
+            LayoutInflater inflater = LayoutInflater.from(this);
             for (RestriccionMedica item : listaRestricciones) {
-                TextView textView = new TextView(_59_registrar_usuario_5.this);
-                textView.setText(item.getNombreLimitacion());
-                linearLayout.addView(textView);
+                View itemView = inflater.inflate(R.layout.item_restriccion, linearLayout, false);
+                TextView tvRestriccion = itemView.findViewById(R.id.textViewItem);
+                tvRestriccion.setText(item.getNombreLimitacion());
+
+                ImageButton btnEliminar = itemView.findViewById(R.id.btnEliminar);
+                btnEliminar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listaRestricciones.remove(item);
+                        actualizarLista();
+                    }
+                });
+
+                linearLayout.addView(itemView);
+
             }
         }
     }
