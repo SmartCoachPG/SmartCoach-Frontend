@@ -77,7 +77,7 @@ public class _2_IniciarSesionRegistrarse extends AppCompatActivity {
         registrate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _59_registrar_usuario_5.class);
+                Intent intent = new Intent(_2_IniciarSesionRegistrarse.this, _39_Registrar_Usuario_1.class);
                 startActivity(intent);
             }
         });
