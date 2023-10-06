@@ -7,17 +7,23 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.example.smartcoach.R;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Exercise.Rutina;
+import model.User.RestriccionMedica;
 import model.User.UsuarioCliente;
 import model.User.Valor;
 
@@ -28,6 +34,10 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
     EditText textoBarraBusqueda;
     Button btnListo;
     ScrollView scrollView;
+
+    List<RestriccionMedica> listaRestricciones= new ArrayList<>();
+    private static final int REQUEST_CODE = 123;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,22 +73,13 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("Debug", "btnBusqueda clickeado");
-                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_59_registrar_usuario_5.this);
-
-                View dialogView = getLayoutInflater().inflate(R.layout._59_2_registrar_usuario_5, null);
-                dialogBuilder.setView(dialogView);
-
-                AlertDialog dialog = dialogBuilder.create();
-
-                Button btnCerrar = dialogView.findViewById(R.id.btnAceptarSLF);
-                btnCerrar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
+                Intent intent = new Intent(_59_registrar_usuario_5.this, _59_2_registrar_usuario_5.class);
+                startActivityForResult(intent, REQUEST_CODE);
             }
+
+
+
+
         });
 
         btnListo.setOnClickListener(new View.OnClickListener() {
@@ -106,5 +107,36 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
         });
 
 
+        actualizarLista();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
+            ArrayList<RestriccionMedica> restriccionesRecibidas = (ArrayList<RestriccionMedica>) data.getSerializableExtra("seleccionados");
+            if (restriccionesRecibidas != null) {
+                listaRestricciones.addAll(restriccionesRecibidas);
+            }
+            actualizarLista();
+        }
+    }
+
+
+    private void actualizarLista(){
+        LinearLayout linearLayout = findViewById(R.id.linear_layout_inside_scrollview);
+        linearLayout.removeAllViews();
+
+        if(listaRestricciones == null) {
+            Log.e("Error", "La lista de restricciones médicas seleccionadas es null");
+            return;
+        } else {
+            for (RestriccionMedica item : listaRestricciones) {
+                TextView textView = new TextView(_59_registrar_usuario_5.this);
+                textView.setText(item.getNombreLimitacion());
+                linearLayout.addView(textView);
+            }
+        }
     }
 }

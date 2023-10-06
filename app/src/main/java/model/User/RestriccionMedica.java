@@ -1,6 +1,11 @@
 package model.User;
 
-public class RestriccionMedica {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class RestriccionMedica implements Serializable {
 
     private int id;
     private String nombreLimitacion;
@@ -11,6 +16,12 @@ public class RestriccionMedica {
     }
 
     public RestriccionMedica() {}
+
+    protected RestriccionMedica(Parcel in) {
+        id = in.readInt();
+        nombreLimitacion = in.readString();
+    }
+
 
     public int getId() {
         return id;
@@ -26,5 +37,13 @@ public class RestriccionMedica {
 
     public void setNombreLimitacion(String nombreLimitacion) {
         this.nombreLimitacion = nombreLimitacion;
+    }
+
+    @Override
+    public String toString() {
+        return "RestriccionMedica{" +
+                "id=" + id +
+                ", nombreLimitacion='" + nombreLimitacion + '\'' +
+                '}';
     }
 }
