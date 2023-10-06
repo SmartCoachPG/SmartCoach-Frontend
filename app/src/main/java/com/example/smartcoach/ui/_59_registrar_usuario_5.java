@@ -75,11 +75,10 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("Debug", "btnBusqueda clickeado");
                 Intent intent = new Intent(_59_registrar_usuario_5.this, _59_2_registrar_usuario_5.class);
+                intent.putExtra("textoBusqueda",textoBarraBusqueda.getText().toString());
+                Log.d("Debug", "texto busqueda: "+textoBarraBusqueda.getText().toString());
                 startActivityForResult(intent, REQUEST_CODE);
             }
-
-
-
 
         });
 
@@ -106,8 +105,6 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
                 dialog.show();
             }
         });
-
-
         actualizarLista();
 
     }

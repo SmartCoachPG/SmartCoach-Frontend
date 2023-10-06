@@ -102,7 +102,9 @@ public class _59_2_registrar_usuario_5 extends AppCompatActivity {
 
     private void llenarListaRestricciones()
     {
-        Call<List<RestriccionMedica>> call = restriccionMedicaApiService.getAll();
+        String query = getIntent().getStringExtra("textoBusqueda");
+        Log.d("Debug", "nombre buscar: "+query);
+        Call<List<RestriccionMedica>> call = restriccionMedicaApiService.findAll(query);
         call.enqueue(new Callback<List<RestriccionMedica>>() {
             @Override
             public void onResponse(Call<List<RestriccionMedica>> call, Response<List<RestriccionMedica>> response) {
