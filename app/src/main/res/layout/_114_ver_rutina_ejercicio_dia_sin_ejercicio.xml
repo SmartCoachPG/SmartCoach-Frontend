@@ -10,9 +10,9 @@
             android:id="@+id/tituloPt2_114"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:text="¿Listo para cumplir tus metas?"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="23sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
             android:layout_marginStart="-20dp"
             android:layout_marginTop="32dp"
             android:text="Nombre User"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.515"
@@ -37,9 +37,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="34dp"
             android:text="¡Bienvenido!"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -130,20 +130,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnIniciarRutina_114"
             app:layout_constraintVertical_bias="1.0" />
-
-        <ImageButton
-            android:id="@+id/btnModificarRutina_114"
-            android:layout_width="30dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="12dp"
-            android:background="@null"
-            android:contentDescription="Seleccionar para el martes"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="@+id/rectanguloRutinaDia_114"
-            app:layout_constraintStart_toEndOf="@+id/tituloRutinaDia_114"
-            app:layout_constraintTop_toBottomOf="@+id/includeDiasSemana_114"
-            app:layout_constraintVertical_bias="0.666"
-            app:srcCompat="@drawable/icon_modificar" />
 
     <ImageView
         android:id="@+id/rectangulofondo_114"
