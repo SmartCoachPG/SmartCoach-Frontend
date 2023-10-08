@@ -33,6 +33,7 @@ public class _98_ver_rutina_ejercicio_usuario extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout._98_ver_rutina_ejercicio_usuario);
+        getSupportActionBar().hide();
 
         tituloPt2 = findViewById(R.id.tituloPt2);
         setTextNombreUser = findViewById(R.id.setTextNombreUser);
@@ -77,6 +78,17 @@ public class _98_ver_rutina_ejercicio_usuario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent(_98_ver_rutina_ejercicio_usuario.this, _100_iniciar_rutina.class);
+                startActivity(intent);
+            }
+        });
+
+        btnModificarRutina.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(_98_ver_rutina_ejercicio_usuario.this, _115_modificar_rutina_ejercicios.class);
+                startActivity(intent);
             }
         });
     }
