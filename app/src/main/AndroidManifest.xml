@@ -135,5 +135,11 @@
             android:label="@string/app_name"
             android:exported="false"/>
 
+        <activity
+            android:name=".ui._111_informacion_detallada_ejercicio_1"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
     </application>
 </manifest>

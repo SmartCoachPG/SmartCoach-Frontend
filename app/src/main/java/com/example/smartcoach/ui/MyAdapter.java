@@ -23,8 +23,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<RestriccionMedica> seleccionados = new ArrayList<>();
     private List<RestriccionMedica> seleccionTemporal = new ArrayList<>();
 
-
-
     public MyAdapter(List<RestriccionMedica> data) {
         mData = data;
     }

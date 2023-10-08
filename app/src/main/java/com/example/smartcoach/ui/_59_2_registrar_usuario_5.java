@@ -75,6 +75,7 @@ public class _59_2_registrar_usuario_5 extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
 
