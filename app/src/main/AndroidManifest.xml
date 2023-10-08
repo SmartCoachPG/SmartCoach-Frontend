@@ -113,9 +113,13 @@
             android:exported="false"/>
 
         <activity
+            android:name=".ui._100_iniciar_rutina"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+        <activity
             android:name=".ui._59_2_registrar_usuario_5"
             android:theme="@style/DialogActivityTheme"
-
             android:label="@string/app_name"
             android:exported="false"/>
     </application>
