@@ -134,5 +134,6 @@
             android:theme="@style/DialogActivityTheme"
             android:label="@string/app_name"
             android:exported="false"/>
+
     </application>
 </manifest>
