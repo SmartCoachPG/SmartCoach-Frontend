@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/rectanguloFondo_111"
+        android:layout_width="301dp"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_rectangulo_gr" />
+
+    <TextView
+        android:id="@+id/titulo_112_113"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Nombre Titulo"
+        android:textColor="#FDA400"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/rectanguloFondo_111"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/rectanguloFondo_111"
+        app:layout_constraintTop_toTopOf="@+id/rectanguloFondo_111" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="223dp"
+        android:layout_height="289dp"
+        android:text="Descripcion pantalla"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/rectanguloFondo_111"
+        app:layout_constraintEnd_toEndOf="@+id/rectanguloFondo_111"
+        app:layout_constraintStart_toStartOf="@+id/rectanguloFondo_111"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_112_113" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
