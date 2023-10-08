@@ -41,8 +41,8 @@ public class _98_ver_rutina_ejercicio_usuario extends AppCompatActivity {
         tituloRutinaDia = findViewById(R.id.tituloRutinaDia);
         setTextDuracionRutina = findViewById(R.id.setTextDuracionRutina);
         horas = findViewById(R.id.horas);
-        btnIniciarRutina = findViewById(R.id.btnIniciarRutina);
-        btnModificarRutina = findViewById(R.id.btnModificarRutina);
+        btnIniciarRutina = findViewById(R.id.btnIniciarRutina_98);
+        btnModificarRutina = findViewById(R.id.btnModificarRutina_98);
 
         View diasSemanaView = LayoutInflater.from(this).inflate(R.layout._otros_dias_semana_ne, null);
 
@@ -55,7 +55,7 @@ public class _98_ver_rutina_ejercicio_usuario extends AppCompatActivity {
         imageSabado = diasSemanaView.findViewById(R.id.imageSabado);
         imageDomingo = diasSemanaView.findViewById(R.id.imageDomingo);
 
-        // Agrega aquí tu lógica para interactuar con los elementos de ambos diseños
+        //Lógica para interactuar con los elementos de ambos diseños
         originalImages.put((ImageButton) findViewById(R.id.imageLunes), R.drawable.icon_lunes_ne);
         originalImages.put((ImageButton) findViewById(R.id.imageMartes), R.drawable.icon_martes_ne);
         originalImages.put((ImageButton) findViewById(R.id.imageMiercoles), R.drawable.icon_miercoles_ne);
