@@ -2,15 +2,12 @@ package com.example.smartcoach.ui;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageButton;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -22,6 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import android.view.View;
+import android.widget.Toast;
 
 import java.sql.Time;
 import java.time.Instant;
@@ -29,18 +27,27 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import api.DateSerializer;
 import api.Exercise.RutinaApiService;
+import api.SharedPreferencesUtil;
 import api.TimeDeserializer;
 import api.TimeSerializer;
-import api.User.RestriccionMedicaApiService;
+import api.User.PerfilMedicoApiService;
+import api.User.UsuarioApiService;
 import api.User.UsuarioClienteApiService;
+import api.User.UsuarioClienteRestriccionMedicaApiService;
+import api.User.ValorApiService;
 import api.retro;
 import model.Exercise.Rutina;
+import model.User.PerfilMedico;
 import model.User.RestriccionMedica;
+import model.User.Usuario;
 import model.User.UsuarioCliente;
+import model.User.UsuarioClienteRestriccionMedica;
 import model.User.Valor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -69,7 +76,10 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
 
     UsuarioClienteApiService usuarioClienteApiService;
     RutinaApiService rutinaApiService;
-
+    PerfilMedicoApiService perfilMedicoApiService;
+    ValorApiService valorApiService;
+    UsuarioClienteRestriccionMedicaApiService usuarioClienteRestriccionMedicaApiService;
+    UsuarioApiService usuarioApiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,9 +133,12 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
-                        crearUsuario();
-                       // Intent intent = new Intent(_59_registrar_usuario_5.this, _63_mi_actividad.class);
-                        //startActivity(intent);
+                        crearUsuarioCliente(new Runnable() {
+                            @Override
+                            public void run() {
+                                iniciarSesion(usuarioCliente);
+                            }
+                        });
                     }
                 });
                 dialog.show();
@@ -170,7 +183,10 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
 
         usuarioClienteApiService = retrofit.create(UsuarioClienteApiService.class);
         rutinaApiService = retrofit.create(RutinaApiService.class);
-
+        perfilMedicoApiService= retrofit.create(PerfilMedicoApiService.class);
+        valorApiService = retrofit.create(ValorApiService.class);
+        usuarioClienteRestriccionMedicaApiService = retrofit.create(UsuarioClienteRestriccionMedicaApiService.class);
+        usuarioApiService = retrofit.create(UsuarioApiService.class);
     }
 
     private void actualizarLista(){
@@ -202,24 +218,7 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
         }
     }
 
-    private void crearUsuario()
-    {
-        // 1.crear Usuario , aqui se le asigna el objetivo Rutina, nivel de actividad fisica
-        Log.d("InfoRecibida", "UsuarioCliente: " + usuarioCliente.toString());
-        crearUsuarioCliente();
-        // 2. crear rutinas ... creo que aqui se podria tomar la mitad del numero de rutinas y ponerle ese musculo
-        Log.d("InfoRecibida", "MusculoObjetivo: " + musculoObjetivo);
-        Log.d("InfoRecibida", "ListaRutinas: " + listaRutinas.toString());
-        // 3. crear perfil medico
-        Log.d("InfoRecibida", "ListaValores: " + listaValores.toString()); // Asegúrate de que Valor tenga un método toString() adecuado.
-        crearPefilMedico();
-
-        // 4. asignar limitacions fisicas
-        Log.d("InfoRecibida", "Lista restricciones: "+listaRestricciones.toString());
-        asignarRestriccionesM();
-    }
-
-    private void crearUsuarioCliente()
+    private void crearUsuarioCliente(final Runnable callback)
     {
        usuarioCliente.setAdmi(0);
        usuarioCliente.setGrupoMuscularid(musculoObjetivo);
@@ -233,6 +232,9 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
                     UsuarioCliente usuarioResponse = response.body();
                     Log.d("Usuario creado", "info: "+usuarioResponse.toString());
                     crearRutinas(usuarioResponse.getId(),usuarioResponse.getGrupoMuscularid());
+                    crearPefilMedico(usuarioResponse.getId());
+                    asignarRestriccionesM(usuarioResponse.getId());
+                    callback.run();
                 } else {
                     Log.e("Error", "Error en la respuesta: " + response.code());
                 }
@@ -297,14 +299,142 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
 
     }
 
-    private void crearPefilMedico()
+    private void crearPefilMedico(Long idUsuario)
     {
+        PerfilMedico newPerfil = new PerfilMedico();
+        newPerfil.setUsuarioClienteUsuarioid(idUsuario.intValue());
+        Date fecha = new Date();
+        newPerfil.setFecha(fecha);
+
+        Call<PerfilMedico> call = perfilMedicoApiService.createPerfilMedico(newPerfil);
+
+        call.enqueue(new Callback<PerfilMedico>() {
+            @Override
+            public void onResponse(Call<PerfilMedico> call, Response<PerfilMedico> response) {
+                if (response.isSuccessful()) {
+                    PerfilMedico perfilResponse = response.body();
+                    Log.d("´Perfil creado", "info: "+perfilResponse.toString());
+                    crearValores(perfilResponse.getId());
+                } else {
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PerfilMedico> call, Throwable t) {
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+
 
     }
 
-    private void asignarRestriccionesM()
+    private void crearValores(int idPerfilMedico)
     {
+        for(Valor valor: listaValores)
+        {
+            valor.setPerfilMedicoid(idPerfilMedico);
 
+            Call<Valor> call = valorApiService.createValor(valor);
+
+            call.enqueue(new Callback<Valor>() {
+                @Override
+                public void onResponse(Call<Valor> call, Response<Valor> response) {
+                    if (response.isSuccessful()) {
+                        Valor valorResponse = response.body();
+                        Log.d("´Valor creado", "info: "+valorResponse.toString());
+                    } else {
+                        Log.e("Error", "Error en la respuesta: " + response.code());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Valor> call, Throwable t) {
+                    Log.e("Error", "Fallo en la petición: " + t.getMessage());
+                }
+            });
+        }
+    }
+
+    private void asignarRestriccionesM(Long idUsuario)
+    {
+        for(RestriccionMedica restriccionMedica : listaRestricciones)
+        {
+            UsuarioClienteRestriccionMedica newRestriccion = new UsuarioClienteRestriccionMedica();
+            newRestriccion.setRestriccionMedicaid(restriccionMedica.getId());
+            newRestriccion.setUsuarioClienteUsuarioid(idUsuario.intValue());
+
+            Call<UsuarioClienteRestriccionMedica> call = usuarioClienteRestriccionMedicaApiService.createRestriccion(newRestriccion);
+
+            call.enqueue(new Callback<UsuarioClienteRestriccionMedica>() {
+                @Override
+                public void onResponse(Call<UsuarioClienteRestriccionMedica> call, Response<UsuarioClienteRestriccionMedica> response) {
+                    if (response.isSuccessful()) {
+                        UsuarioClienteRestriccionMedica USCResponse = response.body();
+                        Log.d("´Restriccion asignada", "info: "+USCResponse.toString());
+                    } else {
+                        Log.e("Error", "Error en la respuesta: " + response.code());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<UsuarioClienteRestriccionMedica> call, Throwable t) {
+                    Log.e("Error", "Fallo en la petición: " + t.getMessage());
+                }
+            });
+
+        }
+    }
+
+    private void iniciarSesion(UsuarioCliente usuarioCliente)
+    {
+        String emailStr = usuarioCliente.getEmail();
+        String contraseñaStr= usuarioCliente.getContrasenna();
+        SharedPreferencesUtil sharedpreferencesutil = new SharedPreferencesUtil();
+        Map<String, String> credenciales = new HashMap<>();
+        credenciales.put("email", emailStr);
+        credenciales.put("contrasenna", contraseñaStr);
+
+        Call<Usuario> call = usuarioApiService.iniciarSesion(credenciales);
+        call.enqueue(new Callback<Usuario>() {
+            @Override
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                if (response.isSuccessful()) {
+                    Log.d("IniciarSesionActivity", "Respuesta recibida: " + response.toString());
+
+                    Usuario usuarioResponse = response.body();
+
+                    if (usuarioResponse != null) {
+                        Log.d("IniciarSesionActivity", "Respuesta recibida: " + usuarioResponse.toString());
+
+                        Integer tipoUsuario = usuarioResponse.getAdmi();
+
+                        if (tipoUsuario != null) {
+                            Log.d("IniciarSesionActivity", "Usuario inició sesión: " + usuarioResponse.getId());
+                            sharedpreferencesutil.saveToken(_59_registrar_usuario_5.this,usuarioResponse.getToken());
+                            sharedpreferencesutil.saveUserId(_59_registrar_usuario_5.this,usuarioResponse.getId());
+                            Intent intent = new Intent(_59_registrar_usuario_5.this, _63_Principal_Usuario.class);
+                            startActivity(intent);
+
+                        } else {
+                            Log.d("IniciarSesionActivity", "Campo 'admi' es null");
+                        }
+                    } else {
+                        Log.d("IniciarSesionActivity", "Respuesta recibida pero el cuerpo es null");
+                    }
+                } else {
+                    Log.d("IniciarSesionActivity", "Inicio de sesión fallido");
+                    Toast toast = Toast.makeText(getApplicationContext(), "Correo o contraseña incorrecta,por favor vuelve a intentar", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Usuario> call, Throwable t) {
+                Log.d("IniciarSesionActivity", "Error en la llamada API", t);
+            }
+
+        });
     }
 }
 

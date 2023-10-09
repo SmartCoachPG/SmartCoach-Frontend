@@ -18,8 +18,6 @@ public class Valor implements Serializable {
 
     public Valor() {}
 
-    // ... getters y setters ...
-
     public int getId() {
         return id;
     }
