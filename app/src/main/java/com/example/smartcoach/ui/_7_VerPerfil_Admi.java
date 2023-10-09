@@ -29,7 +29,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class _7_VerPerfil_Admi extends AppCompatActivity {
+public class _7_VerPerfil_Admi extends BaseActivityAdmi {
 
     TextView textoIngresoNombre, textoIngresoEmail,textoIngresoCedula, textoIngresoPuesto,nombreAdmi, puestoAdmi;
 

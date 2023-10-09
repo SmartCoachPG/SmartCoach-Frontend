@@ -26,7 +26,7 @@
 
 
             <ImageButton
-                android:id="@+id/btnMapaAdmin"
+                android:id="@+id/btnMapaAdmin_menu"
                 android:layout_width="40dp"
                 android:layout_height="30dp"
                 android:src="@drawable/icon_mapa"
@@ -36,7 +36,7 @@
             </ImageButton>
 
             <ImageButton
-                android:id="@+id/btnMancuernaAdmin"
+                android:id="@+id/btnMancuernaAdmin_menu"
                 android:layout_width="40dp"
                 android:layout_height="30dp"
                 android:src="@drawable/icon_mancuerna_b"
@@ -46,7 +46,7 @@
             </ImageButton>
 
             <ImageButton
-                android:id="@+id/btnPerfilAdmin"
+                android:id="@+id/btnPerfilAdmin_menu"
                 android:layout_width="40dp"
                 android:layout_height="30dp"
                 android:src="@drawable/icon_perfil_b"
@@ -64,6 +64,5 @@
 
 
     </RelativeLayout>
-
 
 </LinearLayout>

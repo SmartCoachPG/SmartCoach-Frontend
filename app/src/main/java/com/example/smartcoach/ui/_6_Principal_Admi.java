@@ -38,14 +38,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class _6_Principal_Admi extends AppCompatActivity {
+public class _6_Principal_Admi extends BaseActivityAdmi {
 
     ImageButton flechaRegresar, eliminarCuenta, imagePP,verificacionAdmin,cerrarSesion,infoAdmi;
     TextView nombreAdmi, puestoAdmi, infoAdmiTexto,verificacionAdmiTexto,eliminarCuentaTexto,cerrarSesionTexto;
     ImageView admiCheck;
     Long userId;
     String token;
-    //ImageButton btnMapa, btnEquipo, btnPerfil;
 
     UsuarioAdministradorApiService usuarioAdministradorApiService;
 

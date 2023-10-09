@@ -283,4 +283,5 @@ public class _63_Principal_Usuario extends AppCompatActivity {
         Intent intent = new Intent(_63_Principal_Usuario.this, _2_IniciarSesionRegistrarse.class);
         startActivity(intent);
     }
+
 }

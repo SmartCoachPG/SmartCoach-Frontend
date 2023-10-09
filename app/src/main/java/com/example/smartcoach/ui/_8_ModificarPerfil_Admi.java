@@ -48,7 +48,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class _8_ModificarPerfil_Admi extends AppCompatActivity {
+public class _8_ModificarPerfil_Admi extends BaseActivityAdmi {
 
     ImageButton flechaRegresar,imagePP;
     TextView nombreAdmi,puestoAdmi,textoIngresoCedula;

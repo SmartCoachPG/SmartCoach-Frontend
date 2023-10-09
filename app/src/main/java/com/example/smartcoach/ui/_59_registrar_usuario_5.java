@@ -136,6 +136,7 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
                         crearUsuarioCliente(new Runnable() {
                             @Override
                             public void run() {
+                                Toast.makeText(_59_registrar_usuario_5.this, "Cuenta Creada", Toast.LENGTH_SHORT).show();
                                 iniciarSesion(usuarioCliente);
                             }
                         });
