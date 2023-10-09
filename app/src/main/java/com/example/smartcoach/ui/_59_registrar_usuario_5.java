@@ -18,15 +18,37 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.example.smartcoach.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import android.view.View;
 
+import java.sql.Time;
+import java.time.Instant;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import api.DateSerializer;
+import api.Exercise.RutinaApiService;
+import api.TimeDeserializer;
+import api.TimeSerializer;
+import api.User.RestriccionMedicaApiService;
+import api.User.UsuarioClienteApiService;
+import api.retro;
 import model.Exercise.Rutina;
 import model.User.RestriccionMedica;
 import model.User.UsuarioCliente;
 import model.User.Valor;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class _59_registrar_usuario_5 extends AppCompatActivity {
 
@@ -45,13 +67,16 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
     ArrayList<Valor> listaValores;
     private static final int REQUEST_CODE = 123;
 
+    UsuarioClienteApiService usuarioClienteApiService;
+    RutinaApiService rutinaApiService;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout._59_registrar_usuario_5);
         getSupportActionBar().hide();
-
+        iniciarPeticiones();
         usuarioCliente = (UsuarioCliente) getIntent().getSerializableExtra("usuarioCliente");
 
         musculoObjetivo = getIntent().getIntExtra("musculoObjetivo", 0); // 0 es un valor predeterminado en caso de que no se encuentre el extra.
@@ -123,6 +148,30 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
         }
     }
 
+    private void iniciarPeticiones()
+    {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Date.class, new DateSerializer())
+                .registerTypeAdapter(Time.class,new TimeSerializer())
+                .registerTypeAdapter(Time.class,new TimeDeserializer())
+                .create();
+
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient okHttpClient = retro.getUnsafeOkHttpClient().newBuilder()
+                .addInterceptor(logging)  // Agrega el interceptor al cliente OkHttp
+                .build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://10.0.2.2:8043/api/")
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        usuarioClienteApiService = retrofit.create(UsuarioClienteApiService.class);
+        rutinaApiService = retrofit.create(RutinaApiService.class);
+
+    }
 
     private void actualizarLista(){
         LinearLayout linearLayout = findViewById(R.id.linear_layout_inside_scrollview);
@@ -161,7 +210,6 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
         // 2. crear rutinas ... creo que aqui se podria tomar la mitad del numero de rutinas y ponerle ese musculo
         Log.d("InfoRecibida", "MusculoObjetivo: " + musculoObjetivo);
         Log.d("InfoRecibida", "ListaRutinas: " + listaRutinas.toString());
-        crearRutinas();
         // 3. crear perfil medico
         Log.d("InfoRecibida", "ListaValores: " + listaValores.toString()); // Asegúrate de que Valor tenga un método toString() adecuado.
         crearPefilMedico();
@@ -173,12 +221,79 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
 
     private void crearUsuarioCliente()
     {
-        UsuarioCliente newCliente = new UsuarioCliente();
+       usuarioCliente.setAdmi(0);
+       usuarioCliente.setGrupoMuscularid(musculoObjetivo);
+
+       Call<UsuarioCliente> call = usuarioClienteApiService.createUsuarioCliente(usuarioCliente);
+
+       call.enqueue(new Callback<UsuarioCliente>() {
+            @Override
+            public void onResponse(Call<UsuarioCliente> call, Response<UsuarioCliente> response) {
+                if (response.isSuccessful()) {
+                    UsuarioCliente usuarioResponse = response.body();
+                    Log.d("Usuario creado", "info: "+usuarioResponse.toString());
+                    crearRutinas(usuarioResponse.getId(),usuarioResponse.getGrupoMuscularid());
+                } else {
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UsuarioCliente> call, Throwable t) {
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+       });
+
 
     }
 
-    private void crearRutinas()
+    private void crearRutinas(Long idUsuario, int idGrupoMuscular)
     {
+        for (Rutina rutina : listaRutinas) {
+
+            rutina.setUsuarioClienteId(idUsuario.intValue());
+            rutina.setCantEjercicios(4);
+            rutina.setGrupoMuscularId(idGrupoMuscular);
+            LocalTime start = Instant.ofEpochMilli(rutina.getHoraI().getTime()).atZone(ZoneId.systemDefault()).toLocalTime();
+            LocalTime end = Instant.ofEpochMilli(rutina.getHoraF().getTime()).atZone(ZoneId.systemDefault()).toLocalTime();
+
+            long hoursDifference = end.getHour() - start.getHour();
+            long minutesDifference = end.getMinute() - start.getMinute();
+
+            if (minutesDifference < 0) {
+                hoursDifference--;
+                minutesDifference += 60;
+            }
+
+            LocalTime durationLocalTime = LocalTime.of((int) hoursDifference, (int) minutesDifference);
+            String formattedTime = String.format("%02d:%02d:%02d", durationLocalTime.getHour(), durationLocalTime.getMinute(), 0);
+            Time duration = Time.valueOf(formattedTime);
+            rutina.setDuracion(duration);
+
+            System.out.println("Duración: " + duration);
+
+            Call<Rutina> call = rutinaApiService.create(rutina);
+
+                call.enqueue(new Callback<Rutina>() {
+                    @Override
+                    public void onResponse(Call<Rutina> call, Response<Rutina> response) {
+                        if (response.isSuccessful()) {
+                            Rutina rutinaResponse = response.body();
+                            Log.d("Rutina creada", "info: "+rutinaResponse.toString());
+                            String rawResponse = response.raw().body().toString();
+                            Log.d("Raw Response", rawResponse);
+                        } else {
+                            Log.e("Error", "Error en la respuesta: " + response.code());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Rutina> call, Throwable t) {
+                        Log.e("Error", "Fallo en la petición: " + t.getMessage());
+                    }
+                });
+
+        }
 
     }
 

@@ -6,7 +6,6 @@ import java.sql.Time;
 public class Rutina implements Serializable {
 
     private int id;
-    private String nombre;
     private Time horaI;
     private Time horaF;
     private String dia;
@@ -14,15 +13,18 @@ public class Rutina implements Serializable {
     private int cantEjercicios;
     private int usuarioClienteId;
 
-    public Rutina(int id, String nombre, Time horaI, Time horaF, String dia, Time duracion, int cantEjercicios, int usuarioClienteId) {
+    private int grupoMuscularId;
+
+
+    public Rutina(Time horaI, Time horaF, String dia, Time duracion, int cantEjercicios, int usuarioClienteId, int grupoMuscularId) {
         this.id = id;
-        this.nombre = nombre;
         this.horaI = horaI;
         this.horaF = horaF;
         this.dia = dia;
         this.duracion = duracion;
         this.cantEjercicios = cantEjercicios;
         this.usuarioClienteId = usuarioClienteId;
+        this.grupoMuscularId = grupoMuscularId;
     }
 
     public Rutina() {}
@@ -33,14 +35,6 @@ public class Rutina implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public Time getHoraI() {
@@ -91,17 +85,25 @@ public class Rutina implements Serializable {
         this.usuarioClienteId = usuarioClienteId;
     }
 
+    public int getGrupoMuscularId() {
+        return grupoMuscularId;
+    }
+
+    public void setGrupoMuscularId(int grupoMuscularId) {
+        this.grupoMuscularId = grupoMuscularId;
+    }
+
     @Override
     public String toString() {
         return "Rutina{" +
                 "id=" + id +
-                ", nombre='" + nombre + '\'' +
                 ", horaI=" + horaI +
                 ", horaF=" + horaF +
                 ", dia='" + dia + '\'' +
                 ", duracion=" + duracion +
                 ", cantEjercicios=" + cantEjercicios +
                 ", usuarioClienteId=" + usuarioClienteId +
+                ", grupoMuscularId=" + grupoMuscularId +
                 '}';
     }
 }

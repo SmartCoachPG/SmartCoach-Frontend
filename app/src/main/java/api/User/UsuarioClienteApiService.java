@@ -19,7 +19,7 @@ public interface UsuarioClienteApiService {
     @PUT("usuariocliente/{id}")
     Call<UsuarioCliente> updateUsuarioCliente(@Path("id") Long id, @Body UsuarioCliente usuarioCliente);
 
-    @POST("usuariocliente")
+    @POST("usuariocliente/crear")
     Call<UsuarioCliente> createUsuarioCliente(@Body UsuarioCliente usuarioCliente);
 
     @DELETE("usuariocliente/{id}")
