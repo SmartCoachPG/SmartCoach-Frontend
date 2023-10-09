@@ -14,24 +14,28 @@ public class UsuarioCliente extends Usuario{
 
     private Integer objetivoRutinaid;
 
+    private Integer grupoMuscularid;
+
     public UsuarioCliente() {
     }
 
-    public UsuarioCliente(String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid) {
+    public UsuarioCliente(String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, Integer grupoMuscularid) {
         this.genero = genero;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.gimnasioid = gimnasioid;
         this.nivelActividadFisicaid = nivelActividadFisicaid;
         this.objetivoRutinaid = objetivoRutinaid;
+        this.grupoMuscularid = grupoMuscularid;
     }
 
-    public UsuarioCliente(String nombre, String email, String contrasenna, String fotoPerfil, Integer admi, String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid) {
+    public UsuarioCliente(String nombre, String email, String contrasenna, String fotoPerfil, Integer admi, String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, Integer grupoMuscularid) {
         super(nombre, email, contrasenna, fotoPerfil, admi);
         this.genero = genero;
         this.fechaDeNacimiento = fechaDeNacimiento;
         this.gimnasioid = gimnasioid;
         this.nivelActividadFisicaid = nivelActividadFisicaid;
         this.objetivoRutinaid = objetivoRutinaid;
+        this.grupoMuscularid = grupoMuscularid;
     }
 
     public String getGenero() {
@@ -74,16 +78,23 @@ public class UsuarioCliente extends Usuario{
         this.objetivoRutinaid = objetivoRutinaid;
     }
 
+    public Integer getGrupoMuscularid() {
+        return grupoMuscularid;
+    }
+
+    public void setGrupoMuscularid(Integer grupoMuscularid) {
+        this.grupoMuscularid = grupoMuscularid;
+    }
+
     @Override
     public String toString() {
         return "UsuarioCliente{" +
-                "Usuario"+super.toString()+
                 "genero='" + genero + '\'' +
                 ", fechaDeNacimiento=" + fechaDeNacimiento +
                 ", gimnasioid=" + gimnasioid +
                 ", nivelActividadFisicaid=" + nivelActividadFisicaid +
                 ", objetivoRutinaid=" + objetivoRutinaid +
+                ", grupoMuscularid=" + grupoMuscularid +
                 '}';
     }
-
 }
