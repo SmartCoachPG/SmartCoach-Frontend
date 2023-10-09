@@ -173,6 +173,7 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
 
     private void crearUsuarioCliente()
     {
+        UsuarioCliente newCliente = new UsuarioCliente();
 
     }
 

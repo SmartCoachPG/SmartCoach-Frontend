@@ -36,12 +36,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import api.Admi.UsuarioAdministradorApiService;
 import api.DateSerializer;
-import api.Exercise.MusculoApiService;
+import api.Exercise.GrupoMuscularApiService;
 import api.User.ObjetivoRutinaApiService;
-import api.User.UsuarioApiService;
 import api.retro;
+import model.Exercise.GrupoMuscular;
 import model.Exercise.Musculo;
 import model.Exercise.Rutina;
 import model.User.ObjetivoRutina;
@@ -72,7 +71,7 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
     private AlertDialog alertDialog;
 
     ObjetivoRutinaApiService objetivoRutinaApiService;
-    MusculoApiService musculoApiService;
+    GrupoMuscularApiService grupoMuscularApiService;
 
 
     @Override
@@ -494,7 +493,7 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
                 .build();
 
         objetivoRutinaApiService = retrofit.create(ObjetivoRutinaApiService.class);
-        musculoApiService = retrofit.create(MusculoApiService.class);
+        grupoMuscularApiService = retrofit.create(GrupoMuscularApiService.class);
 
     }
     private void cargarSpinner(){
@@ -537,16 +536,16 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
 
     private void cargarMusculos()
     {
-        Call<List<Musculo>> call = musculoApiService.getAllCreate();
-        call.enqueue(new Callback<List<Musculo>>() {
+        Call<List<GrupoMuscular>> call = grupoMuscularApiService.getAll();
+        call.enqueue(new Callback<List<GrupoMuscular>>() {
             @Override
-            public void onResponse(Call<List<Musculo>> call, Response<List<Musculo>> response) {
+            public void onResponse(Call<List<GrupoMuscular>> call, Response<List<GrupoMuscular>> response) {
                 if (response.isSuccessful()) {
                     int posi=0;
-                    List<Musculo> musculos = response.body();
+                    List<GrupoMuscular> musculos = response.body();
                     String[] opcionesMusculos = new String[musculos.size()];
                     for (int i = 0; i < musculos.size(); i++) {
-                        opcionesMusculos[i] = musculos.get(i).getNombreMusculo();
+                        opcionesMusculos[i] = musculos.get(i).getNombre();
                     }
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(_42_Registrar_Usuario_3.this, R.layout.spinner_item, opcionesMusculos);
                     adapter.setDropDownViewResource(R.layout.spinner_item);
@@ -559,7 +558,7 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Musculo>> call, Throwable t) {
+            public void onFailure(Call<List<GrupoMuscular>> call, Throwable t) {
                 // Maneja errores de red o de conversión de datos
                 Log.e("Error", "Fallo en la petición: " + t.getMessage());
             }
