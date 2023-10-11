@@ -14,10 +14,10 @@ package com.example.smartcoach.ui;
 public class _23_modificar_equipo extends AppCompatActivity {
 
     ImageView imagenEquipoImageView;
-    ImageButton atrasButton, subirImagenButton, masButton;
+    ImageButton atrasButton, btnAgregar;
     EditText nombreEquipoEditText, referenciaEquipoEditText, descripcionEquipoEditText;
     ScrollView scrollView;
-    TextView tituloModificarTextView, descripcionModificarTextView, subaImagenTextView, textoMusculosTextView;
+    TextView tituloModificarTextView, descripcionModificarTextView, textoMusculosTextView;
     Button btnGuardarCambios;
     View menuAdmin_23;
 
@@ -33,11 +33,9 @@ public class _23_modificar_equipo extends AppCompatActivity {
         nombreEquipoEditText = findViewById(R.id.setTextnombreEquipo_23);
         referenciaEquipoEditText = findViewById(R.id.setTextReferenciaEquipo_23);
         imagenEquipoImageView = findViewById(R.id.imagenEquipo_23);
-        subirImagenButton = findViewById(R.id.imageSubirImagen);
-        subaImagenTextView = findViewById(R.id.textSubaImagen_23);
         textoMusculosTextView = findViewById(R.id.textoMusculos_23);
         scrollView = findViewById(R.id.scrollView2);
-        masButton = findViewById(R.id.imageButton7);
+        btnAgregar = findViewById(R.id.btnAgregar_23);
         descripcionEquipoEditText = findViewById(R.id.descripcionEquipo_23);
         btnGuardarCambios = findViewById(R.id.btnGuardarCambios_23);
         menuAdmin_23 = findViewById(R.id.include2);

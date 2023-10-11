@@ -1,4 +1,5 @@
 package com.example.smartcoach.ui;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,7 @@ public class _16_ver_equipo_admin_todos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout._16_ver_equipo_admin_todos);
+        getSupportActionBar().hide();
 
         tituloBienvenida = findViewById(R.id.tituloBienvenida_16);
         setTextAdminName = findViewById(R.id.setTextAdminName);
@@ -42,6 +44,14 @@ public class _16_ver_equipo_admin_todos extends AppCompatActivity {
         equipo2 = findViewById(R.id.equipo_2_16);
         equipo3 = findViewById(R.id.equipo_3_16);
         otrosMenu = findViewById(R.id._otros_menu_admi);
+
+        btnMios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(_16_ver_equipo_admin_todos.this, _17_ver_equipo_admin_creados.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
