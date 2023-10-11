@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <View
+        android:id="@+id/rectangulo_naranja_superior"
+        android:layout_width="432dp"
+        android:layout_height="121dp"
+        android:background="@drawable/rectangulo_naranja"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/atras_23"
+        android:layout_width="10.85dp"
+        android:layout_height="18.95dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_flecha_izq_b" />
+
+    <TextView
+        android:id="@+id/tituloModificar_23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Modificar equipo"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/atras_23"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/descripcionModificar_23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Aquí podrás añadir los equipos que tengas a tu disposición."
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/rectangulo_naranja_superior"
+        app:layout_constraintTop_toBottomOf="@+id/tituloModificar_23" />
+
+
+    <EditText
+        android:id="@+id/setTextnombreEquipo_23"
+        android:layout_width="366dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#FDA400"
+        android:ems="10"
+        android:hint="Mancuernas Hexagonales"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.257"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcionModificar_23" />
+
+    <EditText
+        android:id="@+id/setTextReferenciaEquipo_23"
+        android:layout_width="366dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="#FDA400"
+        android:ems="10"
+        android:hint="Rouge Rubber Hex Dumbells"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.257"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setTextnombreEquipo_23" />
+
+    <ImageButton
+        android:id="@+id/imagenEquipo_23"
+        android:layout_width="345dp"
+        android:layout_height="157dp"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setTextReferenciaEquipo_23"
+        app:srcCompat="@drawable/rectangulo_redondeado_gris_claro" />
+
+    <TextView
+        android:id="@+id/textSubaImagen_23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Haga click y suba la imagen de su equipo"
+        app:layout_constraintBottom_toBottomOf="@+id/imagenEquipo_23"
+        app:layout_constraintEnd_toEndOf="@+id/imagenEquipo_23"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="@+id/imagenEquipo_23"
+        app:layout_constraintTop_toTopOf="@+id/imagenEquipo_23"
+        app:layout_constraintVertical_bias="0.619" />
+
+    <ImageButton
+        android:id="@+id/imageSubirImagen"
+        android:layout_width="38dp"
+        android:layout_height="41dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/textSubaImagen_23"
+        app:layout_constraintEnd_toEndOf="@+id/imagenEquipo_23"
+        app:layout_constraintStart_toStartOf="@+id/imagenEquipo_23"
+        app:layout_constraintTop_toTopOf="@+id/imagenEquipo_23"
+        app:layout_constraintVertical_bias="0.727"
+        app:srcCompat="@drawable/icon_subir_imagen_na" />
+
+    <TextView
+        android:id="@+id/textoMusculos_23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Músculos que se pueden trabajar"
+        android:textColor="#FDA400"
+        android:textSize="21dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagenEquipo_23" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="340dp"
+        android:layout_height="57dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoMusculos_23">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/imageButton7"
+                android:layout_width="34dp"
+                android:layout_height="29dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/icon_mas_n" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/rectanguloDescripcion_23"
+        android:layout_width="357dp"
+        android:layout_height="174dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:srcCompat="@drawable/rectangulo_redondeado_gris_claro" />
+
+    <EditText
+        android:id="@+id/descripcionEquipo_23"
+        android:layout_width="333dp"
+        android:layout_height="120dp"
+        android:background="@null"
+        android:text="TextViewDescripciónEquipo"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/rectanguloDescripcion_23"
+        app:layout_constraintEnd_toEndOf="@+id/rectanguloDescripcion_23"
+        app:layout_constraintStart_toStartOf="@+id/rectanguloDescripcion_23"
+        app:layout_constraintTop_toTopOf="@+id/rectanguloDescripcion_23" />
+
+    <Button
+        android:id="@+id/btnGuardarCambios_23"
+        android:layout_width="357dp"
+        android:layout_height="59dp"
+        android:backgroundTint="#FDA400"
+        android:text="Guardar Cambios"
+        app:layout_constraintBottom_toTopOf="@+id/include2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectanguloDescripcion_23" />
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/_otros_menu_admi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartcoach.R;
 
-import java.util.List;
-
 public class _111_informacion_detallada_ejercicio_1 extends AppCompatActivity {
 
     ImageView rectanguloFondoImageView;
@@ -18,7 +16,7 @@ public class _111_informacion_detallada_ejercicio_1 extends AppCompatActivity {
     TextView tituloMusculosInvolucradosTextView;
 
     private boolean isEquipo;
-    private EquipoAdapter equipoAdapter;
+    private _111_EquipoAdapter equipoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

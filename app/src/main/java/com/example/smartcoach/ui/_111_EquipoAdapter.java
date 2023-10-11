@@ -11,21 +11,21 @@ import com.example.smartcoach.R;
 
 import java.util.List;
 
-public class EquipoAdapter extends RecyclerView.Adapter<EquipoAdapter.ViewHolder> {
+public class _111_EquipoAdapter extends RecyclerView.Adapter<_111_EquipoAdapter.ViewHolder> {
 
     private List<String> listaDeEquipos;
     private Context context;
     private boolean isMusculo;
 
     // Constructor para RecyclerView con diseño item_equipo_usado.xml
-    public EquipoAdapter(Context context, List<String> listaDeEquipos) {
+    public _111_EquipoAdapter(Context context, List<String> listaDeEquipos) {
         this.context = context;
         this.listaDeEquipos = listaDeEquipos;
         this.isMusculo = false;
     }
 
     // Constructor para RecyclerView con diseño item_musculo_involucrado.xml
-    public EquipoAdapter(Context context, List<String> listaDeEquipos, boolean isMusculo) {
+    public _111_EquipoAdapter(Context context, List<String> listaDeEquipos, boolean isMusculo) {
         this.context = context;
         this.listaDeEquipos = listaDeEquipos;
         this.isMusculo = isMusculo;
