@@ -1,15 +1,15 @@
 package com.example.smartcoach.ui;
 
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.EditText;
-        import android.widget.ImageButton;
-        import android.widget.ImageView;
-        import android.widget.ScrollView;
-        import android.widget.TextView;
-        import androidx.appcompat.app.AppCompatActivity;
-        import com.example.smartcoach.R;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.smartcoach.R;
 
 public class _23_modificar_equipo extends AppCompatActivity {
 
