@@ -100,12 +100,8 @@
         <activity
             android:name=".ui._98_ver_rutina_ejercicio_usuario"
             android:label="@string/app_name"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false"/>
+
 
         <activity
             android:name=".ui._27_configurar_mapa_admin"
@@ -143,6 +139,18 @@
 
         <activity
             android:name=".ui._23_modificar_equipo"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._16_ver_equipo_admin_todos"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._17_ver_equipo_admin_creados"
             android:label="@string/app_name"
             android:exported="false">
         </activity>

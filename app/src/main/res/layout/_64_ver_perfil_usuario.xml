@@ -140,7 +140,7 @@
             android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
-            android:background="@drawable/rectangulonaranja"/>
+            android:background="@drawable/lineanaranja"/>
 
         <TextView
             android:layout_marginTop="30dp"
@@ -159,7 +159,7 @@
             android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
-            android:background="@drawable/rectangulonaranja"/>
+            android:background="@drawable/lineanaranja"/>
 
         <TextView
             android:layout_marginTop="30dp"
@@ -178,7 +178,7 @@
             android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
-            android:background="@drawable/rectangulonaranja"/>
+            android:background="@drawable/lineanaranja"/>
 
         <TextView
             android:layout_marginTop="30dp"
@@ -197,7 +197,7 @@
             android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
-            android:background="@drawable/rectangulonaranja"/>
+            android:background="@drawable/lineanaranja"/>
 
         <TextView
             android:layout_marginTop="30dp"
@@ -216,7 +216,7 @@
             android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
-            android:background="@drawable/rectangulonaranja"/>
+            android:background="@drawable/lineanaranja"/>
     </LinearLayout>
 
 

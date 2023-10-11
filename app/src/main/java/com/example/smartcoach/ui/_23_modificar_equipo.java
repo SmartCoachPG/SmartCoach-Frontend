@@ -25,6 +25,7 @@ public class _23_modificar_equipo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout._23_modificar_equipo);
+        getSupportActionBar().hide();
 
         atrasButton = findViewById(R.id.atras_23);
         tituloModificarTextView = findViewById(R.id.tituloModificar_23);

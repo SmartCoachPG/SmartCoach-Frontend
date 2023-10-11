@@ -118,7 +118,7 @@
         android:layout_marginTop="28dp"
         android:backgroundTint="#FDA400"
         android:spinnerMode="dropdown"
-        android:background="@drawable/rectangulonaranja"
+        android:background="@drawable/lineanaranja"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

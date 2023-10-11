@@ -23,6 +23,7 @@ public class _27_configurar_mapa_admin extends BaseActivityAdmi {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout._27_configurar_mapa_admin);
+        getSupportActionBar().hide();
 
         descripcion_27 = findViewById(R.id.descripcion_27);
         btnVer_27 = findViewById(R.id.btnVer_27);

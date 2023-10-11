@@ -42,7 +42,7 @@
             android:layout_height="2dp"
             android:background="@null"
             android:scaleType="fitCenter"
-            android:src="@drawable/rectangulonaranja" />
+            android:src="@drawable/lineanaranja" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_25"

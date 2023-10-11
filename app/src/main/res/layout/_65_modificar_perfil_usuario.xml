@@ -129,7 +129,7 @@
             android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
-            android:background="@drawable/rectangulonaranja"/>
+            android:background="@drawable/lineanaranja"/>
 
         <TextView
             android:layout_marginTop="30dp"
@@ -148,7 +148,7 @@
             android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
-            android:background="@drawable/rectangulonaranja"/>
+            android:background="@drawable/lineanaranja"/>
 
         <TextView
             android:layout_marginTop="30dp"
@@ -164,7 +164,7 @@
                 android:id="@+id/spinnerGenero_65"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rectangulonaranja"
+                android:background="@drawable/lineanaranja"
                 android:spinnerMode="dropdown"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -190,7 +190,7 @@
             android:textSize="12dp"
             android:inputType="text"
             android:textColor="@color/grisClaro"
-            android:background="@drawable/rectangulonaranja"/>
+            android:background="@drawable/lineanaranja"/>
 
         <TextView
             android:layout_marginTop="30dp"
@@ -205,7 +205,7 @@
             android:id="@+id/spinnerObjetivo_65"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/rectangulonaranja"
+            android:background="@drawable/lineanaranja"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
