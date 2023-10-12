@@ -9,20 +9,22 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
 
 public class _17_ver_equipo_admin_creados extends AppCompatActivity {
-    TextView tituloBienvenida, setTextAdminName, descripcion;
+    TextView tituloBienvenida, setTextAdminName, descripcion, nombreEquipo, nombreReferenciaEquipo, descEquipo;
     View view2;
     EditText editTextBuscaEquipo;
-    ImageButton btnBuscar;
+    ImageButton btnBuscar, btnModificarEquipo, btnEliminar;
     Button btnGuardarCambios, btnEncuentraEquipo, btnTodos, btnMios;
-    ImageView rectanguloFondoEquipo;
+    ImageView rectanguloFondoEquipo, imageEquipo;
     ScrollView scrollView;
     View equipo1, equipo2, equipo3, otrosMenu;
-
+    private AlertDialog alertDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,14 @@ public class _17_ver_equipo_admin_creados extends AppCompatActivity {
         equipo2 = findViewById(R.id.equipo_2_17);
         equipo3 = findViewById(R.id.equipo_3_17);
         otrosMenu = findViewById(R.id._otros_menu_admi);
+
+        setContentView(R.layout.caja_equipo_descripcion_creados);
+        imageEquipo = findViewById(R.id.imageEquipo);
+        nombreEquipo = findViewById(R.id.nombreEquipo);
+        nombreReferenciaEquipo = findViewById(R.id.nombreReferenciaEquipo);
+        descEquipo = findViewById(R.id.desc_equipo);
+        btnModificarEquipo = findViewById(R.id.btnModificarEquipo);
+        btnEliminar = findViewById(R.id.btnEliminar);
 
         btnTodos.setOnClickListener(new View.OnClickListener() {
             @Override

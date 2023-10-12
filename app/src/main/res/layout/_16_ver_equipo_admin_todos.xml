@@ -130,10 +130,10 @@
         android:layout_height="36dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/orange"
         android:text="Todos"
         android:textAlignment="center"
-        android:textColor="@color/orange"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/rectanguloFondoEquipo_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnEncuentraEquipo_16"
@@ -145,10 +145,10 @@
         android:layout_height="36dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/white"
         android:text="Mios"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/orange"
         app:layout_constraintBottom_toTopOf="@+id/rectanguloFondoEquipo_16"
         app:layout_constraintEnd_toEndOf="@+id/rectanguloFondoEquipo_16"
         app:layout_constraintHorizontal_bias="0.0"
@@ -172,7 +172,7 @@
 
             <include
                 android:id="@+id/equipo_1_16"
-                layout="@layout/caja_equipo_descripcion"
+                layout="@layout/caja_agregar_equipo_todos"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
@@ -182,7 +182,7 @@
 
             <include
                 android:id="@+id/equipo_2_16"
-                layout="@layout/caja_equipo_descripcion"
+                layout="@layout/caja_eliminar_equipo_todos"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
             <Space
@@ -191,7 +191,7 @@
 
             <include
                 android:id="@+id/equipo_3_16"
-                layout="@layout/caja_equipo_descripcion"
+                layout="@layout/caja_eliminar_equipo_todos"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 

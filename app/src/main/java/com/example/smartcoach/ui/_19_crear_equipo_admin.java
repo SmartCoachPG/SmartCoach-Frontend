@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
@@ -19,6 +21,7 @@ public class _19_crear_equipo_admin extends AppCompatActivity {
     ScrollView scrollView;
     Button btnGuardarCambios;
     View menuAdmin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

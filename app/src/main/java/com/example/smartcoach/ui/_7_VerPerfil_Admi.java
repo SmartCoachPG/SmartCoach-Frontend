@@ -103,7 +103,7 @@ public class _7_VerPerfil_Admi extends BaseActivityAdmi {
             public void onResponse(Call<UsuarioAdministrador> call, Response<UsuarioAdministrador> response) {
                 if (response.isSuccessful()) {
                     UsuarioAdministrador usuario = response.body();
-                    // Haz algo con el objeto Usuario, por ejemplo:
+
                     Log.d("Usuario", "Nombre: " + usuario.getNombre());
 
                     nombreAdmi.setText(usuario.getNombre());
