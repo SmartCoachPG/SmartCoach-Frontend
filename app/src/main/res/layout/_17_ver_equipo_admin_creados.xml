@@ -90,7 +90,7 @@
         app:srcCompat="@drawable/icon_lupa_rellena_na" />
 
     <Button
-        android:id="@+id/btnGuardarCambios_17"
+        android:id="@+id/btnCrearEquipo_17"
         android:layout_width="387dp"
         android:layout_height="43dp"
         android:layout_gravity="center_horizontal"
@@ -114,7 +114,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnGuardarCambios_17" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCrearEquipo_17" />
 
     <ImageView
         android:id="@+id/rectanguloFondoEquipo_17"

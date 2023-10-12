@@ -23,7 +23,7 @@ public class _16_ver_equipo_admin_todos extends AppCompatActivity {
     View view2;
     EditText editTextBuscaEquipo;
     ImageButton btnBuscar, btnAgregarEquipo, btnEliminarEquipo;
-    Button btnGuardarCambios, btnEncuentraEquipo, btnTodos, btnMios;
+    Button btnCrearEquipo, btnEncuentraEquipo, btnTodos, btnMios;
     ImageView rectanguloFondoEquipo, imageEquipo;
     ScrollView scrollView_16;
     View equipo1, equipo2, equipo3, otrosMenu;
@@ -40,7 +40,7 @@ public class _16_ver_equipo_admin_todos extends AppCompatActivity {
         view2 = findViewById(R.id.view_16);
         editTextBuscaEquipo = findViewById(R.id.editTextBuscaEquipo);
         btnBuscar = findViewById(R.id.btnBuscar);
-        btnGuardarCambios = findViewById(R.id.btnGuardarCambios_16);
+        btnCrearEquipo = findViewById(R.id.btnCrearEquipo_16);
         btnEncuentraEquipo = findViewById(R.id.btnEncuentraEquipo_16);
         rectanguloFondoEquipo = findViewById(R.id.rectanguloFondoEquipo_16);
         btnTodos = findViewById(R.id.btnTodos_16);
@@ -51,14 +51,12 @@ public class _16_ver_equipo_admin_todos extends AppCompatActivity {
         equipo3 = findViewById(R.id.equipo_3_16);
         otrosMenu = findViewById(R.id._otros_menu_admi);
 
-        setContentView(R.layout.caja_agregar_equipo_todos);
         imageEquipo = findViewById(R.id.imageEquipo);
         nombreEquipo = findViewById(R.id.nombreEquipo);
         nombreReferenciaEquipo = findViewById(R.id.nombreReferenciaEquipo);
         desc_equipo = findViewById(R.id.desc_equipo);
         textbtnAgregar=findViewById(R.id.textbtnAgregar);
 
-        setContentView(R.layout.caja_eliminar_equipo_todos);
         imageEquipo = findViewById(R.id.imageEquipo);
         nombreEquipo = findViewById(R.id.nombreEquipo);
         nombreReferenciaEquipo = findViewById(R.id.nombreReferenciaEquipo);
@@ -99,6 +97,14 @@ public class _16_ver_equipo_admin_todos extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(_16_ver_equipo_admin_todos.this, _17_ver_equipo_admin_creados.class);
+                startActivity(intent);
+            }
+        });
+
+        btnCrearEquipo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(_16_ver_equipo_admin_todos.this, _19_crear_equipo_admin.class);
                 startActivity(intent);
             }
         });

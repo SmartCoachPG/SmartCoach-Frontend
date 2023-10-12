@@ -44,6 +44,12 @@ public class _19_crear_equipo_admin extends AppCompatActivity {
         btnGuardarCambios = findViewById(R.id.btnGuardarCambios_19);
         menuAdmin = findViewById(R.id.menuAdmin_19);
 
+        atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 }
 

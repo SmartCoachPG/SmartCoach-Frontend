@@ -20,7 +20,7 @@ public class _17_ver_equipo_admin_creados extends AppCompatActivity {
     View view2;
     EditText editTextBuscaEquipo;
     ImageButton btnBuscar, btnModificarEquipo, btnEliminar;
-    Button btnGuardarCambios, btnEncuentraEquipo, btnTodos, btnMios;
+    Button btnCrearEquipo, btnEncuentraEquipo, btnTodos, btnMios;
     ImageView rectanguloFondoEquipo, imageEquipo;
     ScrollView scrollView;
     View equipo1, equipo2, equipo3, otrosMenu;
@@ -37,7 +37,7 @@ public class _17_ver_equipo_admin_creados extends AppCompatActivity {
         view2 = findViewById(R.id.view_17);
         editTextBuscaEquipo = findViewById(R.id.editTextBuscaEquipo_17);
         btnBuscar = findViewById(R.id.btnBuscar_17);
-        btnGuardarCambios = findViewById(R.id.btnGuardarCambios_17);
+        btnCrearEquipo = findViewById(R.id.btnCrearEquipo_17);
         btnEncuentraEquipo = findViewById(R.id.btnEncuentraEquipo_17);
         btnTodos = findViewById(R.id.btnTodos_17);
         btnMios = findViewById(R.id.btnMios_17);
@@ -48,7 +48,6 @@ public class _17_ver_equipo_admin_creados extends AppCompatActivity {
         equipo3 = findViewById(R.id.equipo_3_17);
         otrosMenu = findViewById(R.id._otros_menu_admi);
 
-        setContentView(R.layout.caja_equipo_descripcion_creados);
         imageEquipo = findViewById(R.id.imageEquipo);
         nombreEquipo = findViewById(R.id.nombreEquipo);
         nombreReferenciaEquipo = findViewById(R.id.nombreReferenciaEquipo);
@@ -63,5 +62,14 @@ public class _17_ver_equipo_admin_creados extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnCrearEquipo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(_17_ver_equipo_admin_creados.this, _19_crear_equipo_admin.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
