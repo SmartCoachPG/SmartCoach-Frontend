@@ -1,7 +1,9 @@
 package com.example.smartcoach.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.smartcoach.R;
 
@@ -71,5 +74,45 @@ public class _17_ver_equipo_admin_creados extends AppCompatActivity {
             }
         });
 
+        btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mostrarDialogoConfirmacionEliminacion();
+            }
+        });
+
+    }
+    private void mostrarDialogoConfirmacionEliminacion() {
+        // Infla la vista personalizada para el cuadro de diálogo
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout._18_mensaje_confirmacion_eliminacion_equipo_propio, null);
+
+        // Crea el cuadro de diálogo
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(dialogView);
+
+        // Configura eventos y lógica para los botones en la vista personalizada
+        AppCompatButton botonConfirmar = dialogView.findViewById(R.id.botonConfirmar);
+        AppCompatButton botonCancelar = dialogView.findViewById(R.id.botonCancelar);
+
+        botonConfirmar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Lógica para eliminar el equipo
+                // Aquí debes implementar la lógica para eliminar el equipo
+                alertDialog.dismiss();
+            }
+        });
+
+        botonCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+
+        // Crea el cuadro de diálogo
+        alertDialog = builder.create();
+        alertDialog.show();
     }
 }
