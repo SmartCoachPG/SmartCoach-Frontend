@@ -1,7 +1,15 @@
 package com.example.smartcoach.ui;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Shader;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +22,20 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class _95_crear_rutina_usuario extends AppCompatActivity {
+import api.Exercise.RutinaApiService;
+import api.SharedPreferencesUtil;
+import api.User.UsuarioClienteApiService;
+import api.retro;
+import model.User.UsuarioCliente;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class _95_crear_rutina_usuario extends BaseActivityCliente {
 
     ImageView ovaloSup;
     TextView tituloPt2, bienvenida, setTextNombreUser;
@@ -23,14 +44,21 @@ public class _95_crear_rutina_usuario extends AppCompatActivity {
     private final Map<ImageButton, Integer> selectedImages = new HashMap<>();
     private int selectedDay = -1;
 
-    // Elementos inflados del otro diseño
+    Long userId;
+    String token;
     ImageButton imageLunes, imageMartes, imageMiercoles, imageJueves, imageViernes, imageSabado, imageDomingo;
+
+    UsuarioClienteApiService usuarioClienteApiService;
+    RutinaApiService rutinaApiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout._95_crear_rutina_usuario);
         getSupportActionBar().hide();
+        userId = SharedPreferencesUtil.getUserId(_95_crear_rutina_usuario.this);
+        token = SharedPreferencesUtil.getToken(_95_crear_rutina_usuario.this);
+        iniciarPeticiones();
 
         tituloPt2 = findViewById(R.id.tituloPt2);
         bienvenida = findViewById(R.id.bienvenida);
@@ -66,6 +94,8 @@ public class _95_crear_rutina_usuario extends AppCompatActivity {
         selectedImages.put((ImageButton) findViewById(R.id.imageSabado), R.drawable.icon_sabado_na);
         selectedImages.put((ImageButton) findViewById(R.id.imageDomingo), R.drawable.icon_domingo_na);
         configureDayClickListeners();
+
+        cargarInfo();
 
         btnCrearRutina.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,5 +189,50 @@ public class _95_crear_rutina_usuario extends AppCompatActivity {
         }
     }
 
+    private void iniciarPeticiones()
+    {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient okHttpClient = retro.getUnsafeOkHttpClientWithToken(token)
+                .newBuilder()
+                .addInterceptor(logging)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://10.0.2.2:8043/api/")
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        usuarioClienteApiService = retrofit.create(UsuarioClienteApiService.class);
+        rutinaApiService = retrofit.create(RutinaApiService.class);
+    }
+
+    private void cargarInfo()
+    {
+        Call<UsuarioCliente> call = usuarioClienteApiService.getUsuarioById(userId);
+        call.enqueue(new Callback<UsuarioCliente>() {
+            @Override
+            public void onResponse(Call<UsuarioCliente> call, Response<UsuarioCliente> response) {
+                if (response.isSuccessful()) {
+                    UsuarioCliente usuario = response.body();
+                    Log.d("Usuario", "Nombre: " + usuario.getNombre());
+
+                    setTextNombreUser.setText(usuario.getNombre());
+
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UsuarioCliente> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
 }
 

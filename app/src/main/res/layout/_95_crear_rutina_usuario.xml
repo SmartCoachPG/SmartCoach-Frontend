@@ -14,7 +14,7 @@
         android:layout_marginTop="5dp"
         android:text="¿Listo para cumplir tus metas?"
         android:textColor="@color/white"
-        android:textSize="23sp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bienvenida" />
@@ -27,7 +27,7 @@
         android:layout_marginTop="32dp"
         android:text="¡Bienvenido!"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,9 +37,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="-20dp"
         android:layout_marginTop="32dp"
+        android:layout_marginLeft="2dp"
         android:text="Nombre User"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.357"
         app:layout_constraintStart_toEndOf="@+id/bienvenida"
@@ -131,7 +132,7 @@
 
     <Button
         android:id="@+id/btnCrearRutina"
-        android:layout_width="wrap_content"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#FDA400"

@@ -43,7 +43,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class _63_Principal_Usuario extends AppCompatActivity {
+public class _63_Principal_Usuario extends BaseActivityCliente {
 
     ImageButton imagePP, infoUser,limitacionesFisicas,horarioRutinas,registroProgreso,objetivos,composicionCorporal,eliminarCuenta,cerrarSesion;
     TextView objetivoRutina,nombreUser,infoUserTexto,limitacionesFisicasTexto,horarioRutinasTexto,registroProgresoTexto,composicionCorporalTexo,eliminarCuentaTexto,cerrarSesionTexto, objetivosTexto;

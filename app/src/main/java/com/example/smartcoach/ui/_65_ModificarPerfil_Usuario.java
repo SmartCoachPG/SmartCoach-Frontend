@@ -60,7 +60,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class _65_ModificarPerfil_Usuario extends AppCompatActivity {
+public class _65_ModificarPerfil_Usuario extends BaseActivityCliente {
 
     ImageButton flechaRegresar, imagePP;
     TextView nombreUser, objetivo;

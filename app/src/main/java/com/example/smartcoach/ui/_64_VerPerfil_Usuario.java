@@ -33,7 +33,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-public class _64_VerPerfil_Usuario extends AppCompatActivity {
+public class _64_VerPerfil_Usuario extends BaseActivityCliente {
 
     ImageButton flechaRegresar,imagePP,botonModificar;
     TextView nombre_user,objetivoUser,textoIngresoNombre_user,textoIngresoEmail_user,textoIngresoGenero_user,textoFechaNacimiento_user,textoIngresoObjetivo_user;

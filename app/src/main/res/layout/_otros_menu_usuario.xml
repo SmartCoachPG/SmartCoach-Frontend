@@ -25,7 +25,7 @@
 
 
             <ImageButton
-                android:id="@+id/boton_mapa"
+                android:id="@+id/boton_mapa_menuU"
                 android:layout_width="40dp"
                 android:layout_height="30dp"
                 android:src="@drawable/icon_ubi_b"
@@ -35,7 +35,7 @@
             </ImageButton>
 
             <ImageButton
-                android:id="@+id/boton_casa"
+                android:id="@+id/boton_casa_menuU"
                 android:layout_width="40dp"
                 android:layout_height="30dp"
                 android:src="@drawable/icon_casita_b"
@@ -45,7 +45,7 @@
             </ImageButton>
 
             <ImageButton
-                android:id="@+id/boton_equipo"
+                android:id="@+id/boton_equipo_menuU"
                 android:layout_width="40dp"
                 android:layout_height="30dp"
                 android:src="@drawable/icon_mancuerna_b"
@@ -55,7 +55,7 @@
             </ImageButton>
 
             <ImageButton
-                android:id="@+id/boton_perfil"
+                android:id="@+id/boton_perfil_menuU"
                 android:layout_width="40dp"
                 android:layout_height="30dp"
                 android:src="@drawable/icon_perfil_b"
