@@ -24,4 +24,7 @@ public interface UsuarioClienteApiService {
 
     @DELETE("usuariocliente/{id}")
     Call<Void> deleteUsuarioCliente(@Path("id")Long id);
+
+    @GET("/crearRutina/{id}")
+    Call<Void> crearRutina(@Path("id") Long id);
 }

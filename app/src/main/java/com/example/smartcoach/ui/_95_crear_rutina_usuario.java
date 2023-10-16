@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.smartcoach.R;
 
 import java.util.Calendar;
@@ -101,6 +103,8 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(_95_crear_rutina_usuario.this, _98_ver_rutina_ejercicio_usuario.class);
+                crearRutina();
+
                 startActivity(intent);
             }
         });
@@ -229,6 +233,29 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
 
             @Override
             public void onFailure(Call<UsuarioCliente> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
+
+    private void crearRutina()
+    {
+        Call<Void> call = usuarioClienteApiService.crearRutina(userId);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(_95_crear_rutina_usuario.this, "Rutina creada", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
                 // Maneja errores de red o de conversión de datos
                 Log.e("Error", "Fallo en la petición: " + t.getMessage());
             }
