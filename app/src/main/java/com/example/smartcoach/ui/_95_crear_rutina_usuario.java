@@ -40,7 +40,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class _95_crear_rutina_usuario extends BaseActivityCliente {
 
     ImageView ovaloSup;
-    TextView tituloPt2, bienvenida, setTextNombreUser;
+    TextView tituloPt2, bienvenida, setTextNombreUser, setTextDuracionRutina;
     Button btnCrearRutina;
     private final Map<ImageButton, Integer> originalImages = new HashMap<>();
     private final Map<ImageButton, Integer> selectedImages = new HashMap<>();
@@ -66,6 +66,7 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
         bienvenida = findViewById(R.id.bienvenida);
         setTextNombreUser = findViewById(R.id.setTextNombreUser);
         btnCrearRutina = findViewById(R.id.btnCrearRutina);
+        setTextDuracionRutina = findViewById(R.id.setTextDuracionRutina_95);
 
         // Inflar el diseño del archivo XML secundario
         View diasSemanaView = LayoutInflater.from(this).inflate(R.layout._otros_dias_semana_ne, null);
@@ -104,7 +105,7 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
             public void onClick(View v) {
                 Intent intent = new Intent(_95_crear_rutina_usuario.this, _98_ver_rutina_ejercicio_usuario.class);
                 crearRutina();
-
+                Toast.makeText(_95_crear_rutina_usuario.this, "Rutina creada", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
@@ -246,8 +247,6 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Toast.makeText(_95_crear_rutina_usuario.this, "Rutina creada", Toast.LENGTH_SHORT).show();
-
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());

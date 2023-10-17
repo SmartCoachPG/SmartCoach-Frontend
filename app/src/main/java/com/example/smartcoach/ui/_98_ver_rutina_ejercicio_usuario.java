@@ -14,7 +14,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class _98_ver_rutina_ejercicio_usuario extends AppCompatActivity {
+public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
 
     TextView tituloPt2, setTextNombreUser, bienvenida;
     ImageView imageView2;

@@ -304,7 +304,6 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
     private void crearRutinas(Long idUsuario, int idGrupoMuscular)
     {
         for (Rutina rutina : listaRutinas) {
-
             rutina.setUsuarioClienteId(idUsuario.intValue());
             rutina.setCantEjercicios(4);
             rutina.setGrupoMuscularId(idGrupoMuscular);
