@@ -205,8 +205,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
-                restoreOriginalImages();
-                updateSelectedImage(imageLunes);
             }
         });
         imageMartes.setOnClickListener(new View.OnClickListener() {
@@ -221,8 +219,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
-                restoreOriginalImages();
-                updateSelectedImage(imageLunes);
             }
         });
         imageMiercoles.setOnClickListener(new View.OnClickListener() {
@@ -237,8 +233,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
-                restoreOriginalImages();
-                updateSelectedImage(imageLunes);
             }
         });
         imageJueves.setOnClickListener(new View.OnClickListener() {
@@ -253,8 +247,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
-                restoreOriginalImages();
-                updateSelectedImage(imageLunes);
             }
         });
         imageViernes.setOnClickListener(new View.OnClickListener() {
@@ -269,8 +261,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
-                restoreOriginalImages();
-                updateSelectedImage(imageLunes);
             }
         });
         imageSabado.setOnClickListener(new View.OnClickListener() {
@@ -285,8 +275,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
-                restoreOriginalImages();
-                updateSelectedImage(imageLunes);
             }
         });
         imageDomingo.setOnClickListener(new View.OnClickListener() {
@@ -301,8 +289,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
-                restoreOriginalImages();
-                updateSelectedImage(imageLunes);
             }
         });
     }
@@ -471,8 +457,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
     }
 
     private void mostrar()
-    {
-        /*
+    {/*
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         CajaRutina cajaRutina1 = new CajaRutina();
@@ -483,4 +468,5 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
         myDataset.add(cajaRutina1);
         recyclerView.setAdapter(mAdapter);*/
     }
+
 }
