@@ -30,6 +30,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import api.DateSerializer;
 import api.Exercise.RutinaApiService;
@@ -67,6 +70,7 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
 
     List<RestriccionMedica> listaRestricciones= new ArrayList<>();
     UsuarioCliente usuarioCliente;
+    UsuarioCliente usuarioCliente2;
     int musculoObjetivo;
 
     ArrayList<Rutina> listaRutinas;
@@ -136,12 +140,61 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
                         crearUsuarioCliente(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(_59_registrar_usuario_5.this, "Cuenta Creada", Toast.LENGTH_SHORT).show();
-                                iniciarSesion(usuarioCliente);
+                                final CountDownLatch latch = new CountDownLatch(3); // Inicializar con el número de tareas a esperar
+
+                                ExecutorService executor = Executors.newFixedThreadPool(3); // Pool de 3 threads para ejecutar las tareas
+
+                                executor.submit(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        crearRutinas(usuarioCliente2.getId(), usuarioCliente2.getGrupoMuscularid());
+                                        latch.countDown(); // Decrementar el contador cuando la tarea esté completa
+                                    }
+                                });
+
+                                executor.submit(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        crearPerfilMedico(usuarioCliente2.getId());
+                                        latch.countDown(); // Decrementar el contador cuando la tarea esté completa
+                                    }
+                                });
+
+                                executor.submit(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        asignarRestriccionesM(usuarioCliente2.getId());
+                                        latch.countDown(); // Decrementar el contador cuando la tarea esté completa
+                                    }
+                                });
+
+                                executor.submit(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(_59_registrar_usuario_5.this, "Cuenta Creada", Toast.LENGTH_SHORT).show();
+                                        iniciarSesion(usuarioCliente2);
+                                        latch.countDown(); // Decrementar el contador cuando la tarea esté completa
+                                    }
+                                });
+
+                                try {
+                                    latch.await(); // Esperar a que todas las tareas estén completas
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(_59_registrar_usuario_5.this, "Cuenta Creada", Toast.LENGTH_SHORT).show();
+                                            iniciarSesion(usuarioCliente);
+                                        }
+                                    });
+
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         });
                     }
                 });
+
                 dialog.show();
             }
         });
@@ -219,22 +272,21 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
         }
     }
 
-    private void crearUsuarioCliente(final Runnable callback)
-    {
-       usuarioCliente.setAdmi(0);
-       usuarioCliente.setGrupoMuscularid(musculoObjetivo);
+    private void crearUsuarioCliente(final Runnable callback) {
+        usuarioCliente.setAdmi(0);
+        usuarioCliente.setGrupoMuscularid(musculoObjetivo);
 
-       Call<UsuarioCliente> call = usuarioClienteApiService.createUsuarioCliente(usuarioCliente);
+        Call<UsuarioCliente> call = usuarioClienteApiService.createUsuarioCliente(usuarioCliente);
 
-       call.enqueue(new Callback<UsuarioCliente>() {
+        call.enqueue(new Callback<UsuarioCliente>() {
             @Override
             public void onResponse(Call<UsuarioCliente> call, Response<UsuarioCliente> response) {
                 if (response.isSuccessful()) {
                     UsuarioCliente usuarioResponse = response.body();
-                    Log.d("Usuario creado", "info: "+usuarioResponse.toString());
-                    crearRutinas(usuarioResponse.getId(),usuarioResponse.getGrupoMuscularid());
-                    crearPefilMedico(usuarioResponse.getId());
-                    asignarRestriccionesM(usuarioResponse.getId());
+                    Log.d("Usuario creado", "info: " + usuarioResponse.toString());
+                    Log.d("Id usuario", "id: " + usuarioResponse.getId());
+                    usuarioCliente2 = usuarioResponse;
+                    Log.d("Usuario asignado", "info: " + usuarioCliente.toString());
                     callback.run();
                 } else {
                     Log.e("Error", "Error en la respuesta: " + response.code());
@@ -245,10 +297,9 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
             public void onFailure(Call<UsuarioCliente> call, Throwable t) {
                 Log.e("Error", "Fallo en la petición: " + t.getMessage());
             }
-       });
-
-
+        });
     }
+
 
     private void crearRutinas(Long idUsuario, int idGrupoMuscular)
     {
@@ -300,7 +351,7 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
 
     }
 
-    private void crearPefilMedico(Long idUsuario)
+    private void crearPerfilMedico(Long idUsuario)
     {
         PerfilMedico newPerfil = new PerfilMedico();
         newPerfil.setUsuarioClienteUsuarioid(idUsuario.intValue());
@@ -326,7 +377,6 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
                 Log.e("Error", "Fallo en la petición: " + t.getMessage());
             }
         });
-
 
     }
 
@@ -359,12 +409,13 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
 
     private void asignarRestriccionesM(Long idUsuario)
     {
+        Log.d("Funcion asignar", "id usuario: "+idUsuario);
         for(RestriccionMedica restriccionMedica : listaRestricciones)
         {
             UsuarioClienteRestriccionMedica newRestriccion = new UsuarioClienteRestriccionMedica();
             newRestriccion.setRestriccionMedicaid(restriccionMedica.getId());
-            newRestriccion.setUsuarioClienteUsuarioid(idUsuario.intValue());
-
+            newRestriccion.setUsuarioClienteid(idUsuario.intValue());
+            Log.d("Restriccion nueva", "restri: "+newRestriccion.toString());
             Call<UsuarioClienteRestriccionMedica> call = usuarioClienteRestriccionMedicaApiService.createRestriccion(newRestriccion);
 
             call.enqueue(new Callback<UsuarioClienteRestriccionMedica>() {

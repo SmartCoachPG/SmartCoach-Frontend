@@ -2,11 +2,11 @@ package model.User;
 
 public class UsuarioClienteRestriccionMedica {
 
-    private Integer usuarioClienteUsuarioid;
+    private Integer usuarioClienteid;
     private Integer restriccionMedicaid;
 
-    public UsuarioClienteRestriccionMedica(Integer usuarioClienteUsuarioid, Integer restriccionMedicaid) {
-        this.usuarioClienteUsuarioid = usuarioClienteUsuarioid;
+    public UsuarioClienteRestriccionMedica(Integer usuarioClienteid, Integer restriccionMedicaid) {
+        this.usuarioClienteid = usuarioClienteid;
         this.restriccionMedicaid = restriccionMedicaid;
     }
 
@@ -15,12 +15,12 @@ public class UsuarioClienteRestriccionMedica {
 
     }
 
-    public Integer getUsuarioClienteUsuarioid() {
-        return usuarioClienteUsuarioid;
+    public Integer getUsuarioClienteid() {
+        return usuarioClienteid;
     }
 
-    public void setUsuarioClienteUsuarioid(Integer usuarioClienteUsuarioid) {
-        this.usuarioClienteUsuarioid = usuarioClienteUsuarioid;
+    public void setUsuarioClienteid(Integer usuarioClienteid) {
+        this.usuarioClienteid = usuarioClienteid;
     }
 
     public Integer getRestriccionMedicaid() {
@@ -34,7 +34,7 @@ public class UsuarioClienteRestriccionMedica {
     @Override
     public String toString() {
         return "UsuarioCliente_RestriccionMedica{" +
-                "usuarioClienteUsuarioid=" + usuarioClienteUsuarioid +
+                "usuarioClienteUsuarioid=" + usuarioClienteid +
                 ", restriccionMedicaid=" + restriccionMedicaid +
                 '}';
     }
