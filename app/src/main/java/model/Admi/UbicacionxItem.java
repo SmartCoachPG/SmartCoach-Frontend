@@ -62,4 +62,15 @@ public class UbicacionxItem {
     public void setGimnasioid(int gimnasioid) {
         this.gimnasioid = gimnasioid;
     }
+
+    @Override
+    public String toString() {
+        return "UbicacionxItem{" +
+                "mapaid=" + mapaid +
+                ", coordenadaX=" + coordenadaX +
+                ", coordenadaY=" + coordenadaY +
+                ", itemid=" + itemid +
+                ", gimnasioid=" + gimnasioid +
+                '}';
+    }
 }

@@ -70,4 +70,16 @@ public class Mapa {
     public void setGimnasioId(Integer gimnasioId) {
         this.gimnasioId = gimnasioId;
     }
+
+    @Override
+    public String toString() {
+        return "Mapa{" +
+                "id=" + id +
+                ", nivel=" + nivel +
+                ", ancho=" + ancho +
+                ", alto=" + alto +
+                ", version=" + version +
+                ", gimnasioId=" + gimnasioId +
+                '}';
+    }
 }

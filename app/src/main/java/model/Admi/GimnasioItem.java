@@ -38,4 +38,13 @@ public class GimnasioItem {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
+    @Override
+    public String toString() {
+        return "GimnasioItem{" +
+                "gimnasioid=" + gimnasioid +
+                ", itemid=" + itemid +
+                ", cantidad=" + cantidad +
+                '}';
+    }
 }

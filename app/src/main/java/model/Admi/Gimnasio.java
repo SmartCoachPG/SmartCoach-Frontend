@@ -70,4 +70,16 @@ public class Gimnasio {
     public void setImagenGimnasio(String imagenGimnasio) {
         this.imagenGimnasio = imagenGimnasio;
     }
+
+    @Override
+    public String toString() {
+        return "Gimnasio{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", pisos=" + pisos +
+                ", direccion='" + direccion + '\'' +
+                ", barrio='" + barrio + '\'' +
+                ", imagenGimnasio='" + imagenGimnasio + '\'' +
+                '}';
+    }
 }

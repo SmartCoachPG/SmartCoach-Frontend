@@ -26,8 +26,10 @@ import api.Admi.UsuarioAdministradorApiService;
 import api.SharedPreferencesUtil;
 import api.retro;
 import model.Admi.GimnasioItem;
+import model.Admi.Item;
 import model.Admi.Mapa;
 import model.Admi.TipoEquipo;
+import model.Admi.UbicacionxItem;
 import model.Admi.UsuarioAdministrador;
 import model.User.UsuarioCliente;
 import okhttp3.OkHttpClient;
@@ -47,15 +49,17 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
     UbicacionxItemApiService ubicacionxItemApiService;
     GimnasioItemApiService gimnasioItemApiService;
     TipoEquipoApiService tipoEquipoApiService;
+    EquipoApiService equipoApiService;
 
     Long userId = SharedPreferencesUtil.getUserId(_35_ver_mapa_admin.this);
     String token = SharedPreferencesUtil.getToken(_35_ver_mapa_admin.this);
 
-    int gimnasioId;
+    int gimnasioId=0;
     Map<Integer, Mapa> mapas = new HashMap<>();
     List<GimnasioItem> listaItems = new ArrayList<>();
     Map<Integer,Integer> tipoEquipoItem = new HashMap<>();
     Map<Integer,String> iconos= new HashMap<>();
+    Map<Integer,List<UbicacionxItem>> ubicaciones= new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +69,21 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
 
         gridLayout = findViewById(R.id.gridLayout_35);
         iniciarPeticiones();
+        cargarIconos();
         cargarInfo();
         cargarCuadrados();
+    }
+
+    private void cargarIconos()
+    {
+        //Pesos
+        iconos.put(1,"icon_mancuerna_fondo_ne");
+        //Maquinas de peso
+        iconos.put(2,"icon_maquina_de_peso");
+        //Maquinas de cardio
+        iconos.put(3,"icon_corazon_ne");
+        //complementos
+        iconos.put(4,"icon_complementos_ne");
     }
 
     private void iniciarPeticiones()
@@ -84,6 +101,7 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
         ubicacionxItemApiService = retrofit.create(UbicacionxItemApiService.class);
         gimnasioItemApiService = retrofit.create(GimnasioItemApiService.class);
         tipoEquipoApiService = retrofit.create(TipoEquipoApiService.class);
+        equipoApiService = retrofit.create(EquipoApiService.class);
     }
 
     interface InfoCallback {
@@ -94,23 +112,18 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
         tenerGym(new InfoCallback() {
             @Override
             public void onCompletion() {
-                Log.d("FIN", "rutinas: ");
                 llenarMapas(new InfoCallback() {
                     @Override
                     public void onCompletion() {
-                        Log.d("FIN", "ejercicios: ");
                         llenarGimnasioItem(new InfoCallback() {
                             @Override
                             public void onCompletion() {
-                                Log.d("FIN", "prgoresos");
                                 llenarTipoEquipo( new InfoCallback() {
                                 @Override
                                 public void onCompletion() {
-                                    Log.d("FIN", "prgoresos");
                                     llenarUbicacionxItem(new InfoCallback() {
                                         @Override
                                         public void onCompletion() {
-                                            Log.d("FIN", "prgoresos");
                                             cargarMapa();
                                         }
                                     });
@@ -134,12 +147,17 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
             public void onResponse(Call<UsuarioAdministrador> call, Response<UsuarioAdministrador> response) {
                 if (response.isSuccessful()) {
                     UsuarioAdministrador usuario = response.body();
-                    Log.d("Usuario", "Nombre: " + usuario.getNombre());
-                    gimnasioId = usuario.getGimnasioId();
+                    if(usuario.getGimnasioId()!=null)
+                    {
+                        Log.d("Usuario", "Nombre: " + usuario.getNombre());
+                        gimnasioId = usuario.getGimnasioId();
+                    }
+                    callback.onCompletion();
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());
                 }
+
             }
 
             @Override
@@ -166,6 +184,7 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());
                 }
+                callback.onCompletion();
             }
 
             @Override
@@ -178,22 +197,87 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
 
     private void llenarGimnasioItem(_35_ver_mapa_admin.InfoCallback callback)
     {
+        Call<List<GimnasioItem>> call = gimnasioItemApiService.getGimnasioItemsByGimnasioid(gimnasioId);
+        call.enqueue(new Callback<List<GimnasioItem>>() {
+            @Override
+            public void onResponse(Call<List<GimnasioItem>> call, Response<List<GimnasioItem>> response) {
+                if (response.isSuccessful()) {
+                    listaItems = response.body();
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+                callback.onCompletion();
+            }
 
+            @Override
+            public void onFailure(Call<List<GimnasioItem>> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
     }
 
     private void llenarTipoEquipo(_35_ver_mapa_admin.InfoCallback callback)
     {
+        for(GimnasioItem gi : listaItems)
+        {
+            Call<Integer> call = equipoApiService.findTipoEquipoIdByItemId(Long.valueOf(gi.getItemid()));
+            call.enqueue(new Callback<Integer>() {
+                @Override
+                public void onResponse(Call<Integer> call, Response<Integer> response) {
+                    if (response.isSuccessful()) {
+                        tipoEquipoItem.put(gi.getItemid(),response.body());
+                    } else {
+                        // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                        Log.e("Error", "Error en la respuesta: " + response.code());
+                    }
+                    callback.onCompletion();
+                }
 
+                @Override
+                public void onFailure(Call<Integer> call, Throwable t) {
+                    // Maneja errores de red o de conversión de datos
+                    Log.e("Error", "Fallo en la petición: " + t.getMessage());
+                }
+            });
+        }
     }
 
     private void llenarUbicacionxItem(_35_ver_mapa_admin.InfoCallback callback)
     {
+        for(GimnasioItem gi : listaItems)
+        {
+            Call<List<UbicacionxItem>> call = ubicacionxItemApiService.getUbicacionxItemsByItemId(gi.getItemid(),gimnasioId);
+            call.enqueue(new Callback<List<UbicacionxItem>> () {
+                @Override
+                public void onResponse(Call<List<UbicacionxItem>>  call, Response<List<UbicacionxItem>>  response) {
+                    if (response.isSuccessful()) {
+                        ubicaciones.put(gi.getItemid(),response.body());
+                    } else {
+                        // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                        Log.e("Error", "Error en la respuesta: " + response.code());
+                    }
+                    callback.onCompletion();
+                }
 
+                @Override
+                public void onFailure(Call<List<UbicacionxItem>>  call, Throwable t) {
+                    // Maneja errores de red o de conversión de datos
+                    Log.e("Error", "Fallo en la petición: " + t.getMessage());
+                }
+            });
+        }
     }
 
     private void cargarMapa()
     {
-
+        Log.d("FIN", "idGimnasio: "+gimnasioId);
+        Log.d("FIN", "mapas: "+mapas);
+        Log.d("FIN", "listaItems: "+listaItems);
+        Log.d("FIN", "tipo equipo: "+tipoEquipoItem);
+        Log.d("FIN", "iconos: "+iconos);
+        Log.d("FIN", "ubicaciones: "+ubicaciones);
     }
 
     private void cargarCuadrados()

@@ -44,5 +44,14 @@ public class Equipo extends Item {
     public void setTipoEquipoId(Integer tipoEquipoId) {
         this.tipoEquipoId = tipoEquipoId;
     }
+
+    @Override
+    public String toString() {
+        return "Equipo{" +
+                "referencia='" + referencia + '\'' +
+                ", usuarioClienteId=" + usuarioClienteId +
+                ", tipoEquipoId=" + tipoEquipoId +
+                '}';
+    }
 }
 

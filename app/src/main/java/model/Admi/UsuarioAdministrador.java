@@ -65,4 +65,14 @@ public class UsuarioAdministrador extends Usuario
         this.gimnasioId = gimnasioId;
     }
 
+    @Override
+    public String toString() {
+        return "UsuarioAdministrador{" +
+                "cedula=" + cedula +
+                ", puesto='" + puesto + '\'' +
+                ", verificado=" + verificado +
+                ", fechaDeRenovacion=" + fechaDeRenovacion +
+                ", gimnasioId=" + gimnasioId +
+                '}';
+    }
 }

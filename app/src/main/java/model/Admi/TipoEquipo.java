@@ -30,5 +30,13 @@ public class TipoEquipo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    @Override
+    public String toString() {
+        return "TipoEquipo{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                '}';
+    }
 }
 
