@@ -32,5 +32,12 @@ public class _27_configurar_mapa_admin extends BaseActivityAdmi {
         btnModificarEquiposElementos_27 = findViewById(R.id.btnModificarEquiposElementos_27);
         btnEliminarMapa_27 = findViewById(R.id.btnEliminarMapa_27);
 
+        btnVer_27.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(_27_configurar_mapa_admin.this, _35_ver_mapa_admin.class);
+                startActivity(intent);
+            }
+        });
     }
 }

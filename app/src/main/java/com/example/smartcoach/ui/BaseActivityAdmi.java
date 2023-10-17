@@ -31,9 +31,6 @@ public abstract class BaseActivityAdmi extends AppCompatActivity {
 
         });
 
-        btnMancuernaAdmin.setOnClickListener(v -> {
-            // Iniciar actividad o mostrar layout de mancuerna
-        });
 
         btnPerfilAdmin.setOnClickListener(v -> {
             startActivity(new Intent(this, _6_Principal_Admi.class));

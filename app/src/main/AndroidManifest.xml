@@ -166,5 +166,11 @@
             android:exported="false">
         </activity>
 
+        <activity
+            android:name=".ui._35_ver_mapa_admin"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
     </application>
 </manifest>
