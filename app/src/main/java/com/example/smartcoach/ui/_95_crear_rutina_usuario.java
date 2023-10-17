@@ -69,6 +69,7 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
         super.onCreate(savedInstanceState);
         setContentView(R.layout._95_crear_rutina_usuario);
         getSupportActionBar().hide();
+
         userId = SharedPreferencesUtil.getUserId(_95_crear_rutina_usuario.this);
         token = SharedPreferencesUtil.getToken(_95_crear_rutina_usuario.this);
         iniciarPeticiones();

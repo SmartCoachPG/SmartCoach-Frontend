@@ -101,4 +101,19 @@ public class ProgresoxEjercicio {
     public void setUsuarioClienteId(Integer usuarioClienteId) {
         this.usuarioClienteId = usuarioClienteId;
     }
+
+    @Override
+    public String toString() {
+        return "ProgresoxEjercicio{" +
+                "id=" + id +
+                ", peso=" + peso +
+                ", fecha=" + fecha +
+                ", valoracion=" + valoracion +
+                ", serie=" + serie +
+                ", repeticiones=" + repeticiones +
+                ", comentarios='" + comentarios + '\'' +
+                ", descansoEntreSeries=" + descansoEntreSeries +
+                ", usuarioClienteId=" + usuarioClienteId +
+                '}';
+    }
 }
