@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
 
+import api.Admi.UsuarioAdministradorApiService;
+
 public abstract class BaseActivityAdmi extends AppCompatActivity {
 
     @Override

@@ -81,17 +81,13 @@ public class _7_VerPerfil_Admi extends BaseActivityAdmi {
 
     private void iniciarPeticiones()
     {
-
         OkHttpClient okHttpClient = retro.getUnsafeOkHttpClientWithToken(token);
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://10.0.2.2:8043/api/")
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         usuarioAdministradorApiService = retrofit.create(UsuarioAdministradorApiService.class);
-
     }
 
     private void cargarInfo()
