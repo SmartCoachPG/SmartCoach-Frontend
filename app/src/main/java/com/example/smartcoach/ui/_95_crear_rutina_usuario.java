@@ -19,15 +19,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.smartcoach.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import api.DateSerializer;
 import api.Exercise.RutinaApiService;
 import api.SharedPreferencesUtil;
+import api.TimeDeserializer;
+import api.TimeSerializer;
 import api.User.UsuarioClienteApiService;
 import api.retro;
+import model.Exercise.Rutina;
 import model.User.UsuarioCliente;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -52,7 +62,8 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
 
     UsuarioClienteApiService usuarioClienteApiService;
     RutinaApiService rutinaApiService;
-
+    List<Rutina> listaRutinas= new ArrayList<>();
+    Map<String,Time> duracionRD = new HashMap<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,14 +108,16 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
         selectedImages.put((ImageButton) findViewById(R.id.imageSabado), R.drawable.icon_sabado_na);
         selectedImages.put((ImageButton) findViewById(R.id.imageDomingo), R.drawable.icon_domingo_na);
         configureDayClickListeners();
-
         cargarInfo();
+        cargarDuracion();
 
         btnCrearRutina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(_95_crear_rutina_usuario.this, _98_ver_rutina_ejercicio_usuario.class);
                 crearRutina();
+                SharedPreferencesUtil.saveRutina(_95_crear_rutina_usuario.this,"1");
+                Log.d("RUTINA CREADAAA", "resultado: "+SharedPreferencesUtil.getRutina(_95_crear_rutina_usuario.this));
                 Toast.makeText(_95_crear_rutina_usuario.this, "Rutina creada", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
@@ -120,11 +133,16 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
         ImageButton imageSabado = findViewById(R.id.imageSabado);
         ImageButton imageDomingo = findViewById(R.id.imageDomingo);
 
-
         imageLunes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectedDay = Calendar.MONDAY;
+                Time time = duracionRD.get("Lunes");
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(time);
+                int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
+                else setTextDuracionRutina.setText("0");
                 restoreOriginalImages();
                 updateSelectedImage(imageLunes);
             }
@@ -133,6 +151,12 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
             @Override
             public void onClick(View v) {
                 selectedDay = Calendar.TUESDAY;
+                Time time = duracionRD.get("Martes");
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(time);
+                int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
+                else setTextDuracionRutina.setText("0");
                 restoreOriginalImages();
                 updateSelectedImage(imageMartes);
             }
@@ -141,6 +165,12 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
             @Override
             public void onClick(View v) {
                 selectedDay = Calendar.WEDNESDAY;
+                Time time = duracionRD.get("Miércoles");
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(time);
+                int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
+                else setTextDuracionRutina.setText("0");
                 restoreOriginalImages();
                 updateSelectedImage(imageMiercoles);
             }
@@ -149,6 +179,12 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
             @Override
             public void onClick(View v) {
                 selectedDay = Calendar.THURSDAY;
+                Time time = duracionRD.get("Jueves");
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(time);
+                int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
+                else setTextDuracionRutina.setText("0");
                 restoreOriginalImages();
                 updateSelectedImage(imageJueves);
             }
@@ -157,6 +193,12 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
             @Override
             public void onClick(View v) {
                 selectedDay = Calendar.FRIDAY;
+                Time time = duracionRD.get("Viernes");
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(time);
+                int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
+                else setTextDuracionRutina.setText("0");
                 restoreOriginalImages();
                 updateSelectedImage(imageViernes);
             }
@@ -165,6 +207,12 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
             @Override
             public void onClick(View v) {
                 selectedDay = Calendar.SATURDAY;
+                Time time = duracionRD.get("Sábado");
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(time);
+                int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
+                else setTextDuracionRutina.setText("0");
                 restoreOriginalImages();
                 updateSelectedImage(imageSabado);
             }
@@ -175,6 +223,12 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
                 restoreOriginalImages();
                 updateSelectedImage(imageDomingo);
                 selectedDay = Calendar.SUNDAY;
+                Time time = duracionRD.get("Domingo");
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(time);
+                int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
+                else setTextDuracionRutina.setText("0");
             }
         });
     }
@@ -196,6 +250,13 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
 
     private void iniciarPeticiones()
     {
+
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Date.class, new DateSerializer())
+                .registerTypeAdapter(Time.class,new TimeSerializer())
+                .registerTypeAdapter(Time.class,new TimeDeserializer())
+                .create();
+
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -207,11 +268,12 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://10.0.2.2:8043/api/")
                 .client(okHttpClient)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         usuarioClienteApiService = retrofit.create(UsuarioClienteApiService.class);
         rutinaApiService = retrofit.create(RutinaApiService.class);
+
     }
 
     private void cargarInfo()
@@ -223,9 +285,8 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
                 if (response.isSuccessful()) {
                     UsuarioCliente usuario = response.body();
                     Log.d("Usuario", "Nombre: " + usuario.getNombre());
-
                     setTextNombreUser.setText(usuario.getNombre());
-
+                    setTextDuracionRutina.setText("0");
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());
@@ -260,5 +321,34 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
             }
         });
     }
+
+    private void cargarDuracion()
+    {
+        Call<List<Rutina>> call = rutinaApiService.getByUsuarioClienteId(userId.intValue());
+        call.enqueue(new Callback<List<Rutina>>() {
+            @Override
+            public void onResponse(Call<List<Rutina>> call, Response<List<Rutina>>response) {
+                if (response.isSuccessful()) {
+                    listaRutinas = response.body();
+                    Log.d("Rutinas", "estas son: "+listaRutinas);
+                    for(Rutina rut : listaRutinas)
+                    {
+                        duracionRD.put(rut.getDia(),rut.getDuracion());
+                    }
+                    Log.d("ORGANIZAR RD", "lista:"+duracionRD);
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Rutina>> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+
+    }
+
 }
 

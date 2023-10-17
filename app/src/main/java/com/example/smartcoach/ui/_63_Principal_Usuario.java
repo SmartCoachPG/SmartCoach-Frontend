@@ -279,6 +279,7 @@ public class _63_Principal_Usuario extends BaseActivityCliente {
     {
         SharedPreferencesUtil.deleteToken(_63_Principal_Usuario.this);
         SharedPreferencesUtil.deleteUserId(_63_Principal_Usuario.this);
+        SharedPreferencesUtil.deleteRutina(_63_Principal_Usuario.this);
         Toast.makeText(_63_Principal_Usuario.this, "Cesion Cerrada", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(_63_Principal_Usuario.this, _2_IniciarSesionRegistrarse.class);
         startActivity(intent);

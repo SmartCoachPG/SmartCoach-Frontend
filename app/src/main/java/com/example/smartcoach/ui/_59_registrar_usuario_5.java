@@ -40,6 +40,7 @@ import api.SharedPreferencesUtil;
 import api.TimeDeserializer;
 import api.TimeSerializer;
 import api.User.PerfilMedicoApiService;
+import api.User.ProgresoxEjercicioService;
 import api.User.UsuarioApiService;
 import api.User.UsuarioClienteApiService;
 import api.User.UsuarioClienteRestriccionMedicaApiService;
@@ -47,6 +48,7 @@ import api.User.ValorApiService;
 import api.retro;
 import model.Exercise.Rutina;
 import model.User.PerfilMedico;
+import model.User.ProgresoxEjercicio;
 import model.User.RestriccionMedica;
 import model.User.Usuario;
 import model.User.UsuarioCliente;
@@ -84,6 +86,8 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
     ValorApiService valorApiService;
     UsuarioClienteRestriccionMedicaApiService usuarioClienteRestriccionMedicaApiService;
     UsuarioApiService usuarioApiService;
+
+    ProgresoxEjercicioService progresoxEjercicioService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -241,6 +245,7 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
         valorApiService = retrofit.create(ValorApiService.class);
         usuarioClienteRestriccionMedicaApiService = retrofit.create(UsuarioClienteRestriccionMedicaApiService.class);
         usuarioApiService = retrofit.create(UsuarioApiService.class);
+        progresoxEjercicioService = retrofit.create(ProgresoxEjercicioService.class);
     }
 
     private void actualizarLista(){
@@ -462,6 +467,14 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
 
                         if (tipoUsuario != null) {
                             Log.d("IniciarSesionActivity", "Usuario inició sesión: " + usuarioResponse.getId());
+                            validarRutina(usuarioResponse.getId().intValue(), new _2_IniciarSesionRegistrarse.ValidarRutinaCallback() {
+                                @Override
+                                public void onResult(int resultado) {
+                                    // Aquí manejas el resultado, por ejemplo, guardar en SharedPreferences
+                                    sharedpreferencesutil.saveRutina(_59_registrar_usuario_5.this, String.valueOf(resultado));
+                                    Log.d("INICIAR SESION", "RUTINA: " + resultado);
+                                }
+                            });
                             sharedpreferencesutil.saveToken(_59_registrar_usuario_5.this,usuarioResponse.getToken());
                             sharedpreferencesutil.saveUserId(_59_registrar_usuario_5.this,usuarioResponse.getId());
                             Intent intent = new Intent(_59_registrar_usuario_5.this, _63_Principal_Usuario.class);
@@ -486,6 +499,35 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
             }
 
         });
+
     }
+
+    public interface ValidarRutinaCallback {
+        void onResult(int resultado);
+    }
+
+    private void validarRutina(int idU, _2_IniciarSesionRegistrarse.ValidarRutinaCallback callback) {
+        iniciarPeticiones();
+
+        Call<List<ProgresoxEjercicio>> call = progresoxEjercicioService.getByUsuarioClienteId(idU);
+        call.enqueue(new Callback<List<ProgresoxEjercicio>>() {
+            @Override
+            public void onResponse(Call<List<ProgresoxEjercicio>> call, Response<List<ProgresoxEjercicio>> response) {
+                int resultado = 0;
+                if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
+                    resultado = 1;
+                }
+                Log.d("VALIDANDO", "RUTINA: "+resultado);
+                callback.onResult(resultado);
+            }
+
+            @Override
+            public void onFailure(Call<List<ProgresoxEjercicio>> call, Throwable t) {
+                callback.onResult(0);
+            }
+        });
+    }
+
+
 }
 

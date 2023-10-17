@@ -77,5 +77,24 @@ public class SharedPreferencesUtil {
     }
 
 
+    public static void saveRutina(Context context, String rutina) {
+        SharedPreferences sharedPreferences = getEncryptedSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("rutina_key", rutina);
+        editor.apply();
+    }
+
+    public static String getRutina(Context context) {
+        SharedPreferences sharedPreferences = getEncryptedSharedPreferences(context);
+        return sharedPreferences.getString("rutina_key", null);
+    }
+
+    public static void deleteRutina(Context context) {
+        SharedPreferences sharedPreferences = getEncryptedSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("rutina_key");
+        editor.apply();
+    }
+
 }
 
