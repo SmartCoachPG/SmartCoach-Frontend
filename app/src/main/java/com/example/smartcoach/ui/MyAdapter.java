@@ -18,13 +18,15 @@ import model.User.RestriccionMedica;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-
-    private List<RestriccionMedica> mData;
+    private List<RestriccionMedica> mData = new ArrayList<>();
     private List<RestriccionMedica> seleccionados = new ArrayList<>();
     private List<RestriccionMedica> seleccionTemporal = new ArrayList<>();
 
     public MyAdapter(List<RestriccionMedica> data) {
         mData = data;
+    }
+
+    public MyAdapter(String[] myDataset) {
     }
 
     @NonNull
