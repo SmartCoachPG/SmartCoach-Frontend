@@ -115,12 +115,11 @@
             layout="@layout/_otros_menu_usuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="52dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnIniciarRutina_98" />
-
 
         <ImageButton
             android:id="@+id/btnModificarRutina_98"
@@ -136,72 +135,32 @@
             app:layout_constraintVertical_bias="0.568"
             app:srcCompat="@drawable/icon_modificar" />
 
-        <ScrollView
-            android:id="@+id/scrollView3"
-            android:layout_width="377dp"
-            android:layout_height="496dp"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewEjercicios_98"
+            android:layout_width="360dp"
+            android:layout_height="294dp"
+            android:layout_marginTop="32dp"
+            android:orientation="vertical"
+            android:scrollbars="vertical"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rectanguloRutinaDelDia_98">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <include
-                    android:id="@+id/ejercicio1_98"
-                    layout="@layout/caja_ejercicio_rutina"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-
-                <include
-                    android:id="@+id/ejercicio2_98"
-                    layout="@layout/caja_ejercicio_rutina"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-
-                <include
-                    android:id="@+id/ejercicio3_98"
-                    layout="@layout/caja_ejercicio_rutina"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-
-                <include
-                    android:id="@+id/ejercicio4_98"
-                    layout="@layout/caja_ejercicio_rutina"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-
-        </ScrollView>
+            app:layout_constraintTop_toBottomOf="@+id/rectanguloRutinaDelDia_98" />
 
         <Button
             android:id="@+id/btnIniciarRutina_98"
             android:layout_width="361dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="16dp"
             android:backgroundTint="#FDA400"
             android:elevation="50dp"
             android:text="Iniciar Rutina"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewEjercicios_98" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

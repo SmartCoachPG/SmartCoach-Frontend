@@ -59,7 +59,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
     Button btnIniciarRutina;
     ImageButton btnModificarRutina;
 
-    RecyclerView recyclerView;
+    RecyclerView recyclerViewEjercicios_98;
 
     private final Map<ImageButton, Integer> originalImages = new HashMap<>();
     private final Map<ImageButton, Integer> selectedImages = new HashMap<>();
@@ -112,7 +112,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
         horas = findViewById(R.id.horas);
         btnIniciarRutina = findViewById(R.id.btnIniciarRutina_98);
         btnModificarRutina = findViewById(R.id.btnModificarRutina_98);
-        //recyclerView = findViewById(R.id.recyclerView_98);
+        recyclerViewEjercicios_98 = findViewById(R.id.recyclerViewEjercicios_98);
         View diasSemanaView = LayoutInflater.from(this).inflate(R.layout._otros_dias_semana_ne, null);
 
         // Encuentra los ImageButtons en el diseño secundario
