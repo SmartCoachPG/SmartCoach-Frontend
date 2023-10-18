@@ -457,28 +457,39 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
     private void mostrar(String dia)
     {
         RecyclerView recyclerView = findViewById(R.id.recyclerViewEjercicios_98);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        List<CajaRutina> cajaRutinas = new ArrayList<>();
+        LinearLayout emptyView = findViewById(R.id.empty_view_98);
         Rutina rut = rutinas.get(dia);
         List<Ejercicio> ej= ejercicios.get(rut.getId());
 
-        for(Ejercicio ejercicio : ej)
+        if(ej.isEmpty())
         {
-            CajaRutina temp = new CajaRutina();
-            Ejercicio temp2 = new Ejercicio();
-            ProgresoxEjercicio temp3 = new ProgresoxEjercicio();
-            temp3 = progresos.get(ejercicio.getId().intValue());
-            Log.d("PROGRESO", "progresos: "+progresos);
-            Log.d("ESTE ES EL PROGRESO", "temp3: "+temp3);
-            temp2.setNombre(ejercicio.getNombre());
-            temp.setEjercicio(temp2);
-            temp.setProgresoxEjercicio(temp3);
-            cajaRutinas.add(temp);
+            recyclerView.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        }
+        else{
+
+            recyclerView.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            List<CajaRutina> cajaRutinas = new ArrayList<>();
+
+            for(Ejercicio ejercicio : ej)
+            {
+                CajaRutina temp = new CajaRutina();
+                Ejercicio temp2 = new Ejercicio();
+                ProgresoxEjercicio temp3 = new ProgresoxEjercicio();
+                temp3 = progresos.get(ejercicio.getId().intValue());
+                temp2=ejercicio;
+                temp.setEjercicio(temp2);
+                temp.setProgresoxEjercicio(temp3);
+                cajaRutinas.add(temp);
+            }
+
+            CajaRutinaAdapter adapter = new CajaRutinaAdapter(cajaRutinas);
+            recyclerView.setAdapter(adapter);
         }
 
-        CajaRutinaAdapter adapter = new CajaRutinaAdapter(cajaRutinas);
-        recyclerView.setAdapter(adapter);
+
 
     }
 

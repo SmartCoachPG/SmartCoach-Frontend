@@ -109,11 +109,6 @@
             android:exported="false"/>
 
         <activity
-            android:name=".ui._114_ver_rutina_ejercicio_dia_sin_ejercicio"
-            android:label="@string/app_name"
-            android:exported="false"/>
-
-        <activity
             android:name=".ui._115_modificar_rutina_ejercicios"
             android:label="@string/app_name"
             android:exported="false">

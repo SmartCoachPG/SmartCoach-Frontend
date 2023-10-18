@@ -1,166 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/f3">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/f3">
-
-        <TextView
-            android:id="@+id/tituloPt2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="¿Listo para cumplir tus metas?"
-            android:textColor="@color/white"
-            android:textSize="23sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bienvenida" />
-
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal">
         <TextView
             android:id="@+id/bienvenida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="52dp"
-            android:layout_marginTop="32dp"
             android:text="¡Bienvenido!"
             android:textColor="@color/white"
-            android:textSize="25sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            android:textSize="25sp" />
         <TextView
             android:id="@+id/setTextNombreUser_98"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="-20dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginLeft="10dp"
             android:text="Nombre User"
             android:textColor="@color/white"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.357"
-            app:layout_constraintStart_toEndOf="@+id/bienvenida"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="25sp" />
+    </LinearLayout>
 
-        <include
-            android:id="@+id/include"
-            layout="@layout/_otros_dias_semana_ne"
-            android:layout_width="403dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="36dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloPt2" />
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/tituloPt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="¿Listo para cumplir tus metas?"
+        android:textColor="@color/white"
+        android:textSize="23sp" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/_otros_dias_semana_ne"
+        android:layout_width="403dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="46dp" />
+
+    <FrameLayout
+        android:layout_width="379dp"
+        android:layout_height="71dp"
+        android:layout_gravity="center_horizontal">
 
         <ImageView
             android:id="@+id/rectanguloRutinaDelDia_98"
-            android:layout_width="379dp"
-            android:layout_height="71dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include"
             app:srcCompat="@drawable/rectrangulo_alargado_b" />
 
-        <TextView
-            android:gravity="center_vertical"
-            android:id="@+id/tituloRutinaDia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="18dp"
-            android:text="Rutina del día"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="@+id/rectanguloRutinaDelDia_98"
-            app:layout_constraintStart_toStartOf="@+id/rectanguloRutinaDelDia_98"
-            app:layout_constraintTop_toBottomOf="@+id/include"
-            app:layout_constraintVertical_bias="0.0" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:gravity="center_vertical"
+                android:id="@+id/tituloRutinaDia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="18dp"
+                android:text="Rutina del día"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/setTextDuracionRutina"
-            android:layout_width="28dp"
-            android:layout_height="33dp"
-            android:text="TextView"
-            android:textColor="#FDA400"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="@+id/rectanguloRutinaDelDia_98"
-            app:layout_constraintEnd_toStartOf="@+id/horas"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/tituloRutinaDia"
-            app:layout_constraintTop_toBottomOf="@+id/include"
-            app:layout_constraintVertical_bias="0.608" />
+            <ImageButton
+                android:layout_gravity="center_vertical"
+                android:id="@+id/btnModificarRutina_98"
+                android:layout_width="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/icon_modificar" />
 
-        <TextView
-            android:id="@+id/horas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:text="horas"
-            android:textColor="#FDA400"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="@+id/rectanguloRutinaDelDia_98"
-            app:layout_constraintEnd_toEndOf="@+id/rectanguloRutinaDelDia_98"
-            app:layout_constraintTop_toBottomOf="@+id/include"
-            app:layout_constraintVertical_bias="0.608" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
 
+            <TextView
+                android:id="@+id/setTextDuracionRutina"
+                android:layout_width="28dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="33dp"
+                android:text="TextView"
+                android:textColor="#FDA400"
+                android:textSize="25sp" />
 
+            <TextView
+                android:id="@+id/horas"
+                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:text="horas"
+                android:textColor="#FDA400"
+                android:textSize="25sp" />
 
+        </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/btnModificarRutina_98"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="@+id/rectanguloRutinaDelDia_98"
-            app:layout_constraintEnd_toStartOf="@+id/setTextDuracionRutina"
-            app:layout_constraintHorizontal_bias="0.218"
-            app:layout_constraintStart_toEndOf="@+id/tituloRutinaDia"
-            app:layout_constraintTop_toBottomOf="@+id/include"
-            app:layout_constraintVertical_bias="0.568"
-            app:srcCompat="@drawable/icon_modificar" />
+    </FrameLayout>
 
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="379dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="425dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewEjercicios_98"
-            android:layout_width="356dp"
-            android:layout_height="377dp"
-            android:layout_marginTop="32dp"
-            android:orientation="vertical"
-            android:scrollbars="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rectanguloRutinaDelDia_98" />
-
-        <Button
-            android:id="@+id/btnIniciarRutina_98"
-            android:layout_width="361dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:backgroundTint="#FDA400"
-            android:elevation="50dp"
-            android:text="Iniciar Rutina"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewEjercicios_98" />
-
-
-        <include
-            android:layout_marginTop="10dp"
-            android:id="@+id/menuUser"
-            layout="@layout/_otros_menu_usuario"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/btnIniciarRutina_98" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            android:layout_height="match_parent"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/empty_view_98"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/grisClaro"
+                android:layout_height="wrap_content"
+                android:text="Para este día no tienes ninguna rutina asignada"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+    <Button
+        android:id="@+id/btnIniciarRutina_98"
+        android:layout_width="361dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#FDA400"
+        android:elevation="50dp"
+        android:text="Iniciar Rutina"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewEjercicios_98" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+    <include
+        android:id="@+id/menuUser"
+        layout="@layout/_otros_menu_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btnIniciarRutina_98" />
+
+</LinearLayout>
+
+
+
+
