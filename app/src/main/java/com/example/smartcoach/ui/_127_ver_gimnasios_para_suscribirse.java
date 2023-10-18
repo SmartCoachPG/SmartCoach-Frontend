@@ -10,7 +10,7 @@ import android.os.Bundle;
 
 import com.example.smartcoach.R;
 
-public class _127_ver_gimnasios_para_suscribirse extends AppCompatActivity {
+public class _127_ver_gimnasios_para_suscribirse extends BaseActivityCliente {
     TextView tituloSuscríbete_127;
     EditText editTextGym_127;
     ImageButton btnBusquedaGym_127;
