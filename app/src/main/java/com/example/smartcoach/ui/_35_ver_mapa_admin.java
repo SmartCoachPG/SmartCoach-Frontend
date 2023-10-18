@@ -3,6 +3,7 @@ package com.example.smartcoach.ui;
 import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -316,13 +317,12 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
         Log.d("FIN", "tipo equipo: "+tipoEquipoItem);
         Log.d("FIN", "iconos: "+iconos);
         Log.d("FIN", "ubicaciones: "+ubicaciones);
-        cargarCuadrados(mapas.get(1).getAncho(),mapas.get(piso).getAlto());
+        cargarCuadrados(mapas.get(piso).getAncho(),mapas.get(piso).getAlto()+1);
         cargarImagenes();
     }
 
     private void cargarCuadrados(int ancho,int alto)
     {
-
         int tamañoCasilla = 32;
         final float scale = getResources().getDisplayMetrics().density;
         int tamañoCasillaPixels = (int) (tamañoCasilla * scale + 0.5f);
@@ -351,26 +351,29 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
 
     private void cargarImagenes()
     {
+        Log.d("IMAGENESSS", "lista Items: "+listaItems);
         for(GimnasioItem gi : listaItems)
         {
             List<UbicacionxItem> ubi = ubicaciones.get(gi.getItemid());
             if(!ubi.isEmpty())
             {
+                Log.d("IMAGENESSS", "listaUbi: "+ubi);
                 for(UbicacionxItem uxi : ubi)
                 {
                     if(uxi.getMapaid()==mapas.get(piso).getId())
                     {
+                        Log.d("IMAGENES", "elemento : "+uxi);
                         ImageView imageView = new ImageView(this);
-                        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(uxi.getCoordenadaX()), GridLayout.spec(uxi.getCoordenadaY()));  // 0,0 es para la primera fila, primera columna
-                        layoutParams.width =  (int) (32 * getResources().getDisplayMetrics().density + 0.5f);
-                        layoutParams.height =  (int) (32 * getResources().getDisplayMetrics().density + 0.5f);
-
+                        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(uxi.getCoordenadaY()), GridLayout.spec(uxi.getCoordenadaX()));  // 0,0 es para la primera fila, primera columna
+                        layoutParams.width =  (int) (30 * getResources().getDisplayMetrics().density + 0.5f);
+                        layoutParams.height =  (int) (30 * getResources().getDisplayMetrics().density + 0.5f);
+                        int margin = (int) (1 * getResources().getDisplayMetrics().density + 0.5f);
+                        layoutParams.setMargins(margin,margin,margin,margin);
                         imageView.setLayoutParams(layoutParams);
                         int tipo = tipoEquipoItem.get(uxi.getItemid());
                         int resID = getResources().getIdentifier(iconos.get(tipo), "drawable", getPackageName());
                         imageView.setImageResource(resID);
                         gridLayout.addView(imageView);
-
                     }
                 }
             }

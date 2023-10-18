@@ -4,13 +4,15 @@ import java.io.Serializable;
 
 public class UbicacionxItem {
 
+    private long id;
     private int mapaid;
     private int coordenadaX;
     private int coordenadaY;
     private int itemid;
     private int gimnasioid;
 
-    public UbicacionxItem(int mapaid, int coordenadaX, int coordenadaY, int itemid, int gimnasioid) {
+    public UbicacionxItem(long id, int mapaid, int coordenadaX, int coordenadaY, int itemid, int gimnasioid) {
+        this.id = id;
         this.mapaid = mapaid;
         this.coordenadaX = coordenadaX;
         this.coordenadaY = coordenadaY;
@@ -61,6 +63,14 @@ public class UbicacionxItem {
 
     public void setGimnasioid(int gimnasioid) {
         this.gimnasioid = gimnasioid;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override
