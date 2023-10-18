@@ -1,5 +1,6 @@
 package com.example.smartcoach.ui;
 
+import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -60,6 +61,7 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
     Map<Integer,Integer> tipoEquipoItem = new HashMap<>();
     Map<Integer,String> iconos= new HashMap<>();
     Map<Integer,List<UbicacionxItem>> ubicaciones= new HashMap<>();
+    int piso = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,6 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
         iniciarPeticiones();
         cargarIconos();
         cargarInfo();
-        cargarCuadrados();
     }
 
     private void cargarIconos()
@@ -84,6 +85,26 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
         iconos.put(3,"icon_corazon_ne");
         //complementos
         iconos.put(4,"icon_complementos_ne");
+        // item. caminos
+        iconos.put(5,"cuadrado_gr");
+        // item. puerta
+        iconos.put(6,"rectangulo_alargado_redondeado_n");
+        // item. salud
+        iconos.put(7,"icon_enfermera_ne");
+        // item. baño
+        iconos.put(8,"icon_papel_ne");
+        // item. entrada
+        iconos.put(9,"icon_puerta_ne");
+        // item. cafeteria
+        iconos.put(10,"icon_basura_ne_tansp");
+        // item. lockers
+        iconos.put(11,"icon_locker_ne");
+        // item. oficina
+        iconos.put(12,"icon_silla_ne");
+        // item. muro
+        iconos.put(13,"icon_linea_gr");
+        // item. escaleras
+        iconos.put(14,"icon_escaleras_ne");
     }
 
     private void iniciarPeticiones()
@@ -121,7 +142,7 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
                                 llenarTipoEquipo( new InfoCallback() {
                                 @Override
                                 public void onCompletion() {
-                                    llenarUbicacionxItem(new InfoCallback() {
+                                    procesarItems(0,new InfoCallback() {
                                         @Override
                                         public void onCompletion() {
                                             cargarMapa();
@@ -222,38 +243,56 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
     {
         for(GimnasioItem gi : listaItems)
         {
-            Call<Integer> call = equipoApiService.findTipoEquipoIdByItemId(Long.valueOf(gi.getItemid()));
-            call.enqueue(new Callback<Integer>() {
-                @Override
-                public void onResponse(Call<Integer> call, Response<Integer> response) {
-                    if (response.isSuccessful()) {
-                        tipoEquipoItem.put(gi.getItemid(),response.body());
-                    } else {
-                        // Maneja errores del servidor, por ejemplo, un error 404 o 500.
-                        Log.e("Error", "Error en la respuesta: " + response.code());
+            if(gi.getItemid()>11)
+            {
+                Call<Integer> call = equipoApiService.findTipoEquipoIdByItemId(Long.valueOf(gi.getItemid()));
+                call.enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(Call<Integer> call, Response<Integer> response) {
+                        if (response.isSuccessful()) {
+                            tipoEquipoItem.put(gi.getItemid(),response.body());
+                        } else {
+                            // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                            Log.e("Error", "Error en la respuesta: " + response.code());
+                        }
+                        callback.onCompletion();
                     }
-                    callback.onCompletion();
-                }
 
-                @Override
-                public void onFailure(Call<Integer> call, Throwable t) {
-                    // Maneja errores de red o de conversión de datos
-                    Log.e("Error", "Fallo en la petición: " + t.getMessage());
-                }
-            });
+                    @Override
+                    public void onFailure(Call<Integer> call, Throwable t) {
+                        // Maneja errores de red o de conversión de datos
+                        Log.e("Error", "Fallo en la petición: " + t.getMessage());
+                    }
+                });
+            }
+            else {
+                tipoEquipoItem.put(gi.getItemid(),gi.getItemid()+4);
+            }
         }
     }
 
-    private void llenarUbicacionxItem(_35_ver_mapa_admin.InfoCallback callback)
-    {
-        for(GimnasioItem gi : listaItems)
-        {
+    private void procesarItems(int index, InfoCallback callback) {
+        if (index >= listaItems.size()) {
+            callback.onCompletion(); // Todos los items han sido procesados
+            return;
+        }
+        GimnasioItem gi = listaItems.get(index);
+        llenarUbicacionxItem(gi, new InfoCallback() {
+            @Override
+            public void onCompletion() {
+                procesarItems(index + 1, callback);
+            }
+        });
+    }
+    private void llenarUbicacionxItem(GimnasioItem gi,_35_ver_mapa_admin.InfoCallback callback) {
+
             Call<List<UbicacionxItem>> call = ubicacionxItemApiService.getUbicacionxItemsByItemId(gi.getItemid(),gimnasioId);
             call.enqueue(new Callback<List<UbicacionxItem>> () {
                 @Override
                 public void onResponse(Call<List<UbicacionxItem>>  call, Response<List<UbicacionxItem>>  response) {
                     if (response.isSuccessful()) {
-                        ubicaciones.put(gi.getItemid(),response.body());
+                        List<UbicacionxItem> lista = response.body();
+                        ubicaciones.put(gi.getItemid(),lista);
                     } else {
                         // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                         Log.e("Error", "Error en la respuesta: " + response.code());
@@ -267,7 +306,6 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
                     Log.e("Error", "Fallo en la petición: " + t.getMessage());
                 }
             });
-        }
     }
 
     private void cargarMapa()
@@ -278,13 +316,12 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
         Log.d("FIN", "tipo equipo: "+tipoEquipoItem);
         Log.d("FIN", "iconos: "+iconos);
         Log.d("FIN", "ubicaciones: "+ubicaciones);
+        cargarCuadrados(mapas.get(1).getAncho(),mapas.get(piso).getAlto());
+        cargarImagenes();
     }
 
-    private void cargarCuadrados()
+    private void cargarCuadrados(int ancho,int alto)
     {
-
-        int ancho = 10;
-        int alto = 10;
 
         int tamañoCasilla = 32;
         final float scale = getResources().getDisplayMetrics().density;
@@ -309,23 +346,37 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
             }
         }
 
-        cargarImagenes();
 
     }
 
     private void cargarImagenes()
     {
-        ImageView imageView = new ImageView(this);
+        for(GimnasioItem gi : listaItems)
+        {
+            List<UbicacionxItem> ubi = ubicaciones.get(gi.getItemid());
+            if(!ubi.isEmpty())
+            {
+                for(UbicacionxItem uxi : ubi)
+                {
+                    if(uxi.getMapaid()==mapas.get(piso).getId())
+                    {
+                        ImageView imageView = new ImageView(this);
+                        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(uxi.getCoordenadaX()), GridLayout.spec(uxi.getCoordenadaY()));  // 0,0 es para la primera fila, primera columna
+                        layoutParams.width =  (int) (32 * getResources().getDisplayMetrics().density + 0.5f);
+                        layoutParams.height =  (int) (32 * getResources().getDisplayMetrics().density + 0.5f);
 
-        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(
-                GridLayout.spec(0), GridLayout.spec(0));  // 0,0 es para la primera fila, primera columna
-        layoutParams.width =  (int) (32 * getResources().getDisplayMetrics().density + 0.5f);
-        layoutParams.height =  (int) (32 * getResources().getDisplayMetrics().density + 0.5f);
+                        imageView.setLayoutParams(layoutParams);
+                        int tipo = tipoEquipoItem.get(uxi.getItemid());
+                        int resID = getResources().getIdentifier(iconos.get(tipo), "drawable", getPackageName());
+                        imageView.setImageResource(resID);
+                        gridLayout.addView(imageView);
 
-        imageView.setLayoutParams(layoutParams);
-        imageView.setImageResource(R.drawable.icon_mancuerna_ne_fondo_transp);  // Reemplaza "tu_imagen" con el nombre de tu recurso de imagen
+                    }
+                }
+            }
 
-        gridLayout.addView(imageView);
+        }
+
 
     }
 }
