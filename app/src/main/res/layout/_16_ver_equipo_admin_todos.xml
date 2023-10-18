@@ -160,60 +160,28 @@
         app:layout_constraintTop_toBottomOf="@+id/btnEncuentraEquipo_16"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ScrollView
-        android:id="@+id/scrollView_16"
-        android:layout_width="337dp"
-        android:layout_height="394dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rectanguloFondoEquipo_16"
-        app:layout_constraintEnd_toEndOf="@+id/rectanguloFondoEquipo_16"
-        app:layout_constraintStart_toStartOf="@+id/rectanguloFondoEquipo_16"
-        app:layout_constraintTop_toTopOf="@+id/rectanguloFondoEquipo_16">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_16"
+            android:layout_width="343dp"
+            android:layout_height="385dp"
+            app:layout_constraintBottom_toBottomOf="@+id/rectanguloFondoEquipo_16"
+            app:layout_constraintEnd_toEndOf="@+id/rectanguloFondoEquipo_16"
+            app:layout_constraintStart_toStartOf="@+id/rectanguloFondoEquipo_16"
+            app:layout_constraintTop_toTopOf="@+id/rectanguloFondoEquipo_16" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="459dp"
-            android:orientation="vertical">
 
-            <include
-                android:id="@+id/equipo_1_16"
-                layout="@layout/caja_agregar_equipo_todos"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <include
-                android:id="@+id/equipo_2_16"
-                layout="@layout/caja_eliminar_equipo_todos"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <include
-                android:id="@+id/equipo_3_16"
-                layout="@layout/caja_eliminar_equipo_todos"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-    </ScrollView>
-
-    <include
-        android:id="@+id/_otros_menu_admi"
-        layout="@layout/_otros_menu_admi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rectanguloFondoEquipo_16"
-        app:layout_constraintVertical_bias="1.0" />
+        <include
+            android:id="@+id/_otros_menu_admi"
+            layout="@layout/_otros_menu_admi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rectanguloFondoEquipo_16"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
