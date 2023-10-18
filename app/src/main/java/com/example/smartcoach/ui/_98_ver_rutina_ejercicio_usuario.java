@@ -59,8 +59,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
     Button btnIniciarRutina;
     ImageButton btnModificarRutina;
 
-    RecyclerView recyclerViewEjercicios_98;
-
     private final Map<ImageButton, Integer> originalImages = new HashMap<>();
     private final Map<ImageButton, Integer> selectedImages = new HashMap<>();
     private int selectedDay = -1;
@@ -87,10 +85,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
     private int TOTAL_CALLS = 0;
 
 
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +96,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
         token = SharedPreferencesUtil.getToken(_98_ver_rutina_ejercicio_usuario.this);
         iniciarPeticiones();
 
-
         tituloPt2 = findViewById(R.id.tituloPt2);
         setTextNombreUser = findViewById(R.id.setTextNombreUser_98);
         bienvenida = findViewById(R.id.bienvenida);
@@ -112,7 +105,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
         horas = findViewById(R.id.horas);
         btnIniciarRutina = findViewById(R.id.btnIniciarRutina_98);
         btnModificarRutina = findViewById(R.id.btnModificarRutina_98);
-        recyclerViewEjercicios_98 = findViewById(R.id.recyclerViewEjercicios_98);
         View diasSemanaView = LayoutInflater.from(this).inflate(R.layout._otros_dias_semana_ne, null);
 
         // Encuentra los ImageButtons en el diseño secundario
@@ -140,8 +132,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
         selectedImages.put((ImageButton) findViewById(R.id.imageViernes), R.drawable.icon_viernes_na);
         selectedImages.put((ImageButton) findViewById(R.id.imageSabado), R.drawable.icon_sabado_na);
         selectedImages.put((ImageButton) findViewById(R.id.imageDomingo), R.drawable.icon_domingo_na);
-        configureDayClickListeners();
-
         cargarInfo();
         llenarRutinas(new LlenarRutinasCallback() {
             @Override
@@ -154,8 +144,8 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                         llenarProgresos(new LlenarRutinasCallback() {
                             @Override
                             public void onCompletion() {
-                                Log.d("FIN", "prgoresos" + progresos);
-                                mostrar();
+                                Log.d("FIN", "progresos" + progresos);
+                                configureDayClickListeners();
                             }
                         });
                     }
@@ -192,7 +182,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
         ImageButton imageSabado = findViewById(R.id.imageSabado);
         ImageButton imageDomingo = findViewById(R.id.imageDomingo);
 
-
         imageLunes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -205,6 +194,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
+                mostrar("Lunes");
             }
         });
         imageMartes.setOnClickListener(new View.OnClickListener() {
@@ -219,6 +209,8 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
+                mostrar("Martes");
+
             }
         });
         imageMiercoles.setOnClickListener(new View.OnClickListener() {
@@ -233,6 +225,8 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
+                mostrar("Miércoles");
+
             }
         });
         imageJueves.setOnClickListener(new View.OnClickListener() {
@@ -247,6 +241,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
+                mostrar("Jueves");
             }
         });
         imageViernes.setOnClickListener(new View.OnClickListener() {
@@ -261,6 +256,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
+                mostrar("Viernes");
             }
         });
         imageSabado.setOnClickListener(new View.OnClickListener() {
@@ -275,6 +271,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
+                mostrar("Sábado");
             }
         });
         imageDomingo.setOnClickListener(new View.OnClickListener() {
@@ -289,6 +286,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
+                mostrar("Domingo");
             }
         });
     }
@@ -456,17 +454,32 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
 
     }
 
-    private void mostrar()
-    {/*
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        CajaRutina cajaRutina1 = new CajaRutina();
-        Ejercicio temp = new Ejercicio();
-        temp.setNombre("Prueba");
-        cajaRutina1.setEjercicio(temp);
-        List<CajaRutina> myDataset = new ArrayList<>();
-        myDataset.add(cajaRutina1);
-        recyclerView.setAdapter(mAdapter);*/
+    private void mostrar(String dia)
+    {
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewEjercicios_98);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        List<CajaRutina> cajaRutinas = new ArrayList<>();
+        Rutina rut = rutinas.get(dia);
+        List<Ejercicio> ej= ejercicios.get(rut.getId());
+
+        for(Ejercicio ejercicio : ej)
+        {
+            CajaRutina temp = new CajaRutina();
+            Ejercicio temp2 = new Ejercicio();
+            ProgresoxEjercicio temp3 = new ProgresoxEjercicio();
+            temp3 = progresos.get(ejercicio.getId().intValue());
+            Log.d("PROGRESO", "progresos: "+progresos);
+            Log.d("ESTE ES EL PROGRESO", "temp3: "+temp3);
+            temp2.setNombre(ejercicio.getNombre());
+            temp.setEjercicio(temp2);
+            temp.setProgresoxEjercicio(temp3);
+            cajaRutinas.add(temp);
+        }
+
+        CajaRutinaAdapter adapter = new CajaRutinaAdapter(cajaRutinas);
+        recyclerView.setAdapter(adapter);
+
     }
 
 }

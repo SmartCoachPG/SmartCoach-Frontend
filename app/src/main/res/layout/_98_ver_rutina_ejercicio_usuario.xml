@@ -53,7 +53,7 @@
             layout="@layout/_otros_dias_semana_ne"
             android:layout_width="403dp"
             android:layout_height="75dp"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="36dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tituloPt2" />
@@ -69,11 +69,12 @@
             app:srcCompat="@drawable/rectrangulo_alargado_b" />
 
         <TextView
+            android:gravity="center_vertical"
             android:id="@+id/tituloRutinaDia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="18dp"
             android:text="Rutina del día"
             android:textColor="@color/black"
             android:textSize="25sp"
@@ -110,16 +111,7 @@
             app:layout_constraintVertical_bias="0.608" />
 
 
-        <include
-            android:id="@+id/menuUser"
-            layout="@layout/_otros_menu_usuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnIniciarRutina_98" />
+
 
         <ImageButton
             android:id="@+id/btnModificarRutina_98"
@@ -138,8 +130,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewEjercicios_98"
-            android:layout_width="360dp"
-            android:layout_height="294dp"
+            android:layout_width="356dp"
+            android:layout_height="377dp"
             android:layout_marginTop="32dp"
             android:orientation="vertical"
             android:scrollbars="vertical"
@@ -153,7 +145,7 @@
             android:layout_width="361dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:backgroundTint="#FDA400"
             android:elevation="50dp"
             android:text="Iniciar Rutina"
@@ -163,5 +155,12 @@
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewEjercicios_98" />
 
 
+        <include
+            android:layout_marginTop="10dp"
+            android:id="@+id/menuUser"
+            layout="@layout/_otros_menu_usuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/btnIniciarRutina_98" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

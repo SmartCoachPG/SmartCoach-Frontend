@@ -317,7 +317,7 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
         Log.d("FIN", "tipo equipo: "+tipoEquipoItem);
         Log.d("FIN", "iconos: "+iconos);
         Log.d("FIN", "ubicaciones: "+ubicaciones);
-        cargarCuadrados(mapas.get(piso).getAncho(),mapas.get(piso).getAlto()+1);
+        cargarCuadrados(mapas.get(piso).getAncho(),mapas.get(piso).getAlto()+2);
         cargarImagenes();
     }
 
@@ -364,7 +364,7 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
                     {
                         Log.d("IMAGENES", "elemento : "+uxi);
                         ImageView imageView = new ImageView(this);
-                        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(uxi.getCoordenadaY()), GridLayout.spec(uxi.getCoordenadaX()));  // 0,0 es para la primera fila, primera columna
+                        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(uxi.getCoordenadaY()+1), GridLayout.spec(uxi.getCoordenadaX()));  // 0,0 es para la primera fila, primera columna
                         layoutParams.width =  (int) (30 * getResources().getDisplayMetrics().density + 0.5f);
                         layoutParams.height =  (int) (30 * getResources().getDisplayMetrics().density + 0.5f);
                         int margin = (int) (1 * getResources().getDisplayMetrics().density + 0.5f);

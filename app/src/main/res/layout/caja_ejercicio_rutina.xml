@@ -4,76 +4,87 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginBottom="10dp">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:layout_marginLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="23dp"
+    android:paddingBottom="23dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="76dp"
+            android:layout_height="80dp"
+            android:foregroundGravity="center_vertical"
+            app:srcCompat="@drawable/cuadrado_gr" />
+
+        <LinearLayout
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/nombreEjercicio_98"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/black"
+                android:text="Nombre Ejercicio"/>
+
+            <TextView
+                android:id="@+id/serie_98"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Serie"
+                android:textColor="@color/orange" />
+
+            <TextView
+                android:layout_marginTop="2dp"
+                android:id="@+id/repeticiones_98"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Repeticiones"
+                android:textColor="@color/orange" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingTop="37dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_gravity="right"
+                android:id="@+id/valorSerie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_gravity="right"
+                android:layout_marginTop="2dp"
+                android:id="@+id/valorRepeticiones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="16sp" />
+
+        </LinearLayout>
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="81dp"
-        android:layout_height="91dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/cuadrado_gr" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/nombreEjercicio_98"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:textSize="18sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="24dp"
-        android:text="Nombre Ejercicio"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/serie_98"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
-        android:text="Serie"
-        android:textColor="@color/orange"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/nombreEjercicio_98" />
-
-    <TextView
-        android:id="@+id/repeticiones_98"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:text="Repeticiones"
-        android:textColor="@color/orange"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/serie_98" />
-
-    <TextView
-        android:id="@+id/valorSerie"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="0"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.839"
-        app:layout_constraintStart_toEndOf="@+id/serie_98"
-        app:layout_constraintTop_toBottomOf="@+id/nombreEjercicio_98" />
-
-    <TextView
-        android:id="@+id/valorRepeticiones"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="0"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.793"
-        app:layout_constraintStart_toEndOf="@+id/repeticiones_98"
-        app:layout_constraintTop_toBottomOf="@+id/valorSerie" />
 </androidx.constraintlayout.widget.ConstraintLayout>

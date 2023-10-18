@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
@@ -21,6 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import api.DateSerializer;
 import api.Exercise.RutinaApiService;
@@ -49,7 +52,6 @@ public class _2_IniciarSesionRegistrarse extends AppCompatActivity {
     Map<String, String> credenciales = new HashMap<>();
 
     OkHttpClient okHttpClient = retro.getUnsafeOkHttpClient();
-
 
     Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://10.0.2.2:8043/api/")
@@ -180,9 +182,19 @@ public class _2_IniciarSesionRegistrarse extends AppCompatActivity {
                     }
                 } else {
                     Log.d("IniciarSesionActivity", "Inicio de sesión fallido");
-                    Toast toast = Toast.makeText(getApplicationContext(), "Correo o contraseña incorrecta,por favor vuelve a intentar", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.CENTER, 0, 0);
-                    toast.show();
+                    AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_2_IniciarSesionRegistrarse.this);
+                    View dialogView = getLayoutInflater().inflate(R.layout._61_iniciar_sesion_mensaje_de_error_informacion_incorrecta_user_admin, null);
+                    dialogBuilder.setView(dialogView);
+                    AlertDialog dialog = dialogBuilder.create();
+                    Button btnContinuar = dialogView.findViewById(R.id.btnContinuar_61);
+                    btnContinuar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    dialog.show();
 
 
                 }
