@@ -29,6 +29,7 @@ public class _16_ver_equipo_admin_todos extends BaseActivityCliente {
     RecyclerView recyclerView;
     View equipo1, equipo2, equipo3, otrosMenu;
 
+    RecyclerView recyclerView_16;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,13 +49,12 @@ public class _16_ver_equipo_admin_todos extends BaseActivityCliente {
         btnMios = findViewById(R.id.btnMios_16);
         recyclerView = findViewById(R.id.recyclerView_16);
         otrosMenu = findViewById(R.id._otros_menu_admi);
-
+        recyclerView_16 = findViewById(R.id.recyclerView_16);
         imageEquipo = findViewById(R.id.imageEquipo);
         nombreEquipo = findViewById(R.id.nombreEquipo);
         nombreReferenciaEquipo = findViewById(R.id.nombreReferenciaEquipo);
         desc_equipo = findViewById(R.id.desc_equipo);
         textbtnAgregar=findViewById(R.id.textbtnAgregar);
-
         imageEquipo = findViewById(R.id.imageEquipo);
         nombreEquipo = findViewById(R.id.nombreEquipo);
         nombreReferenciaEquipo = findViewById(R.id.nombreReferenciaEquipo);
