@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/pregunta_16"
+        android:layout_width="93dp"
+        android:layout_height="39dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="24dp"
+        android:text="¿Cuantas "
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nombreElemento_16"
+        android:layout_width="220dp"
+        android:layout_height="39dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:text="setTextEquipo "
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/pregunta_16"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/preguntaFinal_16"
+        android:layout_width="308dp"
+        android:layout_height="52dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="-3dp"
+        android:text="deseas añadir al equipo de tu gimnasio?"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.427"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pregunta_16" />
+
+    <ImageView
+        android:id="@+id/cuadradoNumero_16"
+        android:layout_width="79dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="44dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/preguntaFinal_16"
+        app:srcCompat="@drawable/rectangulo_naranja" />
+
+    <EditText
+        android:id="@+id/editCantEquipo"
+        android:layout_width="52dp"
+        android:layout_height="96dp"
+        android:backgroundTint="@android:color/transparent"
+        android:ems="10"
+        android:text="0"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="@+id/cuadradoNumero_16"
+        app:layout_constraintEnd_toEndOf="@+id/cuadradoNumero_16"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="@+id/cuadradoNumero_16"
+        app:layout_constraintTop_toTopOf="@+id/cuadradoNumero_16"
+        app:layout_constraintVertical_bias="0.588" />
+
+
+    <Button
+        android:id="@+id/btnConfirmar_16"
+        android:layout_width="248dp"
+        android:layout_height="41dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/grey"
+        android:elevation="50dp"
+        android:text="Confirmar"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cuadradoNumero_16" />
+
+    <Button
+        android:id="@+id/btnCancelar_16"
+        android:layout_width="248dp"
+        android:layout_height="41dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#FDA400"
+        android:elevation="50dp"
+        android:text="Cancelar"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnConfirmar_16" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
