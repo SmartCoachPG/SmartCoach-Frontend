@@ -8,6 +8,6 @@
     android:paddingRight="13dp"
     android:layout_marginBottom="9dp"
     android:background="@drawable/rounded_orange_background"
-    android:text="Tipo ejercicio"
+    android:text="Tipo máquina"
     android:textColor="@color/white"
     android:id="@+id/textViewItemMusculoInvolucrado"/>

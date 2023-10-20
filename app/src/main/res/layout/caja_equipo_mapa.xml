@@ -87,7 +87,7 @@
 
     <include
         android:id="@+id/tipoEjericicio_33"
-        layout="@layout/item_tipo_ejercicio"
+        layout="@layout/item_tipo_maquina"
         android:layout_width="117dp"
         android:layout_height="18dp"
         android:layout_marginStart="16dp"
