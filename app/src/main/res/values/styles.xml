@@ -40,5 +40,9 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="SpinnerTextWhite">
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
 
 </resources>

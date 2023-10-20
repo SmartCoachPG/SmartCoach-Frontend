@@ -47,10 +47,7 @@
             android:name=".ui._40_Registrar_Usuario_2"
             android:label="@string/app_name"
             android:exported="false"/>
-        <activity
-            android:name=".ui._42_Registrar_Usuario_3"
-            android:label="@string/app_name"
-            android:exported="false"/>
+
         <activity
             android:name=".ui._63_Principal_Usuario"
             android:label="@string/app_name"
@@ -197,6 +194,17 @@
             android:label="@string/app_name"
             android:exported="false">
         </activity>
+
+        <activity
+            android:name=".ui._42_Registrar_Usuario_3"
+            android:label="@string/app_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
     </application>
 </manifest>

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -20,6 +21,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
@@ -515,7 +518,27 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
                     for (int i = 0; i < objetivoRutina.size(); i++) {
                         opcionesObjetivos[i] = objetivoRutina.get(i).getNombre();
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(_42_Registrar_Usuario_3.this, R.layout.spinner_item, opcionesObjetivos);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(_42_Registrar_Usuario_3.this, R.layout.spinner_item, opcionesObjetivos){
+                        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                            View view = super.getView(position, convertView, parent);
+
+                            TextView text = view.findViewById(android.R.id.text1);
+                            text.setTextColor(getResources().getColor(android.R.color.white));
+                            text.setTextAppearance(R.style.SpinnerTextWhite);
+
+                            return view;
+                        }
+                        @Override
+                        public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+                            View view = super.getDropDownView(position, convertView, parent);
+
+                            TextView text = view.findViewById(android.R.id.text1);
+                            text.setTextColor(getResources().getColor(android.R.color.white));
+                            text.setTextAppearance(R.style.SpinnerTextWhite);
+                            return view;
+                        }
+                    };
                     adapter.setDropDownViewResource(R.layout.spinner_item);
                     spinnerLogro.setAdapter(adapter);
 
@@ -547,10 +570,34 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
                     for (int i = 0; i < musculos.size(); i++) {
                         opcionesMusculos[i] = musculos.get(i).getNombre();
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(_42_Registrar_Usuario_3.this, R.layout.spinner_item, opcionesMusculos);
-                    adapter.setDropDownViewResource(R.layout.spinner_item);
-                    spinnerMusculo.setAdapter(adapter);
+                    // Crear un ArrayAdapter personalizado para el segundo Spinner
+                    ArrayAdapter<String> musculoAdapter = new ArrayAdapter<String>(_42_Registrar_Usuario_3.this, R.layout.spinner_item, opcionesMusculos) {
+                        @NonNull
+                        @Override
+                        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                            View view = super.getView(position, convertView, parent);
 
+                            TextView text = view.findViewById(android.R.id.text1);
+                            text.setTextColor(getResources().getColor(android.R.color.white));
+                            text.setTextAppearance(R.style.SpinnerTextWhite);
+
+                            return view;
+                        }
+
+                        @Override
+                        public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+                            View view = super.getDropDownView(position, convertView, parent);
+
+                            TextView text = view.findViewById(android.R.id.text1);
+                            text.setTextColor(getResources().getColor(android.R.color.white));
+                            text.setTextAppearance(R.style.SpinnerTextWhite);
+
+                            return view;
+                        }
+                    };
+                    musculoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerMusculo.setAdapter(musculoAdapter);
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());
