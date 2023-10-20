@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.smartcoach.R;
 
-public class _23_modificar_equipo extends AppCompatActivity {
+public class _23_modificar_equipo extends BaseActivityAdmi {
 
     ImageView imagenEquipoImageView;
     ImageButton atrasButton, btnAgregar;

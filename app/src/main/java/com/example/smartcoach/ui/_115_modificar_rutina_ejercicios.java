@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.smartcoach.R;
 
-public class _115_modificar_rutina_ejercicios extends AppCompatActivity {
+public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
 
     TextView tituloModificar_115, tituloRutinaDia, setTextDuracionRutina, horas;
     ScrollView scrollView3;
