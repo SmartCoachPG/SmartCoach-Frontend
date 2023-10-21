@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.smartcoach.R;
 
-public class _19_crear_equipo_admin extends AppCompatActivity {
+public class _19_crear_equipo_admin extends BaseActivityAdmi {
     ImageButton atras;
     TextView tituloModificar, descripcionModificar, textSubaImagen, textoMusculos;
     EditText setTextnombreEquipo, setTextReferenciaEquipo, descripcionEquipo;

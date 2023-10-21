@@ -15,17 +15,18 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartcoach.R;
 
-public class _16_ver_equipo_admin_todos extends AppCompatActivity {
+public class _16_ver_equipo_admin_todos extends BaseActivityCliente {
     TextView tituloBienvenida, setTextAdminName, descripcion, nombreEquipo, nombreReferenciaEquipo, desc_equipo, textbtnAgregar, textbtnEliminar;
     View view2;
     EditText editTextBuscaEquipo;
     ImageButton btnBuscar, btnAgregarEquipo, btnEliminarEquipo;
     Button btnCrearEquipo, btnEncuentraEquipo, btnTodos, btnMios;
     ImageView rectanguloFondoEquipo, imageEquipo;
-    ScrollView scrollView_16;
+    RecyclerView recyclerView;
     View equipo1, equipo2, equipo3, otrosMenu;
 
     @Override
@@ -45,10 +46,7 @@ public class _16_ver_equipo_admin_todos extends AppCompatActivity {
         rectanguloFondoEquipo = findViewById(R.id.rectanguloFondoEquipo_16);
         btnTodos = findViewById(R.id.btnTodos_16);
         btnMios = findViewById(R.id.btnMios_16);
-        scrollView_16 = findViewById(R.id.scrollView_16);
-        equipo1 = findViewById(R.id.equipo_1_16);
-        equipo2 = findViewById(R.id.equipo_2_16);
-        equipo3 = findViewById(R.id.equipo_3_16);
+        recyclerView = findViewById(R.id.recyclerView_16);
         otrosMenu = findViewById(R.id._otros_menu_admi);
 
         imageEquipo = findViewById(R.id.imageEquipo);

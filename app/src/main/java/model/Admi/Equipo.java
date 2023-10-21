@@ -3,19 +3,19 @@ package model.Admi;
 public class Equipo extends Item {
 
     private String referencia;
-    private Integer usuarioClienteId;
+    private Integer usuarioId;
     private Integer tipoEquipoId;
 
     public Equipo(Long id, String imagen, String nombre, String referencia, Integer usuarioClienteId, Integer tipoEquipoId) {
         super(id, imagen, nombre);
         this.referencia = referencia;
-        this.usuarioClienteId = usuarioClienteId;
+        this.usuarioId = usuarioClienteId;
         this.tipoEquipoId = tipoEquipoId;
     }
 
     public Equipo(String referencia, Integer usuarioClienteId, Integer tipoEquipoId) {
         this.referencia = referencia;
-        this.usuarioClienteId = usuarioClienteId;
+        this.usuarioId = usuarioClienteId;
         this.tipoEquipoId = tipoEquipoId;
     }
 
@@ -30,11 +30,11 @@ public class Equipo extends Item {
     }
 
     public Integer getUsuarioClienteId() {
-        return usuarioClienteId;
+        return usuarioId;
     }
 
     public void setUsuarioClienteId(Integer usuarioClienteId) {
-        this.usuarioClienteId = usuarioClienteId;
+        this.usuarioId = usuarioClienteId;
     }
 
     public Integer getTipoEquipoId() {
@@ -49,7 +49,7 @@ public class Equipo extends Item {
     public String toString() {
         return "Equipo{" +
                 "referencia='" + referencia + '\'' +
-                ", usuarioClienteId=" + usuarioClienteId +
+                ", usuarioClienteId=" + usuarioId +
                 ", tipoEquipoId=" + tipoEquipoId +
                 '}';
     }

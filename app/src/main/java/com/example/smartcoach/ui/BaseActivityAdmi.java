@@ -37,5 +37,9 @@ public abstract class BaseActivityAdmi extends AppCompatActivity {
         btnPerfilAdmin.setOnClickListener(v -> {
             startActivity(new Intent(this, _6_Principal_Admi.class));
         });
+
+        btnMancuernaAdmin.setOnClickListener(v -> {
+            startActivity(new Intent(this, _16_ver_equipo_admin_todos.class));
+        });
     }
 }
