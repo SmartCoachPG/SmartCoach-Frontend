@@ -4,11 +4,13 @@ import static android.view.View.GONE;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -39,7 +41,10 @@ public class _27_configurar_mapa_admin extends BaseActivityAdmi {
     String token;
 
     UsuarioAdministradorApiService usuarioAdministradorApiService;
+    GimnasioApiService gimnasioApiService;
     UsuarioAdministrador usuarioAdministrador = new UsuarioAdministrador();
+    Dialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,9 +114,69 @@ public class _27_configurar_mapa_admin extends BaseActivityAdmi {
         });
 
 
+        btnEliminarMapa_27.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog();
+            }
+        });
 
 
     }
+
+    private void showDialog() {
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout._38_mensaje_confirmacion_eliminacion_gimnasio); // Usa el nombre de tu archivo XML
+        dialog.getWindow().setBackgroundDrawable(null);
+
+        Button botonConfirmar = dialog.findViewById(R.id.botonConfirmar_38);
+        botonConfirmar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Acciones a realizar cuando se presiona "Confirmar"
+                eliminarCuenta();
+            }
+        });
+
+        Button botonCancelar = dialog.findViewById(R.id.botonCancelar_38);
+        botonCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Acciones a realizar cuando se presiona "Cancelar"
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void eliminarCuenta()
+    {
+        Call<Void> call = gimnasioApiService.deleteById(usuarioAdministrador.getGimnasioId().longValue());
+
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(_27_configurar_mapa_admin.this, "Gimnasio eliminada", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                    startActivity(new Intent(_27_configurar_mapa_admin.this, _27_configurar_mapa_admin.class));
+
+                } else {
+                    Toast.makeText(_27_configurar_mapa_admin.this, "Error al eliminar la cuenta", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(_27_configurar_mapa_admin.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 
     private void iniciarPeticiones()
     {
@@ -123,6 +188,7 @@ public class _27_configurar_mapa_admin extends BaseActivityAdmi {
                 .build();
 
         usuarioAdministradorApiService = retrofit.create(UsuarioAdministradorApiService.class);
+        gimnasioApiService = retrofit.create(GimnasioApiService.class);
     }
 
     interface InfoCallback {

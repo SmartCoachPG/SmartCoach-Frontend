@@ -52,9 +52,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class _36_modificar_informacion_gimnasio extends BaseActivityAdmi {
     ImageView rectanguloTitulo_36;
-    TextView titulo_36, descripcionModificarGym_36;
+    TextView titulo_36, descripcionModificarGym_36,setTextPisosGimnasio_36;
     ImageButton btnRegresar_36, imagenGimnasio_36;
-    EditText setTextnombreGimnasio_36, setTextDireccionGimnasio_36, setTextBarrioGimnasio_36, setTextAnchoGimnasio_36, setTextAltoGimnasio_36, setTextPisosGimnasio_36;
+    EditText setTextnombreGimnasio_36, setTextDireccionGimnasio_36, setTextBarrioGimnasio_36, setTextAnchoGimnasio_36, setTextAltoGimnasio_36 ;
     Button btnCrearMapa_36;
 
     Long userId;
@@ -115,7 +115,16 @@ public class _36_modificar_informacion_gimnasio extends BaseActivityAdmi {
             }
         });
 
+        setTextPisosGimnasio_36.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(_36_modificar_informacion_gimnasio.this, "No puedes modificar los pisos de tu gimnasio", Toast.LENGTH_SHORT).show();
+
+            }
+
+        });
     }
+
 
     private void iniciarPeticiones()
     {

@@ -75,7 +75,7 @@
         android:layout_height="170dp"
         android:layout_marginTop="16dp"
         android:background="@null"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
