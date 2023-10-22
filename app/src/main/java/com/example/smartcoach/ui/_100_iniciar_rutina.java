@@ -1,6 +1,8 @@
 package com.example.smartcoach.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -18,6 +20,8 @@ public class _100_iniciar_rutina extends AppCompatActivity {
     boolean isChronometerStopped = false;
     long pausedTime = 0;
 
+    RecyclerView recyclerViewEjercicios_100;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +29,7 @@ public class _100_iniciar_rutina extends AppCompatActivity {
         setContentView(R.layout._100_iniciar_rutina);
         getSupportActionBar().hide();
 
-        // Encuentra los elementos TextView, ImageButton y otros por sus IDs
+
         setTextNombreEjercicio_100 = findViewById(R.id.setTextNombreEjercicio_100);
         numero_serie_inicial_100 = findViewById(R.id.numero_serie_inicial_100);
         guión_100 = findViewById(R.id.guión_100);
@@ -51,6 +55,7 @@ public class _100_iniciar_rutina extends AppCompatActivity {
         btnAdelantar_100 = findViewById(R.id.btnAdelantar_100);
         tiempoIniciarPausa = findViewById(R.id.tiempoIniciarPausa);
         tiempoIniciarPausa.setBase(SystemClock.elapsedRealtime());
+        recyclerViewEjercicios_100 = findViewById(R.id.recyclerViewEjercicios_100);
 
         //Le da play o pausa
         btnPlay_100.setOnClickListener(new View.OnClickListener() {
