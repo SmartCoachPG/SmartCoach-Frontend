@@ -177,44 +177,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/setTextAnchoGimnasio_37" />
 
-        <EditText
-            android:id="@+id/setTextPisosGimnasio_37"
-            android:layout_width="366dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="#FDA400"
-            android:ems="10"
-            android:hint="Pisos"
-            android:inputType="number"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.342"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/setTextAltoGimnasio_37" />
-
         <Button
             android:id="@+id/btnCrearGimnasio_37"
             android:layout_width="357dp"
             android:layout_height="59dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="56dp"
             android:backgroundTint="#FDA400"
             android:text="Crear Mapa"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.592"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/setTextPisosGimnasio_37" />
+            app:layout_constraintTop_toBottomOf="@+id/setTextAltoGimnasio_37" />
 
         <include
             layout="@layout/_otros_menu_admi"
             android:layout_width="414dp"
             android:layout_height="72dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.666"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnCrearGimnasio_37"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/btnCrearGimnasio_37" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
