@@ -96,5 +96,23 @@ public class SharedPreferencesUtil {
         editor.apply();
     }
 
+    public static void saveGimnasio(Context context, int idGimnasio) {
+        SharedPreferences sharedPreferences = getEncryptedSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("gimnasioid_key", idGimnasio);
+        editor.apply();
+    }
+
+    public static int getGimnasio(Context context) {
+        SharedPreferences sharedPreferences = getEncryptedSharedPreferences(context);
+        return sharedPreferences.getInt("gimnasioid_key", 0);
+    }
+
+    public static void deleteGimnasio(Context context) {
+        SharedPreferences sharedPreferences = getEncryptedSharedPreferences(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("gimnasioid_key");
+        editor.apply();
+    }
 }
 

@@ -105,16 +105,6 @@ public class _16_ver_equipo_admin_todos extends BaseActivityAdmi {
         btnAgregarEquipo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                View dialogView = getLayoutInflater().inflate(R.layout.caja_eliminar_equipo_todos, null);
-                Button btnEliminar = dialogView.findViewById(R.id.btnEliminar);
-
-                btnEliminar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                    }
-                });
                 alertDialog.show();
             }
         });

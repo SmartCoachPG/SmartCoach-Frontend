@@ -29,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloSuscríbete_127"
-        app:srcCompat="@drawable/rect_redondeado_gris_medio" />
+        app:srcCompat="@color/white" />
 
     <EditText
         android:id="@+id/editTextGym_127"
@@ -48,8 +48,9 @@
 
     <ImageButton
         android:id="@+id/btnBusquedaGym_127"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="6dp"
         android:background="@null"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/rectBusqueda_127"
