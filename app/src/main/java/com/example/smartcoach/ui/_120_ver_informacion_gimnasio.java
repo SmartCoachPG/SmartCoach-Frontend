@@ -79,7 +79,7 @@ public class _120_ver_informacion_gimnasio extends BaseActivityCliente{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(_120_ver_informacion_gimnasio.this, _121_ver_mapa_cliente.class);
-                intent.putExtra("idGimnasio",gym.getId());
+                intent.putExtra("idGimnasio",gym.getId().intValue());
                 startActivity(intent);
             }
         });
