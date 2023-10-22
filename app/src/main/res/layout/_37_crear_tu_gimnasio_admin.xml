@@ -79,7 +79,7 @@
             android:layout_height="170dp"
             android:layout_marginTop="16dp"
             android:background="@null"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/setTextnombreGimnasio_37"

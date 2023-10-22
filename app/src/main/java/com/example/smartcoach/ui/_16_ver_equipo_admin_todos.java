@@ -245,22 +245,28 @@ public class _16_ver_equipo_admin_todos extends BaseActivityAdmi {
 
     private void cargarEquiposGym(_16_ver_equipo_admin_todos.InfoCallback callback)
     {
-        Call <List<GimnasioItem>> call = gimnasioItemApiService.getGimnasioItemsByGimnasioid(usuarioAdministrador.getGimnasioId());
-        call.enqueue(new Callback <List<GimnasioItem>>() {
-            @Override
-            public void onResponse(Call <List<GimnasioItem>> call, Response <List<GimnasioItem>> response) {
-                if (response.isSuccessful()) {
-                    listaEquipoGym = response.body();
-                    callback.onCompletion();
-                } else {
+        if(usuarioAdministrador.getGimnasioId()!=null)
+        {
+            Call <List<GimnasioItem>> call = gimnasioItemApiService.getGimnasioItemsByGimnasioid(usuarioAdministrador.getGimnasioId());
+            call.enqueue(new Callback <List<GimnasioItem>>() {
+                @Override
+                public void onResponse(Call <List<GimnasioItem>> call, Response <List<GimnasioItem>> response) {
+                    if (response.isSuccessful()) {
+                        listaEquipoGym = response.body();
+                        callback.onCompletion();
+                    } else {
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call <List<GimnasioItem>> call, Throwable t) {
-                Toast.makeText(_16_ver_equipo_admin_todos.this, "Error de conexión", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call <List<GimnasioItem>> call, Throwable t) {
+                    Toast.makeText(_16_ver_equipo_admin_todos.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        Toast.makeText(_16_ver_equipo_admin_todos.this, "Admi recuerda primero crear un gimnasio antes de ingresar tu equipo", Toast.LENGTH_SHORT).show();
+
     }
 
     private void mostrarEquipos()

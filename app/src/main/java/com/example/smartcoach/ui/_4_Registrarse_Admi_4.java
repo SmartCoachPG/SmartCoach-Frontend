@@ -170,10 +170,6 @@ public class _4_Registrarse_Admi_4 extends AppCompatActivity {
         String entradaContraseña = contraseña.getText().toString();
         String entradaValidContra = validContra.getText().toString();
         String entradaCedula = cedula.getText().toString().trim();
-        String entradaNombreGym = nombreGym.getText().toString().trim();
-        String entradaDireccionGym = direccionGym.getText().toString().trim();
-        String entradaBarrioGym = barrioGym.getText().toString().trim();
-        String entradaPuestoGym = puestoGym.getText().toString().trim();
 
         if(entradaNombre.isEmpty()) {
             nombre.setError("Este campo no puede quedar vacio");
@@ -201,22 +197,8 @@ public class _4_Registrarse_Admi_4 extends AppCompatActivity {
             cedula.setError("La cédula debe tener entre 8 y 10 dígitos");
             return false;
         }
-        if (entradaNombreGym.isEmpty()) {
-            nombreGym.setError("Este campo no puede quedar vacío");
-            retorno = false;
-        }
-        if (entradaDireccionGym.isEmpty()) {
-            direccionGym.setError("Este campo no puede quedar vacío");
-            retorno = false;
-        }
-        if (entradaBarrioGym.isEmpty()) {
-            barrioGym.setError("Este campo no puede quedar vacío");
-            retorno = false;
-        }
-        if (entradaPuestoGym.isEmpty()) {
-            puestoGym.setError("Este campo no puede quedar vacío");
-            retorno = false;
-        }
+
+
         return retorno;
     }
 

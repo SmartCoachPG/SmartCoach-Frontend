@@ -19,5 +19,5 @@ public interface GimnasioApiService {
     Call <Gimnasio> findById(@Path("id") Long id);
 
     @POST("gimnasio")
-    Gimnasio save(@Body Gimnasio gimnasio);
+    Call <Gimnasio> save(@Body Gimnasio gimnasio);
 }

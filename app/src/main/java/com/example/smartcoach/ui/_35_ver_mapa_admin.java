@@ -1,11 +1,13 @@
 package com.example.smartcoach.ui;
 
+import android.content.Intent;
 import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -74,6 +76,17 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
         iniciarPeticiones();
         cargarIconos();
         cargarInfo();
+
+        ImageButton btnRegresar = findViewById(R.id.flechaRegresar);
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(_35_ver_mapa_admin.this, _27_configurar_mapa_admin.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     private void cargarIconos()
