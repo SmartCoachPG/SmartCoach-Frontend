@@ -47,6 +47,5 @@ public abstract class BaseActivityCliente extends AppCompatActivity {
         });
 
 
-
     }
 }

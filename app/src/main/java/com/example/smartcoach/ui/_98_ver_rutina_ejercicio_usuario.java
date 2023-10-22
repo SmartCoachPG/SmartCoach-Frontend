@@ -489,8 +489,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
             recyclerView.setAdapter(adapter);
         }
 
-
-
     }
 
 }

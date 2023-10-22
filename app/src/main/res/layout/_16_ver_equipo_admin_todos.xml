@@ -161,6 +161,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:foregroundGravity="center"
             android:id="@+id/recyclerView_16"
             android:layout_width="343dp"
             android:layout_height="385dp"
@@ -168,7 +169,6 @@
             app:layout_constraintEnd_toEndOf="@+id/rectanguloFondoEquipo_16"
             app:layout_constraintStart_toStartOf="@+id/rectanguloFondoEquipo_16"
             app:layout_constraintTop_toTopOf="@+id/rectanguloFondoEquipo_16" />
-
 
         <include
             android:id="@+id/_otros_menu_admi"

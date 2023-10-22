@@ -43,8 +43,8 @@ public class _6_Principal_Admi extends BaseActivityAdmi {
     ImageButton flechaRegresar, eliminarCuenta, imagePP,verificacionAdmin,cerrarSesion,infoAdmi;
     TextView nombreAdmi, puestoAdmi, infoAdmiTexto,verificacionAdmiTexto,eliminarCuentaTexto,cerrarSesionTexto;
     ImageView admiCheck;
-    Long userId;
-    String token;
+        Long userId;
+        String token;
 
     UsuarioAdministradorApiService usuarioAdministradorApiService;
 
@@ -185,7 +185,6 @@ public class _6_Principal_Admi extends BaseActivityAdmi {
                 Toast.makeText(_6_Principal_Admi.this, "Error de conexión", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
     private void iniciarPeticiones()
     {
