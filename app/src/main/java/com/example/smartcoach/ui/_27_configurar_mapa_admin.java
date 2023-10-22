@@ -39,5 +39,13 @@ public class _27_configurar_mapa_admin extends BaseActivityAdmi {
                 startActivity(intent);
             }
         });
+
+        btnCrearMapa_27.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(_27_configurar_mapa_admin.this, _37_crea_tu_gimnasio_admin.class);
+                startActivity(intent);
+            }
+        });
     }
 }
