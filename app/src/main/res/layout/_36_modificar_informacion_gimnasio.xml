@@ -190,9 +190,11 @@
             android:layout_width="359dp"
             android:layout_height="42dp"
             android:layout_marginTop="6dp"
+            app:layout_constraintBottom_toBottomOf="@+id/setTextPisosGimnasio_36"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/setTextAltoGimnasio_36"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/lineanaranja" />
 
 
