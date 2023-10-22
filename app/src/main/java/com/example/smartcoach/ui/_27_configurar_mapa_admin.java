@@ -72,11 +72,14 @@ public class _27_configurar_mapa_admin extends BaseActivityAdmi {
                     btnEliminarMapa_27.setVisibility(View.GONE);
                 }
                 else
+                {
                     btnCrearMapa_27.setVisibility(View.GONE);
                     btnVer_27.setVisibility(View.VISIBLE);
                     btnModificarInfoMapa_27.setVisibility(View.VISIBLE);
                     btnModificarEquiposElementos_27.setVisibility(View.VISIBLE);
                     btnEliminarMapa_27.setVisibility(View.VISIBLE);
+                }
+
 
             }
         });
@@ -93,6 +96,14 @@ public class _27_configurar_mapa_admin extends BaseActivityAdmi {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(_27_configurar_mapa_admin.this, _37_crea_tu_gimnasio_admin.class);
+                startActivity(intent);
+            }
+        });
+
+        btnModificarInfoMapa_27.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(_27_configurar_mapa_admin.this, _36_modificar_informacion_gimnasio.class);
                 startActivity(intent);
             }
         });
