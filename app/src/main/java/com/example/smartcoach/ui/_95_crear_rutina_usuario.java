@@ -1,4 +1,5 @@
 package com.example.smartcoach.ui;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -64,6 +66,8 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
     RutinaApiService rutinaApiService;
     List<Rutina> listaRutinas= new ArrayList<>();
     Map<String,Time> duracionRD = new HashMap<>();
+
+    Boolean valida = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,12 +119,8 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
         btnCrearRutina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(_95_crear_rutina_usuario.this, _98_ver_rutina_ejercicio_usuario.class);
-                crearRutina();
-                SharedPreferencesUtil.saveRutina(_95_crear_rutina_usuario.this,"1");
-                Log.d("RUTINA CREADAAA", "resultado: "+SharedPreferencesUtil.getRutina(_95_crear_rutina_usuario.this));
-                Toast.makeText(_95_crear_rutina_usuario.this, "Rutina creada", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+                iniciarProcesos();
+
             }
         });
     }
@@ -277,6 +277,55 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
 
     }
 
+    interface InfoCallback {
+        void onCompletion();
+    }
+
+    private void iniciarProcesos()
+    {
+        crearRutina(new InfoCallback() {
+            @Override
+            public void onCompletion() {
+                    validarRutina(new InfoCallback()
+                    {
+                        @Override
+                        public void onCompletion()
+                        {
+
+                            if(valida)
+                            {
+                                Intent intent = new Intent(_95_crear_rutina_usuario.this, _98_ver_rutina_ejercicio_usuario.class);
+                                SharedPreferencesUtil.saveRutina(_95_crear_rutina_usuario.this,"1");
+                                Log.d("RUTINA CREADAAA", "resultado: "+SharedPreferencesUtil.getRutina(_95_crear_rutina_usuario.this));
+                                Toast.makeText(_95_crear_rutina_usuario.this, "Rutina creada", Toast.LENGTH_SHORT).show();
+                                startActivity(intent);
+                            }
+                            else {
+                                showDialog();
+                            }
+                        }
+                    });
+            }
+        });
+    }
+
+    private void showDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout._97_mensaje_error_rutina_limitaciones_fisicas);
+        dialog.getWindow().setBackgroundDrawable(null);
+
+        Button btnContinuar = dialog.findViewById(R.id.btnSeguirCamposVacios);
+        btnContinuar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
     private void cargarInfo()
     {
         Call<UsuarioCliente> call = usuarioClienteApiService.getUsuarioById(userId);
@@ -302,7 +351,7 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
         });
     }
 
-    private void crearRutina()
+    private void crearRutina(InfoCallback callback)
     {
         Call<Void> call = usuarioClienteApiService.crearRutina(userId);
         call.enqueue(new Callback<Void>() {
@@ -313,10 +362,37 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());
                 }
+                callback.onCompletion();
+
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
+
+    private void validarRutina(InfoCallback callback)
+    {
+        Call<Boolean> call = usuarioClienteApiService.validarRutina(userId);
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (response.isSuccessful()) {
+                    valida = response.body();
+                    Log.d("RUTINA USUARIO VALIDA?", "respuesta: "+response.body());
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+                callback.onCompletion();
+
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
                 // Maneja errores de red o de conversión de datos
                 Log.e("Error", "Fallo en la petición: " + t.getMessage());
             }

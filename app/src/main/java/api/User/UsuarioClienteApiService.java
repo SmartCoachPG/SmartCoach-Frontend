@@ -27,4 +27,7 @@ public interface UsuarioClienteApiService {
 
     @GET("usuariocliente/crearRutina/{id}")
     Call<Void> crearRutina(@Path("id") Long id);
+
+    @GET("usuariocliente/validarRutina/{idUsuario}")
+    Call<Boolean> validarRutina(@Path("idUsuario") Long idUsuario);
 }
