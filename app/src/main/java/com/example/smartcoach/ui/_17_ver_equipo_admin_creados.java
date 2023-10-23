@@ -85,15 +85,15 @@ public class _17_ver_equipo_admin_creados extends AppCompatActivity {
     private void mostrarDialogoConfirmacionEliminacion() {
         // Infla la vista personalizada para el cuadro de diálogo
         LayoutInflater inflater = getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout._18_mensaje_confirmacion_eliminacion_equipo_propio, null);
+        View dialogView = inflater.inflate(R.layout._16_eliminar_equipo, null);
 
         // Crea el cuadro de diálogo
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(dialogView);
 
         // Configura eventos y lógica para los botones en la vista personalizada
-        AppCompatButton botonConfirmar = dialogView.findViewById(R.id.botonConfirmar);
-        AppCompatButton botonCancelar = dialogView.findViewById(R.id.botonCancelar);
+        AppCompatButton botonConfirmar = dialogView.findViewById(R.id.botonConfirmar_16_eliminar);
+        AppCompatButton botonCancelar = dialogView.findViewById(R.id.botonCancelar_16_eliminar);
 
         botonConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override

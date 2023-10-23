@@ -116,7 +116,7 @@ public class CajaEquipoAdapter extends RecyclerView.Adapter<CajaEquipoAdapter.Ca
             holder.btnAgregar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    eliminarEquipo(gimnasio.getId().intValue(),equipo.getId().intValue());
+                    eliminarEquipo(gimnasio.getId().intValue(),equipo.getId().intValue(),equipo.getNombre());
                     notifyItemChanged(position);
 
                 }
@@ -160,7 +160,38 @@ public class CajaEquipoAdapter extends RecyclerView.Adapter<CajaEquipoAdapter.Ca
         dialog.show();
     }
 
-    private  void eliminarEquipo(int idGimnasio, int idItem)
+    public void eliminarEquipo(int idGimnasio,int idEquipo, String nombre)
+    {
+        dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout._16_eliminar_equipo);
+        dialog.getWindow().setBackgroundDrawable(null);
+
+        TextView nombreE = dialog.findViewById(R.id.nombreEquipo_16_eliminar);
+        nombreE.setText(nombre);
+
+        Button botonConfirmar = dialog.findViewById(R.id.botonConfirmar_16_eliminar);
+        botonConfirmar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eliminarEquipoBD(idGimnasio,idEquipo);
+                dialog.dismiss();
+            }
+        });
+
+        Button botonCancelar = dialog.findViewById(R.id.botonCancelar_16_eliminar);
+        botonCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Acciones a realizar cuando se presiona "Cancelar"
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+    private  void eliminarEquipoBD(int idGimnasio, int idItem)
     {
         for(GimnasioItem gi: gimnasioItems)
         {
