@@ -21,6 +21,8 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="76dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
             android:layout_height="80dp"
             android:foregroundGravity="center_vertical"
             app:srcCompat="@drawable/cuadrado_gr" />

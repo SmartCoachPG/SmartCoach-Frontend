@@ -1,5 +1,9 @@
 package com.example.smartcoach.ui;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +41,14 @@ public class CajaRutinaAdapter extends RecyclerView.Adapter<CajaRutinaAdapter.Ca
             holder.nombreEjercicio.setText(cajaRutina.getEjercicio().getNombre());
             holder.valorSerie.setText(cajaRutina.getProgresoxEjercicio().getSerie().toString());
             holder.valorRepeticiones.setText(cajaRutina.getProgresoxEjercicio().getRepeticiones().toString());
+            String imageString = cajaRutina.getImagenEjercicio().getImagen();
+            if(imageString!=null)
+            {
+                Log.d("IMAGEN CARGANDO", "esta es la imagen: "+imageString);
+                byte[] imageBytes = Base64.decode(imageString, Base64.DEFAULT);
+                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                holder.imagenEjercicio.setImageBitmap(decodedBitmap);
+            }
         }
 
     }
@@ -51,12 +63,14 @@ public class CajaRutinaAdapter extends RecyclerView.Adapter<CajaRutinaAdapter.Ca
         public TextView valorSerie;
         public TextView valorRepeticiones;
 
+        public ImageView imagenEjercicio;
+
         public CajaRutinaViewHolder(View view) {
             super(view);
             nombreEjercicio = view.findViewById(R.id.nombreEjercicio_98);
             valorSerie = view.findViewById(R.id.valorSerie);
             valorRepeticiones = view.findViewById(R.id.valorRepeticiones);
-           // imagenEjercicio = view.findViewById(R.id.imagenEjercicio);
+            imagenEjercicio = view.findViewById(R.id.imageView);
         }
     }
 }

@@ -114,7 +114,6 @@ public class _36_modificar_informacion_gimnasio extends BaseActivityAdmi {
                 cambiarImagen();
             }
         });
-
         setTextPisosGimnasio_36.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -124,7 +123,6 @@ public class _36_modificar_informacion_gimnasio extends BaseActivityAdmi {
 
         });
     }
-
 
     private void iniciarPeticiones()
     {
@@ -171,10 +169,6 @@ public class _36_modificar_informacion_gimnasio extends BaseActivityAdmi {
                 });
             }
         });
-
-
-
-        // 4. cargar info
     }
 
     private void cargarAdmi(_36_modificar_informacion_gimnasio.InfoCallback callback)

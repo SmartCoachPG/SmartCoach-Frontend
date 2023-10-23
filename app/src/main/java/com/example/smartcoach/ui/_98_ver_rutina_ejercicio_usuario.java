@@ -31,6 +31,7 @@ import java.util.Set;
 
 import api.DateSerializer;
 import api.Exercise.EjercicioProgresoxEjercicioApiService;
+import api.Exercise.ImagenEjercicioApiService;
 import api.Exercise.RutinaApiService;
 import api.Exercise.RutinaEjercicioApiService;
 import api.SharedPreferencesUtil;
@@ -40,6 +41,7 @@ import api.User.UsuarioClienteApiService;
 import api.retro;
 import model.Exercise.CajaRutina;
 import model.Exercise.Ejercicio;
+import model.Exercise.ImagenEjercicio;
 import model.Exercise.Rutina;
 import model.User.ProgresoxEjercicio;
 import model.User.UsuarioCliente;
@@ -74,16 +76,18 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
 
     EjercicioProgresoxEjercicioApiService ejercicioProgresoxEjercicioApiService;
 
+    ImagenEjercicioApiService imagenEjercicioApiService;
     // dia , Rutina
     Map<String,Rutina> rutinas = new HashMap<>();
     // idRutina , lista ejercicios
     Map<Integer,List<Ejercicio>> ejercicios = new HashMap();
     // idEjercicio , progresoxEjercicio
     Map<Integer,ProgresoxEjercicio> progresos = new HashMap<>();
+    // idEjercicio, Lista imagenes
+    Map<Integer,List<ImagenEjercicio>> imagenes = new HashMap<>();
 
     private int completedCalls = 0;
     private int TOTAL_CALLS = 0;
-
 
 
     @Override
@@ -144,9 +148,14 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                         llenarProgresos(new LlenarRutinasCallback() {
                             @Override
                             public void onCompletion() {
-                                Log.d("FIN", "progresos" + progresos);
-                                configureDayClickListeners();
-                                selectCurrentDay();
+                                llenarImagenes(new LlenarRutinasCallback() {
+                                    @Override
+                                    public void onCompletion() {
+                                        Log.d("FIN", "imagenes" + imagenes);
+                                        configureDayClickListeners();
+                                        selectCurrentDay();
+                                    }
+                                });
                             }
                         });
                     }
@@ -203,7 +212,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
             currentDayButton.performClick();
         }
     }
-
 
     private void configureDayClickListeners() {
         ImageButton imageLunes = findViewById(R.id.imageLunes);
@@ -364,6 +372,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
         rutinaApiService = retrofit.create(RutinaApiService.class);
         rutinaEjercicioApiService = retrofit.create(RutinaEjercicioApiService.class);
         ejercicioProgresoxEjercicioApiService = retrofit.create(EjercicioProgresoxEjercicioApiService.class);
+        imagenEjercicioApiService = retrofit.create(ImagenEjercicioApiService.class);
     }
 
     private void cargarInfo()
@@ -419,7 +428,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
     private void llenarEjercicios(LlenarRutinasCallback callback)
     {
         Collection<Rutina> listR = rutinas.values();
-        for(Rutina rut: listR)  
+        for(Rutina rut: listR)
         {
             Call<List<Ejercicio>> call = rutinaEjercicioApiService.getEjerciciosByRutinaId(rut.getId());
             call.enqueue(new Callback<List<Ejercicio>>() {
@@ -481,9 +490,35 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
             });
         }
 
+    }
 
+    private void llenarImagenes(LlenarRutinasCallback callback)
+    {
+        Set<Integer> listOfEjercicioLists = progresos.keySet();
+        Log.d("LISTA EJERCICIOS", "list e: "+listOfEjercicioLists.toString());
+        for(Integer ej: listOfEjercicioLists)
+        {
+            Call<List<ImagenEjercicio>> call = imagenEjercicioApiService.findByEjercicioid(ej);
+            call.enqueue(new Callback<List<ImagenEjercicio>>() {
+                @Override
+                public void onResponse(Call<List<ImagenEjercicio>> call, Response<List<ImagenEjercicio>> response) {
+                    if (response.isSuccessful()) {
+                        List<ImagenEjercicio> lista = response.body();
+                        imagenes.put(ej,lista);
+                    } else {
+                        // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                        Log.e("Error", "Error en la respuesta: " + response.code());
+                    }
+                    callback.onCompletion();
+                }
+                @Override
+                public void onFailure(Call<List<ImagenEjercicio>> call, Throwable t) {
+                    // Maneja errores de red o de conversión de datos
+                    Log.e("Error", "Fallo en la petición: " + t.getMessage());
 
-
+                }
+            });
+        }
     }
 
     private void mostrar(String dia)
@@ -510,10 +545,19 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 CajaRutina temp = new CajaRutina();
                 Ejercicio temp2 = new Ejercicio();
                 ProgresoxEjercicio temp3 = new ProgresoxEjercicio();
+                ImagenEjercicio temp4 = new ImagenEjercicio();
+                if(imagenes.get(ejercicio.getId().intValue())!=null)
+                {
+                    if(!imagenes.get(ejercicio.getId().intValue()).isEmpty())
+                    {
+                        temp4 = imagenes.get(ejercicio.getId().intValue()).get(0);
+                    }
+                }
                 temp3 = progresos.get(ejercicio.getId().intValue());
                 temp2=ejercicio;
                 temp.setEjercicio(temp2);
                 temp.setProgresoxEjercicio(temp3);
+                temp.setImagenEjercicio(temp4);
                 cajaRutinas.add(temp);
             }
 
