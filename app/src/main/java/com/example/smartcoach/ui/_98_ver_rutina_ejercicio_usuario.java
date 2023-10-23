@@ -146,6 +146,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                             public void onCompletion() {
                                 Log.d("FIN", "progresos" + progresos);
                                 configureDayClickListeners();
+                                selectCurrentDay();
                             }
                         });
                     }
@@ -172,6 +173,37 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
             }
         });
     }
+
+    private ImageButton getCurrentDayButton() {
+        Calendar calendar = Calendar.getInstance();
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+
+        switch (dayOfWeek) {
+            case Calendar.MONDAY:
+                return findViewById(R.id.imageLunes);
+            case Calendar.TUESDAY:
+                return findViewById(R.id.imageMartes);
+            case Calendar.WEDNESDAY:
+                return findViewById(R.id.imageMiercoles);
+            case Calendar.THURSDAY:
+                return findViewById(R.id.imageJueves);
+            case Calendar.FRIDAY:
+                return findViewById(R.id.imageViernes);
+            case Calendar.SATURDAY:
+                return findViewById(R.id.imageSabado);
+            case Calendar.SUNDAY:
+                return findViewById(R.id.imageDomingo);
+        }
+        return null;
+    }
+
+    private void selectCurrentDay() {
+        ImageButton currentDayButton = getCurrentDayButton();
+        if (currentDayButton != null) {
+            currentDayButton.performClick();
+        }
+    }
+
 
     private void configureDayClickListeners() {
         ImageButton imageLunes = findViewById(R.id.imageLunes);
@@ -387,7 +419,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
     private void llenarEjercicios(LlenarRutinasCallback callback)
     {
         Collection<Rutina> listR = rutinas.values();
-        for(Rutina rut: listR)
+        for(Rutina rut: listR)  
         {
             Call<List<Ejercicio>> call = rutinaEjercicioApiService.getEjerciciosByRutinaId(rut.getId());
             call.enqueue(new Callback<List<Ejercicio>>() {

@@ -32,10 +32,13 @@ public class CajaRutinaAdapter extends RecyclerView.Adapter<CajaRutinaAdapter.Ca
     @Override
     public void onBindViewHolder(CajaRutinaViewHolder holder, int position) {
         CajaRutina cajaRutina = cajaRutinas.get(position);
-        // Aquí configuras cómo se mostrarán los datos de CajaRutina en los elementos de la UI.
-        holder.nombreEjercicio.setText(cajaRutina.getEjercicio().getNombre());
-        holder.valorSerie.setText(cajaRutina.getProgresoxEjercicio().getSerie().toString());
-        holder.valorRepeticiones.setText(cajaRutina.getProgresoxEjercicio().getRepeticiones().toString());
+        if(cajaRutina!=null)
+        {
+            holder.nombreEjercicio.setText(cajaRutina.getEjercicio().getNombre());
+            holder.valorSerie.setText(cajaRutina.getProgresoxEjercicio().getSerie().toString());
+            holder.valorRepeticiones.setText(cajaRutina.getProgresoxEjercicio().getRepeticiones().toString());
+        }
+
     }
 
     @Override
