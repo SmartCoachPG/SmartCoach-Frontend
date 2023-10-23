@@ -29,11 +29,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import api.Admi.EquipoApiService;
+import api.Admi.GimnasioApiService;
 import api.Admi.GimnasioItemApiService;
 import api.Admi.UsuarioAdministradorApiService;
 import api.SharedPreferencesUtil;
 import api.retro;
 import model.Admi.Equipo;
+import model.Admi.Gimnasio;
 import model.Admi.GimnasioItem;
 import model.Admi.UsuarioAdministrador;
 import model.Exercise.CajaRutina;
@@ -57,11 +59,20 @@ public class _16_ver_equipo_admin_todos extends BaseActivityAdmi {
     RecyclerView recyclerView;
     View otrosMenu;
 
+    Long userId;
+    String token;
+
+    UsuarioAdministradorApiService usuarioAdministradorApiService;
+    EquipoApiService equipoApiService;
+    GimnasioItemApiService gimnasioItemApiService;
+    GimnasioApiService gimnasioApiService;
+
     RecyclerView recyclerView_16;
 
     List<Equipo> listaEquipo = new ArrayList<>();
     List<GimnasioItem> listaEquipoGym = new ArrayList<>();
     UsuarioAdministrador usuarioAdministrador = new UsuarioAdministrador();
+    Gimnasio gimnasio = new Gimnasio();
     CajaEquipoAdapter adapter;
 
     @Override
@@ -159,7 +170,6 @@ public class _16_ver_equipo_admin_todos extends BaseActivityAdmi {
 
     private void iniciarPeticiones()
     {
-
         OkHttpClient okHttpClient = retro.getUnsafeOkHttpClientWithToken(token);
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -171,6 +181,7 @@ public class _16_ver_equipo_admin_todos extends BaseActivityAdmi {
         usuarioAdministradorApiService = retrofit.create(UsuarioAdministradorApiService.class);
         equipoApiService = retrofit.create(EquipoApiService.class);
         gimnasioItemApiService = retrofit.create(GimnasioItemApiService.class);
+        gimnasioApiService = retrofit.create(GimnasioApiService.class);
     }
 
     private void cargarInfo()
@@ -185,8 +196,14 @@ public class _16_ver_equipo_admin_todos extends BaseActivityAdmi {
                         cargarEquiposGym(new InfoCallback() {
                             @Override
                             public void onCompletion() {
-                                mostrarEquipos();
-                                actualizarLista();
+                                cargarGym(new InfoCallback() {
+                                    @Override
+                                    public void onCompletion() {
+                                        mostrarEquipos();
+                                        actualizarLista();
+                                    }
+                                });
+
                             }
                         });
 
@@ -202,6 +219,26 @@ public class _16_ver_equipo_admin_todos extends BaseActivityAdmi {
         void onCompletion();
     }
 
+    private void cargarGym(_16_ver_equipo_admin_todos.InfoCallback callback)
+    {
+        Call<Gimnasio> call = gimnasioApiService.findById(usuarioAdministrador.getGimnasioId().longValue());
+        call.enqueue(new Callback<Gimnasio>() {
+            @Override
+            public void onResponse(Call<Gimnasio> call, Response<Gimnasio> response) {
+                if (response.isSuccessful()) {
+                    gimnasio = response.body();
+                    setTextAdminName.setText(usuarioAdministrador.getNombre());
+                    callback.onCompletion();
+                } else {
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Gimnasio> call, Throwable t) {
+                Toast.makeText(_16_ver_equipo_admin_todos.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     private void cargarPerfil(_16_ver_equipo_admin_todos.InfoCallback callback)
     {
         Call<UsuarioAdministrador> call = usuarioAdministradorApiService.getUsuarioById(userId);
@@ -264,8 +301,10 @@ public class _16_ver_equipo_admin_todos extends BaseActivityAdmi {
                 }
             });
         }
-
-        Toast.makeText(_16_ver_equipo_admin_todos.this, "Admi recuerda primero crear un gimnasio antes de ingresar tu equipo", Toast.LENGTH_SHORT).show();
+        else
+        {
+            Toast.makeText(_16_ver_equipo_admin_todos.this, "Admi recuerda primero crear un gimnasio antes de ingresar tu equipo", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -278,7 +317,7 @@ public class _16_ver_equipo_admin_todos extends BaseActivityAdmi {
                 listaEquipo.remove(equipo);
             }
         }
-        adapter = new CajaEquipoAdapter(listaEquipo,listaEquipoGym);
+        adapter = new CajaEquipoAdapter(listaEquipo,listaEquipoGym,gimnasio,_16_ver_equipo_admin_todos.this);
         RecyclerView recyclerView = findViewById(R.id.recyclerView_16);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);

@@ -368,7 +368,7 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
         for(GimnasioItem gi : listaItems)
         {
             List<UbicacionxItem> ubi = ubicaciones.get(gi.getItemid());
-            if(!ubi.isEmpty())
+            if(!ubi.isEmpty()&&ubi!=null)
             {
                 Log.d("IMAGENESSS", "listaUbi: "+ubi);
                 for(UbicacionxItem uxi : ubi)
