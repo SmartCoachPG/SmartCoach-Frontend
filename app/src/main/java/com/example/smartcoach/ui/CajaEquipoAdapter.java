@@ -3,7 +3,10 @@ package com.example.smartcoach.ui;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,6 +91,16 @@ public class CajaEquipoAdapter extends RecyclerView.Adapter<CajaEquipoAdapter.Ca
         holder.nombreEquipo.setText(equipo.getNombre());
         holder.referenciaE.setText(equipo.getReferencia());
         holder.descripcionE.setText(equipo.getDescripcion());
+
+        String imageString = equipo.getImagen();
+        if(imageString!=null)
+        {
+            Log.d("IMAGEN CARGANDO", "esta es la imagen: "+imageString);
+            byte[] imageBytes = Base64.decode(imageString, Base64.DEFAULT);
+            Bitmap decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            holder.imagenEquipo.setImageBitmap(decodedBitmap);
+        }
+
         int bandera = 0;
 
         for(GimnasioItem gimnasioItem : gimnasioItems)
@@ -132,6 +146,8 @@ public class CajaEquipoAdapter extends RecyclerView.Adapter<CajaEquipoAdapter.Ca
         dialog.setCancelable(true);
         dialog.setContentView(R.layout._16_anadir_equipo_cantidad);
         dialog.getWindow().setBackgroundDrawable(null);
+
+
 
         TextView nombreE = dialog.findViewById(R.id.nombreEquipo_16);
         nombreE.setText(nombre);
@@ -260,6 +276,8 @@ public class CajaEquipoAdapter extends RecyclerView.Adapter<CajaEquipoAdapter.Ca
         public TextView descripcionE;
         public Button btnAgregar;
 
+        public ImageView imagenEquipo;
+
         public CajaEquipoViewHolder(View view) {
             super(view);
             nombreEquipo = view.findViewById(R.id.nombreEquipo);
@@ -267,6 +285,7 @@ public class CajaEquipoAdapter extends RecyclerView.Adapter<CajaEquipoAdapter.Ca
             descripcionE = view.findViewById(R.id.desc_equipo);
             descripcionE.setMovementMethod(new ScrollingMovementMethod());
             btnAgregar = view.findViewById(R.id.btnAgregar);
+            imagenEquipo = view.findViewById(R.id.imageEquipo);
         }
     }
 }

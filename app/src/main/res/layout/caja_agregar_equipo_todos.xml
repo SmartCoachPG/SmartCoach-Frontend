@@ -18,7 +18,7 @@
             android:id="@+id/imageEquipo"
             android:layout_width="94dp"
             android:layout_height="122dp"
-            android:scaleType="center"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/cuadrado_gr" />
 
         <LinearLayout

@@ -8,6 +8,7 @@ public class Equipo extends Item {
 
     private String descripcion;
 
+
     public Equipo(Long id, String imagen, String nombre, String referencia, Integer usuarioId, Integer tipoEquipoId, String descripcion) {
         super(id, imagen, nombre);
         this.referencia = referencia;

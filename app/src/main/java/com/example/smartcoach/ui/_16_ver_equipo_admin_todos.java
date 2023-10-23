@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.smartcoach.R;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import api.Admi.EquipoApiService;
@@ -310,11 +311,11 @@ public class _16_ver_equipo_admin_todos extends BaseActivityAdmi {
 
     private void mostrarEquipos()
     {
-        for(Equipo equipo: listaEquipo)
-        {
-            if(equipo.getNombre().contains("BodyWeight"))
-            {
-                listaEquipo.remove(equipo);
+        Iterator<Equipo> iterator = listaEquipo.iterator();
+        while (iterator.hasNext()) {
+            Equipo equipo = iterator.next();
+            if (equipo.getNombre().contains("BodyWeight")) {
+                iterator.remove();
             }
         }
         adapter = new CajaEquipoAdapter(listaEquipo,listaEquipoGym,gimnasio,_16_ver_equipo_admin_todos.this);
