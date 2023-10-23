@@ -1,9 +1,14 @@
 package model.User;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.sql.Time;
 import java.util.Date;
 
-public class ProgresoxEjercicio {
+import model.Exercise.Ejercicio;
+
+public class ProgresoxEjercicio implements Parcelable {
 
     private Long id;
     private Integer peso;
@@ -115,5 +120,47 @@ public class ProgresoxEjercicio {
                 ", descansoEntreSeries=" + descansoEntreSeries +
                 ", usuarioClienteId=" + usuarioClienteId +
                 '}';
+    }
+
+    protected ProgresoxEjercicio(Parcel in) {
+        id = (Long) in.readValue(Long.class.getClassLoader());
+        peso = (Integer) in.readValue(Integer.class.getClassLoader());
+        fecha = new Date(in.readLong());
+        valoracion = (Integer) in.readValue(Integer.class.getClassLoader());
+        serie = (Integer) in.readValue(Integer.class.getClassLoader());
+        repeticiones = (Integer) in.readValue(Integer.class.getClassLoader());
+        comentarios = in.readString();
+        descansoEntreSeries = new Time(in.readLong());
+        usuarioClienteId = (Integer) in.readValue(Integer.class.getClassLoader());
+    }
+
+    public static final Creator<ProgresoxEjercicio> CREATOR = new Creator<ProgresoxEjercicio>() {
+        @Override
+        public ProgresoxEjercicio createFromParcel(Parcel in) {
+            return new ProgresoxEjercicio(in);
+        }
+
+        @Override
+        public ProgresoxEjercicio[] newArray(int size) {
+            return new ProgresoxEjercicio[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(id);
+        dest.writeValue(peso);
+        dest.writeLong(fecha.getTime());
+        dest.writeValue(valoracion);
+        dest.writeValue(serie);
+        dest.writeValue(repeticiones);
+        dest.writeString(comentarios);
+        dest.writeLong(descansoEntreSeries.getTime());  // Asumiendo que Time es java.sql.Time
+        dest.writeValue(usuarioClienteId);
     }
 }

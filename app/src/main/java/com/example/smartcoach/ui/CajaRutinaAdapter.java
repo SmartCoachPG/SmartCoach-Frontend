@@ -44,7 +44,6 @@ public class CajaRutinaAdapter extends RecyclerView.Adapter<CajaRutinaAdapter.Ca
             String imageString = cajaRutina.getImagenEjercicio().getImagen();
             if(imageString!=null)
             {
-                Log.d("IMAGEN CARGANDO", "esta es la imagen: "+imageString);
                 byte[] imageBytes = Base64.decode(imageString, Base64.DEFAULT);
                 Bitmap decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
                 holder.imagenEjercicio.setImageBitmap(decodedBitmap);

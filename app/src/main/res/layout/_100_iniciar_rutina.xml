@@ -285,6 +285,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewEjercicios_100"
             android:layout_width="323dp"
+            android:orientation="horizontal"
+            android:scaleType="fitCenter"
             android:layout_height="320dp"
             android:layout_marginTop="32dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

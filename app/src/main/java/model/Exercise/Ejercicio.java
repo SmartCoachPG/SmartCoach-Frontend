@@ -1,7 +1,12 @@
 package model.Exercise;
 
 
-public class Ejercicio {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Ejercicio implements Parcelable {
 
     private Long id;
     private String nombre;
@@ -59,5 +64,37 @@ public class Ejercicio {
                 ", instruccionEjecucion='" + instruccionEjecucion + '\'' +
                 ", instruccionRespiracion='" + instruccionRespiracion + '\'' +
                 '}';
+    }
+
+    protected Ejercicio(Parcel in) {
+        id = (Long) in.readValue(Long.class.getClassLoader());
+        nombre = in.readString();
+        instruccionEjecucion = in.readString();
+        instruccionRespiracion = in.readString();
+    }
+
+    public static final Creator<Ejercicio> CREATOR = new Creator<Ejercicio>() {
+        @Override
+        public Ejercicio createFromParcel(Parcel in) {
+            return new Ejercicio(in);
+        }
+
+        @Override
+        public Ejercicio[] newArray(int size) {
+            return new Ejercicio[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(id);
+        dest.writeString(nombre);
+        dest.writeString(instruccionEjecucion);
+        dest.writeString(instruccionRespiracion);
     }
 }

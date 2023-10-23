@@ -61,6 +61,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
     Button btnIniciarRutina;
     ImageButton btnModificarRutina;
 
+    String dia;
     private final Map<ImageButton, Integer> originalImages = new HashMap<>();
     private final Map<ImageButton, Integer> selectedImages = new HashMap<>();
     private int selectedDay = -1;
@@ -151,9 +152,15 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                                 llenarImagenes(new LlenarRutinasCallback() {
                                     @Override
                                     public void onCompletion() {
-                                        Log.d("FIN", "imagenes" + imagenes);
                                         configureDayClickListeners();
                                         selectCurrentDay();
+                                        btnIniciarRutina.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                Log.d("INICIAR RUTINA", "Me dan click");
+                                                filtrarListas();
+                                            }
+                                        });
                                     }
                                 });
                             }
@@ -164,14 +171,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
             }
         });
 
-        btnIniciarRutina.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(_98_ver_rutina_ejercicio_usuario.this, _100_iniciar_rutina.class);
-                startActivity(intent);
-            }
-        });
 
         btnModificarRutina.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -234,7 +233,9 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
-                mostrar("Lunes");
+                dia="Lunes";
+                mostrar();
+
             }
         });
         imageMartes.setOnClickListener(new View.OnClickListener() {
@@ -249,7 +250,9 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
-                mostrar("Martes");
+                dia="Martes";
+                mostrar();
+
 
             }
         });
@@ -265,7 +268,9 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
-                mostrar("Miércoles");
+                dia="Miércoles";
+                mostrar();
+
 
             }
         });
@@ -281,7 +286,9 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
-                mostrar("Jueves");
+                dia="Jueves";
+                mostrar();
+
             }
         });
         imageViernes.setOnClickListener(new View.OnClickListener() {
@@ -296,7 +303,9 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
-                mostrar("Viernes");
+                dia="Viernes";
+                mostrar();
+
             }
         });
         imageSabado.setOnClickListener(new View.OnClickListener() {
@@ -311,7 +320,9 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
-                mostrar("Sábado");
+                dia="Sábado";
+                mostrar();
+
             }
         });
         imageDomingo.setOnClickListener(new View.OnClickListener() {
@@ -326,7 +337,8 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                 else setTextDuracionRutina.setText("0");
-                mostrar("Domingo");
+                dia="Domingo";
+                mostrar();
             }
         });
     }
@@ -354,12 +366,8 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 .registerTypeAdapter(Time.class, new TimeDeserializer())
                 .create();
 
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-
         OkHttpClient okHttpClient = retro.getUnsafeOkHttpClientWithToken(token)
                 .newBuilder()
-                .addInterceptor(logging)
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -383,7 +391,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
             public void onResponse(Call<UsuarioCliente> call, Response<UsuarioCliente> response) {
                 if (response.isSuccessful()) {
                     UsuarioCliente usuario = response.body();
-                    Log.d("Usuario", "Nombre: " + usuario.getNombre());
                     setTextNombreUser.setText(usuario.getNombre());
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
@@ -464,8 +471,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
         for (List<Ejercicio> ejercicioList : listOfEjercicioLists) {
             allEjerciciosSet.addAll(ejercicioList);
         }
-
-        Log.d("LISTA EJERCICIOS", "list e: "+allEjerciciosSet.toString());
         for(Ejercicio ej: allEjerciciosSet)
         {
             Call<ProgresoxEjercicio> call = ejercicioProgresoxEjercicioApiService.getLatestProgresoxEjercicio(ej.getId().intValue(),userId.intValue());
@@ -495,7 +500,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
     private void llenarImagenes(LlenarRutinasCallback callback)
     {
         Set<Integer> listOfEjercicioLists = progresos.keySet();
-        Log.d("LISTA EJERCICIOS", "list e: "+listOfEjercicioLists.toString());
         for(Integer ej: listOfEjercicioLists)
         {
             Call<List<ImagenEjercicio>> call = imagenEjercicioApiService.findByEjercicioid(ej);
@@ -521,7 +525,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
         }
     }
 
-    private void mostrar(String dia)
+    private void mostrar()
     {
         RecyclerView recyclerView = findViewById(R.id.recyclerViewEjercicios_98);
         LinearLayout emptyView = findViewById(R.id.empty_view_98);
@@ -564,6 +568,32 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
             CajaRutinaAdapter adapter = new CajaRutinaAdapter(cajaRutinas);
             recyclerView.setAdapter(adapter);
         }
+
+    }
+
+    private void filtrarListas()
+    {
+        Rutina rut = rutinas.get(dia);
+        List<Ejercicio> ejerciciosRut = ejercicios.get(rut.getId());
+
+        Log.d("INICIAR RUTINA", "antes de convertirlos");
+        Log.d("INICIAR RUTINA", "ejercicios: "+ejercicios);
+        Log.d("INICIAR RUTINA", "progresos: "+progresos);
+        Log.d("INICIAR RUTINA", "imagenes: "+imagenes);
+
+        Intent intent = new Intent(_98_ver_rutina_ejercicio_usuario.this, _100_iniciar_rutina.class);
+
+        Ejercicio[] ejerciciosArray = ejerciciosRut.toArray(new Ejercicio[0]);
+
+        Bundle progresoEjercicioBundle = new Bundle();
+        for (Map.Entry<Integer, ProgresoxEjercicio> entry : progresos.entrySet()) {
+            progresoEjercicioBundle.putParcelable(entry.getKey().toString(), entry.getValue());
+        }
+
+        intent.putExtra("Ejercicios",ejerciciosArray);
+        intent.putExtra("ProgresoXEjercicio",progresoEjercicioBundle);
+
+        startActivity(intent);
 
     }
 
