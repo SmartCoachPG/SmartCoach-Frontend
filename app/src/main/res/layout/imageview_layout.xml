@@ -4,9 +4,10 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imaeView_100"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:id="@+id/imageView_100"
+        android:layout_width="match_parent"
+        android:scaleType="fitCenter"
+        android:layout_height="match_parent">
     </ImageView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

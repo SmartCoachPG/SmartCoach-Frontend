@@ -576,11 +576,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
         Rutina rut = rutinas.get(dia);
         List<Ejercicio> ejerciciosRut = ejercicios.get(rut.getId());
 
-        Log.d("INICIAR RUTINA", "antes de convertirlos");
-        Log.d("INICIAR RUTINA", "ejercicios: "+ejercicios);
-        Log.d("INICIAR RUTINA", "progresos: "+progresos);
-        Log.d("INICIAR RUTINA", "imagenes: "+imagenes);
-
         Intent intent = new Intent(_98_ver_rutina_ejercicio_usuario.this, _100_iniciar_rutina.class);
 
         Ejercicio[] ejerciciosArray = ejerciciosRut.toArray(new Ejercicio[0]);

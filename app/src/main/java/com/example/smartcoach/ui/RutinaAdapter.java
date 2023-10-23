@@ -1,13 +1,19 @@
 package com.example.smartcoach.ui;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartcoach.R;
+
+import model.Exercise.ImagenEjercicio;
 
 public class RutinaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -16,6 +22,13 @@ public class RutinaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public static final int LAYOUT_ONE = 1;
     public static final int LAYOUT_TWO = 2;
     public static final int LAYOUT_THREE = 3;
+
+    private ImagenEjercicio imagenEjercicio;
+
+    public RutinaAdapter(ImagenEjercicio imagenEjercicio)
+    {
+        this.imagenEjercicio = imagenEjercicio;
+    }
 
     @NonNull
     @Override
@@ -37,7 +50,17 @@ public class RutinaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        // Aquí configuras tus vistas según la posición y el tipo
+        if(position==0)
+        {
+            ImageViewHolder imageViewHolder = (ImageViewHolder) holder;
+            if(imagenEjercicio!=null)
+            if(imagenEjercicio.getImagen()!=null)
+            {
+                byte[] imageBytes = Base64.decode(imagenEjercicio.getImagen(), Base64.DEFAULT);
+                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                imageViewHolder.imageView.setImageBitmap(decodedBitmap);
+            }
+        }
     }
 
     @Override
@@ -58,10 +81,13 @@ public class RutinaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         return 4;
     }
 
+
     public class ImageViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView imageView;
         public ImageViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Inicializar tus vistas aquí
+            imageView = itemView.findViewById(R.id.imageView_100);
         }
     }
 
@@ -87,5 +113,4 @@ public class RutinaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
 
-    // ... (Y así sucesivamente para los otros ViewHolder)
 }

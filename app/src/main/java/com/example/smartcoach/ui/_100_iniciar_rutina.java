@@ -13,15 +13,36 @@ import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import com.example.smartcoach.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.sql.Time;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import api.DateSerializer;
+import api.Exercise.EjercicioProgresoxEjercicioApiService;
+import api.Exercise.ImagenEjercicioApiService;
+import api.Exercise.RutinaApiService;
+import api.Exercise.RutinaEjercicioApiService;
+import api.SharedPreferencesUtil;
+import api.TimeDeserializer;
+import api.TimeSerializer;
+import api.User.UsuarioClienteApiService;
+import api.retro;
 import model.Exercise.Ejercicio;
 import model.Exercise.ImagenEjercicio;
 import model.User.ProgresoxEjercicio;
+import model.User.UsuarioCliente;
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class _100_iniciar_rutina extends AppCompatActivity {
 
@@ -37,13 +58,24 @@ public class _100_iniciar_rutina extends AppCompatActivity {
     List<Ejercicio> ejerciciosList;
     Map<Integer, ProgresoxEjercicio> progresoEjercicio = new HashMap<>();
 
+    ImagenEjercicio imagenEjercicio = new ImagenEjercicio();
+
     int ejercicioActual=0;
+
+    ImagenEjercicioApiService imagenEjercicioApiService;
+
+    Long userId;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout._100_iniciar_rutina);
         getSupportActionBar().hide();
+
+        userId = SharedPreferencesUtil.getUserId(_100_iniciar_rutina.this);
+        token = SharedPreferencesUtil.getToken(_100_iniciar_rutina.this);
+        iniciarPeticiones();
 
         setTextNombreEjercicio_100 = findViewById(R.id.setTextNombreEjercicio_100);
         numero_serie_inicial_100 = findViewById(R.id.numero_serie_inicial_100);
@@ -70,6 +102,7 @@ public class _100_iniciar_rutina extends AppCompatActivity {
         btnAdelantar_100 = findViewById(R.id.btnAdelantar_100);
         tiempoIniciarPausa = findViewById(R.id.tiempoIniciarPausa);
         tiempoIniciarPausa.setBase(SystemClock.elapsedRealtime());
+
 
         // tener los extra
         Parcelable[] parcelableArray = getIntent().getParcelableArrayExtra("Ejercicios");
@@ -115,6 +148,26 @@ public class _100_iniciar_rutina extends AppCompatActivity {
         });
     }
 
+    private void iniciarPeticiones() {
+
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Date.class, new DateSerializer())
+                .registerTypeAdapter(Time.class, new TimeSerializer())
+                .registerTypeAdapter(Time.class, new TimeDeserializer())
+                .create();
+
+        OkHttpClient okHttpClient = retro.getUnsafeOkHttpClientWithToken(token)
+                .newBuilder()
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://10.0.2.2:8043/api/")
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        imagenEjercicioApiService = retrofit.create(ImagenEjercicioApiService.class);
+    }
     private void cargarInfo()
     {
         Ejercicio actual = ejerciciosList.get(ejercicioActual);
@@ -137,12 +190,54 @@ public class _100_iniciar_rutina extends AppCompatActivity {
         minutos += horas * 60;
 
         String tiempoFormateado = String.format("%02d:%02d", minutos, segundos);
-
         tiempoDescanso.setText(tiempoFormateado);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewEjercicios_100);
-        recyclerView.setAdapter(new RutinaAdapter());
+        cargarImagen(new InfoCallBack() {
+            @Override
+            public void onCompletion() {
+                Log.d("CARANDO", "imagen: "+imagenEjercicio);
+                RecyclerView recyclerView = findViewById(R.id.recyclerViewEjercicios_100);
+                recyclerView.setAdapter(new RutinaAdapter(imagenEjercicio));
+            }
+        });
 
     }
+
+    public void cargarImagen(InfoCallBack callback)
+    {
+        Log.d("CARANDO", "mirando ejercicio: "+ejerciciosList.get(ejercicioActual).getId());
+        int idEjercicio = ejerciciosList.get(ejercicioActual).getId().intValue();
+        Call<List<ImagenEjercicio>> call = imagenEjercicioApiService.findByEjercicioid(idEjercicio);
+        call.enqueue(new Callback<List<ImagenEjercicio>>() {
+            @Override
+            public void onResponse(Call<List<ImagenEjercicio>> call, Response<List<ImagenEjercicio>> response) {
+                if (response.isSuccessful()) {
+                    if(!response.body().isEmpty())
+                    {
+                        Log.d("CARANDO", "encontre: "+response.body().get(0));
+                        imagenEjercicio = response.body().get(0);
+                    }
+
+                    callback.onCompletion();
+
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<ImagenEjercicio>> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
+
+    interface InfoCallBack {
+        void onCompletion();
+    }
+
 }
 
