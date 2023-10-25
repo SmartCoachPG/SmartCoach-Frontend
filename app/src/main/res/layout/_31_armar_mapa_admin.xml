@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:background="@color/orange"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/flechaRegresar_31"
+            android:layout_width="10.85dp"
+            android:layout_height="18.95dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="19dp"
+            android:background="@null"
+            android:scaleType="fitCenter" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Arma el mapa"
+            android:textSize="32sp"
+            android:textColor="@color/white"
+            android:layout_marginLeft="28dp"
+            ></TextView>
+        <TextView
+            android:layout_marginTop="23dp"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/grey"
+            android:text="Aquí podrás crear o modificar el mapa con todos los elementos de tu gimnasio. "
+            android:layout_marginLeft="28dp"
+
+            ></TextView>
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:fillViewport="true"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:foregroundGravity="center"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <HorizontalScrollView
+            android:fillViewport="true"
+            android:foregroundGravity="center"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <GridLayout
+                android:id="@+id/gridLayout_31"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:columnCount="10"
+                android:rowCount="10">
+            </GridLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/botonEquipo_31"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@color/orange"
+                android:gravity="center"
+                android:text="Equipo"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp"></androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/botonElementos_31"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="@color/grisClaro"
+                android:gravity="center"
+                android:text="Otros Elementos"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="16dp"></androidx.appcompat.widget.AppCompatButton>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_31"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+</LinearLayout>

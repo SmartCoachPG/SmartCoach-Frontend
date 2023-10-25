@@ -252,10 +252,13 @@ public class _36_modificar_informacion_gimnasio extends BaseActivityAdmi {
         setTextAnchoGimnasio_36.setText(mapa.getAncho().toString());
         setTextAltoGimnasio_36.setText(mapa.getAlto().toString());
         setTextPisosGimnasio_36.setText(gym.getPisos().toString());
-        String imageString = gym.getImagenGimnasio();
-        byte[] imageBytes = Base64.decode(imageString, Base64.DEFAULT);
-        Bitmap decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-        imagenGimnasio_36.setImageBitmap(decodedBitmap);
+        if(gym.getImagenGimnasio()!=null)
+        {
+            String imageString = gym.getImagenGimnasio();
+            byte[] imageBytes = Base64.decode(imageString, Base64.DEFAULT);
+            Bitmap decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            imagenGimnasio_36.setImageBitmap(decodedBitmap);
+        }
     }
 
     private void guardarInfo()
