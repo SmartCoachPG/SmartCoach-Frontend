@@ -46,7 +46,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class _35_ver_mapa_admin extends AppCompatActivity {
 
     GridLayout gridLayout;
-
     UsuarioAdministradorApiService usuarioAdministradorApiService;
     GimnasioApiService gimnasioApiService;
     MapaApiService mapaApiService;
@@ -237,7 +236,12 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<GimnasioItem>> call, Response<List<GimnasioItem>> response) {
                 if (response.isSuccessful()) {
-                    listaItems = response.body();
+                    Log.e("GIMNASIO", "cargando item: " + response.body().toString());
+                    if(!response.body().isEmpty())
+                    {
+                        listaItems = response.body();
+                    }
+
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());
@@ -255,41 +259,49 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
 
     private void llenarTipoEquipo(_35_ver_mapa_admin.InfoCallback callback)
     {
-        for(GimnasioItem gi : listaItems)
+        if(!listaItems.isEmpty())
         {
-            if(gi.getItemid()>11)
+            for(GimnasioItem gi : listaItems)
             {
-                Call<Integer> call = equipoApiService.findTipoEquipoIdByItemId(Long.valueOf(gi.getItemid()));
-                call.enqueue(new Callback<Integer>() {
-                    @Override
-                    public void onResponse(Call<Integer> call, Response<Integer> response) {
-                        if (response.isSuccessful()) {
-                            tipoEquipoItem.put(gi.getItemid(),response.body());
-                        } else {
-                            // Maneja errores del servidor, por ejemplo, un error 404 o 500.
-                            Log.e("Error", "Error en la respuesta: " + response.code());
+                if(gi.getItemid()>11)
+                {
+                    Call<Integer> call = equipoApiService.findTipoEquipoIdByItemId(Long.valueOf(gi.getItemid()));
+                    call.enqueue(new Callback<Integer>() {
+                        @Override
+                        public void onResponse(Call<Integer> call, Response<Integer> response) {
+                            if (response.isSuccessful()) {
+                                tipoEquipoItem.put(gi.getItemid(),response.body());
+                            } else {
+                                // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                                Log.e("Error", "Error en la respuesta: " + response.code());
+                            }
+                            callback.onCompletion();
                         }
-                        callback.onCompletion();
-                    }
 
-                    @Override
-                    public void onFailure(Call<Integer> call, Throwable t) {
-                        // Maneja errores de red o de conversión de datos
-                        Log.e("Error", "Fallo en la petición: " + t.getMessage());
-                    }
-                });
-            }
-            else {
-                tipoEquipoItem.put(gi.getItemid(),gi.getItemid()+4);
+                        @Override
+                        public void onFailure(Call<Integer> call, Throwable t) {
+                            // Maneja errores de red o de conversión de datos
+                            Log.e("Error", "Fallo en la petición: " + t.getMessage());
+                        }
+                    });
+                }
+                else {
+                    tipoEquipoItem.put(gi.getItemid(),gi.getItemid()+4);
+                }
             }
         }
+        else {
+            callback.onCompletion();
+        }
+
     }
 
     private void procesarItems(int index, InfoCallback callback) {
-        if (index >= listaItems.size()) {
-            callback.onCompletion(); // Todos los items han sido procesados
+        if (index >= listaItems.size()|| listaItems.isEmpty()) {
+            callback.onCompletion();
             return;
         }
+
         GimnasioItem gi = listaItems.get(index);
         llenarUbicacionxItem(gi, new InfoCallback() {
             @Override
@@ -305,8 +317,12 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<List<UbicacionxItem>>  call, Response<List<UbicacionxItem>>  response) {
                     if (response.isSuccessful()) {
-                        List<UbicacionxItem> lista = response.body();
-                        ubicaciones.put(gi.getItemid(),lista);
+                        if(!response.body().isEmpty())
+                        {
+                            List<UbicacionxItem> lista = response.body();
+                            ubicaciones.put(gi.getItemid(),lista);
+                        }
+
                     } else {
                         // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                         Log.e("Error", "Error en la respuesta: " + response.code());
