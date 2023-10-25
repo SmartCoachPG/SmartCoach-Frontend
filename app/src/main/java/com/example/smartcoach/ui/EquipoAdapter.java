@@ -64,6 +64,7 @@ public class EquipoAdapter extends RecyclerView.Adapter<EquipoAdapter.ViewHolder
                 int imageResId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
                 if (imageResId != 0) {
                     holder.equipoImageView.setImageResource(imageResId);
+                    holder.equipoImageView.setTag(position);
                 }
             }
         }
@@ -83,6 +84,7 @@ public class EquipoAdapter extends RecyclerView.Adapter<EquipoAdapter.ViewHolder
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
                     View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
                     v.startDrag(null, shadowBuilder, v, 0);
                     return true;

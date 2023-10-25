@@ -64,6 +64,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
     Map<Integer,Integer> tipoEquipoItem = new HashMap<>();
     Map<Integer,String> iconos= new HashMap<>();
     Map<Integer,String> iconosName = new HashMap<>();
+    Map<Integer,String> iconosNa = new HashMap<>();
     Map<Integer,List<UbicacionxItem>> ubicaciones= new HashMap<>();
     int piso = 1;
     Boolean equipo=true;
@@ -132,15 +133,22 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
         //Pesos
         iconos.put(1,"icon_mancuerna_fondo_ne");
         iconosName.put(1,"Pesos");
+        iconosNa.put(1,"icon_mancuerna_fondo_na");
         //Maquinas de peso
         iconos.put(2,"icon_maquina_de_peso");
         iconosName.put(2,"Maquinas de peso");
+        iconosNa.put(3,"icon_maquina_de_peso_na");
+
         //Maquinas de cardio
         iconos.put(3,"icon_corazon_ne");
         iconosName.put(3,"Maquinas de cardio");
+        iconosNa.put(3,"icon_corazon_na");
+
         //complementos
         iconos.put(4,"icon_complementos_ne");
         iconosName.put(4,"Complementos");
+        iconosNa.put(4,"icon_complementos_na");
+
         // item. caminos
         iconos.put(5,"cuadrado_gr");
         iconosName.put(5,"Caminos");
@@ -402,7 +410,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
         Log.d("FIN", "tipo equipo: "+tipoEquipoItem);
         Log.d("FIN", "iconos: "+iconos);
         Log.d("FIN", "ubicaciones: "+ubicaciones);
-        cargarCuadrados(mapas.get(piso).getAncho(),mapas.get(piso).getAlto()+2);
+        cargarCuadrados(mapas.get(piso).getAncho(),mapas.get(piso).getAlto()+5);
         cargarImagenes();
     }
 
@@ -437,10 +445,17 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
 
                             case DragEvent.ACTION_DROP:
                                 ImageView draggedView = (ImageView) event.getLocalState();
-                                // Obtener el drawable de la vista arrastrada
                                 Drawable draggedDrawable = draggedView.getDrawable();
-                                // Establecer el drawable de la vista arrastrada como el fondo del cuadrado
-                                ((ImageView) v).setImageDrawable(draggedDrawable);
+                                if(draggedView.getTag()!=null)
+                                {
+                                    int position = (int) draggedView.getTag();
+                                    int newDrawableId=getResources().getIdentifier(iconosNa.get(position), "drawable", getPackageName());;
+                                    ((ImageView) v).setImageResource(newDrawableId);
+                                }
+                                else{
+                                    ((ImageView) v).setImageDrawable(draggedDrawable);
+                                }
+
                                 return true;
 
                             case DragEvent.ACTION_DRAG_ENDED:
@@ -471,7 +486,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                     {
                         Log.d("IMAGENES", "elemento : "+uxi);
                         ImageView imageView = new ImageView(this);
-                        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(uxi.getCoordenadaY()+1), GridLayout.spec(uxi.getCoordenadaX()));  // 0,0 es para la primera fila, primera columna
+                        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(uxi.getCoordenadaY()+4), GridLayout.spec(uxi.getCoordenadaX()));  // 0,0 es para la primera fila, primera columna
                         layoutParams.width =  (int) (30 * getResources().getDisplayMetrics().density + 0.5f);
                         layoutParams.height =  (int) (30 * getResources().getDisplayMetrics().density + 0.5f);
                         int margin = (int) (1 * getResources().getDisplayMetrics().density + 0.5f);
