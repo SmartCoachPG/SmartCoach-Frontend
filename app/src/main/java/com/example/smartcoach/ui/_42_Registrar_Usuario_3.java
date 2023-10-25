@@ -250,17 +250,10 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
 
         cargarSpinner();
 
-        // Configurar el Listener para el spinnerLogro
         spinnerLogro.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String selectedLogro = spinnerLogro.getSelectedItem().toString();
-
-                if (selectedLogro.equals(spinnerLogro.getItemAtPosition(1).toString()) || selectedLogro.equals(spinnerLogro.getItemAtPosition(2).toString())) {
-                    spinnerMusculo.setVisibility(View.VISIBLE);
-                } else {
-                    spinnerMusculo.setVisibility(View.GONE);
-                }
+                 spinnerMusculo.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -518,6 +511,8 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
                     for (int i = 0; i < objetivoRutina.size(); i++) {
                         opcionesObjetivos[i] = objetivoRutina.get(i).getNombre();
                     }
+
+
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(_42_Registrar_Usuario_3.this, R.layout.spinner_item, opcionesObjetivos){
                         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                             View view = super.getView(position, convertView, parent);
@@ -536,10 +531,11 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
                             TextView text = view.findViewById(android.R.id.text1);
                             text.setTextColor(getResources().getColor(android.R.color.white));
                             text.setTextAppearance(R.style.SpinnerTextWhite);
+                            view.setBackgroundColor(getResources().getColor(R.color.orange));
                             return view;
                         }
                     };
-                    adapter.setDropDownViewResource(R.layout.spinner_item);
+
                     spinnerLogro.setAdapter(adapter);
 
                 } else {
@@ -592,11 +588,10 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
                             TextView text = view.findViewById(android.R.id.text1);
                             text.setTextColor(getResources().getColor(android.R.color.white));
                             text.setTextAppearance(R.style.SpinnerTextWhite);
-
+                            view.setBackgroundColor(getResources().getColor(R.color.orange));
                             return view;
                         }
                     };
-                    musculoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinnerMusculo.setAdapter(musculoAdapter);
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
