@@ -3,6 +3,7 @@ package com.example.smartcoach.ui;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -66,7 +67,6 @@ public class EquipoAdapter extends RecyclerView.Adapter<EquipoAdapter.ViewHolder
                 }
             }
         }
-        // Si tipo es false, mostrar los elementos de la posición 5 en adelante
         else {
             int adjustedPosition = position + 5;
             holder.equipoTextView.setText(iconosName.get(adjustedPosition));
@@ -78,7 +78,22 @@ public class EquipoAdapter extends RecyclerView.Adapter<EquipoAdapter.ViewHolder
                 }
             }
         }
+
+        holder.equipoImageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
+                    v.startDrag(null, shadowBuilder, v, 0);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+
     }
+
 
     @Override
     public int getItemCount() {

@@ -1,8 +1,10 @@
 package com.example.smartcoach.ui;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
@@ -415,7 +417,8 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
 
         for (int i = 0; i < alto; i++) {
             for (int j = 0; j < ancho; j++) {
-                View cuadrado = new View(this);
+
+                ImageView cuadrado = new ImageView(this);
 
                 GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(
                         GridLayout.spec(i), GridLayout.spec(j));
@@ -424,12 +427,33 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
 
                 cuadrado.setLayoutParams(layoutParams);
                 cuadrado.setBackgroundResource(R.drawable.fondo_mapa);
+                cuadrado.setOnDragListener(new View.OnDragListener() {
+                    @Override
+                    public boolean onDrag(View v, DragEvent event) {
+                        switch (event.getAction()) {
+                            case DragEvent.ACTION_DRAG_STARTED:
+                                // Determina si este listener debería aceptar el evento de arrastre.
+                                return (event.getLocalState() instanceof ImageView);
+
+                            case DragEvent.ACTION_DROP:
+                                ImageView draggedView = (ImageView) event.getLocalState();
+                                // Obtener el drawable de la vista arrastrada
+                                Drawable draggedDrawable = draggedView.getDrawable();
+                                // Establecer el drawable de la vista arrastrada como el fondo del cuadrado
+                                ((ImageView) v).setImageDrawable(draggedDrawable);
+                                return true;
+
+                            case DragEvent.ACTION_DRAG_ENDED:
+                                // Opcional: revertir cualquier cambio hecho en ACTION_DRAG_ENTERED.
+                                return true;
+                        }
+                        return false;
+                    }
+                });
 
                 gridLayout.addView(cuadrado);
             }
         }
-
-
     }
 
     private void cargarImagenes()
@@ -462,7 +486,5 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
             }
 
         }
-
-
     }
 }
