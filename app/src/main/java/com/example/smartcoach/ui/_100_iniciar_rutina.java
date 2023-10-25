@@ -27,6 +27,7 @@ import com.google.gson.GsonBuilder;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +46,7 @@ import api.TimeDeserializer;
 import api.TimeSerializer;
 import api.User.UsuarioClienteApiService;
 import api.retro;
+import model.Exercise.CajaRutina;
 import model.Exercise.Ejercicio;
 import model.Exercise.ImagenEjercicio;
 import model.User.ProgresoxEjercicio;
@@ -62,11 +64,10 @@ public class _100_iniciar_rutina extends AppCompatActivity {
     ImageButton imageButton, btnSiguiente_100, btnAtras_100, btnPlay_100, btnMute_100, btnAdelantar_100;
     Chronometer tiempoIniciarPausa;
     boolean isChronometerRunning = false;
-    boolean isChronometerStopped = false;
     long pausedTime = 0;
 
 
-    List<Ejercicio> ejerciciosList;
+    List<Ejercicio> ejerciciosList = new ArrayList<>();
     Map<Integer, ProgresoxEjercicio> progresoEjercicio = new HashMap<>();
     List<String> equiposEjercicio = new ArrayList<>();
     ImagenEjercicio imagenEjercicio = new ImagenEjercicio();
@@ -85,6 +86,8 @@ public class _100_iniciar_rutina extends AppCompatActivity {
     String token;
 
     int contadorSeries=0;
+
+    List<CajaRutina> cajaRutinas= new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,16 +126,18 @@ public class _100_iniciar_rutina extends AppCompatActivity {
         tiempoIniciarPausa.setBase(SystemClock.elapsedRealtime());
 
 
-        // tener los extra
-        Parcelable[] parcelableArray = getIntent().getParcelableArrayExtra("Ejercicios");
-        Ejercicio[] ejerciciosArray = Arrays.copyOf(parcelableArray, parcelableArray.length, Ejercicio[].class);
-        ejerciciosList = Arrays.asList(ejerciciosArray);
-        numero_serie_final_100.setText(String.valueOf(ejerciciosList.size()));
-
-        Bundle receivedProgresoEjercicioBundle = getIntent().getBundleExtra("ProgresoXEjercicio");
-        for (String key : receivedProgresoEjercicioBundle.keySet()) {
-            progresoEjercicio.put(Integer.parseInt(key), (ProgresoxEjercicio) receivedProgresoEjercicioBundle.getParcelable(key));
+        ArrayList<CajaRutina> cajaRutinas = getIntent().getParcelableArrayListExtra("ListaCajaRutina");
+        Log.d("EN 100", "caja rutinas: "+cajaRutinas);
+        int cont = 0;
+        for(CajaRutina cajaRutina:cajaRutinas)
+        {
+            ejerciciosList.add(cajaRutina.getEjercicio());
+            progresoEjercicio.put(cont,cajaRutina.getProgresoxEjercicio());
+            cont++;
         }
+        numero_serie_final_100.setText(String.valueOf(ejerciciosList.size()));
+        Log.d("EN 100", "ejercicio: "+ejerciciosList);
+        Log.d("EN 100", "ejercicio: "+progresoEjercicio);
 
         cargarInfo();
         btnPlay_100.setOnClickListener(new View.OnClickListener() {
@@ -201,11 +206,24 @@ public class _100_iniciar_rutina extends AppCompatActivity {
         numeroSeries.setText(String.valueOf(contadorSeries));
         setTextNombreEjercicio_100.setText(actual.getNombre());
         numero_serie_inicial_100.setText(String.valueOf(ejercicioActual+1));
-        ProgresoxEjercicio progresoActual = progresoEjercicio.get(actual.getId().intValue());
+        Log.d("CARGAR INFO", "eje actual: "+ejercicioActual);
+        Log.d("CARGAR INFO", "progreso: "+progresoEjercicio.get(ejercicioActual));
+        ProgresoxEjercicio progresoActual = progresoEjercicio.get(ejercicioActual);
         numeroTotalseries.setText(String.valueOf(progresoActual.getSerie()));
         numeroTotalRepeticiones.setText(String.valueOf(progresoActual.getRepeticiones()));
         pesoMaquina.setText(String.valueOf(progresoActual.getPeso()));
+        Log.d("CARGAR INFO", "progreso: "+progresoEjercicio.get(ejercicioActual));
+        String tiempo = progresoEjercicio.get(ejercicioActual).getDescansoEntreSeries().toString();
 
+        String[] partes = tiempo.split(":");
+
+        int horas = Integer.parseInt(partes[0]);
+        int minutos = Integer.parseInt(partes[1]);
+        int segundos = Integer.parseInt(partes[2]);
+        minutos += horas * 60;
+        String tiempoFormateado = String.format("%02d:%02d", minutos, segundos);
+        tiempoDescanso.setText(tiempoFormateado);
+        tiempoIniciarPausa.setText(tiempoFormateado);
         cargarImagen(() -> {
             cargarEquipo(() -> {
                 cargarMusculos(()-> {
@@ -348,19 +366,13 @@ public class _100_iniciar_rutina extends AppCompatActivity {
     private void configurarTimer()
     {
         Chronometer tiempoIniciarPausa = findViewById(R.id.tiempoIniciarPausa);
-
         String tiempo = progresoEjercicio.get(ejercicioActual).getDescansoEntreSeries().toString();
-
         String[] partes = tiempo.split(":");
-
         int horas = Integer.parseInt(partes[0]);
         int minutos = Integer.parseInt(partes[1]);
         int segundos = Integer.parseInt(partes[2]);
         minutos += horas * 60;
-        String tiempoFormateado = String.format("%02d:%02d", minutos, segundos);
-        tiempoDescanso.setText(tiempoFormateado);
         long tiempoTotalMilis = (horas * 3600 + minutos * 60 + segundos) * 1000;
-
 
         btnPlay_100.setOnClickListener(new View.OnClickListener() {
             CountDownTimer countDownTimer;
@@ -388,6 +400,11 @@ public class _100_iniciar_rutina extends AppCompatActivity {
                             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                             Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
                             r.play();
+                            if(contadorSeries==progresoEjercicio.get(ejercicioActual).getSerie())
+                            {
+                                ejercicioActual++;
+                                cargarInfo();
+                            }
                         }
                     }.start();
                 }

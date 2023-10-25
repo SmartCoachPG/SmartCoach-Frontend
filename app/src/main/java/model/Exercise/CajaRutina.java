@@ -1,8 +1,11 @@
 package model.Exercise;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import model.User.ProgresoxEjercicio;
 
-public class CajaRutina {
+public class CajaRutina implements Parcelable {
 
     private Ejercicio ejercicio;
     private ProgresoxEjercicio progresoxEjercicio;
@@ -50,5 +53,33 @@ public class CajaRutina {
                 ", progresoxEjercicio=" + progresoxEjercicio +
                 ", imagenEjercicio=" + imagenEjercicio +
                 '}';
+    }
+
+    protected CajaRutina(Parcel in) {
+        ejercicio = in.readParcelable(Ejercicio.class.getClassLoader());
+        progresoxEjercicio = in.readParcelable(ProgresoxEjercicio.class.getClassLoader());
+    }
+
+    public static final Creator<CajaRutina> CREATOR = new Creator<CajaRutina>() {
+        @Override
+        public CajaRutina createFromParcel(Parcel in) {
+            return new CajaRutina(in);
+        }
+
+        @Override
+        public CajaRutina[] newArray(int size) {
+            return new CajaRutina[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(ejercicio, flags);
+        dest.writeParcelable(progresoxEjercicio, flags);
     }
 }

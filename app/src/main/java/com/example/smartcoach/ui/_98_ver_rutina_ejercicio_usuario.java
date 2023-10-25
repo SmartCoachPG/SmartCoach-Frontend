@@ -85,7 +85,11 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
     // idEjercicio , progresoxEjercicio
     Map<Integer,ProgresoxEjercicio> progresos = new HashMap<>();
     // idEjercicio, Lista imagenes
-    Map<Integer,List<ImagenEjercicio>> imagenes = new HashMap<>();
+
+    ImagenEjercicio imagenEjercicio = new ImagenEjercicio();
+
+    List<CajaRutina> cajaRutinas = new ArrayList<>();
+    CajaRutinaAdapter adapter;
 
     private int completedCalls = 0;
     private int TOTAL_CALLS = 0;
@@ -141,28 +145,24 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
         llenarRutinas(new LlenarRutinasCallback() {
             @Override
             public void onCompletion() {
+                cajaRutinas.clear();
                 Log.d("FIN", "rutinas: " + rutinas);
                 llenarEjercicios(new LlenarRutinasCallback() {
                     @Override
                     public void onCompletion() {
+                        selectCurrentDay();
                         Log.d("FIN", "ejercicios: " + ejercicios);
                         llenarProgresos(new LlenarRutinasCallback() {
                             @Override
                             public void onCompletion() {
-                                llenarImagenes(new LlenarRutinasCallback() {
-                                    @Override
-                                    public void onCompletion() {
-                                        configureDayClickListeners();
-                                        selectCurrentDay();
-                                        btnIniciarRutina.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                Log.d("INICIAR RUTINA", "Me dan click");
-                                                filtrarListas();
-                                            }
-                                        });
-                                    }
-                                });
+                                    configureDayClickListeners();
+                                    btnIniciarRutina.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Log.d("INICIAR RUTINA", "Me dan click");
+                                            filtrarListas();
+                                        }
+                                    });
                             }
                         });
                     }
@@ -175,7 +175,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
         btnModificarRutina.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(_98_ver_rutina_ejercicio_usuario.this, _115_modificar_rutina_ejercicios.class);
                 startActivity(intent);
             }
@@ -252,8 +251,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 else setTextDuracionRutina.setText("0");
                 dia="Martes";
                 mostrar();
-
-
             }
         });
         imageMiercoles.setOnClickListener(new View.OnClickListener() {
@@ -497,18 +494,49 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
 
     }
 
-    private void llenarImagenes(LlenarRutinasCallback callback)
+    private void mostrar() {
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewEjercicios_98);
+        LinearLayout emptyView = findViewById(R.id.empty_view_98);
+        Rutina rut = rutinas.get(dia);
+        List<Ejercicio> ej = ejercicios.get(rut.getId());
+        cajaRutinas.clear();
+        adapter = new CajaRutinaAdapter(cajaRutinas); // Inicializa el adapter aquí
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+        if (ej.isEmpty()) {
+            recyclerView.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        } else {
+            recyclerView.setVisibility(View.VISIBLE);
+            emptyView.setVisibility(View.GONE);
+
+            for (Ejercicio ejercicio : ej) {
+                getImagen(ejercicio.getId(), new LlenarRutinasCallback() {
+                    CajaRutina temp = new CajaRutina();
+
+                    @Override
+                    public void onCompletion() {
+                        temp.setEjercicio(ejercicio);
+                        temp.setProgresoxEjercicio(progresos.get(ejercicio.getId().intValue()));
+                        temp.setImagenEjercicio(imagenEjercicio);
+                        cajaRutinas.add(temp);
+                        adapter.notifyDataSetChanged(); // Notifica al adapter que los datos han cambiado
+                    }
+                });
+            }
+        }
+    }
+
+    private void getImagen(Long idEjercicio,LlenarRutinasCallback callback)
     {
-        Set<Integer> listOfEjercicioLists = progresos.keySet();
-        for(Integer ej: listOfEjercicioLists)
-        {
-            Call<List<ImagenEjercicio>> call = imagenEjercicioApiService.findByEjercicioid(ej);
+        Call<List<ImagenEjercicio>> call = imagenEjercicioApiService.findByEjercicioid(idEjercicio.intValue());
             call.enqueue(new Callback<List<ImagenEjercicio>>() {
                 @Override
                 public void onResponse(Call<List<ImagenEjercicio>> call, Response<List<ImagenEjercicio>> response) {
                     if (response.isSuccessful()) {
                         List<ImagenEjercicio> lista = response.body();
-                        imagenes.put(ej,lista);
+                        imagenEjercicio = lista.get(0);
                     } else {
                         // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                         Log.e("Error", "Error en la respuesta: " + response.code());
@@ -522,74 +550,20 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
 
                 }
             });
-        }
-    }
-
-    private void mostrar()
-    {
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewEjercicios_98);
-        LinearLayout emptyView = findViewById(R.id.empty_view_98);
-        Rutina rut = rutinas.get(dia);
-        List<Ejercicio> ej= ejercicios.get(rut.getId());
-
-        if(ej.isEmpty())
-        {
-            recyclerView.setVisibility(View.GONE);
-            emptyView.setVisibility(View.VISIBLE);
-        }
-        else{
-
-            recyclerView.setVisibility(View.VISIBLE);
-            emptyView.setVisibility(View.GONE);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            List<CajaRutina> cajaRutinas = new ArrayList<>();
-
-            for(Ejercicio ejercicio : ej)
-            {
-                CajaRutina temp = new CajaRutina();
-                Ejercicio temp2 = new Ejercicio();
-                ProgresoxEjercicio temp3 = new ProgresoxEjercicio();
-                ImagenEjercicio temp4 = new ImagenEjercicio();
-                if(imagenes.get(ejercicio.getId().intValue())!=null)
-                {
-                    if(!imagenes.get(ejercicio.getId().intValue()).isEmpty())
-                    {
-                        temp4 = imagenes.get(ejercicio.getId().intValue()).get(0);
-                    }
-                }
-                temp3 = progresos.get(ejercicio.getId().intValue());
-                temp2=ejercicio;
-                temp.setEjercicio(temp2);
-                temp.setProgresoxEjercicio(temp3);
-                temp.setImagenEjercicio(temp4);
-                cajaRutinas.add(temp);
-            }
-
-            CajaRutinaAdapter adapter = new CajaRutinaAdapter(cajaRutinas);
-            recyclerView.setAdapter(adapter);
-        }
 
     }
-
     private void filtrarListas()
     {
-        Rutina rut = rutinas.get(dia);
-        List<Ejercicio> ejerciciosRut = ejercicios.get(rut.getId());
-
         Intent intent = new Intent(_98_ver_rutina_ejercicio_usuario.this, _100_iniciar_rutina.class);
-
-        Ejercicio[] ejerciciosArray = ejerciciosRut.toArray(new Ejercicio[0]);
-
-        Bundle progresoEjercicioBundle = new Bundle();
-        for (Map.Entry<Integer, ProgresoxEjercicio> entry : progresos.entrySet()) {
-            progresoEjercicioBundle.putParcelable(entry.getKey().toString(), entry.getValue());
+        ArrayList<CajaRutina> arrayListCajaRutinas;
+        if (cajaRutinas instanceof ArrayList) {
+            arrayListCajaRutinas = (ArrayList<CajaRutina>) cajaRutinas;
+        } else {
+            arrayListCajaRutinas = new ArrayList<>(cajaRutinas);
         }
 
-        intent.putExtra("Ejercicios",ejerciciosArray);
-        intent.putExtra("ProgresoXEjercicio",progresoEjercicioBundle);
-
+        intent.putParcelableArrayListExtra("ListaCajaRutina", arrayListCajaRutinas);
         startActivity(intent);
-
     }
 
 }
