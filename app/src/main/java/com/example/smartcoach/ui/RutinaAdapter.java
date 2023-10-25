@@ -3,17 +3,25 @@ package com.example.smartcoach.ui;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartcoach.R;
 
+import java.util.List;
+
+import model.Exercise.Ejercicio;
 import model.Exercise.ImagenEjercicio;
+
+
 
 public class RutinaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -24,10 +32,17 @@ public class RutinaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public static final int LAYOUT_THREE = 3;
 
     private ImagenEjercicio imagenEjercicio;
+    private List<String> equipoEjercicio;
+    private List<String> musculosEjercicio;
 
-    public RutinaAdapter(ImagenEjercicio imagenEjercicio)
+    private Ejercicio ejercicio;
+
+    public RutinaAdapter(ImagenEjercicio imagenEjercicio, List<String> equiposEjercicio,List<String> musculosEjercicio,Ejercicio ejercicio)
     {
         this.imagenEjercicio = imagenEjercicio;
+        this.equipoEjercicio = equiposEjercicio;
+        this.musculosEjercicio = musculosEjercicio;
+        this.ejercicio = ejercicio;
     }
 
     @NonNull
@@ -61,6 +76,29 @@ public class RutinaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 imageViewHolder.imageView.setImageBitmap(decodedBitmap);
             }
         }
+
+        if(position==1)
+        {
+            Log.d("RUTINA", "musculos: "+musculosEjercicio);
+            LayoutOneViewHolder layoutOneViewHolder = (LayoutOneViewHolder) holder;
+            layoutOneViewHolder.bind(equipoEjercicio,musculosEjercicio);
+
+        }
+
+        if(position==2)
+        {
+            LayoutTwoViewHolder layoutTwoViewHolder = (LayoutTwoViewHolder) holder;
+            layoutTwoViewHolder.titulo.setText("Instrucciones");
+            layoutTwoViewHolder.contenido.setText(ejercicio.getInstruccionEjecucion());
+        }
+
+        if(position==3)
+        {
+            LayoutThreeViewHolder layoutThreeViewHolder = (LayoutThreeViewHolder) holder;
+            layoutThreeViewHolder.titulo.setText("Respiracion");
+            layoutThreeViewHolder.contenido.setText(ejercicio.getInstruccionRespiracion());
+        }
+
     }
 
     @Override
@@ -92,25 +130,40 @@ public class RutinaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     public class LayoutOneViewHolder extends RecyclerView.ViewHolder {
+        RecyclerView equipos;
+        RecyclerView musculos;
         public LayoutOneViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Inicializar tus vistas aquí
+            equipos = itemView.findViewById(R.id.recyclerViewEquipo);
+            equipos.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
+            musculos = itemView.findViewById(R.id.recyclerViewMusculoInvolucrado);
+            musculos.setLayoutManager(new LinearLayoutManager(itemView.getContext()));
+
+        }
+        public void bind(List<String> equipoEjercicio,List<String> musculosEjercicio) {
+            equipos.setAdapter(new _100_adaptadorI_equipo(equipoEjercicio));
+            musculos.setAdapter(new _100_adaptadorI_musculos(musculosEjercicio));
         }
     }
 
     public class LayoutTwoViewHolder extends RecyclerView.ViewHolder {
+
+        TextView titulo, contenido;
         public LayoutTwoViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Inicializar tus vistas aquí
+            titulo = itemView.findViewById(R.id.titulo_112_113);
+            contenido = itemView.findViewById(R.id.textView);
         }
     }
 
     public class LayoutThreeViewHolder extends RecyclerView.ViewHolder {
+
+        TextView titulo, contenido;
         public LayoutThreeViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Inicializar tus vistas aquí
+            titulo = itemView.findViewById(R.id.titulo_112_113);
+            contenido = itemView.findViewById(R.id.textView);
         }
     }
-
 
 }

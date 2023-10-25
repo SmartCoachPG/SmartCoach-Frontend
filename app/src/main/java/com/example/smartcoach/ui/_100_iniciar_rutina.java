@@ -3,7 +3,13 @@ package com.example.smartcoach.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Parcelable;
 import android.os.SystemClock;
 import android.util.Log;
@@ -12,20 +18,26 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import api.Admi.EquipoApiService;
 import api.DateSerializer;
+import api.Exercise.EjercicioApiService;
 import api.Exercise.EjercicioProgresoxEjercicioApiService;
 import api.Exercise.ImagenEjercicioApiService;
+import api.Exercise.MusculoApiService;
 import api.Exercise.RutinaApiService;
 import api.Exercise.RutinaEjercicioApiService;
 import api.SharedPreferencesUtil;
@@ -53,19 +65,26 @@ public class _100_iniciar_rutina extends AppCompatActivity {
     boolean isChronometerStopped = false;
     long pausedTime = 0;
 
-    RecyclerView recyclerViewEjercicios_100;
 
     List<Ejercicio> ejerciciosList;
     Map<Integer, ProgresoxEjercicio> progresoEjercicio = new HashMap<>();
-
+    List<String> equiposEjercicio = new ArrayList<>();
     ImagenEjercicio imagenEjercicio = new ImagenEjercicio();
+    List<String> musculosEjercicio = new ArrayList<>();
+
+    Ejercicio ejercicio = new Ejercicio();
 
     int ejercicioActual=0;
 
     ImagenEjercicioApiService imagenEjercicioApiService;
+    EquipoApiService equipoApiService;
+    MusculoApiService musculoApiService;
+    EjercicioApiService ejercicioApiService;
 
     Long userId;
     String token;
+
+    int contadorSeries=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,17 +138,8 @@ public class _100_iniciar_rutina extends AppCompatActivity {
         btnPlay_100.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isChronometerRunning && !isChronometerStopped) {
-                    // Detener el cronómetro solo si está en ejecución y no se ha detenido antes
-                    tiempoIniciarPausa.stop();
-                    pausedTime = SystemClock.elapsedRealtime() - tiempoIniciarPausa.getBase();
-                    isChronometerStopped = true;
-                } else {
-                    // Iniciar el cronómetro y restaurar el tiempo pausado
-                    tiempoIniciarPausa.setBase(SystemClock.elapsedRealtime() - pausedTime);
-                    tiempoIniciarPausa.start();
-                    isChronometerRunning = true;
-                    isChronometerStopped = false;
+                {
+                    configurarTimer();
                 }
             }
         });
@@ -143,11 +153,24 @@ public class _100_iniciar_rutina extends AppCompatActivity {
                 isChronometerRunning = false;
                 pausedTime = 0;
                 ejercicioActual++;
-                cargarInfo();
+                if(!rutinaTerminada())
+                {
+                    cargarInfo();
+                }
+                else {
+                    Intent intent = new Intent(_100_iniciar_rutina.this, _98_ver_rutina_ejercicio_usuario.class);
+                    Toast.makeText(_100_iniciar_rutina.this, "Felicidades terminaste tu rutina", Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                }
+
             }
         });
     }
 
+    private Boolean rutinaTerminada()
+    {
+        return ejercicioActual==ejerciciosList.size();
+    }
     private void iniciarPeticiones() {
 
         Gson gson = new GsonBuilder()
@@ -167,11 +190,15 @@ public class _100_iniciar_rutina extends AppCompatActivity {
                 .build();
 
         imagenEjercicioApiService = retrofit.create(ImagenEjercicioApiService.class);
+        equipoApiService = retrofit.create(EquipoApiService.class);
+        musculoApiService = retrofit.create(MusculoApiService.class);
+        ejercicioApiService = retrofit.create(EjercicioApiService.class);
     }
     private void cargarInfo()
     {
         Ejercicio actual = ejerciciosList.get(ejercicioActual);
-
+        contadorSeries= 0;
+        numeroSeries.setText(String.valueOf(contadorSeries));
         setTextNombreEjercicio_100.setText(actual.getNombre());
         numero_serie_inicial_100.setText(String.valueOf(ejercicioActual+1));
         ProgresoxEjercicio progresoActual = progresoEjercicio.get(actual.getId().intValue());
@@ -179,27 +206,21 @@ public class _100_iniciar_rutina extends AppCompatActivity {
         numeroTotalRepeticiones.setText(String.valueOf(progresoActual.getRepeticiones()));
         pesoMaquina.setText(String.valueOf(progresoActual.getPeso()));
 
-        String tiempo = progresoActual.getDescansoEntreSeries().toString();
+        cargarImagen(() -> {
+            cargarEquipo(() -> {
+                cargarMusculos(()-> {
+                    cargarEjercicio(()->
+                    {
+                        RecyclerView recyclerView = findViewById(R.id.recyclerViewEjercicios_100);
+                        Log.d("RUTINA", "musculos: "+musculosEjercicio);
+                        recyclerView.setAdapter(new RutinaAdapter(imagenEjercicio, equiposEjercicio,musculosEjercicio,ejercicio));
+                    });
 
-        String[] partes = tiempo.split(":");
+                });
 
-        int horas = Integer.parseInt(partes[0]);
-        int minutos = Integer.parseInt(partes[1]);
-        int segundos = Integer.parseInt(partes[2]);
-
-        minutos += horas * 60;
-
-        String tiempoFormateado = String.format("%02d:%02d", minutos, segundos);
-        tiempoDescanso.setText(tiempoFormateado);
-
-        cargarImagen(new InfoCallBack() {
-            @Override
-            public void onCompletion() {
-                Log.d("CARANDO", "imagen: "+imagenEjercicio);
-                RecyclerView recyclerView = findViewById(R.id.recyclerViewEjercicios_100);
-                recyclerView.setAdapter(new RutinaAdapter(imagenEjercicio));
-            }
+            });
         });
+
 
     }
 
@@ -235,9 +256,144 @@ public class _100_iniciar_rutina extends AppCompatActivity {
         });
     }
 
+    public void cargarEquipo(InfoCallBack callback)
+    {
+        Call<List<String>> call = equipoApiService.findEquipoByEjercicioId(ejerciciosList.get(ejercicioActual).getId());
+        call.enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                if (response.isSuccessful()) {
+                    if(!response.body().isEmpty())
+                    {
+                        equiposEjercicio = response.body();
+                    }
+
+                    callback.onCompletion();
+
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
+
+    public void cargarMusculos(InfoCallBack callback)
+    {
+        Call<List<String>> call = musculoApiService.findMusculosByEjercicioId(ejerciciosList.get(ejercicioActual).getId());
+        call.enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                if (response.isSuccessful()) {
+                    if(!response.body().isEmpty())
+                    {
+                        musculosEjercicio = response.body();
+                        Log.d("RUTINA", "musculos: "+musculosEjercicio);
+
+                    }
+
+                    callback.onCompletion();
+
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
+
+    public void cargarEjercicio(InfoCallBack callback)
+    {
+        Call<Ejercicio> call = ejercicioApiService.findById(ejerciciosList.get(ejercicioActual).getId());
+        call.enqueue(new Callback<Ejercicio>() {
+            @Override
+            public void onResponse(Call<Ejercicio> call, Response<Ejercicio> response) {
+                if (response.isSuccessful()) {
+                    ejercicio = response.body();
+                    callback.onCompletion();
+
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Ejercicio> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
+
     interface InfoCallBack {
         void onCompletion();
     }
 
+    private void configurarTimer()
+    {
+        Chronometer tiempoIniciarPausa = findViewById(R.id.tiempoIniciarPausa);
+
+        String tiempo = progresoEjercicio.get(ejercicioActual).getDescansoEntreSeries().toString();
+
+        String[] partes = tiempo.split(":");
+
+        int horas = Integer.parseInt(partes[0]);
+        int minutos = Integer.parseInt(partes[1]);
+        int segundos = Integer.parseInt(partes[2]);
+        minutos += horas * 60;
+        String tiempoFormateado = String.format("%02d:%02d", minutos, segundos);
+        tiempoDescanso.setText(tiempoFormateado);
+        long tiempoTotalMilis = (horas * 3600 + minutos * 60 + segundos) * 1000;
+
+
+        btnPlay_100.setOnClickListener(new View.OnClickListener() {
+            CountDownTimer countDownTimer;
+            @Override
+            public void onClick(View v) {
+                if (countDownTimer != null) {
+                    countDownTimer.cancel();
+                    countDownTimer = null;
+                } else {
+                    countDownTimer = new CountDownTimer(tiempoTotalMilis, 1000) {
+
+                        @Override
+                        public void onTick(long millisUntilFinished) {
+                            long totalSeconds = millisUntilFinished / 1000;
+                            long minutesLeft = totalSeconds / 60;
+                            long secondsLeft = totalSeconds % 60;
+                            tiempoIniciarPausa.setText(String.format("%02d:%02d", minutesLeft, secondsLeft));
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            tiempoIniciarPausa.setText("00:00");
+                            contadorSeries++;
+                            numeroSeries.setText(String.valueOf(contadorSeries));
+                            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+                            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+                            r.play();
+                        }
+                    }.start();
+                }
+            }
+        });
+
+    }
 }
 

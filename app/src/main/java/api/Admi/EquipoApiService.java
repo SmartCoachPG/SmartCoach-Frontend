@@ -15,4 +15,9 @@ public interface EquipoApiService {
     @GET("equipo")
     Call <List<Equipo>> getAll();
 
+    @GET("equipo/getEquipoByEjercicioId/{ejercicioId}")
+    Call <List<String>> findEquipoByEjercicioId(@Path("ejercicioId") Long ejercicioId);
+
+
+
 }
