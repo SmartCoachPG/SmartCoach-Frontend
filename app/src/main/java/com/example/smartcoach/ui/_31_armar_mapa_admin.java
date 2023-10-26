@@ -120,17 +120,31 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
             }
         });
 
-
         basura = findViewById(R.id.basura_31);
         basura.setOnDragListener(new View.OnDragListener() {
             @Override
             public boolean onDrag(View v, DragEvent event) {
                 switch (event.getAction()) {
+                    case DragEvent.ACTION_DRAG_STARTED:
+                        Log.d("BASURA", "Drag started");
+                        return true;
+
+                    case DragEvent.ACTION_DRAG_ENTERED:
+                        Log.d("BASURA", "Drag entered");
+                        return true;
+
+                    case DragEvent.ACTION_DRAG_EXITED:
+                        Log.d("BASURA", "Drag exited");
+                        return true;
+
                     case DragEvent.ACTION_DROP:
+                        Log.d("BASURA", "Dropped");
                         View draggedView = (View) event.getLocalState();
-                        if (draggedView.getParent() == gridLayout) {
-                            gridLayout.removeView(draggedView);
-                        }
+                        draggedView.setVisibility(View.INVISIBLE);
+                        return true;
+
+                    case DragEvent.ACTION_DRAG_ENDED:
+                        Log.d("BASURA", "Drag ended");
                         return true;
                 }
                 return false;
@@ -138,6 +152,20 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
         });
 
 
+
+    }
+
+    public boolean isViewOverlapping(View firstView, View secondView) {
+        int[] firstPosition = new int[2];
+        int[] secondPosition = new int[2];
+
+        firstView.getLocationOnScreen(firstPosition);
+        secondView.getLocationOnScreen(secondPosition);
+
+        return firstPosition[0] < secondPosition[0] + secondView.getWidth() &&
+                firstPosition[0] + firstView.getWidth() > secondPosition[0] &&
+                firstPosition[1] < secondPosition[1] + secondView.getHeight() &&
+                firstPosition[1] + firstView.getHeight() > secondPosition[1];
     }
 
     private void cargarListas()
@@ -487,28 +515,36 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                         // Encuentra el ImageView basado en las coordenadas x, y
                         for (int i = 0; i < gridLayout.getChildCount(); i++) {
                             ImageView child = (ImageView) gridLayout.getChildAt(i);
-                            if (isPointWithinView(x, y, child)) {
+                            View draggedView = (View) event.getLocalState();
 
-                                View draggedView = (View) event.getLocalState();
-                                ImageView targetView = child;
+                            if(isPointWithinView(x,y,basura))
+                            {
+                                draggedView.setVisibility(View.INVISIBLE);
+                            }
+                            else {
+                                if (isPointWithinView(x, y, child)) {
 
-                                Drawable draggedDrawable = ((ImageView) draggedView).getDrawable();
-                                ((ImageView) draggedView).setImageDrawable(targetView.getDrawable());
+                                    ImageView targetView = child;
 
-                                if(draggedView.getTag()!=null)
-                                {
-                                    int position = (int) draggedView.getTag();
-                                    int newDrawableId=getResources().getIdentifier(iconosNa.get(position), "drawable", getPackageName());
-                                    targetView.setImageResource(newDrawableId);
+                                    Drawable draggedDrawable = ((ImageView) draggedView).getDrawable();
+                                    ((ImageView) draggedView).setImageDrawable(targetView.getDrawable());
+
+                                    if(draggedView.getTag()!=null)
+                                    {
+                                        int position = (int) draggedView.getTag();
+                                        int newDrawableId=getResources().getIdentifier(iconosNa.get(position), "drawable", getPackageName());
+                                        targetView.setImageResource(newDrawableId);
+                                    }
+                                    else
+                                    {
+                                        targetView.setImageDrawable(draggedDrawable);
+                                    }
+
+                                    draggedView.setVisibility(View.VISIBLE);
+
+                                    break;
                                 }
-                                else
-                                {
-                                    targetView.setImageDrawable(draggedDrawable);
-                                }
 
-                                draggedView.setVisibility(View.VISIBLE);
-
-                                break;
                             }
                         }
                         break;
