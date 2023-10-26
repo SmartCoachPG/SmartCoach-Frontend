@@ -84,9 +84,20 @@ public class EquipoAdapter extends RecyclerView.Adapter<EquipoAdapter.ViewHolder
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    // Clonar la vista
+                    ImageView clonedImageView = new ImageView(v.getContext());
+                    clonedImageView.setImageDrawable(((ImageView) v).getDrawable());
+                    // Convertir 36dp a píxeles
+                    final float scale = v.getContext().getResources().getDisplayMetrics().density;
+                    int sizeInPixels = (int) (36 * scale + 0.5f);
 
-                    View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
-                    v.startDrag(null, shadowBuilder, v, 0);
+                    // Establecer el ancho y el alto de la vista clonada
+                    clonedImageView.measure(View.MeasureSpec.makeMeasureSpec(sizeInPixels, View.MeasureSpec.EXACTLY),
+                            View.MeasureSpec.makeMeasureSpec(sizeInPixels, View.MeasureSpec.EXACTLY));
+                    clonedImageView.layout(0, 0, sizeInPixels, sizeInPixels);
+                    clonedImageView.setTag(v.getTag());
+                    View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(clonedImageView);
+                    v.startDrag(null, shadowBuilder, clonedImageView, 0);
                     return true;
                 } else {
                     return false;

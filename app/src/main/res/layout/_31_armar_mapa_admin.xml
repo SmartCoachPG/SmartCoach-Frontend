@@ -20,7 +20,8 @@
             android:layout_marginLeft="28dp"
             android:layout_marginTop="19dp"
             android:background="@null"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/flecha_regresar"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,31 +45,48 @@
 
     </LinearLayout>
 
-    <ScrollView
-        android:fillViewport="true"
-        android:layout_gravity="center"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:foregroundGravity="center"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_gravity="center">
 
-        <HorizontalScrollView
-            android:fillViewport="true"
-            android:foregroundGravity="center"
+        <ScrollView
+            android:fillViewport="false"
             android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:foregroundGravity="center"
+            android:layout_height="match_parent">
 
-            <GridLayout
-                android:id="@+id/gridLayout_31"
+            <HorizontalScrollView
+                android:fillViewport="false"
+                android:foregroundGravity="center"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:columnCount="10"
-                android:rowCount="10">
-            </GridLayout>
-        </HorizontalScrollView>
-    </ScrollView>
+                android:layout_height="wrap_content">
+
+                <GridLayout
+                    android:id="@+id/gridLayout_31"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:columnCount="10"
+                    android:rowCount="10">
+                </GridLayout>
+            </HorizontalScrollView>
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/basura_31"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/icon_basura_x_fondo_na">
+
+        </ImageView>
+
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

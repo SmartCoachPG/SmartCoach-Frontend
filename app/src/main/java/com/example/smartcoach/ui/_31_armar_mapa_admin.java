@@ -2,9 +2,11 @@ package com.example.smartcoach.ui;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
@@ -47,6 +49,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
 
     GridLayout gridLayout;
     AppCompatButton equipoB, elementosB;
+    ImageView basura;
     UsuarioAdministradorApiService usuarioAdministradorApiService;
     GimnasioApiService gimnasioApiService;
     MapaApiService mapaApiService;
@@ -118,6 +121,23 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
         });
 
 
+        basura = findViewById(R.id.basura_31);
+        basura.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View v, DragEvent event) {
+                switch (event.getAction()) {
+                    case DragEvent.ACTION_DROP:
+                        View draggedView = (View) event.getLocalState();
+                        if (draggedView.getParent() == gridLayout) {
+                            gridLayout.removeView(draggedView);
+                        }
+                        return true;
+                }
+                return false;
+            }
+        });
+
+
     }
 
     private void cargarListas()
@@ -137,7 +157,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
         //Maquinas de peso
         iconos.put(2,"icon_maquina_de_peso");
         iconosName.put(2,"Maquinas de peso");
-        iconosNa.put(3,"icon_maquina_de_peso_na");
+        iconosNa.put(2,"icon_maquina_de_peso_na");
 
         //Maquinas de cardio
         iconos.put(3,"icon_corazon_ne");
@@ -412,6 +432,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
         Log.d("FIN", "ubicaciones: "+ubicaciones);
         cargarCuadrados(mapas.get(piso).getAncho(),mapas.get(piso).getAlto()+5);
         cargarImagenes();
+
     }
 
     private void cargarCuadrados(int ancho,int alto)
@@ -426,80 +447,118 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
         for (int i = 0; i < alto; i++) {
             for (int j = 0; j < ancho; j++) {
 
-                ImageView cuadrado = new ImageView(this);
+                final int row = i; // Variable final para almacenar el valor de i
+                final int column = j;
 
+                ImageView cuadrado = new ImageView(this);
                 GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(
                         GridLayout.spec(i), GridLayout.spec(j));
                 layoutParams.width = tamañoCasillaPixels;
                 layoutParams.height = tamañoCasillaPixels;
-
                 cuadrado.setLayoutParams(layoutParams);
                 cuadrado.setBackgroundResource(R.drawable.fondo_mapa);
-                cuadrado.setOnDragListener(new View.OnDragListener() {
+
+                cuadrado.setOnTouchListener(new View.OnTouchListener() {
                     @Override
-                    public boolean onDrag(View v, DragEvent event) {
-                        switch (event.getAction()) {
-                            case DragEvent.ACTION_DRAG_STARTED:
-                                // Determina si este listener debería aceptar el evento de arrastre.
-                                return (event.getLocalState() instanceof ImageView);
-
-                            case DragEvent.ACTION_DROP:
-                                ImageView draggedView = (ImageView) event.getLocalState();
-                                Drawable draggedDrawable = draggedView.getDrawable();
-                                if(draggedView.getTag()!=null)
-                                {
-                                    int position = (int) draggedView.getTag();
-                                    int newDrawableId=getResources().getIdentifier(iconosNa.get(position), "drawable", getPackageName());;
-                                    ((ImageView) v).setImageResource(newDrawableId);
-                                }
-                                else{
-                                    ((ImageView) v).setImageDrawable(draggedDrawable);
-                                }
-
-                                return true;
-
-                            case DragEvent.ACTION_DRAG_ENDED:
-                                // Opcional: revertir cualquier cambio hecho en ACTION_DRAG_ENTERED.
-                                return true;
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
+                            v.startDrag(null, shadowBuilder, v, 0);
+                            return true;
+                        } else {
+                            return false;
                         }
-                        return false;
                     }
                 });
 
                 gridLayout.addView(cuadrado);
             }
         }
+
+
+        gridLayout.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View v, DragEvent event) {
+                switch (event.getAction()) {
+                    case DragEvent.ACTION_DROP:
+                        int x = (int) event.getX();
+                        int y = (int) event.getY();
+
+                        // Encuentra el ImageView basado en las coordenadas x, y
+                        for (int i = 0; i < gridLayout.getChildCount(); i++) {
+                            ImageView child = (ImageView) gridLayout.getChildAt(i);
+                            if (isPointWithinView(x, y, child)) {
+
+                                View draggedView = (View) event.getLocalState();
+                                ImageView targetView = child;
+
+                                Drawable draggedDrawable = ((ImageView) draggedView).getDrawable();
+                                ((ImageView) draggedView).setImageDrawable(targetView.getDrawable());
+
+                                if(draggedView.getTag()!=null)
+                                {
+                                    int position = (int) draggedView.getTag();
+                                    int newDrawableId=getResources().getIdentifier(iconosNa.get(position), "drawable", getPackageName());
+                                    targetView.setImageResource(newDrawableId);
+                                }
+                                else
+                                {
+                                    targetView.setImageDrawable(draggedDrawable);
+                                }
+
+                                draggedView.setVisibility(View.VISIBLE);
+
+                                break;
+                            }
+                        }
+                        break;
+                }
+                return true;
+            }
+
+            private boolean isPointWithinView(int x, int y, View view) {
+                int viewX = (int) view.getX();
+                int viewY = (int) view.getY();
+                int viewWidth = view.getWidth();
+                int viewHeight = view.getHeight();
+
+                return (x >= viewX && x <= (viewX + viewWidth)) &&
+                        (y >= viewY && y <= (viewY + viewHeight));
+            }
+        });
+
     }
 
-    private void cargarImagenes()
-    {
-        Log.d("IMAGENESSS", "lista Items: "+listaItems);
-        for(GimnasioItem gi : listaItems)
-        {
+    private void cargarImagenes() {
+        for (GimnasioItem gi : listaItems) {
             List<UbicacionxItem> ubi = ubicaciones.get(gi.getItemid());
-            if(!ubi.isEmpty()&&ubi!=null)
-            {
-                Log.d("IMAGENESSS", "listaUbi: "+ubi);
-                for(UbicacionxItem uxi : ubi)
-                {
-                    if(uxi.getMapaid()==mapas.get(piso).getId())
-                    {
-                        Log.d("IMAGENES", "elemento : "+uxi);
-                        ImageView imageView = new ImageView(this);
-                        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(uxi.getCoordenadaY()+4), GridLayout.spec(uxi.getCoordenadaX()));  // 0,0 es para la primera fila, primera columna
-                        layoutParams.width =  (int) (30 * getResources().getDisplayMetrics().density + 0.5f);
-                        layoutParams.height =  (int) (30 * getResources().getDisplayMetrics().density + 0.5f);
-                        int margin = (int) (1 * getResources().getDisplayMetrics().density + 0.5f);
-                        layoutParams.setMargins(margin,margin,margin,margin);
-                        imageView.setLayoutParams(layoutParams);
-                        int tipo = tipoEquipoItem.get(uxi.getItemid());
-                        int resID = getResources().getIdentifier(iconos.get(tipo), "drawable", getPackageName());
-                        imageView.setImageResource(resID);
-                        gridLayout.addView(imageView);
+            if (!ubi.isEmpty() && ubi != null) {
+                for (UbicacionxItem uxi : ubi) {
+                    if (uxi.getMapaid() == mapas.get(piso).getId()) {
+                        int row = uxi.getCoordenadaY() + 4;
+                        int column = uxi.getCoordenadaX();
+
+                        // Encuentra la ImageView en la posición específica
+                        for (int i = 0; i < gridLayout.getChildCount(); i++) {
+                            View view = gridLayout.getChildAt(i);
+                            GridLayout.LayoutParams layoutParams = (GridLayout.LayoutParams) view.getLayoutParams();
+
+                            if (GridLayout.spec(row).equals(layoutParams.rowSpec) &&
+                                    GridLayout.spec(column).equals(layoutParams.columnSpec) &&
+                                    view instanceof ImageView) {
+
+                                ImageView imageView = (ImageView) view;
+                                imageView.setPadding(2,2,2,2);
+                                int tipo = tipoEquipoItem.get(uxi.getItemid());
+                                int resID = getResources().getIdentifier(iconos.get(tipo), "drawable", getPackageName());
+                                imageView.setImageResource(resID);
+                                break;
+                            }
+                        }
                     }
                 }
             }
-
         }
     }
+
 }
