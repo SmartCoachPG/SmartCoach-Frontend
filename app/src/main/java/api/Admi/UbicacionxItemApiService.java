@@ -11,4 +11,8 @@ public interface UbicacionxItemApiService {
 
     @GET("ubicacionxitem/getByItemId/{itemid}/{gimnasioid}")
     Call<List<UbicacionxItem>> getUbicacionxItemsByItemId(@Path("itemid") int itemid, @Path("gimnasioid") int gimnasioid);
+
+    @GET("ubicacionxitem/getByGimnasioId/{gimnasioid}")
+    Call<List<UbicacionxItem>> getByGimnasioId(@Path("gimnasioid") int gimnasioid);
+
 }

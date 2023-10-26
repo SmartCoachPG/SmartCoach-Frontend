@@ -1,5 +1,6 @@
 package com.example.smartcoach.ui;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Button;
@@ -17,13 +19,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.Date;
+import java.util.List;
 
 import api.Admi.GimnasioApiService;
+import api.Admi.UbicacionxItemApiService;
 import api.DateSerializer;
 import api.SharedPreferencesUtil;
 import api.User.UsuarioClienteApiService;
 import api.retro;
 import model.Admi.Gimnasio;
+import model.Admi.UbicacionxItem;
 import model.User.Usuario;
 import model.User.UsuarioCliente;
 import okhttp3.OkHttpClient;
@@ -48,6 +53,7 @@ public class _120_ver_informacion_gimnasio extends BaseActivityCliente{
 
     GimnasioApiService gimnasioApiService;
     UsuarioClienteApiService usuarioClienteApiService;
+    UbicacionxItemApiService ubicacionxItemApiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,14 +84,6 @@ public class _120_ver_informacion_gimnasio extends BaseActivityCliente{
             }
         });
 
-        btnVerMapa_120.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(_120_ver_informacion_gimnasio.this, _121_ver_mapa_cliente.class);
-                intent.putExtra("idGimnasio",gym.getId().intValue());
-                startActivity(intent);
-            }
-        });
 
     }
 
@@ -104,6 +102,7 @@ public class _120_ver_informacion_gimnasio extends BaseActivityCliente{
 
         gimnasioApiService = retrofit.create(GimnasioApiService.class);
         usuarioClienteApiService = retrofit.create(UsuarioClienteApiService.class);
+        ubicacionxItemApiService = retrofit.create(UbicacionxItemApiService.class);
     }
 
     interface InfoCallback {
@@ -122,6 +121,25 @@ public class _120_ver_informacion_gimnasio extends BaseActivityCliente{
                     public void onCompletion() {
                         Log.d("GYM INFO", "info gym check: "+gym);
                         mostrarInfo();
+                        btnVerMapa_120.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                respuesta = tieneMapa(()->
+                                {
+                                    if(respuesta)
+                                    {
+                                        Intent intent = new Intent(_120_ver_informacion_gimnasio.this, _121_ver_mapa_cliente.class);
+                                        intent.putExtra("idGimnasio",gym.getId().intValue());
+                                        startActivity(intent);
+                                    }
+                                    else {
+                                        showDialog();
+                                    }
+                                });
+
+                            }
+                        });
                     }
                 });
             }
@@ -180,6 +198,24 @@ public class _120_ver_informacion_gimnasio extends BaseActivityCliente{
 
     }
 
+    private void showDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout._124_mensaje_error_gimnasio_no_tiene_mapa);
+        dialog.getWindow().setBackgroundDrawable(null);
+
+        Button btnContinuar = dialog.findViewById(R.id.btnContinuar_124);
+        btnContinuar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
     private void desuscribirse()
     {
         usuarioCliente.setGimnasioid(null);
@@ -201,5 +237,31 @@ public class _120_ver_informacion_gimnasio extends BaseActivityCliente{
                 Toast.makeText(_120_ver_informacion_gimnasio.this, "Error de conexión", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    Boolean  respuesta=false;
+
+    private Boolean tieneMapa(_120_ver_informacion_gimnasio.InfoCallback callback)
+    {
+        Call<List<UbicacionxItem>> call = ubicacionxItemApiService.getByGimnasioId(gym.getId().intValue());
+        call.enqueue(new Callback<List<UbicacionxItem>>() {
+            @Override
+            public void onResponse(Call <List<UbicacionxItem>> call, Response<List<UbicacionxItem>> response) {
+                if (response.isSuccessful()) {
+                    if(response.body().isEmpty())
+                        respuesta=false;
+                    else
+                        respuesta=true;
+                    callback.onCompletion();
+
+                }
+            }
+            @Override
+            public void onFailure(Call <List<UbicacionxItem>> call, Throwable t) {
+                Toast.makeText(_120_ver_informacion_gimnasio.this, "Error de conexión", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return respuesta;
     }
 }
