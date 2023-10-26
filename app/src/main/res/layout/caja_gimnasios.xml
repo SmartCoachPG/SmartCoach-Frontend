@@ -17,7 +17,7 @@
             android:id="@+id/imageGym_cajaGym"
             android:layout_width="109dp"
             android:layout_height="95dp"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/cuadrado_gr" />
 
         <LinearLayout

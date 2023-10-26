@@ -460,7 +460,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
         Log.d("FIN", "tipo equipo: "+tipoEquipoItem);
         Log.d("FIN", "iconos: "+iconos);
         Log.d("FIN", "ubicaciones: "+ubicaciones);
-        cargarCuadrados(mapas.get(piso).getAncho(),mapas.get(piso).getAlto()+5);
+        cargarCuadrados(mapas.get(piso).getAncho(),mapas.get(piso).getAlto());
         cargarImagenes();
 
     }
@@ -592,7 +592,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
             if (!ubi.isEmpty() && ubi != null) {
                 for (UbicacionxItem uxi : ubi) {
                     if (uxi.getMapaid() == mapas.get(piso).getId()) {
-                        int row = uxi.getCoordenadaY() + 4;
+                        int row = uxi.getCoordenadaY();
                         int column = uxi.getCoordenadaX();
 
                         // Encuentra la ImageView en la posición específica

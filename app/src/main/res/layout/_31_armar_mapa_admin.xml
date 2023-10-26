@@ -55,6 +55,7 @@
     </ImageView>
 
     <ScrollView
+            android:padding="10dp"
             android:fillViewport="true"
             android:layout_gravity="center"
             android:layout_width="match_parent"
@@ -63,6 +64,7 @@
             android:layout_weight="1">
 
             <HorizontalScrollView
+                android:padding="10dp"
                 android:fillViewport="true"
                 android:foregroundGravity="center"
                 android:layout_gravity="center"

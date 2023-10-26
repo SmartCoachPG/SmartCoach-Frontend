@@ -1,7 +1,10 @@
 package com.example.smartcoach.ui;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -168,6 +171,12 @@ public class _120_ver_informacion_gimnasio extends BaseActivityCliente{
         tituloGym_120.setText(gym.getNombre());
         barrioGym_120.setText(gym.getBarrio());
         direccionGym_120.setText(gym.getDireccion());
+        String imageString = gym.getImagenGimnasio();
+        if (imageString != null && !imageString.isEmpty()) {
+            byte[] decodedString = Base64.decode(imageString, Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            setImageGym_120.setImageBitmap(decodedByte);
+        }
 
     }
 
