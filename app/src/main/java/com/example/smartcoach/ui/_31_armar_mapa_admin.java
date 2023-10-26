@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import api.Admi.EquipoApiService;
 import api.Admi.GimnasioApiService;
@@ -69,6 +71,8 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
     Map<Integer,String> iconosName = new HashMap<>();
     Map<Integer,String> iconosNa = new HashMap<>();
     Map<Integer,List<UbicacionxItem>> ubicaciones= new HashMap<>();
+
+    Map<UbicacionxItem,Integer> añadidos = new HashMap<>();
     int piso = 1;
     Boolean equipo=true;
 
@@ -150,8 +154,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                 return false;
             }
         });
-
-
 
     }
 
@@ -492,6 +494,15 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                         if (event.getAction() == MotionEvent.ACTION_DOWN) {
                             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
                             v.startDrag(null, shadowBuilder, v, 0);
+                            UbicacionxItem ubicacionxItem = new UbicacionxItem();
+                            ubicacionxItem.setCoordenadaX(row);
+                            ubicacionxItem.setCoordenadaY(column);
+                            Log.d("MAPAAA", "ubicacionXitem despues: "+ubicacionxItem);
+                            if(nuevo(ubicacionxItem).getCoordenadaX()!=0)
+                            {
+                                Toast.makeText(_31_armar_mapa_admin.this, "Vista clickeada!", Toast.LENGTH_SHORT).show();
+                                ubicarEquipo(cuadrado,nuevo(ubicacionxItem));
+                            }
                             return true;
                         } else {
                             return false;
@@ -502,7 +513,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                 gridLayout.addView(cuadrado);
             }
         }
-
 
         gridLayout.setOnDragListener(new View.OnDragListener() {
             @Override
@@ -534,6 +544,17 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                                         int position = (int) draggedView.getTag();
                                         int newDrawableId=getResources().getIdentifier(iconosNa.get(position), "drawable", getPackageName());
                                         targetView.setImageResource(newDrawableId);
+                                        UbicacionxItem ubicacionxItem = new UbicacionxItem();
+                                        int cellHeight = gridLayout.getHeight() / gridLayout.getRowCount();
+                                        int cellWidth = gridLayout.getWidth() / gridLayout.getColumnCount();
+
+                                        // Calcular la fila y la columna basándose en las coordenadas x y y
+                                        int droppedRow = y / cellHeight;
+                                        int droppedColumn = x / cellWidth;
+
+                                        ubicacionxItem.setCoordenadaX(droppedRow);
+                                        ubicacionxItem.setCoordenadaY(droppedColumn);
+                                        añadidos.put(ubicacionxItem,position);
                                     }
                                     else
                                     {
@@ -597,4 +618,28 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
         }
     }
 
+
+    private UbicacionxItem nuevo(UbicacionxItem ub1)
+    {
+        Set<UbicacionxItem> ubicaciones = añadidos.keySet();
+        UbicacionxItem ubicacionxItem= new UbicacionxItem();
+        for(UbicacionxItem ub:ubicaciones)
+        {
+            if(ub1.getCoordenadaX()== ub.getCoordenadaX())
+            {
+                if(ub1.getCoordenadaY()==ub.getCoordenadaY())
+                {
+                    return ub;
+                }
+            }
+        }
+        return ubicacionxItem;
+    }
+
+ private void ubicarEquipo(ImageView cuadrado,UbicacionxItem ubicacionxItem)
+ {
+     int newDrawableId=getResources().getIdentifier(iconos.get(añadidos.get(nuevo(ubicacionxItem))), "drawable", getPackageName());
+     cuadrado.setImageResource(newDrawableId);
+ }
 }
+
