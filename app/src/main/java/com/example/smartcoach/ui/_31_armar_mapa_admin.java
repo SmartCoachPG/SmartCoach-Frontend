@@ -1,16 +1,23 @@
 package com.example.smartcoach.ui;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +27,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartcoach.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,10 +45,14 @@ import api.Admi.UbicacionxItemApiService;
 import api.Admi.UsuarioAdministradorApiService;
 import api.SharedPreferencesUtil;
 import api.retro;
+import model.Admi.Equipo;
 import model.Admi.GimnasioItem;
+import model.Admi.Item;
 import model.Admi.Mapa;
+import model.Admi.TipoEquipo;
 import model.Admi.UbicacionxItem;
 import model.Admi.UsuarioAdministrador;
+import model.Exercise.Musculo;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -67,14 +80,21 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
     Map<Integer, Mapa> mapas = new HashMap<>();
     List<GimnasioItem> listaItems = new ArrayList<>();
     Map<Integer,Integer> tipoEquipoItem = new HashMap<>();
+    Map<Integer,List<UbicacionxItem>> ubicaciones= new HashMap<>();
+    List<String> musculosEquipo = new ArrayList<>();
+
+    Map<UbicacionxItem,Integer> añadidos = new HashMap<>();
     Map<Integer,String> iconos= new HashMap<>();
     Map<Integer,String> iconosName = new HashMap<>();
     Map<Integer,String> iconosNa = new HashMap<>();
-    Map<Integer,List<UbicacionxItem>> ubicaciones= new HashMap<>();
-
-    Map<UbicacionxItem,Integer> añadidos = new HashMap<>();
     int piso = 1;
     Boolean equipo=true;
+    Equipo equipoMostrar = new Equipo();
+    TipoEquipo tipo = new TipoEquipo();
+
+    private float startX;
+    private float startY;
+    private long startTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,18 +177,165 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
 
     }
 
-    public boolean isViewOverlapping(View firstView, View secondView) {
-        int[] firstPosition = new int[2];
-        int[] secondPosition = new int[2];
 
-        firstView.getLocationOnScreen(firstPosition);
-        secondView.getLocationOnScreen(secondPosition);
+    private void showDialog(int x, int y) {
+        Log.d("MOSTRANDO EQUIPO", "coordenadas llegada: x-"+x+" y-"+y);
+        int itemId=0;
+        if(enMapa(x,y)!=null)
+        {
+            itemId = enMapa(x,y);
+            equipoMostrar.setId(Long.valueOf(itemId));
+        }
 
-        return firstPosition[0] < secondPosition[0] + secondView.getWidth() &&
-                firstPosition[0] + firstView.getWidth() > secondPosition[0] &&
-                firstPosition[1] < secondPosition[1] + secondView.getHeight() &&
-                firstPosition[1] + firstView.getHeight() > secondPosition[1];
+        Log.d("MOSTRANDO EQUIPO", "mostrando: "+itemId);
+
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout._34_ver_informacion_equipo_ubicado_en_mapa_admin);
+        dialog.getWindow().setBackgroundDrawable(null);
+        ImageButton btnContinuar = dialog.findViewById(R.id.btnX_34);
+        btnContinuar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        TextView nombreEquipo,referencia,descripcion,tipoMT;
+        ImageView imagenEquipo;
+        RecyclerView recyclerView;
+
+        nombreEquipo = dialog.findViewById(R.id.nombreEquipo_34);
+        imagenEquipo = dialog.findViewById(R.id.setImageEquipo_34);
+        referencia = dialog.findViewById(R.id.setTextReferencia_34);
+        descripcion = dialog.findViewById(R.id.setTextDescripcion_34);
+        recyclerView = dialog.findViewById(R.id.recyclerViewItemMusculoInvolucrado_34);
+        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(horizontalLayoutManager);
+        tipoMT = dialog.findViewById(R.id.itemTipoMaquina_34);
+
+        cargarEquipo(()->
+        {
+            cargarMusculos(()->
+            {
+                cargarNombreTipo(()->{
+                    Log.d("CARGANDO EQUIPO", "mostrando: "+equipoMostrar);
+
+                    nombreEquipo.setText(equipoMostrar.getNombre());
+                    String imageString = equipoMostrar.getImagen();
+                    if(imageString!=null)
+                    {
+                        byte[] imageBytes = Base64.decode(imageString, Base64.DEFAULT);
+                        Bitmap decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                        imagenEquipo.setImageBitmap(decodedBitmap);
+                    }
+                    referencia.setText(equipoMostrar.getReferencia());
+                    descripcion.setText(equipoMostrar.getDescripcion());
+                    recyclerView.setAdapter(new _100_adaptadorI_musculos(musculosEquipo));
+                    tipoMT.setText(tipo.getNombre());
+                });
+            });
+
+
+        });
+
+        dialog.show();
     }
+
+    private void cargarEquipo(_31_armar_mapa_admin.InfoCallback callback)
+    {
+        Call<Equipo> call = equipoApiService.getById(equipoMostrar.getId());
+        Log.d("CARGANDO EQUIPO", "buscando: "+equipoMostrar.getId());
+
+        call.enqueue(new Callback<Equipo>() {
+            @Override
+            public void onResponse(Call<Equipo> call, Response<Equipo> response) {
+                if (response.isSuccessful()) {
+                    Log.d("CARGANDO EQUIPO", "equipo: "+response.body());
+                    equipoMostrar = response.body();
+                    callback.onCompletion();
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Equipo> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
+
+    private void cargarNombreTipo(_31_armar_mapa_admin.InfoCallback callback)
+    {
+        Call<TipoEquipo> call = equipoApiService.findTipoNameByEquipoId(equipoMostrar.getId());
+        Log.d("CARGANDO EQUIPO", "buscando: "+equipoMostrar.getId());
+
+        call.enqueue(new Callback<TipoEquipo>() {
+            @Override
+            public void onResponse(Call<TipoEquipo> call, Response<TipoEquipo> response) {
+                if (response.isSuccessful()) {
+                    Log.d("CARGANDO NOMBRE TIPO", "equipo: "+response.body());
+                    tipo = response.body();
+                    callback.onCompletion();
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<TipoEquipo> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
+
+    private void cargarMusculos(_31_armar_mapa_admin.InfoCallback callback)
+    {
+        Call<List<String>> call = equipoApiService.findMusculoByEquipoId(equipoMostrar.getId());
+        Log.d("CARGANDO EQUIPO", "buscando: "+equipoMostrar.getId());
+
+        call.enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                if (response.isSuccessful()) {
+                    Log.d("CARGANDO EQUIPO", "equipo: "+response.body());
+                    musculosEquipo = response.body();
+                    callback.onCompletion();
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
+    private Integer enMapa(int yBuscar, int xBuscar)
+    {
+        for (Map.Entry<Integer, List<UbicacionxItem>> entrada : ubicaciones.entrySet()) {
+            List<UbicacionxItem> listaUbicaciones = entrada.getValue();
+            for (UbicacionxItem ubicacion : listaUbicaciones) {
+                if (ubicacion.getCoordenadaX() == xBuscar && ubicacion.getCoordenadaY() == yBuscar) {
+                    return entrada.getKey();
+                }
+            }
+        }
+        return null;
+    }
+
 
     private void cargarListas()
     {
@@ -491,23 +658,51 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                 cuadrado.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-                        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
-                            v.startDrag(null, shadowBuilder, v, 0);
-                            UbicacionxItem ubicacionxItem = new UbicacionxItem();
-                            ubicacionxItem.setCoordenadaX(row);
-                            ubicacionxItem.setCoordenadaY(column);
-                            Log.d("MAPAAA", "ubicacionXitem despues: "+ubicacionxItem);
-                            if(nuevo(ubicacionxItem).getCoordenadaX()!=0)
-                            {
-                                Toast.makeText(_31_armar_mapa_admin.this, "Vista clickeada!", Toast.LENGTH_SHORT).show();
-                                ubicarEquipo(cuadrado,nuevo(ubicacionxItem));
-                            }
-                            return true;
-                        } else {
-                            return false;
+                        switch (event.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                startX = event.getX();
+                                startY = event.getY();
+                                startTime = System.currentTimeMillis();
+                                break;
+
+                            case MotionEvent.ACTION_MOVE:
+                                float moveX = event.getX();
+                                float moveY = event.getY();
+                                float distanceMoved = Math.abs(moveX - startX) + Math.abs(moveY - startY);
+
+                                if (distanceMoved > 10) { // Ajusta este valor según tus necesidades
+                                    // Es un arrastre
+                                    View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
+                                    v.startDrag(null, shadowBuilder, v, 0);
+                                    return true;
+                                }
+                                break;
+
+                            case MotionEvent.ACTION_UP:
+                                float endX = event.getX();
+                                float endY = event.getY();
+                                long endTime = System.currentTimeMillis();
+                                float distance = Math.abs(startX - endX) + Math.abs(startY - endY);
+                                long duration = endTime - startTime;
+
+                                if (distance < 10 && duration < 100) { // Ajusta estos valores según tus necesidades
+                                    UbicacionxItem ubicacionxItem = new UbicacionxItem();
+                                    ubicacionxItem.setCoordenadaX(row);
+                                    ubicacionxItem.setCoordenadaY(column);
+                                    if (nuevo(ubicacionxItem).getCoordenadaX() != 0) {
+                                        Toast.makeText(_31_armar_mapa_admin.this, "Vista clickeada!", Toast.LENGTH_SHORT).show();
+                                        ubicarEquipo(cuadrado, nuevo(ubicacionxItem));
+                                    }
+                                    if (enMapa(row, column) > 4) {
+                                        showDialog(row, column);
+                                    }
+                                    return true;
+                                }
+                                break;
                         }
+                        return true;
                     }
+
                 });
 
                 gridLayout.addView(cuadrado);
@@ -618,7 +813,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
         }
     }
 
-
     private UbicacionxItem nuevo(UbicacionxItem ub1)
     {
         Set<UbicacionxItem> ubicaciones = añadidos.keySet();
@@ -641,5 +835,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
      int newDrawableId=getResources().getIdentifier(iconos.get(añadidos.get(nuevo(ubicacionxItem))), "drawable", getPackageName());
      cuadrado.setImageResource(newDrawableId);
  }
+
 }
 
