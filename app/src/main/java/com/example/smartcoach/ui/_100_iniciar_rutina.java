@@ -61,7 +61,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class _100_iniciar_rutina extends AppCompatActivity {
 
     TextView setTextNombreEjercicio_100, numero_serie_inicial_100, guión_100, numero_serie_final_100, numeroTotalseries, nombreSeries, numeroTotalRepeticiones, nombreRepeticiones, pesoMaquina, nombrePeso, nombreLbs, tiempoDescanso, nombreSgs, nombreDescanso, nombrePausa, numeroSeries, nombreContSeries;
-    ImageButton imageButton, btnSiguiente_100, btnAtras_100, btnPlay_100, btnMute_100, btnAdelantar_100;
+    ImageButton imageButton, btnPlay_100, btnMute_100, btnAdelantar_100;
     Chronometer tiempoIniciarPausa;
     boolean isChronometerRunning = false;
     long pausedTime = 0;
@@ -114,11 +114,9 @@ public class _100_iniciar_rutina extends AppCompatActivity {
         tiempoDescanso = findViewById(R.id.tiempoDescanso);
         nombreSgs = findViewById(R.id.nombreSgs);
         nombreDescanso = findViewById(R.id.nombreDescanso);
-        btnSiguiente_100 = findViewById(R.id.btnSiguiente_100);
         nombrePausa = findViewById(R.id.nombrePausa);
         numeroSeries = findViewById(R.id.numeroSeries);
         nombreContSeries = findViewById(R.id.nombreContSeries);
-        btnAtras_100 = findViewById(R.id.btnAtras_100);
         btnPlay_100 = findViewById(R.id.btnPlay_100);
         btnMute_100 = findViewById(R.id.btnMute_100);
         btnAdelantar_100 = findViewById(R.id.btnAdelantar_100);

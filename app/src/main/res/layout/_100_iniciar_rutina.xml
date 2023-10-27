@@ -218,18 +218,7 @@
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewEjercicios_100"
             app:srcCompat="@drawable/rectangulo_grueso_gr" />
 
-        <ImageButton
-        android:id="@+id/btnSiguiente_100"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@null"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerViewEjercicios_100"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/recyclerViewEjercicios_100"
-        app:srcCompat="@drawable/icon_adelantar_fondo_b" />
-
-    <Chronometer
+        <Chronometer
         android:id="@+id/tiempoIniciarPausa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -296,20 +285,6 @@
             app:layout_constraintTop_toBottomOf="@+id/barragris_100" />
 
         <ImageButton
-        android:id="@+id/btnAtras_100"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@null"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerViewEjercicios_100"
-        app:layout_constraintEnd_toStartOf="@+id/recyclerViewEjercicios_100"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/recyclerViewEjercicios_100"
-        app:layout_constraintVertical_bias="0.498"
-        app:srcCompat="@drawable/icon_retroceder_fondo_b" />
-
-    <ImageButton
         android:id="@+id/btnPlay_100"
         android:layout_width="80dp"
         android:layout_height="63dp"
