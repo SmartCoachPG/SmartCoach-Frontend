@@ -58,7 +58,6 @@ public class EquipoAdapter extends RecyclerView.Adapter<EquipoAdapter.ViewHolder
 
         if (tipo && position < 5) {
             holder.equipoTextView.setText(iconosName.get(position));
-
             String imageName = iconos.get(position);
             if(imageName!=null) {
                 int imageResId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
@@ -76,6 +75,7 @@ public class EquipoAdapter extends RecyclerView.Adapter<EquipoAdapter.ViewHolder
                 int imageResId = context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
                 if (imageResId != 0) {
                     holder.equipoImageView.setImageResource(imageResId);
+                    holder.equipoImageView.setTag(adjustedPosition);
                 }
             }
         }
