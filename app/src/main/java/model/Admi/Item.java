@@ -45,6 +45,7 @@ public class Item {
     public String toString() {
         return "Item{" +
                 "id=" + id +
+                ", imagen='" + imagen + '\'' +
                 ", nombre='" + nombre + '\'' +
                 '}';
     }

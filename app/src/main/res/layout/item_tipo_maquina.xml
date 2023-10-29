@@ -10,4 +10,4 @@
     android:background="@drawable/rounded_orange_background"
     android:text="Tipo máquina"
     android:textColor="@color/white"
-    android:id="@+id/textViewTipoMaquinaNombre"/>
+    android:id="@+id/textViewItemMusculoInvolucrado"/>
