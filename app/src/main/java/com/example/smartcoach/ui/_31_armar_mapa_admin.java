@@ -71,10 +71,10 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
     Map<Integer,String> iconosName = new HashMap<>();
     Map<Integer,String> iconosNa = new HashMap<>();
     Map<Integer,List<UbicacionxItem>> ubicaciones= new HashMap<>();
-
     Map<UbicacionxItem,Integer> añadidos = new HashMap<>();
     int piso = 1;
     Boolean equipo=true;
+    Map<Integer,UbicacionxItem> nuevaPosicion = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -495,9 +495,11 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
                             v.startDrag(null, shadowBuilder, v, 0);
                             UbicacionxItem ubicacionxItem = new UbicacionxItem();
-                            ubicacionxItem.setCoordenadaX(row);
-                            ubicacionxItem.setCoordenadaY(column);
-                            Log.d("MAPAAA", "ubicacionXitem despues: "+ubicacionxItem);
+                            ubicacionxItem.setCoordenadaY(row);
+                            ubicacionxItem.setCoordenadaX(column);
+                            Log.d("MAPAAA", "ubicacionXitem antes: "+ubicacionxItem);
+                            nuevaPosicion.put(0,ubicacionxItem);
+
                             if(nuevo(ubicacionxItem).getCoordenadaX()!=0)
                             {
                                 Toast.makeText(_31_armar_mapa_admin.this, "Vista clickeada!", Toast.LENGTH_SHORT).show();
@@ -539,27 +541,30 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
 
                                     Drawable draggedDrawable = ((ImageView) draggedView).getDrawable();
                                     ((ImageView) draggedView).setImageDrawable(targetView.getDrawable());
+                                    UbicacionxItem ubicacionxItem = new UbicacionxItem();
+                                    int cellHeight = gridLayout.getHeight() / gridLayout.getRowCount();
+                                    int cellWidth = gridLayout.getWidth() / gridLayout.getColumnCount();
+                                    int droppedRow = y / cellHeight;
+                                    int droppedColumn = x / cellWidth;
+                                    ubicacionxItem.setCoordenadaY(droppedRow);
+                                    ubicacionxItem.setCoordenadaX(droppedColumn);
 
                                     if(draggedView.getTag()!=null)
                                     {
                                         int position = (int) draggedView.getTag();
                                         int newDrawableId=getResources().getIdentifier(iconosNa.get(position), "drawable", getPackageName());
                                         targetView.setImageResource(newDrawableId);
-                                        UbicacionxItem ubicacionxItem = new UbicacionxItem();
-                                        int cellHeight = gridLayout.getHeight() / gridLayout.getRowCount();
-                                        int cellWidth = gridLayout.getWidth() / gridLayout.getColumnCount();
-
-                                        // Calcular la fila y la columna basándose en las coordenadas x y y
-                                        int droppedRow = y / cellHeight;
-                                        int droppedColumn = x / cellWidth;
-
-                                        ubicacionxItem.setCoordenadaX(droppedRow);
-                                        ubicacionxItem.setCoordenadaY(droppedColumn);
                                         añadidos.put(ubicacionxItem,position);
                                     }
                                     else
                                     {
+                                        Log.d("MAPAA", "ubicacion despues x: "+ubicacionxItem.getCoordenadaX()+" y:"+ubicacionxItem.getCoordenadaY());
+                                        nuevaPosicion.put(1,ubicacionxItem);
                                         targetView.setImageDrawable(draggedDrawable);
+                                        guardarNuevaPosi(()->
+                                        {
+
+                                        });
                                     }
 
                                     draggedView.setVisibility(View.VISIBLE);
@@ -596,7 +601,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                         int row = uxi.getCoordenadaY();
                         int column = uxi.getCoordenadaX();
 
-                        // Encuentra la ImageView en la posición específica
                         for (int i = 0; i < gridLayout.getChildCount(); i++) {
                             View view = gridLayout.getChildAt(i);
                             GridLayout.LayoutParams layoutParams = (GridLayout.LayoutParams) view.getLayoutParams();
@@ -641,5 +645,52 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
      int newDrawableId=getResources().getIdentifier(iconos.get(añadidos.get(nuevo(ubicacionxItem))), "drawable", getPackageName());
      cuadrado.setImageResource(newDrawableId);
  }
+
+ private void guardarNuevaPosi(_31_armar_mapa_admin.InfoCallback callback)
+ {
+    int xBuscar = nuevaPosicion.get(0).getCoordenadaX();
+    int yBuscar = nuevaPosicion.get(0).getCoordenadaY();
+    UbicacionxItem encontrado = new UbicacionxItem();
+    for (Map.Entry<Integer, List<UbicacionxItem>> entry : ubicaciones.entrySet()) {
+
+         // Obtener la lista de UbicacionxItem de la entrada actual
+         List<UbicacionxItem> listaUbicaciones = entry.getValue();
+
+         // Iterar a través de cada UbicacionxItem en la lista
+         for (UbicacionxItem ubicacion : listaUbicaciones) {
+
+             // Comparar las coordenadas
+             if (ubicacion.getCoordenadaX() == xBuscar && ubicacion.getCoordenadaY() == yBuscar) {
+                 // Si las coordenadas coinciden, retornar la ubicación encontrada
+                  encontrado = ubicacion;
+             }
+         }
+     }
+
+    Log.d("NUEVA posicion", "elemento movido: "+encontrado);
+    encontrado.setCoordenadaY(nuevaPosicion.get(1).getCoordenadaY());
+    encontrado.setCoordenadaX(nuevaPosicion.get(1).getCoordenadaX());
+
+    Call<UbicacionxItem> call = ubicacionxItemApiService.updateUbicacionxItem(encontrado);
+     call.enqueue(new Callback<UbicacionxItem> () {
+         @Override
+         public void onResponse(Call<UbicacionxItem>  call, Response<UbicacionxItem>  response) {
+             if (response.isSuccessful()) {
+                 Toast.makeText(_31_armar_mapa_admin.this, "Nueva ubicacion guardada", Toast.LENGTH_SHORT).show();
+             } else {
+                 // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                 Log.e("Error", "Error en la respuesta: " + response.code());
+             }
+             callback.onCompletion();
+         }
+
+         @Override
+         public void onFailure(Call<UbicacionxItem>  call, Throwable t) {
+             // Maneja errores de red o de conversión de datos
+             Log.e("Error", "Fallo en la petición: " + t.getMessage());
+         }
+     });
+ }
+
 }
 
