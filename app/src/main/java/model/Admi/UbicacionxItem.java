@@ -76,7 +76,8 @@ public class UbicacionxItem {
     @Override
     public String toString() {
         return "UbicacionxItem{" +
-                "mapaid=" + mapaid +
+                "id="+id+
+                ", mapaid=" + mapaid +
                 ", coordenadaX=" + coordenadaX +
                 ", coordenadaY=" + coordenadaY +
                 ", itemid=" + itemid +

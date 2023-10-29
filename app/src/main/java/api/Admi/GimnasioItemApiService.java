@@ -9,6 +9,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface GimnasioItemApiService {
@@ -21,4 +22,7 @@ public interface GimnasioItemApiService {
 
     @DELETE("gimnasioItem/delete/{gimnasioid}/{itemid}")
     Call <Void> deleteGimnasioItem(@Path("gimnasioid") int gimnasioid,@Path("itemid") int itemid);
+
+    @PUT("gimnasioItem/update")
+    Call <GimnasioItem> updateGimnasioItem(@Body GimnasioItem gimnasioItem);
 }

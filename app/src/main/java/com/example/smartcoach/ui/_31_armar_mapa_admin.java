@@ -138,6 +138,9 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
 
                     case DragEvent.ACTION_DROP:
                         Log.d("BASURA", "Dropped");
+                        eliminarItem(()->{
+                            Toast.makeText(_31_armar_mapa_admin.this, "Item Eliminado", Toast.LENGTH_SHORT).show();
+                        });
                         View draggedView = (View) event.getLocalState();
                         draggedView.setVisibility(View.INVISIBLE);
                         return true;
@@ -448,8 +451,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                 final int column = j;
 
                 ImageView cuadrado = new ImageView(this);
-                GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(
-                        GridLayout.spec(i), GridLayout.spec(j));
+                GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(i), GridLayout.spec(j));
                 layoutParams.width = tamañoCasillaPixels;
                 layoutParams.height = tamañoCasillaPixels;
                 cuadrado.setLayoutParams(layoutParams);
@@ -464,6 +466,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                             UbicacionxItem ubicacionxItem = new UbicacionxItem();
                             ubicacionxItem.setCoordenadaY(row);
                             ubicacionxItem.setCoordenadaX(column);
+                            Log.d("MOVIENDO", "posicion x: "+row+" y:"+column);
                             nuevaPosicion.put(0, ubicacionxItem);
 
                             if (nuevo(ubicacionxItem).getCoordenadaX() != 0) {
@@ -530,7 +533,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                                             crearNuevoItem(()->{});
                                         }
                                     }else { //Mover elementos
-                                        ubicacionxItem.setCoordenadaX(ubicacionxItem.getCoordenadaX()+1);
+                                        ubicacionxItem.setCoordenadaX(ubicacionxItem.getCoordenadaX());
                                         nuevaPosicion.put(1, ubicacionxItem);
                                         targetView.setImageDrawable(draggedDrawable);
                                         guardarNuevaPosi(() -> {});
@@ -564,7 +567,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
     private void cargarImagenes() {
         for (GimnasioItem gi : listaItems) {
             List<UbicacionxItem> ubi = ubicaciones.get(gi.getItemid());
-            if (!ubi.isEmpty() && ubi != null) {
+            if (ubi != null &&!ubi.isEmpty() ) {
                 for (UbicacionxItem uxi : ubi) {
                     if (uxi.getMapaid() == mapas.get(piso).getId()) {
                         int row = uxi.getCoordenadaY();
@@ -610,9 +613,8 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
         cuadrado.setImageResource(newDrawableId);
     }
 
-    private void guardarNuevaPosi(_31_armar_mapa_admin.InfoCallback callback) {
-        int xBuscar = nuevaPosicion.get(0).getCoordenadaX();
-        int yBuscar = nuevaPosicion.get(0).getCoordenadaY();
+    private UbicacionxItem buscarUbicacionxItem(int coordenadax,int coordenaday)
+    {
         UbicacionxItem encontrado = new UbicacionxItem();
         for (Map.Entry<Integer, List<UbicacionxItem>> entry : ubicaciones.entrySet()) {
 
@@ -623,12 +625,20 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
             for (UbicacionxItem ubicacion : listaUbicaciones) {
 
                 // Comparar las coordenadas
-                if (ubicacion.getCoordenadaX() == xBuscar && ubicacion.getCoordenadaY() == yBuscar) {
+                if (ubicacion.getCoordenadaX() == coordenadax && ubicacion.getCoordenadaY() == coordenaday) {
                     // Si las coordenadas coinciden, retornar la ubicación encontrada
                     encontrado = ubicacion;
+                    break;
                 }
             }
         }
+
+        return encontrado;
+    }
+    private void guardarNuevaPosi(_31_armar_mapa_admin.InfoCallback callback) {
+        int xBuscar = nuevaPosicion.get(0).getCoordenadaX();
+        int yBuscar = nuevaPosicion.get(0).getCoordenadaY();
+        UbicacionxItem encontrado = buscarUbicacionxItem(xBuscar,yBuscar);
 
         Log.d("NUEVA posicion", "elemento movido: " + encontrado);
         encontrado.setCoordenadaY(nuevaPosicion.get(1).getCoordenadaY());
@@ -666,25 +676,33 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
         nuevoItem.setGimnasioid(gimnasioId);
         nuevoItem.setMapaid(mapas.get(piso).getId().intValue());
 
-        Call<UbicacionxItem> call = ubicacionxItemApiService.addUbicacionxItem(nuevaPosicion.get(0));
+        Log.e("Update", "Nuevo item " + nuevoItem.getItemid());
+        Call<UbicacionxItem> call = ubicacionxItemApiService.addUbicacionxItem(nuevoItem);
+
         call.enqueue(new Callback<UbicacionxItem>() {
             @Override
             public void onResponse(Call<UbicacionxItem> call, Response<UbicacionxItem> response) {
                 if (response.isSuccessful()) {
+                    UbicacionxItem nuevoItem = response.body();
+
                     List<UbicacionxItem> actualizado = ubicaciones.get(nuevoItem.getItemid());
-                    if(actualizado.isEmpty())
+                    if(actualizado==null || actualizado.isEmpty())
                     {
+                        Log.d("Update", "creo nuevo gimnasioItem: "+nuevoItem.getItemid());
                         actualizado = new ArrayList<>();
+                        actualizado.add(nuevoItem);
                         ubicaciones.put(nuevoItem.getItemid(),actualizado);
+                        createGimnasioItem(nuevoItem,()->{});
                     }
                     else {
                         actualizado.add(nuevoItem);
                         ubicaciones.remove(nuevoItem.getItemid());
                         ubicaciones.put(nuevoItem.getItemid(),actualizado);
+                        updateGimnasioItem(nuevoItem,1,()-> {});
                     }
 
                     nuevaPosicion.remove(0);
-                    Toast.makeText(_31_armar_mapa_admin.this, "Nueva item añadido ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(_31_armar_mapa_admin.this, "Nuevo item añadido ", Toast.LENGTH_SHORT).show();
 
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
@@ -700,5 +718,158 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
             }
         });
     }
+
+    private void updateGimnasioItem(UbicacionxItem ubicacionxItem,int cambio, _31_armar_mapa_admin.InfoCallback callback)
+    {
+        GimnasioItem actualizar = new GimnasioItem();
+        Log.d("Update", "listaItems: "+listaItems);
+        for(GimnasioItem gimnasioItem:listaItems)
+        {
+            if(gimnasioItem.getItemid()==ubicacionxItem.getItemid())
+            {
+                actualizar = gimnasioItem;
+                Log.d("Update", "encontro cambio: "+actualizar);
+                listaItems.remove(actualizar);
+                break;
+            }
+        }
+
+        Log.d("Update", "modifico lista: "+listaItems);
+        int original = actualizar.getCantidad();
+        Log.d("Update", "cantidad items antes: "+actualizar.getCantidad());
+        int nuevo = original+cambio;
+        actualizar.setCantidad(nuevo);
+        Log.d("Update", "cantidad items despues: "+actualizar.getCantidad());
+
+        if(actualizar.getCantidad()>0)
+        { // actualizar
+            Log.d("Update", "actualizo cantidad: "+actualizar.getCantidad());
+            listaItems.add(actualizar);
+            Call<GimnasioItem> call = gimnasioItemApiService.updateGimnasioItem(actualizar);
+            call.enqueue(new Callback<GimnasioItem>() {
+                @Override
+                public void onResponse(Call<GimnasioItem> call, Response<GimnasioItem> response) {
+                    if (response.isSuccessful()) {
+
+                        Toast.makeText(_31_armar_mapa_admin.this, "Nueva item añadido ", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                        Log.e("Error", "Error en la respuesta: " + response.code());
+                    }
+                    callback.onCompletion();
+                }
+
+                @Override
+                public void onFailure(Call<GimnasioItem> call, Throwable t) {
+                    // Maneja errores de red o de conversión de datos
+                    Log.e("Error", "Fallo en la petición: " + t.getMessage());
+                }
+            });
+        }
+        else { // Eliminar gimnasio item
+            Log.d("Update", "elimino"+ actualizar.getCantidad());
+            listaItems.remove(actualizar);
+            Log.d("Eliminar", "idGimnasio: "+gimnasioId+" idItem:"+actualizar.getItemid());
+            Call<Void> call = gimnasioItemApiService.deleteGimnasioItem(gimnasioId,actualizar.getItemid());
+            call.enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Call<Void> call, Response<Void> response) {
+                    if (response.isSuccessful()) {
+
+                    } else {
+                        // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                        Log.e("Error", "Error en la respuesta, eliminar gimnasioItem: " + response.code());
+                    }
+                    callback.onCompletion();
+                }
+                @Override
+                public void onFailure(Call<Void> call, Throwable t) {
+                    // Maneja errores de red o de conversión de datos
+                    Log.e("Error", "Fallo en la petición: " + t.getMessage());
+                }
+            });
+        }
+
+    }
+
+    private void createGimnasioItem(UbicacionxItem ubicacionxItem, _31_armar_mapa_admin.InfoCallback callback)
+    {
+        GimnasioItem actualizar = new GimnasioItem();
+        actualizar.setCantidad(1);
+        actualizar.setGimnasioid(gimnasioId);
+        actualizar.setItemid(ubicacionxItem.getItemid());
+        listaItems.add(actualizar);
+
+        Call<GimnasioItem> call = gimnasioItemApiService.addGimnasioItem(actualizar);
+        call.enqueue(new Callback<GimnasioItem>() {
+            @Override
+            public void onResponse(Call<GimnasioItem> call, Response<GimnasioItem> response) {
+                if (response.isSuccessful()) {
+
+                    Log.e("Update", "Nuevo gimnasio item" + response.body());
+
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "En eliminar gimnasioItem " + response.code());
+                }
+                callback.onCompletion();
+            }
+
+            @Override
+            public void onFailure(Call<GimnasioItem> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "En eliminar gimnasioItem" + t.getMessage());
+            }
+        });
+    }
+
+    private void eliminarItem(_31_armar_mapa_admin.InfoCallback callback)
+    {
+        Log.d("Eliminar", "entro a eliminarItem ");
+        UbicacionxItem eliminar = buscarUbicacionxItem(nuevaPosicion.get(0).getCoordenadaX(),nuevaPosicion.get(0).getCoordenadaY());
+        Log.d("Eliminar", "voy a eliminar este item: "+eliminar);
+
+        // eliminar ubicacionxItem
+         eliminarUbicacionItem(eliminar,()->{
+             // update gimnasioItem
+             updateGimnasioItem(eliminar,-1,()->{
+                 callback.onCompletion();
+             });
+
+         });
+    }
+
+    private void eliminarUbicacionItem(UbicacionxItem eliminar,_31_armar_mapa_admin.InfoCallback callback)
+    {
+        Log.d("Eliminar", "eliminarUbicacionItem: "+eliminar);
+        Call<Void> call = ubicacionxItemApiService.deleteUbicacionxItem(Long.valueOf(eliminar.getId()));
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    List<UbicacionxItem> actualizar = ubicaciones.get(eliminar.getItemid());
+                    ubicaciones.remove(eliminar.getItemid());
+                    actualizar.remove(eliminar);
+                    ubicaciones.put(eliminar.getItemid(),actualizar);
+                    nuevaPosicion.remove(0);
+                    Log.d("Eliminar", "todo good eliminado: ");
+
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "en ubicacionItem: " + response.code());
+                }
+                callback.onCompletion();
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "En eliminar gimnasioItem " + t.getMessage());
+            }
+        });
+
+    }
 }
+
 

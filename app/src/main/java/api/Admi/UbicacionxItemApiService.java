@@ -5,6 +5,7 @@ import java.util.List;
 import model.Admi.UbicacionxItem;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -23,4 +24,7 @@ public interface UbicacionxItemApiService {
 
     @POST("ubicacionxitem/add")
     Call<UbicacionxItem> addUbicacionxItem(@Body UbicacionxItem ubicacionxItem);
+
+    @DELETE("ubicacionxitem/{id}")
+    Call<Void> deleteUbicacionxItem(@Path("id")long id);
 }
