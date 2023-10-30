@@ -68,8 +68,8 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
     TipoEquipoApiService tipoEquipoApiService;
     EquipoApiService equipoApiService;
 
-    Long userId = SharedPreferencesUtil.getUserId(_31_armar_mapa_admin.this);
-    String token = SharedPreferencesUtil.getToken(_31_armar_mapa_admin.this);
+    Long userId;
+    String token;
     int gimnasioId = 0;
     Map<Integer, Mapa> mapas = new HashMap<>();
     List<GimnasioItem> listaItems = new ArrayList<>();
@@ -99,6 +99,8 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
         setContentView(R.layout._31_armar_mapa_admin);
 
         gridLayout = findViewById(R.id.gridLayout_31);
+        userId = SharedPreferencesUtil.getUserId(_31_armar_mapa_admin.this);
+        token = SharedPreferencesUtil.getToken(_31_armar_mapa_admin.this);
         iniciarPeticiones();
         cargarIconos();
         cargarInfo();
@@ -240,7 +242,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
         nombreTipos.put(3,"maquinas de cardio");
         nombreTipos.put(4,"complementos");
         cargarListas();
-
     }
 
     private void iniciarPeticiones() {
@@ -281,6 +282,8 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                                             @Override
                                             public void onCompletion() {
                                                 cargarMapa();
+                                                Log.d("CARGANDO IMAGENES", "termino cargarMapa");
+
                                             }
                                         });
 
@@ -376,7 +379,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
     private void llenarTipoEquipo(_31_armar_mapa_admin.InfoCallback callback) {
         if (!listaItems.isEmpty()) {
             for (GimnasioItem gi : listaItems) {
-                if (gi.getItemid() > 11) {
+                if (gi.getItemid() > 10) {
                     Call<Integer> call = equipoApiService.findTipoEquipoIdByItemId(Long.valueOf(gi.getItemid()));
                     call.enqueue(new Callback<Integer>() {
                         @Override
@@ -455,12 +458,16 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
         Log.d("FIN", "tipo equipo: " + tipoEquipoItem);
         Log.d("FIN", "iconos: " + iconos);
         Log.d("FIN", "ubicaciones: " + ubicaciones);
-        cargarCuadrados(mapas.get(piso).getAncho(), mapas.get(piso).getAlto());
-        cargarImagenes();
+        cargarCuadrados(mapas.get(piso).getAncho(), mapas.get(piso).getAlto(),()->{
+            cargarImagenes();
+        });
+        Log.d("CARGANDO IMAGENES", "antes");
+
+        Log.d("CARGANDO IMAGENES", "despues");
 
     }
 
-    private void cargarCuadrados(int ancho, int alto) {
+    private void cargarCuadrados(int ancho, int alto,_31_armar_mapa_admin.InfoCallback callback) {
         int tamañoCasilla = 32;
         final float scale = getResources().getDisplayMetrics().density;
         int tamañoCasillaPixels = (int) (tamañoCasilla * scale + 0.5f);
@@ -471,8 +478,8 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
         for (int i = 0; i < alto; i++) {
             for (int j = 0; j < ancho; j++) {
 
-                final int row = i; // Variable final para almacenar el valor de i
-                final int column = j;
+                int row = i;
+                int column = j;
 
                 ImageView cuadrado = new ImageView(this);
                 GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(i), GridLayout.spec(j));
@@ -480,6 +487,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                 layoutParams.height = tamañoCasillaPixels;
                 cuadrado.setLayoutParams(layoutParams);
                 cuadrado.setBackgroundResource(R.drawable.fondo_mapa);
+
 
                 GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener()
                 {
@@ -617,6 +625,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
             }
         });
 
+        callback.onCompletion();
     }
 
     private void cargarImagenes() {
@@ -637,10 +646,16 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                                     view instanceof ImageView) {
 
                                 ImageView imageView = (ImageView) view;
-                                imageView.setPadding(2, 2, 2, 2);
+                                imageView.setPadding(2,2,2,2);
+                                Log.d("CARGANDO IMAGENES", "voy a subir esta: ");
+                                Log.d("CARGANDO IMAGENES", "voy a subir esta: tipoEquipoItem: "+tipoEquipoItem);
+                                Log.d("CARGANDO IMAGENES", "voy a subir esta: uxi.getItemid: "+uxi.getItemid());
                                 int tipo = tipoEquipoItem.get(uxi.getItemid());
+                                Log.d("CARGANDO IMAGENES", "voy a subir esta: tipo: "+tipo);
                                 int resID = getResources().getIdentifier(iconos.get(tipo), "drawable", getPackageName());
+                                Log.d("CARGANDO IMAGENES", "voy a subir esta: resID: "+resID);
                                 imageView.setImageResource(resID);
+                                Log.d("CARGANDO IMAGENES", "cargada");
                                 break;
                             }
                         }
@@ -1088,7 +1103,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
         int newDrawableId = getResources().getIdentifier(iconos.get(añadidos.get(nuevo(ubicacionxItem))), "drawable", getPackageName());
         cuadrado.setImageResource(newDrawableId);
         añadidos.remove(ubicacionxItem);
-
     }
 
     private void llenarEquipos(_31_armar_mapa_admin.InfoCallback callback)

@@ -98,24 +98,34 @@ public class MapaEquipoAdapter extends  RecyclerView.Adapter<MapaEquipoAdapter.M
                 holder.imagen.setImageBitmap(decodedBitmap);
             }
             iniciarPeticiones();
+
             holder.definirB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Log.d("MOSTRAR", "mirando el item"+ubicacionxItem.getId());
+
                     if(ubicacionxItem.getId()!=0)
                     {
+                        Log.d("MOSTRAR", "este item es ya existia "+ubicacionxItem);
                         definirEquipo(item.getId().intValue());
                     }
                     else {
+                        Log.d("MOSTRAR", "este item es nuevo "+ubicacionxItem);
                         crearyDefinirEquipo(item.getId().intValue(),()->
                         {
                             revisarGimnasioItem(()->{
                                 if(tiene)
+                                {
                                     actualizarGimnasioItem(()->{});
+                                }
                                 else
+                                {
                                     crearGimnasioItem(()->{});
+                                }
                             });
                         });
                     }
+
                     holder.definirB.setBackgroundResource(R.drawable.rounded_grey_background);
                     holder.definirB.setText("Definido");
                     if (listener != null) {
@@ -123,7 +133,6 @@ public class MapaEquipoAdapter extends  RecyclerView.Adapter<MapaEquipoAdapter.M
                     }
                 }
             });
-
 
         }
 
@@ -158,7 +167,8 @@ public class MapaEquipoAdapter extends  RecyclerView.Adapter<MapaEquipoAdapter.M
                 @Override
                 public void onResponse(Call<UbicacionxItem> call, Response<UbicacionxItem> response) {
                     if (response.isSuccessful()) {
-                        Toast.makeText(context, "Item creado y equipo asignado", Toast.LENGTH_SHORT).show();
+                        Log.d("MOSTRAR", "cree la ubicacionXiTEM "+response.body().toString());
+
                     } else {
                         // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                         Log.e("Error", "Error en la respuesta: " + response.code());
@@ -178,23 +188,55 @@ public class MapaEquipoAdapter extends  RecyclerView.Adapter<MapaEquipoAdapter.M
 
         private void revisarGimnasioItem(_31_armar_mapa_admin.InfoCallback callback)
         {
+            Log.d("MOSTRAR", "voy a mirar si gimnasioItem tiene el item nuevo ");
+            Log.d("MOSTRAR", "info consulta: gimnasioId: "+gimnasioId+" itemid: "+ubicacionxItem.getItemid());
             Call<GimnasioItem> call = gimnasioItemApiService.getGimnasioItem(gimnasioId,ubicacionxItem.getItemid());
             call.enqueue(new Callback<GimnasioItem>() {
                 @Override
                 public void onResponse(Call<GimnasioItem> call, Response<GimnasioItem> response) {
                     if (response.isSuccessful()) {
-                        if(response.body()!=null)
-                        {
+                            Log.d("MOSTRAR", "toca actualizar gimnasioItem");
                             gimnasioItem = response.body();
                             tiene = true;
-                        }
                     } else {
                         // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                         Log.e("Error", "Error en la respuesta: " + response.code());
                     }
-
                     callback.onCompletion();
+                }
 
+                @Override
+                public void onFailure(Call<GimnasioItem> call, Throwable t) {
+                    // Maneja errores de red o de conversión de datos
+                    Log.d("MOSTRAR", "toca crear gimnasioItem");
+                    Log.e("Error", "Fallo en la petición: " + t.getMessage());
+                    callback.onCompletion();
+                }
+            });
+        }
+
+        private void crearGimnasioItem(_31_armar_mapa_admin.InfoCallback callback)
+        {
+            Log.d("MOSTRAR", "voy a crear gimnasio item");
+
+            GimnasioItem nuevo = new GimnasioItem();
+            nuevo.setCantidad(1);
+            nuevo.setGimnasioid(gimnasioId);
+            nuevo.setItemid(ubicacionxItem.getItemid());
+
+            Log.d("MOSTRAR", "nuevo "+nuevo);
+
+            Call<GimnasioItem> call = gimnasioItemApiService.addGimnasioItem(nuevo);
+            call.enqueue(new Callback<GimnasioItem>() {
+                @Override
+                public void onResponse(Call<GimnasioItem> call, Response<GimnasioItem> response) {
+                    if (response.isSuccessful()) {
+                        Log.d("MOSTRAR", "cree nuevo gimnasioItem: "+response.body());
+                    } else {
+                        // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                        Log.e("Error", "Error en la respuesta: " + response.code());
+                    }
+                    callback.onCompletion();
                 }
 
                 @Override
@@ -203,39 +245,6 @@ public class MapaEquipoAdapter extends  RecyclerView.Adapter<MapaEquipoAdapter.M
                     Log.e("Error", "Fallo en la petición: " + t.getMessage());
                 }
             });
-        }
-
-        private void crearGimnasioItem(_31_armar_mapa_admin.InfoCallback callback)
-        {
-        GimnasioItem nuevo = new GimnasioItem();
-        nuevo.setCantidad(1);
-        nuevo.setGimnasioid(gimnasioId);
-        nuevo.setItemid(ubicacionxItem.getItemid());
-
-        Call<GimnasioItem> call = gimnasioItemApiService.addGimnasioItem(nuevo);
-        call.enqueue(new Callback<GimnasioItem>() {
-            @Override
-            public void onResponse(Call<GimnasioItem> call, Response<GimnasioItem> response) {
-                if (response.isSuccessful()) {
-                    if(response.body()!=null)
-                    {
-                        tiene = true;
-                    }
-                } else {
-                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
-                    Log.e("Error", "Error en la respuesta: " + response.code());
-                }
-
-                callback.onCompletion();
-
-            }
-
-            @Override
-            public void onFailure(Call<GimnasioItem> call, Throwable t) {
-                // Maneja errores de red o de conversión de datos
-                Log.e("Error", "Fallo en la petición: " + t.getMessage());
-            }
-        });
     }
 
         private void actualizarGimnasioItem(_31_armar_mapa_admin.InfoCallback callback)
