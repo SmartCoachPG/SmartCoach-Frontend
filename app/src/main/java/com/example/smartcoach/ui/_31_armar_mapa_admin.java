@@ -1,25 +1,32 @@
 package com.example.smartcoach.ui;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
+import android.util.Base64;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.smartcoach.R;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,8 +41,10 @@ import api.Admi.UbicacionxItemApiService;
 import api.Admi.UsuarioAdministradorApiService;
 import api.SharedPreferencesUtil;
 import api.retro;
+import model.Admi.Equipo;
 import model.Admi.GimnasioItem;
 import model.Admi.Mapa;
+import model.Admi.TipoEquipo;
 import model.Admi.UbicacionxItem;
 import model.Admi.UsuarioAdministrador;
 import okhttp3.OkHttpClient;
@@ -75,6 +84,10 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
     Map<Integer, UbicacionxItem> nuevaPosicion = new HashMap<>();
 
     int tipo=0;
+
+    Equipo equipoBuscado = new Equipo();
+    String nombreTipo = "";
+    List<String> listaMusculos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -487,12 +500,22 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                         boolean gestureHandled = gestureDetector.onTouchEvent(event);
                         if(tipo==1)
                         {
-                            Toast.makeText(_31_armar_mapa_admin.this, "Vista clickeada!", Toast.LENGTH_SHORT).show();
                             tipo=0;
+                            UbicacionxItem ubicacionxItem = new UbicacionxItem();
+                            ubicacionxItem.setCoordenadaX(column);
+                            ubicacionxItem.setCoordenadaY(row);
 
+                            if(nuevo(ubicacionxItem).getCoordenadaX()!=0)
+                            {
+                                ubicarEquipo(cuadrado,nuevo(ubicacionxItem));
+                            }else {
+                                UbicacionxItem item = buscarUbicacionxItem(column,row);
+                                if(item.getItemid()>10){
+                                    mostrarEquipo(cuadrado,item);
+                                }
+                            }
                         }
                         else if(tipo==2){
-                            //Toast.makeText(_31_armar_mapa_admin.this, "Vista Arrastrada!", Toast.LENGTH_SHORT).show();
                             tipo=0;
                             View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
                             v.startDrag(null,shadowBuilder,v,0);
@@ -500,11 +523,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                             ubicacionxItem.setCoordenadaX(column);
                             ubicacionxItem.setCoordenadaY(row);
                             nuevaPosicion.put(0,ubicacionxItem);
-
-                            if(nuevo(ubicacionxItem).getCoordenadaX()!=0)
-                            {
-                                ubicarEquipo(cuadrado,nuevo(ubicacionxItem));
-                            }
                         }
 
                         return true;
@@ -639,6 +657,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
     }
 
     private void ubicarEquipo(ImageView cuadrado, UbicacionxItem ubicacionxItem) {
+        Log.d("33", "ubicar equipo: ");
         int newDrawableId = getResources().getIdentifier(iconos.get(añadidos.get(nuevo(ubicacionxItem))), "drawable", getPackageName());
         cuadrado.setImageResource(newDrawableId);
     }
@@ -897,6 +916,134 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void mostrarEquipo(ImageView cuadrado, UbicacionxItem ubicacionxItem) {
+        Log.d("34", "ubicar equipo: "+ubicacionxItem);
+
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout._34_ver_informacion_equipo_ubicado_en_mapa_admin); // Usa el nombre de tu archivo XML
+        dialog.getWindow().setBackgroundDrawable(null);
+
+        ImageButton botonX = dialog.findViewById(R.id.btnX_34);
+        ImageView imagen;
+        TextView nombreEquipo,referenciaE,descripE, tipoMaquina;
+        nombreEquipo = dialog.findViewById(R.id.nombreEquipo);
+        referenciaE = dialog.findViewById(R.id.setTextReferencia_34);
+        descripE = dialog.findViewById(R.id.setTextDescripcion_34);
+        imagen = dialog.findViewById(R.id.setImageEquipo_34);
+        tipoMaquina = dialog.findViewById(R.id.itemTipoMaquina_34);
+        RecyclerView recycler = dialog.findViewById(R.id.recyclerViewItemMusculoInvolucrado_34);
+
+        botonX.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        getEquipo(Long.valueOf(ubicacionxItem.getItemid()),()->
+        {
+            nombreEquipo.setText(equipoBuscado.getNombre());
+            referenciaE.setText(equipoBuscado.getReferencia());
+            descripE.setText(equipoBuscado.getDescripcion());
+            if(equipoBuscado.getImagen()!=null)
+            {
+                byte[] imageBytes = Base64.decode(equipoBuscado.getImagen(), Base64.DEFAULT);
+                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                imagen.setImageBitmap(decodedBitmap);
+            }
+            getTipoEquipoNombre(Long.valueOf(ubicacionxItem.getItemid()),()->
+            {
+                tipoMaquina.setText(nombreTipo);
+
+                getMusculosEquipo(Long.valueOf(ubicacionxItem.getItemid()),()->
+                {
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+                    recycler.setLayoutManager(layoutManager);
+                    _100_adaptadorI_musculos adapter = new _100_adaptadorI_musculos(listaMusculos);
+                    recycler.setAdapter(adapter);
+                });
+            });
+
+        });
+
+
+
+        dialog.show();
+    }
+
+    private void getEquipo(Long itemid,_31_armar_mapa_admin.InfoCallback callback)
+    {
+        Call<Equipo> call = equipoApiService.getById(itemid);
+        call.enqueue(new Callback<Equipo>() {
+            @Override
+            public void onResponse(Call<Equipo> call, Response<Equipo> response) {
+                if (response.isSuccessful()) {
+                    equipoBuscado = response.body();
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+                callback.onCompletion();
+            }
+
+            @Override
+            public void onFailure(Call<Equipo> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+
+    }
+
+    private void getTipoEquipoNombre(Long itemid,_31_armar_mapa_admin.InfoCallback callback)
+    {
+        Call<TipoEquipo> call = equipoApiService.getTipoNameByEquipoId(itemid);
+        call.enqueue(new Callback<TipoEquipo>() {
+            @Override
+            public void onResponse(Call<TipoEquipo> call, Response<TipoEquipo> response) {
+                if (response.isSuccessful()) {
+                    nombreTipo = response.body().getNombre();
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+                callback.onCompletion();
+            }
+
+            @Override
+            public void onFailure(Call<TipoEquipo> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
+
+    private void getMusculosEquipo(Long itemid,_31_armar_mapa_admin.InfoCallback callback)
+    {
+        Call<List<String>> call = equipoApiService.getMusculosByEquipoId(itemid);
+        call.enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                if (response.isSuccessful()) {
+                    if(!response.body().isEmpty())
+                        listaMusculos = response.body();
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+                callback.onCompletion();
+            }
+
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
     }
 }
 
