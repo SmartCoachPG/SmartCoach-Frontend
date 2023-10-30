@@ -3,8 +3,10 @@ package com.example.smartcoach.ui;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.GridLayout;
@@ -13,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -70,6 +73,8 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
     int piso = 1;
     Boolean equipo = true;
     Map<Integer, UbicacionxItem> nuevaPosicion = new HashMap<>();
+
+    int tipo=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,7 +159,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
         });
 
     }
-
 
     private void cargarListas() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView_31);
@@ -457,27 +461,53 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                 cuadrado.setLayoutParams(layoutParams);
                 cuadrado.setBackgroundResource(R.drawable.fondo_mapa);
 
+                GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener()
+                {
+                    @Override
+                    public boolean onSingleTapConfirmed(MotionEvent e) {
+                        tipo =1;
+                        return true;
+                    }
+                    @Override
+                    public void onLongPress(MotionEvent e) {
+                        tipo=2;
+                    }
+                    @Override
+                    public boolean onDown(MotionEvent e)
+                    {
+
+                        return  true;
+                    }
+                });
+
                 cuadrado.setOnTouchListener(new View.OnTouchListener() {
                     @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
-                            v.startDrag(null, shadowBuilder, v, 0);
-                            UbicacionxItem ubicacionxItem = new UbicacionxItem();
-                            ubicacionxItem.setCoordenadaY(row);
-                            ubicacionxItem.setCoordenadaX(column);
-                            Log.d("MOVIENDO", "posicion x: "+row+" y:"+column);
-                            nuevaPosicion.put(0, ubicacionxItem);
+                    public boolean onTouch(View v,MotionEvent event)
+                    {
+                        boolean gestureHandled = gestureDetector.onTouchEvent(event);
+                        if(tipo==1)
+                        {
+                            Toast.makeText(_31_armar_mapa_admin.this, "Vista clickeada!", Toast.LENGTH_SHORT).show();
+                            tipo=0;
 
-                            if (nuevo(ubicacionxItem).getCoordenadaX() != 0) {
-                                Toast.makeText(_31_armar_mapa_admin.this, "Vista clickeada!", Toast.LENGTH_SHORT).show();
-                                ubicarEquipo(cuadrado, nuevo(ubicacionxItem));
-                            }
-                            return true;
-                        } else {
-
-                            return false;
                         }
+                        else if(tipo==2){
+                            //Toast.makeText(_31_armar_mapa_admin.this, "Vista Arrastrada!", Toast.LENGTH_SHORT).show();
+                            tipo=0;
+                            View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
+                            v.startDrag(null,shadowBuilder,v,0);
+                            UbicacionxItem ubicacionxItem = new UbicacionxItem();
+                            ubicacionxItem.setCoordenadaX(column);
+                            ubicacionxItem.setCoordenadaY(row);
+                            nuevaPosicion.put(0,ubicacionxItem);
+
+                            if(nuevo(ubicacionxItem).getCoordenadaX()!=0)
+                            {
+                                ubicarEquipo(cuadrado,nuevo(ubicacionxItem));
+                            }
+                        }
+
+                        return true;
                     }
                 });
 
@@ -750,8 +780,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<GimnasioItem> call, Response<GimnasioItem> response) {
                     if (response.isSuccessful()) {
-
-                        Toast.makeText(_31_armar_mapa_admin.this, "Nueva item añadido ", Toast.LENGTH_SHORT).show();
 
                     } else {
                         // Maneja errores del servidor, por ejemplo, un error 404 o 500.
