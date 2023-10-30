@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/imageEquipo"
+        android:id="@+id/imageEquipo_33"
         android:layout_width="91dp"
         android:layout_height="136dp"
         android:layout_marginStart="4dp"
@@ -21,7 +21,7 @@
         app:srcCompat="@drawable/cuadrado_gr" />
 
     <TextView
-        android:id="@+id/nombreEquipo"
+        android:id="@+id/nombreEquipo_33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -29,11 +29,11 @@
         android:text="Nombre equipo"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageEquipo"
+        app:layout_constraintStart_toEndOf="@+id/imageEquipo_33"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/nombreReferenciaEquipo"
+        android:id="@+id/nombreReferenciaEquipo_33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -41,11 +41,11 @@
         android:text="Referencia"
         android:textSize="13sp"
         android:textColor="@color/orange"
-        app:layout_constraintStart_toEndOf="@+id/imageEquipo"
-        app:layout_constraintTop_toBottomOf="@+id/nombreEquipo" />
+        app:layout_constraintStart_toEndOf="@+id/imageEquipo_33"
+        app:layout_constraintTop_toBottomOf="@+id/nombreEquipo_33" />
 
     <TextView
-        android:id="@+id/desc_equipo"
+        android:id="@+id/desc_equipo_33"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -53,37 +53,26 @@
         android:text="Descripción equipo"
         android:textColor="@color/grey"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageEquipo"
-        app:layout_constraintTop_toBottomOf="@+id/nombreReferenciaEquipo" />
+        app:layout_constraintStart_toEndOf="@+id/imageEquipo_33"
+        app:layout_constraintTop_toBottomOf="@+id/nombreReferenciaEquipo_33" />
 
-    <ImageButton
-        android:id="@+id/btnDefinir"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnDefinir_33"
         android:layout_width="121dp"
         android:layout_height="22dp"
+        android:background="@drawable/rounded_orange_background"
         android:layout_marginEnd="4dp"
-        android:background="@null"
-        android:scaleType="fitCenter"
+        android:scaleType="centerInside"
+        android:text="Añadir"
+        android:textAllCaps="false"
+        android:textSize="12sp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/desc_equipo"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/rounded_orange_background" />
+        app:layout_constraintTop_toBottomOf="@+id/desc_equipo_33"
+        app:layout_constraintVertical_bias="1.0"></androidx.appcompat.widget.AppCompatButton>
 
-    <TextView
-        android:id="@+id/textbtnDefinir"
-        android:layout_width="71dp"
-        android:layout_height="15dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="5dp"
-        android:text="Definir"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnDefinir"
-        app:layout_constraintEnd_toEndOf="@+id/btnDefinir"
-        app:layout_constraintStart_toStartOf="@+id/btnDefinir"
-        app:layout_constraintTop_toTopOf="@+id/btnDefinir"
-        app:layout_constraintVertical_bias="0.875" />
+
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:textSize="14sp"
@@ -99,8 +88,8 @@
         android:layout_height="18dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
-        app:layout_constraintStart_toEndOf="@+id/imageEquipo"
-        app:layout_constraintTop_toBottomOf="@+id/desc_equipo"
+        app:layout_constraintStart_toEndOf="@+id/imageEquipo_33"
+        app:layout_constraintTop_toBottomOf="@+id/desc_equipo_33"
         app:layout_constraintHorizontal_bias="0.496" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,4 +25,7 @@ public interface GimnasioItemApiService {
 
     @PUT("gimnasioItem/update")
     Call <GimnasioItem> updateGimnasioItem(@Body GimnasioItem gimnasioItem);
+
+    @GET("gimnasioItem/{gimnasioid}/{itemid}")
+    Call <GimnasioItem> getGimnasioItem(@Path("gimnasioid")int gimnasioid,@Path("itemid")int itemid);
 }

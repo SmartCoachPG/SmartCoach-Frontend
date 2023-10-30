@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -54,7 +55,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class _31_armar_mapa_admin extends AppCompatActivity {
+public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinirButtonClickListener {
 
     GridLayout gridLayout;
     AppCompatButton equipoB, elementosB;
@@ -69,7 +70,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
 
     Long userId = SharedPreferencesUtil.getUserId(_31_armar_mapa_admin.this);
     String token = SharedPreferencesUtil.getToken(_31_armar_mapa_admin.this);
-
     int gimnasioId = 0;
     Map<Integer, Mapa> mapas = new HashMap<>();
     List<GimnasioItem> listaItems = new ArrayList<>();
@@ -82,12 +82,15 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
     int piso = 1;
     Boolean equipo = true;
     Map<Integer, UbicacionxItem> nuevaPosicion = new HashMap<>();
-
     int tipo=0;
 
     Equipo equipoBuscado = new Equipo();
     String nombreTipo = "";
     List<String> listaMusculos = new ArrayList<>();
+
+    Map<Integer,String> nombreTipos = new HashMap<>();
+    List<Equipo> listaEquipos = new ArrayList<>();
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -232,6 +235,10 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
         iconos.put(14, "icon_escaleras_ne");
         iconosName.put(14, "Escaleras");
 
+        nombreTipos.put(1,"pesos");
+        nombreTipos.put(2,"maquinas de peso");
+        nombreTipos.put(3,"maquinas de cardio");
+        nombreTipos.put(4,"complementos");
         cargarListas();
 
     }
@@ -500,18 +507,18 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                         boolean gestureHandled = gestureDetector.onTouchEvent(event);
                         if(tipo==1)
                         {
+                            Log.d("Mostrar", "me dieron click");
                             tipo=0;
-                            UbicacionxItem ubicacionxItem = new UbicacionxItem();
-                            ubicacionxItem.setCoordenadaX(column);
-                            ubicacionxItem.setCoordenadaY(row);
-
-                            if(nuevo(ubicacionxItem).getCoordenadaX()!=0)
+                            UbicacionxItem item2 = new UbicacionxItem();
+                            item2.setCoordenadaX(column);
+                            item2.setCoordenadaY(row);
+                            if(nuevo(item2).getCoordenadaX()!=0)
                             {
-                                ubicarEquipo(cuadrado,nuevo(ubicacionxItem));
+                                ubicarEquipo(cuadrado,nuevo(item2));
                             }else {
                                 UbicacionxItem item = buscarUbicacionxItem(column,row);
                                 if(item.getItemid()>10){
-                                    mostrarEquipo(cuadrado,item);
+                                    mostrarEquipo(item);
                                 }
                             }
                         }
@@ -641,25 +648,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
                 }
             }
         }
-    }
-
-    private UbicacionxItem nuevo(UbicacionxItem ub1) {
-        Set<UbicacionxItem> ubicaciones = añadidos.keySet();
-        UbicacionxItem ubicacionxItem = new UbicacionxItem();
-        for (UbicacionxItem ub : ubicaciones) {
-            if (ub1.getCoordenadaX() == ub.getCoordenadaX()) {
-                if (ub1.getCoordenadaY() == ub.getCoordenadaY()) {
-                    return ub;
-                }
-            }
-        }
-        return ubicacionxItem;
-    }
-
-    private void ubicarEquipo(ImageView cuadrado, UbicacionxItem ubicacionxItem) {
-        Log.d("33", "ubicar equipo: ");
-        int newDrawableId = getResources().getIdentifier(iconos.get(añadidos.get(nuevo(ubicacionxItem))), "drawable", getPackageName());
-        cuadrado.setImageResource(newDrawableId);
     }
 
     private UbicacionxItem buscarUbicacionxItem(int coordenadax,int coordenaday)
@@ -918,13 +906,12 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
 
     }
 
-    private void mostrarEquipo(ImageView cuadrado, UbicacionxItem ubicacionxItem) {
-        Log.d("34", "ubicar equipo: "+ubicacionxItem);
-
+    private void mostrarEquipo(UbicacionxItem ubicacionxItem)
+    {
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
-        dialog.setContentView(R.layout._34_ver_informacion_equipo_ubicado_en_mapa_admin); // Usa el nombre de tu archivo XML
+        dialog.setContentView(R.layout._34_ver_informacion_equipo_ubicado_en_mapa_admin);
         dialog.getWindow().setBackgroundDrawable(null);
 
         ImageButton botonX = dialog.findViewById(R.id.btnX_34);
@@ -969,8 +956,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
             });
 
         });
-
-
 
         dialog.show();
     }
@@ -1040,6 +1025,90 @@ public class _31_armar_mapa_admin extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<String>> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
+
+    private UbicacionxItem nuevo(UbicacionxItem ub1) {
+        Set<UbicacionxItem> ubicaciones = añadidos.keySet();
+        UbicacionxItem ubicacionxItem = new UbicacionxItem();
+        for (UbicacionxItem ub : ubicaciones) {
+            if (ub1.getCoordenadaX() == ub.getCoordenadaX()) {
+                if (ub1.getCoordenadaY() == ub.getCoordenadaY()) {
+                    return ub;
+                }
+            }
+        }
+        return ubicacionxItem;
+    }
+
+    private void ubicarEquipo(ImageView cuadrado, UbicacionxItem ubicacionxItem) {
+        ubicacionxItem.setMapaid(mapas.get(piso).getId().intValue());
+        ubicacionxItem.setGimnasioid(gimnasioId);
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout._33_ubicar_equipo_en_mapa_admin);
+        dialog.getWindow().setBackgroundDrawable(null);
+
+        ImageButton botonX = dialog.findViewById(R.id.btnX_33);
+
+        botonX.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        RecyclerView recycler = dialog.findViewById(R.id.recyclerViewEquipo_33);
+        recycler.setLayoutManager(new LinearLayoutManager(this));
+
+        llenarEquipos(()->
+        {
+            Log.d("MOSTRAR", "Lista equipos: "+listaEquipos);
+            Log.d("MOSTRAR", "Lista nombres: "+nombreTipos);
+
+            MapaEquipoAdapter adapter = new MapaEquipoAdapter(gimnasioId,listaEquipos,nombreTipos,ubicacionxItem,dialog,_31_armar_mapa_admin.this,this::onDefinirButtonClick,cuadrado);
+            recycler.setAdapter(adapter);
+        });
+
+        dialog.show();
+
+    }
+
+    public interface OnDefinirButtonClickListener {
+        void onDefinirButtonClick(boolean isClicked,ImageView cuadrado,UbicacionxItem ubicacionxItem);
+    }
+
+    @Override
+    public void onDefinirButtonClick(boolean isClicked,ImageView cuadrado, UbicacionxItem ubicacionxItem) {
+        dialog.dismiss();
+        int newDrawableId = getResources().getIdentifier(iconos.get(añadidos.get(nuevo(ubicacionxItem))), "drawable", getPackageName());
+        cuadrado.setImageResource(newDrawableId);
+        añadidos.remove(ubicacionxItem);
+
+    }
+
+    private void llenarEquipos(_31_armar_mapa_admin.InfoCallback callback)
+    {
+        Call<List<Equipo>> call = equipoApiService.getAll();
+        call.enqueue(new Callback<List<Equipo>>() {
+            @Override
+            public void onResponse(Call<List<Equipo>> call, Response<List<Equipo>> response) {
+                if (response.isSuccessful()) {
+                    if(!response.body().isEmpty())
+                        listaEquipos = response.body();
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+                callback.onCompletion();
+            }
+
+            @Override
+            public void onFailure(Call<List<Equipo>> call, Throwable t) {
                 // Maneja errores de red o de conversión de datos
                 Log.e("Error", "Fallo en la petición: " + t.getMessage());
             }

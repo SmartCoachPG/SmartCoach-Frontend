@@ -5,7 +5,6 @@ public class Equipo extends Item {
     private String referencia;
     private Integer usuarioId;
     private Integer tipoEquipoId;
-
     private String descripcion;
 
 
@@ -68,7 +67,7 @@ public class Equipo extends Item {
 
     @Override
     public String toString() {
-        return "Equipo{" +
+        return "Equipo{" + "{"+super.toString()+"}"+
                 "referencia='" + referencia + '\'' +
                 ", usuarioId=" + usuarioId +
                 ", tipoEquipoId=" + tipoEquipoId +
