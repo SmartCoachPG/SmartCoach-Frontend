@@ -1,5 +1,7 @@
 package com.example.smartcoach.ui;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -7,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,13 +30,15 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
     private List<CajaRutina> cajaRutinas;
     private List<CajaRutina> opciones;
 
+    private Context context;
     private List<Integer> anadidos = new ArrayList<>();
     private List<Integer> eliminados = new ArrayList<>();
     int contador=0;
 
-    public CajaRutinaAdapterM(List<CajaRutina> cajaRutinas,List<CajaRutina> opciones) {
+    public CajaRutinaAdapterM(List<CajaRutina> cajaRutinas,List<CajaRutina> opciones,Context context) {
         this.cajaRutinas = cajaRutinas;
         this.opciones = opciones;
+        this.context = context;
     }
 
     @Override
@@ -51,21 +57,72 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
             holder.btnEliminar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    handleElimination(cajaRutina);
-                    if(contador<opciones.size())
-                    {
-                        CajaRutina nuevaCajaRutina = opciones.get(contador);
-                        cajaRutinas.set(position, nuevaCajaRutina);
-                        configurarVista(holder, nuevaCajaRutina);
-                        notifyItemChanged(position);
-                        contador++;
-                    }
-
+                    showDialogConfirmarE(cajaRutina,holder,position);
                 }
 
             });
         }
 
+    }
+
+    private void showDialogConfirmarE(CajaRutina cajaRutina,CajaRutinaMViewHolder holder,int position) {
+        Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout._116_mensaje_confirmacion_eliminacion_ejercicio_rutina);
+        dialog.getWindow().setBackgroundDrawable(null);
+
+        TextView nombreE = dialog.findViewById(R.id.textoNombreEjercicio);
+        nombreE.setText(cajaRutina.getEjercicio().getNombre());
+        Button botonConfirmar = dialog.findViewById(R.id.botonConfirmar);
+        botonConfirmar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Acciones a realizar cuando se presiona "Confirmar"
+                dialog.dismiss();
+                if(contador+1<opciones.size())
+                {
+                    handleElimination(cajaRutina);
+                    CajaRutina nuevaCajaRutina = opciones.get(contador);
+                    cajaRutinas.set(position, nuevaCajaRutina);
+                    configurarVista(holder, nuevaCajaRutina);
+                    notifyItemChanged(position);
+                    contador++;
+                }
+                else {
+                    showDialogNoOpciones();
+                }
+            }
+
+        });
+
+        Button botonCancelar = dialog.findViewById(R.id.botonCancelar);
+        botonCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void showDialogNoOpciones() {
+        Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout._117_mensaje_error_eliminar_ejercicio);
+        dialog.getWindow().setBackgroundDrawable(null);
+        Button botonConfirmar = dialog.findViewById(R.id.btnSeguirCamposVacios);
+        botonConfirmar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+
+        });
+
+        dialog.show();
     }
 
     private void configurarVista(CajaRutinaMViewHolder holder, CajaRutina cajaRutina){

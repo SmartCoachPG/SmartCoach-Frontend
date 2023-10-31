@@ -49,7 +49,6 @@ public class _63_Principal_Usuario extends BaseActivityCliente {
     TextView objetivoRutina,nombreUser,infoUserTexto,limitacionesFisicasTexto,horarioRutinasTexto,registroProgresoTexto,composicionCorporalTexo,eliminarCuentaTexto,cerrarSesionTexto, objetivosTexto;
     Long userId;
     String token;
-
     UsuarioClienteApiService usuarioClienteApiService;
     ObjetivoRutinaApiService objetivoRutinaApiService;
     @Override

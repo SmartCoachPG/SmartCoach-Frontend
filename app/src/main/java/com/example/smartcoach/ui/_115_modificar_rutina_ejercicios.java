@@ -422,7 +422,7 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
         Rutina rut = rutinas.get(dia);
         List<Ejercicio> ej = ejercicios.get(rut.getId());
         cajaRutinas.clear();
-
+        opciones.clear();
 
         if (ej.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
@@ -443,7 +443,7 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                         cajaRutinas.add(temp);
                         cargarOpciones(rut.getId(),()->
                         {
-                            adapter = new CajaRutinaAdapterM(cajaRutinas,opciones); // Inicializa el adapter aquí
+                            adapter = new CajaRutinaAdapterM(cajaRutinas,opciones,_115_modificar_rutina_ejercicios.this); // Inicializa el adapter aquí
                             recyclerView.setLayoutManager(new LinearLayoutManager(_115_modificar_rutina_ejercicios.this));
                             recyclerView.setAdapter(adapter);
                             adapter.notifyDataSetChanged();// Notifica al adapter que los datos han cambiado
