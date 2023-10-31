@@ -27,6 +27,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -443,15 +444,40 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                         cajaRutinas.add(temp);
                         cargarOpciones(rut.getId(),()->
                         {
-                            adapter = new CajaRutinaAdapterM(cajaRutinas,opciones,_115_modificar_rutina_ejercicios.this,btnGuardarCambios,rut.getId()); // Inicializa el adapter aquí
-                            recyclerView.setLayoutManager(new LinearLayoutManager(_115_modificar_rutina_ejercicios.this));
-                            recyclerView.setAdapter(adapter);
-                            adapter.notifyDataSetChanged();// Notifica al adapter que los datos han cambiado
+                            filtrarOpciones(()->
+                            {
+                                adapter = new CajaRutinaAdapterM(cajaRutinas,opciones,_115_modificar_rutina_ejercicios.this,btnGuardarCambios,rut.getId()); // Inicializa el adapter aquí
+                                recyclerView.setLayoutManager(new LinearLayoutManager(_115_modificar_rutina_ejercicios.this));
+                                recyclerView.setAdapter(adapter);
+                                adapter.notifyDataSetChanged();// Notifica al adapter que los datos han cambiado
+                            });
+
                         });
                     }
                 });
             }
         }
+    }
+
+    private void filtrarOpciones(LlenarRutinasCallback callback)
+    {
+        Rutina rut = rutinas.get(dia);
+        List<Ejercicio> ejer = ejercicios.get(rut.getId());
+
+        for(Ejercicio ejercicio:ejer)
+        {
+            int ejercicioId = ejercicio.getId().intValue();
+            Iterator<CajaRutina> iterator = opciones.iterator();
+            while(iterator.hasNext())
+            {
+                CajaRutina caja = iterator.next();
+                if(caja.getEjercicio().getId().intValue()==ejercicioId)
+                {
+                    iterator.remove();
+                }
+            }
+        }
+        callback.onCompletion();
     }
 
     private void getImagen(Long idEjercicio,LlenarRutinasCallback callback)
