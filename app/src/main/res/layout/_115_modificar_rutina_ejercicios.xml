@@ -1,167 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/f3">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <TextView
+        android:id="@+id/titulo_115"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:text="Modifica tu rutina"
+        android:textColor="@color/white"
+        android:textSize="32sp" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/_otros_dias_semana_ne"
+        android:layout_width="403dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="46dp" />
+
+
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="379dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:layout_height="425dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewEjercicios_115"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/empty_view_115"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@color/grisClaro"
+                android:layout_height="wrap_content"
+                android:text="Para este día no tienes ninguna rutina asignada"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btnGuardarCambios_115"
+        android:layout_width="361dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#FDA400"
+        android:elevation="50dp"
+        android:text="Guardar Cambios"
+        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewEjercicios_98" />
+
+    <include
+        android:id="@+id/menuUser"
+        layout="@layout/_otros_menu_usuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/f3">
+        app:layout_constraintTop_toBottomOf="@+id/btnIniciarRutina_98" />
 
-        <TextView
-            android:id="@+id/tituloModificar_115"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
-            android:text="Modifica tu rutina"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <include
-            android:id="@+id/include"
-            layout="@layout/_otros_dias_semana_ne"
-            android:layout_width="403dp"
-            android:layout_height="75dp"
-            android:layout_marginTop="64dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tituloModificar_115" />
-
-        <ImageView
-            android:id="@+id/rectanguloRutinaDelDia_98"
-            android:layout_width="379dp"
-            android:layout_height="71dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include"
-            app:srcCompat="@drawable/rectrangulo_alargado_b" />
-
-        <TextView
-            android:id="@+id/tituloRutinaDia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
-            android:text="Rutina del día"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="@+id/rectanguloRutinaDelDia_98"
-            app:layout_constraintStart_toStartOf="@+id/rectanguloRutinaDelDia_98"
-            app:layout_constraintTop_toBottomOf="@+id/include"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/setTextDuracionRutina"
-            android:layout_width="28dp"
-            android:layout_height="33dp"
-            android:text="TextView"
-            android:textColor="#FDA400"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="@+id/rectanguloRutinaDelDia_98"
-            app:layout_constraintEnd_toStartOf="@+id/horas"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/tituloRutinaDia"
-            app:layout_constraintTop_toBottomOf="@+id/include"
-            app:layout_constraintVertical_bias="0.608" />
-
-        <TextView
-            android:id="@+id/horas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:text="horas"
-            android:textColor="#FDA400"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="@+id/rectanguloRutinaDelDia_98"
-            app:layout_constraintEnd_toEndOf="@+id/rectanguloRutinaDelDia_98"
-            app:layout_constraintTop_toBottomOf="@+id/include"
-            app:layout_constraintVertical_bias="0.608" />
-
-
-        <include
-            android:id="@+id/menuUser"
-            layout="@layout/_otros_menu_usuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnGuardarCambios_115" />
-
-        <ScrollView
-            android:id="@+id/scrollView3"
-            android:layout_width="377dp"
-            android:layout_height="496dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rectanguloRutinaDelDia_98">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <include
-                    android:id="@+id/ejercicio1_98"
-                    layout="@layout/caja_ejercicios_modificar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-
-                <include
-                    android:id="@+id/ejercicio2_98"
-                    layout="@layout/caja_ejercicios_modificar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-
-                <include
-                    android:id="@+id/ejercicio3_98"
-                    layout="@layout/caja_ejercicios_modificar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp" />
-
-                <include
-                    android:id="@+id/ejercicio4_98"
-                    layout="@layout/caja_ejercicios_modificar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
-
-        </ScrollView>
-
-        <Button
-            android:id="@+id/btnGuardarCambios_115"
-            android:layout_width="361dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="28dp"
-            android:backgroundTint="#FDA400"
-            android:elevation="50dp"
-            android:text="Guardar Cambios"
-            android:textColor="@android:color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</LinearLayout>

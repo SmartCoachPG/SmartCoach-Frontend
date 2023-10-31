@@ -103,27 +103,35 @@ public class MapaEquipoAdapter extends  RecyclerView.Adapter<MapaEquipoAdapter.M
                 @Override
                 public void onClick(View view) {
                     Log.d("MOSTRAR", "mirando el item"+ubicacionxItem.getId());
+                    int nuevoId = ubicacionxItem.getItemid();
+                    ubicacionxItem.setItemid(nuevoId+10);
 
                     if(ubicacionxItem.getId()!=0)
                     {
                         Log.d("MOSTRAR", "este item es ya existia "+ubicacionxItem);
+                        Log.d("MOSTRAR", "este item es ya id item "+item.getId());
                         definirEquipo(item.getId().intValue());
                     }
                     else {
                         Log.d("MOSTRAR", "este item es nuevo "+ubicacionxItem);
-                        crearyDefinirEquipo(item.getId().intValue(),()->
+                        revisarGimnasioItem(()->
                         {
-                            revisarGimnasioItem(()->{
-                                if(tiene)
-                                {
-                                    actualizarGimnasioItem(()->{});
-                                }
-                                else
-                                {
-                                    crearGimnasioItem(()->{});
-                                }
-                            });
+                            if(tiene)
+                            {
+                                actualizarGimnasioItem(()->{
+                                    crearyDefinirEquipo(item.getId().intValue(),()->
+                                    {});
+                                });
+                            }
+                            else
+                            {
+                                crearGimnasioItem(()->{
+                                    crearyDefinirEquipo(item.getId().intValue(),()->
+                                    {});
+                                });
+                            }
                         });
+
                     }
 
                     holder.definirB.setBackgroundResource(R.drawable.rounded_grey_background);

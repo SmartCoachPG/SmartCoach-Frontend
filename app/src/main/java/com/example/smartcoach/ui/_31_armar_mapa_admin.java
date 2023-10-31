@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
@@ -25,9 +24,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.smartcoach.R;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -377,6 +373,8 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
     }
 
     private void llenarTipoEquipo(_31_armar_mapa_admin.InfoCallback callback) {
+        Log.d("Mostrar", "mirando lista Items: "+listaItems);
+
         if (!listaItems.isEmpty()) {
             for (GimnasioItem gi : listaItems) {
                 if (gi.getItemid() > 10) {
@@ -385,6 +383,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                         @Override
                         public void onResponse(Call<Integer> call, Response<Integer> response) {
                             if (response.isSuccessful()) {
+                                Log.d("Mostrar", "mirando item: "+gi.getItemid()+" el tipo es:"+response.body());
                                 tipoEquipoItem.put(gi.getItemid(), response.body());
                             } else {
                                 // Maneja errores del servidor, por ejemplo, un error 404 o 500.
@@ -459,11 +458,8 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
         Log.d("FIN", "iconos: " + iconos);
         Log.d("FIN", "ubicaciones: " + ubicaciones);
         cargarCuadrados(mapas.get(piso).getAncho(), mapas.get(piso).getAlto(),()->{
-            cargarImagenes();
+            cargarImagenes(()->{});
         });
-        Log.d("CARGANDO IMAGENES", "antes");
-
-        Log.d("CARGANDO IMAGENES", "despues");
 
     }
 
@@ -487,7 +483,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                 layoutParams.height = tamañoCasillaPixels;
                 cuadrado.setLayoutParams(layoutParams);
                 cuadrado.setBackgroundResource(R.drawable.fondo_mapa);
-
 
                 GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener()
                 {
@@ -521,7 +516,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                             item2.setCoordenadaX(column);
                             item2.setCoordenadaY(row);
                             if(nuevo(item2).getCoordenadaX()!=0)
-                            {
+                            {   Log.d("Mostrar", "entro ahi");
                                 ubicarEquipo(cuadrado,nuevo(item2));
                             }else {
                                 UbicacionxItem item = buscarUbicacionxItem(column,row);
@@ -569,33 +564,45 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                                     ImageView targetView = child;
                                     Drawable draggedDrawable = ((ImageView) draggedView).getDrawable();
                                     ((ImageView) draggedView).setImageDrawable(targetView.getDrawable());
-                                    UbicacionxItem ubicacionxItem = new UbicacionxItem();
-                                    int cellHeight = gridLayout.getHeight() / gridLayout.getRowCount();
-                                    int cellWidth = gridLayout.getWidth() / gridLayout.getColumnCount();
-                                    int droppedRow = y / cellHeight;
-                                    int droppedColumn = x / cellWidth;
-                                    ubicacionxItem.setCoordenadaY(droppedRow);
-                                    ubicacionxItem.setCoordenadaX(droppedColumn);
+                                    int tamañoCasilla = 32;
+                                    final float scale = getResources().getDisplayMetrics().density;
+                                    int tamañoCasillaPixels = (int) (tamañoCasilla * scale + 0.5f);
 
-                                    Log.d("Nuevo item", "posi final " + ubicacionxItem);
+                                    int droppedRow = y / tamañoCasillaPixels;
+                                    int droppedColumn = x / tamañoCasillaPixels;
+
+                                    droppedRow = Math.round((float) droppedRow);
+                                    droppedColumn = Math.round((float) droppedColumn);
 
                                     // Añadir nuevos elementos
                                     if (draggedView.getTag() != null) {
                                         int position = (int) draggedView.getTag();
-                                        if(position<4)
+                                        draggedView.setTag(null);
+                                        Log.d("Mostrar", "posicion es: "+position);
+                                        if(position<5)
                                         {
+                                            UbicacionxItem ubicacionxItem = new UbicacionxItem();
+                                            ubicacionxItem.setCoordenadaY(droppedRow);
+                                            ubicacionxItem.setCoordenadaX(droppedColumn);
                                             ubicacionxItem.setItemid(position);
                                             int newDrawableId = getResources().getIdentifier(iconosNa.get(position), "drawable", getPackageName());
-                                            targetView.setImageResource(newDrawableId);
+                                            Drawable newDrawable = ContextCompat.getDrawable(_31_armar_mapa_admin.this, newDrawableId);
+                                            targetView.setImageDrawable(newDrawable);
                                             añadidos.put(ubicacionxItem, position);
                                         }
                                         else {
+                                            UbicacionxItem ubicacionxItem = new UbicacionxItem();
+                                            ubicacionxItem.setCoordenadaY(droppedRow);
+                                            ubicacionxItem.setCoordenadaX(droppedColumn);
                                             targetView.setImageDrawable(draggedDrawable);
                                             ubicacionxItem.setItemid(position-4);
                                             nuevaPosicion.put(0, ubicacionxItem);
                                             crearNuevoItem(()->{});
                                         }
                                     }else { //Mover elementos
+                                        UbicacionxItem ubicacionxItem = new UbicacionxItem();
+                                        ubicacionxItem.setCoordenadaY(droppedRow);
+                                        ubicacionxItem.setCoordenadaX(droppedColumn);
                                         ubicacionxItem.setCoordenadaX(ubicacionxItem.getCoordenadaX());
                                         nuevaPosicion.put(1, ubicacionxItem);
                                         targetView.setImageDrawable(draggedDrawable);
@@ -628,7 +635,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
         callback.onCompletion();
     }
 
-    private void cargarImagenes() {
+    private void cargarImagenes( _31_armar_mapa_admin.InfoCallback callback) {
         for (GimnasioItem gi : listaItems) {
             List<UbicacionxItem> ubi = ubicaciones.get(gi.getItemid());
             if (ubi != null &&!ubi.isEmpty() ) {
@@ -647,15 +654,16 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
 
                                 ImageView imageView = (ImageView) view;
                                 imageView.setPadding(2,2,2,2);
-                                Log.d("CARGANDO IMAGENES", "voy a subir esta: ");
-                                Log.d("CARGANDO IMAGENES", "voy a subir esta: tipoEquipoItem: "+tipoEquipoItem);
-                                Log.d("CARGANDO IMAGENES", "voy a subir esta: uxi.getItemid: "+uxi.getItemid());
+                                Log.d("MOSTRAR", "tipoEquipoItem: "+tipoEquipoItem);
+                                Log.d("MOSTRAR", "uxi: "+uxi.getItemid());
+                                Log.d("MOSTRAR", "tipo: "+tipoEquipoItem.get(uxi.getItemid()));
+
                                 int tipo = tipoEquipoItem.get(uxi.getItemid());
-                                Log.d("CARGANDO IMAGENES", "voy a subir esta: tipo: "+tipo);
-                                int resID = getResources().getIdentifier(iconos.get(tipo), "drawable", getPackageName());
-                                Log.d("CARGANDO IMAGENES", "voy a subir esta: resID: "+resID);
-                                imageView.setImageResource(resID);
-                                Log.d("CARGANDO IMAGENES", "cargada");
+                                int newDrawableId = getResources().getIdentifier(iconos.get(tipo), "drawable", getPackageName());
+                                Drawable newDrawable = ContextCompat.getDrawable(_31_armar_mapa_admin.this, newDrawableId);
+                                Log.d("MOSTRAR", "drawable: "+iconos.get(tipo));
+                                imageView.setImageDrawable(newDrawable);
+                                Log.d("MOSTRAR", "en cuadro: ");
                                 break;
                             }
                         }
@@ -663,6 +671,8 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                 }
             }
         }
+        callback.onCompletion();
+
     }
 
     private UbicacionxItem buscarUbicacionxItem(int coordenadax,int coordenaday)
@@ -1047,15 +1057,20 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
     }
 
     private UbicacionxItem nuevo(UbicacionxItem ub1) {
+        Log.d("Mostrar", " estoy en nuevo añadidos: "+añadidos);
         Set<UbicacionxItem> ubicaciones = añadidos.keySet();
+        Log.d("Mostrar", " estoy en nuevo ubicaciones: "+ubicaciones);
         UbicacionxItem ubicacionxItem = new UbicacionxItem();
         for (UbicacionxItem ub : ubicaciones) {
             if (ub1.getCoordenadaX() == ub.getCoordenadaX()) {
                 if (ub1.getCoordenadaY() == ub.getCoordenadaY()) {
+                    Log.d("Mostrar", "encontre que es nuevo retorno: "+ub);
                     return ub;
                 }
             }
         }
+        Log.d("Mostrar", " no encontre nada: "+ubicaciones);
+
         return ubicacionxItem;
     }
 
@@ -1100,6 +1115,10 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
     @Override
     public void onDefinirButtonClick(boolean isClicked,ImageView cuadrado, UbicacionxItem ubicacionxItem) {
         dialog.dismiss();
+        Log.d("Mostrar", "iconos: "+iconos);
+        Log.d("Mostrar", "iconos: "+añadidos);
+        Log.d("Mostrar", "iconos: "+ubicacionxItem);
+
         int newDrawableId = getResources().getIdentifier(iconos.get(añadidos.get(nuevo(ubicacionxItem))), "drawable", getPackageName());
         cuadrado.setImageResource(newDrawableId);
         añadidos.remove(ubicacionxItem);
