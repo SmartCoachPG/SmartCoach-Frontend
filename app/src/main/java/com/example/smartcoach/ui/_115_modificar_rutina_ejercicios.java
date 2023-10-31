@@ -75,17 +75,18 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
     EjercicioProgresoxEjercicioApiService ejercicioProgresoxEjercicioApiService;
 
     ImagenEjercicioApiService imagenEjercicioApiService;
+
     // dia , Rutina
     Map<String, Rutina> rutinas = new HashMap<>();
     // idRutina , lista ejercicios
     Map<Integer, List<Ejercicio>> ejercicios = new HashMap();
     // idEjercicio , progresoxEjercicio
     Map<Integer, ProgresoxEjercicio> progresos = new HashMap<>();
-    // idEjercicio, Lista imagenes
 
     ImagenEjercicio imagenEjercicio = new ImagenEjercicio();
 
     List<CajaRutina> cajaRutinas = new ArrayList<>();
+    List<CajaRutina> opciones = new ArrayList<>();
     CajaRutinaAdapterM adapter;
 
 
@@ -128,7 +129,6 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
         selectedImages.put((ImageButton) findViewById(R.id.imageViernes), R.drawable.icon_viernes_na);
         selectedImages.put((ImageButton) findViewById(R.id.imageSabado), R.drawable.icon_sabado_na);
         selectedImages.put((ImageButton) findViewById(R.id.imageDomingo), R.drawable.icon_domingo_na);
-        cargarInfo();
         llenarRutinas(new LlenarRutinasCallback() {
             @Override
             public void onCompletion() {
@@ -157,8 +157,6 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
 
             }
         });
-
-
     }
 
     private ImageButton getCurrentDayButton() {
@@ -208,7 +206,6 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                 updateSelectedImage(imageLunes);
                 dia="Lunes";
                 mostrar();
-
             }
         });
         imageMartes.setOnClickListener(new View.OnClickListener() {
@@ -232,8 +229,6 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                 calendar.setTime(time);
                 dia="Miércoles";
                 mostrar();
-
-
             }
         });
         imageJueves.setOnClickListener(new View.OnClickListener() {
@@ -247,7 +242,6 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                 calendar.setTime(time);
                 dia="Jueves";
                 mostrar();
-
             }
         });
         imageViernes.setOnClickListener(new View.OnClickListener() {
@@ -261,7 +255,6 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                 calendar.setTime(time);
                 dia="Viernes";
                 mostrar();
-
             }
         });
         imageSabado.setOnClickListener(new View.OnClickListener() {
@@ -275,7 +268,6 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                 calendar.setTime(time);
                 dia="Sábado";
                 mostrar();
-
             }
         });
         imageDomingo.setOnClickListener(new View.OnClickListener() {
@@ -331,28 +323,6 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
         rutinaEjercicioApiService = retrofit.create(RutinaEjercicioApiService.class);
         ejercicioProgresoxEjercicioApiService = retrofit.create(EjercicioProgresoxEjercicioApiService.class);
         imagenEjercicioApiService = retrofit.create(ImagenEjercicioApiService.class);
-    }
-
-    private void cargarInfo()
-    {
-        Call<UsuarioCliente> call = usuarioClienteApiService.getUsuarioById(userId);
-        call.enqueue(new Callback<UsuarioCliente>() {
-            @Override
-            public void onResponse(Call<UsuarioCliente> call, Response<UsuarioCliente> response) {
-                if (response.isSuccessful()) {
-                    UsuarioCliente usuario = response.body();
-                } else {
-                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
-                    Log.e("Error", "Error en la respuesta: " + response.code());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<UsuarioCliente> call, Throwable t) {
-                // Maneja errores de red o de conversión de datos
-                Log.e("Error", "Fallo en la petición: " + t.getMessage());
-            }
-        });
     }
 
     interface LlenarRutinasCallback {
@@ -452,9 +422,7 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
         Rutina rut = rutinas.get(dia);
         List<Ejercicio> ej = ejercicios.get(rut.getId());
         cajaRutinas.clear();
-        adapter = new CajaRutinaAdapterM(cajaRutinas); // Inicializa el adapter aquí
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+
 
         if (ej.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
@@ -473,7 +441,13 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                         temp.setProgresoxEjercicio(progresos.get(ejercicio.getId().intValue()));
                         temp.setImagenEjercicio(imagenEjercicio);
                         cajaRutinas.add(temp);
-                        adapter.notifyDataSetChanged(); // Notifica al adapter que los datos han cambiado
+                        cargarOpciones(rut.getId(),()->
+                        {
+                            adapter = new CajaRutinaAdapterM(cajaRutinas,opciones); // Inicializa el adapter aquí
+                            recyclerView.setLayoutManager(new LinearLayoutManager(_115_modificar_rutina_ejercicios.this));
+                            recyclerView.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();// Notifica al adapter que los datos han cambiado
+                        });
                     }
                 });
             }
@@ -518,4 +492,28 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
         startActivity(intent);
     }
 
+    private void cargarOpciones(int idRutina, LlenarRutinasCallback callback)
+    {
+        callback.onCompletion();
+
+        Call<List<CajaRutina>> call = rutinaApiService.getEjerciciosByRutina(userId.intValue(),idRutina);
+        call.enqueue(new Callback<List<CajaRutina>>() {
+            @Override
+            public void onResponse(Call<List<CajaRutina>> call, Response<List<CajaRutina>> response) {
+                if (response.isSuccessful()) {
+                     opciones = response.body();
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+                callback.onCompletion();
+            }
+            @Override
+            public void onFailure(Call<List<CajaRutina>> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+
+            }
+        });
+    }
 }

@@ -3,6 +3,7 @@ package com.example.smartcoach.ui;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartcoach.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Exercise.CajaRutina;
@@ -22,9 +24,15 @@ import model.Exercise.CajaRutina;
 public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.CajaRutinaMViewHolder> {
 
     private List<CajaRutina> cajaRutinas;
+    private List<CajaRutina> opciones;
 
-    public CajaRutinaAdapterM(List<CajaRutina> cajaRutinas) {
+    private List<Integer> anadidos = new ArrayList<>();
+    private List<Integer> eliminados = new ArrayList<>();
+    int contador=0;
+
+    public CajaRutinaAdapterM(List<CajaRutina> cajaRutinas,List<CajaRutina> opciones) {
         this.cajaRutinas = cajaRutinas;
+        this.opciones = opciones;
     }
 
     @Override
@@ -39,18 +47,46 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
         CajaRutina cajaRutina = cajaRutinas.get(position);
         if(cajaRutina!=null)
         {
-            holder.nombreEjercicio.setText(cajaRutina.getEjercicio().getNombre());
-            holder.valorSerie.setText(cajaRutina.getProgresoxEjercicio().getSerie().toString());
-            holder.valorRepeticiones.setText(cajaRutina.getProgresoxEjercicio().getRepeticiones().toString());
-            String imageString = cajaRutina.getImagenEjercicio().getImagen();
-            if(imageString!=null)
-            {
-                byte[] imageBytes = Base64.decode(imageString, Base64.DEFAULT);
-                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-                holder.imagenEjercicio.setImageBitmap(decodedBitmap);
-            }
+            configurarVista(holder,cajaRutina);
+            holder.btnEliminar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    handleElimination(cajaRutina);
+                    if(contador<opciones.size())
+                    {
+                        CajaRutina nuevaCajaRutina = opciones.get(contador);
+                        cajaRutinas.set(position, nuevaCajaRutina);
+                        configurarVista(holder, nuevaCajaRutina);
+                        notifyItemChanged(position);
+                        contador++;
+                    }
+
+                }
+
+            });
         }
 
+    }
+
+    private void configurarVista(CajaRutinaMViewHolder holder, CajaRutina cajaRutina){
+        holder.nombreEjercicio.setText(cajaRutina.getEjercicio().getNombre());
+        holder.valorSerie.setText(cajaRutina.getProgresoxEjercicio().getSerie().toString());
+        holder.valorRepeticiones.setText(cajaRutina.getProgresoxEjercicio().getRepeticiones().toString());
+        String imageString = cajaRutina.getImagenEjercicio().getImagen();
+        if(imageString!=null)
+        {
+            byte[] imageBytes = Base64.decode(imageString, Base64.DEFAULT);
+            Bitmap decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+            holder.imagenEjercicio.setImageBitmap(decodedBitmap);
+        }
+    }
+
+    private void handleElimination(CajaRutina cajaRutina){
+        Log.d("Eliminando", "quiere eliminar ejercicio: "+ cajaRutina.getEjercicio().getId());
+        Log.d("Elimando", "ejercicio: "+cajaRutinas);
+        Log.d("Elimando", "opciones: "+opciones);
+        eliminados.add(cajaRutina.getEjercicio().getId().intValue());
+        anadidos.add(opciones.get(contador).getEjercicio().getId().intValue());
     }
 
     @Override

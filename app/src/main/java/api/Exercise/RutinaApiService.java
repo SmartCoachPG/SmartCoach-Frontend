@@ -2,6 +2,7 @@ package api.Exercise;
 
 import java.util.List;
 
+import model.Exercise.CajaRutina;
 import model.Exercise.Rutina;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -16,4 +17,8 @@ public interface RutinaApiService {
 
     @GET("rutina/getByUser/{id}")
     Call<List<Rutina>> getByUsuarioClienteId(@Path("id") int id);
+
+    @GET("rutina/getEjercicioRut/{idUsuario}/{idRut}")
+    Call<List<CajaRutina>> getEjerciciosByRutina(@Path("idUsuario")int idUsuario,@Path("idRut")int idRut);
+
 }

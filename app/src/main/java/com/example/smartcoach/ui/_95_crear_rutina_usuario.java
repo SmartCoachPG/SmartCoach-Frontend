@@ -251,7 +251,6 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
 
     private void iniciarPeticiones()
     {
-
         Gson gson = new GsonBuilder()
                 .registerTypeAdapter(Date.class, new DateSerializer())
                 .registerTypeAdapter(Time.class,new TimeSerializer())
@@ -291,7 +290,6 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
                         @Override
                         public void onCompletion()
                         {
-
                             if(valida)
                             {
                                 Intent intent = new Intent(_95_crear_rutina_usuario.this, _98_ver_rutina_ejercicio_usuario.class);
