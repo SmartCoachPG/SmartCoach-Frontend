@@ -443,7 +443,7 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                         cajaRutinas.add(temp);
                         cargarOpciones(rut.getId(),()->
                         {
-                            adapter = new CajaRutinaAdapterM(cajaRutinas,opciones,_115_modificar_rutina_ejercicios.this); // Inicializa el adapter aquí
+                            adapter = new CajaRutinaAdapterM(cajaRutinas,opciones,_115_modificar_rutina_ejercicios.this,btnGuardarCambios,rut.getId()); // Inicializa el adapter aquí
                             recyclerView.setLayoutManager(new LinearLayoutManager(_115_modificar_rutina_ejercicios.this));
                             recyclerView.setAdapter(adapter);
                             adapter.notifyDataSetChanged();// Notifica al adapter que los datos han cambiado

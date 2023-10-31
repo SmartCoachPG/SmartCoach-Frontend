@@ -18,27 +18,62 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smartcoach.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import api.DateSerializer;
+import api.Exercise.EjercicioProgresoxEjercicioApiService;
+import api.Exercise.ImagenEjercicioApiService;
+import api.Exercise.RutinaApiService;
+import api.Exercise.RutinaEjercicioApiService;
+import api.SharedPreferencesUtil;
+import api.TimeDeserializer;
+import api.TimeSerializer;
+import api.User.ProgresoxEjercicioService;
+import api.User.UsuarioClienteApiService;
+import api.retro;
 import model.Exercise.CajaRutina;
+import model.Exercise.EjercicioProgresoxEjercicio;
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.CajaRutinaMViewHolder> {
 
     private List<CajaRutina> cajaRutinas;
     private List<CajaRutina> opciones;
-
+    private Button btnGuardar;
     private Context context;
+
+    int idRutina;
     private List<Integer> anadidos = new ArrayList<>();
     private List<Integer> eliminados = new ArrayList<>();
     int contador=0;
 
-    public CajaRutinaAdapterM(List<CajaRutina> cajaRutinas,List<CajaRutina> opciones,Context context) {
+    Long userId;
+    String token;
+
+    RutinaEjercicioApiService rutinaEjercicioApiService;
+    ProgresoxEjercicioService progresoxEjercicioService;
+    EjercicioProgresoxEjercicioApiService ejercicioProgresoxEjercicioApiService;
+
+    public CajaRutinaAdapterM(List<CajaRutina> cajaRutinas,List<CajaRutina> opciones,Context context,Button btnGuardar,int idRutina) {
         this.cajaRutinas = cajaRutinas;
         this.opciones = opciones;
         this.context = context;
+        this.btnGuardar = btnGuardar;
+        this.idRutina = idRutina;
     }
 
     @Override
@@ -146,6 +181,66 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
         anadidos.add(opciones.get(contador).getEjercicio().getId().intValue());
     }
 
+    private void iniciarPeticiones() {
+
+        userId = SharedPreferencesUtil.getUserId(context);
+        token = SharedPreferencesUtil.getToken(context);
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Date.class, new DateSerializer())
+                .registerTypeAdapter(Time.class, new TimeSerializer())
+                .registerTypeAdapter(Time.class, new TimeDeserializer())
+                .create();
+
+        OkHttpClient okHttpClient = retro.getUnsafeOkHttpClientWithToken(token)
+                .newBuilder()
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://10.0.2.2:8043/api/")
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        progresoxEjercicioService = retrofit.create(ProgresoxEjercicioService.class);
+        rutinaEjercicioApiService = retrofit.create(RutinaEjercicioApiService.class);
+        ejercicioProgresoxEjercicioApiService = retrofit.create(EjercicioProgresoxEjercicioApiService.class);
+    }
+
+    private void eliminarEjer(int idEjercicio, _115_modificar_rutina_ejercicios.LlenarRutinasCallback callback)
+    {
+        callback.onCompletion();
+
+        Call<Void> call = rutinaEjercicioApiService.deleteById(idRutina,idEjercicio);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (response.isSuccessful()) {
+                    Log.d("Eliminar","se borro el ejercicio "+idEjercicio);
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+                callback.onCompletion();
+            }
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+
+            }
+        });
+    }
+    private void filtrarListas()
+    {
+        Set<Integer> set1 = new HashSet<>(anadidos);
+        Set<Integer> set2 = new HashSet<>(eliminados);
+        Set<Integer> duplicates = new HashSet<>(set1);
+        duplicates.retainAll(set2);
+        set1.removeAll(duplicates);
+        set2.removeAll(duplicates);
+        anadidos = new ArrayList<>(set1);
+        eliminados = new ArrayList<>(set2);
+    }
     @Override
     public int getItemCount() {
         return cajaRutinas.size();
@@ -166,6 +261,28 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
             valorRepeticiones = view.findViewById(R.id.valorRepeticiones);
             imagenEjercicio = view.findViewById(R.id.imageView);
             btnEliminar = view.findViewById(R.id.btnEliminarEjercicioModificar);
+
+            btnGuardar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("Eliminar", "quiere guardar cambios");
+                    Log.d("Eliminar", "eliminados "+eliminados);
+                    Log.d("Eliminar", "añadidos"+ anadidos);
+                    iniciarPeticiones();
+                    // filtrar listas
+                    filtrarListas();
+                    // manejar eliminados
+                    for(int eliminar: eliminados)
+                    {
+                        eliminarEjer(eliminar,()-> {});
+                    }
+                    // manejar añadidos
+                    for(int nuevo: anadidos)
+                    {
+                        //anadirEjer(nuevo,()->{});
+                    }
+                }
+            });
         }
     }
 }
