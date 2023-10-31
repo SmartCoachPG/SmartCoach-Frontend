@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,6 +42,9 @@ import api.User.UsuarioClienteApiService;
 import api.retro;
 import model.Exercise.CajaRutina;
 import model.Exercise.EjercicioProgresoxEjercicio;
+import model.Exercise.Rutina;
+import model.Exercise.RutinaEjercicio;
+import model.User.ProgresoxEjercicio;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -208,8 +212,6 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
 
     private void eliminarEjer(int idEjercicio, _115_modificar_rutina_ejercicios.LlenarRutinasCallback callback)
     {
-        callback.onCompletion();
-
         Call<Void> call = rutinaEjercicioApiService.deleteById(idRutina,idEjercicio);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -230,6 +232,72 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
             }
         });
     }
+
+    private void anadirEjer(int idEjercicio, _115_modificar_rutina_ejercicios.LlenarRutinasCallback callback)
+    {
+        anadirRutinaEjercicio(idEjercicio,()->{
+            ProgresoxEjercicio progresoxEjercicio = new ProgresoxEjercicio();
+            for(CajaRutina op : opciones)
+            {
+                if(op.getEjercicio().getId()==idEjercicio)
+                    progresoxEjercicio = op.getProgresoxEjercicio();
+            }
+            anadirProgresoxEjercicio(idEjercicio,progresoxEjercicio,()->
+            {
+                callback.onCompletion();
+            });
+        });
+    }
+
+    private void anadirRutinaEjercicio(int idEjercicio, _115_modificar_rutina_ejercicios.LlenarRutinasCallback callback)
+    {
+        RutinaEjercicio rutinaEjercicio = new RutinaEjercicio();
+        rutinaEjercicio.setEjercicioId(idEjercicio);
+        rutinaEjercicio.setRutinaId(idRutina);
+        Call<RutinaEjercicio> call = rutinaEjercicioApiService.add(rutinaEjercicio);
+        call.enqueue(new Callback<RutinaEjercicio>() {
+            @Override
+            public void onResponse(Call<RutinaEjercicio> call, Response<RutinaEjercicio> response) {
+                if (response.isSuccessful()) {
+                    Log.d("Eliminar","se añadio el ejercicio: "+idEjercicio);
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+                callback.onCompletion();
+            }
+            @Override
+            public void onFailure(Call<RutinaEjercicio> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+
+            }
+        });
+    }
+
+    private void anadirProgresoxEjercicio(int idEjercicio, ProgresoxEjercicio progresoxEjercicio, _115_modificar_rutina_ejercicios.LlenarRutinasCallback callback)
+    {
+        Call<ProgresoxEjercicio> call = progresoxEjercicioService.add(progresoxEjercicio);
+        call.enqueue(new Callback<ProgresoxEjercicio>() {
+            @Override
+            public void onResponse(Call<ProgresoxEjercicio> call, Response<ProgresoxEjercicio> response) {
+                if (response.isSuccessful()) {
+                    Log.d("Eliminar","se añadio el progreso para el  "+idEjercicio);
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+                callback.onCompletion();
+            }
+            @Override
+            public void onFailure(Call<ProgresoxEjercicio> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+
+            }
+        });
+    }
+
     private void filtrarListas()
     {
         Set<Integer> set1 = new HashSet<>(anadidos);
@@ -251,7 +319,6 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
         public TextView valorSerie;
         public TextView valorRepeticiones;
         public ImageView imagenEjercicio;
-
         public ImageButton btnEliminar;
 
         public CajaRutinaMViewHolder(View view) {
@@ -279,8 +346,9 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
                     // manejar añadidos
                     for(int nuevo: anadidos)
                     {
-                        //anadirEjer(nuevo,()->{});
+                        anadirEjer(nuevo,()->{});
                     }
+                    Toast.makeText(context, "Cambios guardados", Toast.LENGTH_SHORT).show();
                 }
             });
         }
