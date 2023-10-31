@@ -20,22 +20,16 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
 import java.util.Date;
-
 import api.Admi.UsuarioAdministradorApiService;
 import api.DateSerializer;
 import api.SharedPreferencesUtil;
@@ -53,20 +47,15 @@ public class _8_ModificarPerfil_Admi extends BaseActivityAdmi {
     ImageButton flechaRegresar,imagePP;
     TextView nombreAdmi,puestoAdmi,textoIngresoCedula;
     AppCompatButton botonGuardarCambios;
-
     ImageView admiCheck;
-
     EditText textoIngresoNombre,textoIngresoEmail,textoIngresoPuesto;
-
     Long userId = SharedPreferencesUtil.getUserId(_8_ModificarPerfil_Admi.this);
     String token = SharedPreferencesUtil.getToken(_8_ModificarPerfil_Admi.this);
-
     UsuarioAdministradorApiService usuarioAdministradorApiService;
     UsuarioAdministrador usuarioAdministrador;
 
     private static final int REQUEST_CODE = 100; // Para la solicitud de permiso
     private static final int PICK_IMAGE_REQUEST = 101; // Para identificar la solicitud de selección de imagen
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -147,9 +136,6 @@ public class _8_ModificarPerfil_Admi extends BaseActivityAdmi {
             public void onResponse(Call<UsuarioAdministrador> call, Response<UsuarioAdministrador> response) {
                 if (response.isSuccessful()) {
                     usuarioAdministrador = response.body();
-                    // Haz algo con el objeto Usuario, por ejemplo:
-                    Log.d("Usuario", "Nombre: " + usuarioAdministrador.getNombre());
-
                     nombreAdmi.setText(usuarioAdministrador.getNombre());
                     puestoAdmi.setText(usuarioAdministrador.getPuesto());
                     textoIngresoNombre.setText(usuarioAdministrador.getNombre());
@@ -211,7 +197,6 @@ public class _8_ModificarPerfil_Admi extends BaseActivityAdmi {
             public void onResponse(Call<UsuarioAdministrador> call, Response<UsuarioAdministrador> response) {
                 if (response.isSuccessful()) {
                     UsuarioAdministrador usuarioAdministrador1 = response.body();
-                    Log.d("UsuarioActualizado", "Nombre: " + usuarioAdministrador1.getNombre());
                     Toast.makeText(_8_ModificarPerfil_Admi.this, "Cambios guardados correctamente", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(_8_ModificarPerfil_Admi.this, _7_VerPerfil_Admi.class));
 

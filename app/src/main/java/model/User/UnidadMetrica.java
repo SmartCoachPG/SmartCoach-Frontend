@@ -12,7 +12,6 @@ public class UnidadMetrica {
 
     public UnidadMetrica() {}
 
-
     public int getId() {
         return id;
     }

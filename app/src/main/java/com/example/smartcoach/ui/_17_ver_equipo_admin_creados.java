@@ -1,6 +1,5 @@
 package com.example.smartcoach.ui;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +10,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -28,6 +26,7 @@ public class _17_ver_equipo_admin_creados extends AppCompatActivity {
     ScrollView scrollView;
     View equipo1, equipo2, equipo3, otrosMenu;
     private AlertDialog alertDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,8 +97,6 @@ public class _17_ver_equipo_admin_creados extends AppCompatActivity {
         botonConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Lógica para eliminar el equipo
-                // Aquí debes implementar la lógica para eliminar el equipo
                 alertDialog.dismiss();
             }
         });

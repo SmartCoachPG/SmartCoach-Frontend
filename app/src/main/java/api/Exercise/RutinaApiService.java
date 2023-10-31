@@ -1,7 +1,6 @@
 package api.Exercise;
 
 import java.util.List;
-
 import model.Exercise.CajaRutina;
 import model.Exercise.Rutina;
 import retrofit2.Call;

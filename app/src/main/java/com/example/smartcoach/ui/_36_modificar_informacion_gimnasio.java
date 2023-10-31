@@ -1,11 +1,8 @@
 package com.example.smartcoach.ui;
-import static android.view.View.GONE;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,17 +20,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-
 import api.Admi.GimnasioApiService;
 import api.Admi.MapaApiService;
 import api.Admi.UsuarioAdministradorApiService;
@@ -56,7 +49,6 @@ public class _36_modificar_informacion_gimnasio extends BaseActivityAdmi {
     ImageButton btnRegresar_36, imagenGimnasio_36;
     EditText setTextnombreGimnasio_36, setTextDireccionGimnasio_36, setTextBarrioGimnasio_36, setTextAnchoGimnasio_36, setTextAltoGimnasio_36 ;
     Button btnCrearMapa_36;
-
     Long userId;
     String token;
     GimnasioApiService gimnasioApiService;
@@ -65,7 +57,6 @@ public class _36_modificar_informacion_gimnasio extends BaseActivityAdmi {
     Gimnasio gym = new Gimnasio();
     UsuarioAdministrador admi = new UsuarioAdministrador();
     Mapa mapa = new Mapa();
-
     private static final int REQUEST_CODE = 100; // Para la solicitud de permiso
     private static final int PICK_IMAGE_REQUEST = 101; // Para identificar la solicitud de selección de imagen
 
@@ -151,17 +142,12 @@ public class _36_modificar_informacion_gimnasio extends BaseActivityAdmi {
         cargarAdmi(new InfoCallback() {
             @Override
             public void onCompletion() {
-                Log.d("MODI GYM", "cargo admi: "+admi);
                 cargarGym(new InfoCallback() {
                     @Override
                     public void onCompletion() {
-                        Log.d("MODI GYM", "cargo gym: "+gym);
-
                         cargarMapa(new InfoCallback() {
-
                             @Override
                             public void onCompletion() {
-                                Log.d("MODI GYM", "cargo mapa: "+mapa);
                                 mostrarInfo();
                             }
                         });
@@ -319,7 +305,6 @@ public class _36_modificar_informacion_gimnasio extends BaseActivityAdmi {
             @Override
             public void onResponse(Call<Mapa> call, Response<Mapa> response) {
                 if (response.isSuccessful()) {
-                    Log.d("MODI", "mapa nuevo: "+response.body());
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());

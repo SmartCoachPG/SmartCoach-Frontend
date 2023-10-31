@@ -2,7 +2,6 @@ package api.Admi;
 
 import java.util.List;
 
-import model.Admi.Gimnasio;
 import model.Admi.GimnasioItem;
 import retrofit2.Call;
 import retrofit2.http.Body;

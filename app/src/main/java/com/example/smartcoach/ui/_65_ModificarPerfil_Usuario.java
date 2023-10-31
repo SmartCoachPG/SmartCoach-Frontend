@@ -23,18 +23,13 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonPrimitive;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -44,13 +39,11 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
-
 import api.DateSerializer;
 import api.SharedPreferencesUtil;
 import api.User.ObjetivoRutinaApiService;
 import api.User.UsuarioClienteApiService;
 import api.retro;
-import model.Admi.UsuarioAdministrador;
 import model.User.ObjetivoRutina;
 import model.User.UsuarioCliente;
 import okhttp3.OkHttpClient;
@@ -64,18 +57,14 @@ public class _65_ModificarPerfil_Usuario extends BaseActivityCliente {
 
     ImageButton flechaRegresar, imagePP;
     TextView nombreUser, objetivo;
-    EditText textoIngresoNombre, textoIngresoEmail, textoFechaNacimiento, textoIngresoObjetivo;
+    EditText textoIngresoNombre, textoIngresoEmail, textoFechaNacimiento;
     Spinner spinnerGenero,spinnerObjetivo;
     AppCompatButton botonGuardarCambios;
-
     Long userId;
     String token;
-
     UsuarioCliente usuarioCliente;
-
     UsuarioClienteApiService usuarioClienteApiService;
     ObjetivoRutinaApiService objetivoRutinaApiService;
-
     private static final int REQUEST_CODE = 100; // Para la solicitud de permiso
     private static final int PICK_IMAGE_REQUEST = 101; // Para identificar la solicitud de selección de imagen
 
@@ -167,8 +156,6 @@ public class _65_ModificarPerfil_Usuario extends BaseActivityCliente {
                             SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
                             String fechaNacimiento = sdf.format(selectedDateUTC.getTime());
                             textoFechaNacimiento.setText(fechaNacimiento);
-                            Log.d("DateSerializer", "Formatted date: " + fechaNacimiento);
-
                             // Aquí es donde estableces la fecha de nacimiento en usuarioCliente
                             usuarioCliente.setFechaDeNacimiento(selectedDateUTC.getTime());
 
@@ -211,9 +198,6 @@ public class _65_ModificarPerfil_Usuario extends BaseActivityCliente {
             public void onResponse(Call<UsuarioCliente> call, Response<UsuarioCliente> response) {
                 if (response.isSuccessful()) {
                     usuarioCliente = response.body();
-                    // Haz algo con el objeto Usuario, por ejemplo:
-                    Log.d("Usuario", "Nombre: " + usuarioCliente.getNombre());
-
                     nombreUser.setText(usuarioCliente.getNombre());
                     textoIngresoNombre.setText(usuarioCliente.getNombre());
                     textoIngresoEmail.setText(usuarioCliente.getEmail());
@@ -273,8 +257,6 @@ public class _65_ModificarPerfil_Usuario extends BaseActivityCliente {
             public void onResponse(Call<ObjetivoRutina> call, Response<ObjetivoRutina> response) {
                 if (response.isSuccessful()) {
                     ObjetivoRutina objetivoRutina1 = response.body();
-                    // Haz algo con el objeto Usuario, por ejemplo:
-                    Log.d("Usuario", "Nombre: " + objetivoRutina1.getNombre());
 
                     objetivo.setText(objetivoRutina1.getNombre());
                     // aqui tambien tiene que ser un spinner
@@ -355,7 +337,6 @@ public class _65_ModificarPerfil_Usuario extends BaseActivityCliente {
             public void onResponse(Call<UsuarioCliente> call, Response<UsuarioCliente> response) {
                 if (response.isSuccessful()) {
                     UsuarioCliente usuarioCliente1 = response.body();
-                    Log.d("UsuarioActualizado", "Nombre: " + usuarioCliente1.getNombre());
                     Toast.makeText(_65_ModificarPerfil_Usuario.this, "Cambios guardados correctamente", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(_65_ModificarPerfil_Usuario.this, _64_VerPerfil_Usuario.class));
 

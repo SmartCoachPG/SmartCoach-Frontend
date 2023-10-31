@@ -2,11 +2,9 @@ package model.User;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.sql.Time;
 import java.util.Date;
 
-import model.Exercise.Ejercicio;
 
 public class ProgresoxEjercicio implements Parcelable {
 
@@ -32,8 +30,7 @@ public class ProgresoxEjercicio implements Parcelable {
         this.usuarioClienteId = usuarioClienteId;
     }
 
-    public ProgresoxEjercicio() {
-    }
+    public ProgresoxEjercicio() {}
 
     public Long getId() {
         return id;

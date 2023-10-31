@@ -2,55 +2,41 @@ package com.example.smartcoach.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Parcelable;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import api.Admi.EquipoApiService;
 import api.DateSerializer;
 import api.Exercise.EjercicioApiService;
-import api.Exercise.EjercicioProgresoxEjercicioApiService;
 import api.Exercise.ImagenEjercicioApiService;
 import api.Exercise.MusculoApiService;
-import api.Exercise.RutinaApiService;
-import api.Exercise.RutinaEjercicioApiService;
 import api.SharedPreferencesUtil;
 import api.TimeDeserializer;
 import api.TimeSerializer;
-import api.User.UsuarioClienteApiService;
 import api.retro;
 import model.Exercise.CajaRutina;
 import model.Exercise.Ejercicio;
 import model.Exercise.ImagenEjercicio;
 import model.User.ProgresoxEjercicio;
-import model.User.UsuarioCliente;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -66,17 +52,13 @@ public class _100_iniciar_rutina extends AppCompatActivity {
     boolean isChronometerRunning = false;
     long pausedTime = 0;
 
-
     List<Ejercicio> ejerciciosList = new ArrayList<>();
     Map<Integer, ProgresoxEjercicio> progresoEjercicio = new HashMap<>();
     List<String> equiposEjercicio = new ArrayList<>();
     ImagenEjercicio imagenEjercicio = new ImagenEjercicio();
     List<String> musculosEjercicio = new ArrayList<>();
-
     Ejercicio ejercicio = new Ejercicio();
-
     int ejercicioActual=0;
-
     ImagenEjercicioApiService imagenEjercicioApiService;
     EquipoApiService equipoApiService;
     MusculoApiService musculoApiService;
@@ -125,7 +107,6 @@ public class _100_iniciar_rutina extends AppCompatActivity {
 
 
         ArrayList<CajaRutina> cajaRutinas = getIntent().getParcelableArrayListExtra("ListaCajaRutina");
-        Log.d("EN 100", "caja rutinas: "+cajaRutinas);
         int cont = 0;
         for(CajaRutina cajaRutina:cajaRutinas)
         {
@@ -134,8 +115,6 @@ public class _100_iniciar_rutina extends AppCompatActivity {
             cont++;
         }
         numero_serie_final_100.setText(String.valueOf(ejerciciosList.size()));
-        Log.d("EN 100", "ejercicio: "+ejerciciosList);
-        Log.d("EN 100", "ejercicio: "+progresoEjercicio);
 
         cargarInfo();
         btnPlay_100.setOnClickListener(new View.OnClickListener() {
@@ -204,13 +183,10 @@ public class _100_iniciar_rutina extends AppCompatActivity {
         numeroSeries.setText(String.valueOf(contadorSeries));
         setTextNombreEjercicio_100.setText(actual.getNombre());
         numero_serie_inicial_100.setText(String.valueOf(ejercicioActual+1));
-        Log.d("CARGAR INFO", "eje actual: "+ejercicioActual);
-        Log.d("CARGAR INFO", "progreso: "+progresoEjercicio.get(ejercicioActual));
         ProgresoxEjercicio progresoActual = progresoEjercicio.get(ejercicioActual);
         numeroTotalseries.setText(String.valueOf(progresoActual.getSerie()));
         numeroTotalRepeticiones.setText(String.valueOf(progresoActual.getRepeticiones()));
         pesoMaquina.setText(String.valueOf(progresoActual.getPeso()));
-        Log.d("CARGAR INFO", "progreso: "+progresoEjercicio.get(ejercicioActual));
         String tiempo = progresoEjercicio.get(ejercicioActual).getDescansoEntreSeries().toString();
 
         String[] partes = tiempo.split(":");
@@ -228,7 +204,6 @@ public class _100_iniciar_rutina extends AppCompatActivity {
                     cargarEjercicio(()->
                     {
                         RecyclerView recyclerView = findViewById(R.id.recyclerViewEjercicios_100);
-                        Log.d("RUTINA", "musculos: "+musculosEjercicio);
                         recyclerView.setAdapter(new RutinaAdapter(imagenEjercicio, equiposEjercicio,musculosEjercicio,ejercicio));
                     });
 
@@ -242,7 +217,6 @@ public class _100_iniciar_rutina extends AppCompatActivity {
 
     public void cargarImagen(InfoCallBack callback)
     {
-        Log.d("CARANDO", "mirando ejercicio: "+ejerciciosList.get(ejercicioActual).getId());
         int idEjercicio = ejerciciosList.get(ejercicioActual).getId().intValue();
         Call<List<ImagenEjercicio>> call = imagenEjercicioApiService.findByEjercicioid(idEjercicio);
         call.enqueue(new Callback<List<ImagenEjercicio>>() {
@@ -251,7 +225,6 @@ public class _100_iniciar_rutina extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     if(!response.body().isEmpty())
                     {
-                        Log.d("CARANDO", "encontre: "+response.body().get(0));
                         imagenEjercicio = response.body().get(0);
                     }
 
@@ -311,8 +284,6 @@ public class _100_iniciar_rutina extends AppCompatActivity {
                     if(!response.body().isEmpty())
                     {
                         musculosEjercicio = response.body();
-                        Log.d("RUTINA", "musculos: "+musculosEjercicio);
-
                     }
 
                     callback.onCompletion();

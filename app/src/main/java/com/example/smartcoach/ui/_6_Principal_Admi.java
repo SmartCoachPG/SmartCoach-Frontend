@@ -2,18 +2,14 @@ package com.example.smartcoach.ui;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -21,12 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import com.example.smartcoach.R;
-
 import api.Admi.UsuarioAdministradorApiService;
 import api.SharedPreferencesUtil;
 import api.retro;
@@ -126,14 +117,13 @@ public class _6_Principal_Admi extends BaseActivityAdmi {
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
-        dialog.setContentView(R.layout._84_confirmacion_eliminacion_cuenta); // Usa el nombre de tu archivo XML
+        dialog.setContentView(R.layout._84_confirmacion_eliminacion_cuenta);
         dialog.getWindow().setBackgroundDrawable(null);
 
         Button botonConfirmar = dialog.findViewById(R.id.botonConfirmar);
         botonConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Acciones a realizar cuando se presiona "Confirmar"
                 eliminarCuenta();
             }
         });
@@ -142,7 +132,6 @@ public class _6_Principal_Admi extends BaseActivityAdmi {
         botonCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Acciones a realizar cuando se presiona "Cancelar"
                 dialog.dismiss();
             }
         });
@@ -194,9 +183,6 @@ public class _6_Principal_Admi extends BaseActivityAdmi {
             public void onResponse(Call<UsuarioAdministrador> call, Response<UsuarioAdministrador> response) {
                 if (response.isSuccessful()) {
                     UsuarioAdministrador usuario = response.body();
-                    // Haz algo con el objeto Usuario, por ejemplo:
-                    Log.d("Usuario", "Nombre: " + usuario.getNombre());
-
                     nombreAdmi.setText(usuario.getNombre());
                     puestoAdmi.setText(usuario.getPuesto());
 

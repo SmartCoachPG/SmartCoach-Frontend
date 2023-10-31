@@ -8,18 +8,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import api.DateSerializer;
 import api.User.UnidadMetricaApiService;
 import api.User.ValorEvaluacionFisicaApiService;
@@ -39,18 +35,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class _45_Registrar_Usuario_4 extends AppCompatActivity {
 
-
     UnidadMetricaApiService unidadMetricaApiService;
     ValorEvaluacionFisicaApiService valorEvaluacionFisicaApiService;
     List<UnidadMetrica> listaUnidadMetrica = new ArrayList<>();
     List<ValorEvaluacionFisica> listaValorEvaluacionF = new ArrayList<>();
     private List<Valor> listaValores = new ArrayList<>();
-
     private int apiCallsCompleted = 0;
-
     ImageButton botonSiguiente;
     LinearLayout caja;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,7 +136,7 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
         if(tama!=null)
         {
             for (int i = 0; i < listaValorEvaluacionF.size(); i++) {
-                final ValorEvaluacionFisica pasar = listaValorEvaluacionF.get(i); // Declara 'pasar' aquí como final
+                final ValorEvaluacionFisica pasar = listaValorEvaluacionF.get(i);
                 caja = findViewById(getResources().getIdentifier("caja_composicion_corporal_" + (i + 1) + "_45", "id", getPackageName()));
                 TextView nombreValorTextView = caja.findViewById(R.id.nombreValor_45);
                 TextView unidadTextView = caja.findViewById(R.id.unidad_45);
@@ -168,9 +160,6 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
                 });
             }
         }
-        else {
-            Log.d("Cargando", "Listas vacias: ");
-        }
 
     }
 
@@ -188,7 +177,7 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
         // Inflar el layout para el dialog
         View view = getLayoutInflater().inflate(R.layout._46_descripcion_composicion, null);
 
-        TextView nombreTextView = view.findViewById(R.id.tituloComposicionCorporal); // Asume que tienes un TextView con este id en tu layout _50
+        TextView nombreTextView = view.findViewById(R.id.tituloComposicionCorporal);
         TextView descripcionTextView = view.findViewById(R.id.descripciónComposicionCorporal);
         nombreTextView.setText(valor.getNombre());
         descripcionTextView.setText(valor.getDescripcion());
@@ -203,7 +192,7 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
         botonCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();  // Esto cierra el diálogo
+                dialog.dismiss();
             }
         });
     }
@@ -221,8 +210,6 @@ public class _45_Registrar_Usuario_4 extends AppCompatActivity {
             nuevo.setValor(Float.parseFloat(valorString));
             listaValores.add(nuevo);
         }
-
-        Log.d("Valores composicion", "estos son: "+listaValores);
 
         UsuarioCliente usuarioCliente = (UsuarioCliente) getIntent().getSerializableExtra("usuarioCliente");
         int musculoObjetivo = getIntent().getIntExtra("musculoObjetivo", 0); // 0 es un valor predeterminado en caso de que no se encuentre el extra.

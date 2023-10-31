@@ -5,7 +5,6 @@ import android.widget.TextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartcoach.R;
 
 public class _44_InformacionNivelActividadModerado extends AppCompatActivity {

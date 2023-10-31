@@ -12,19 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
 import api.Admi.UsuarioAdministradorApiService;
 import api.DateSerializer;
 import api.SharedPreferencesUtil;
@@ -33,7 +28,6 @@ import api.retro;
 import model.Admi.UsuarioAdministrador;
 import model.User.Usuario;
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,11 +38,9 @@ public class _4_Registrarse_Admi_4 extends AppCompatActivity {
 
     EditText nombre, email, contraseña, validContra, cedula, nombreGym, direccionGym, barrioGym, puestoGym;
     Button btnsiguiente;
-
     UsuarioAdministradorApiService usuarioAdministradorApiService;
     UsuarioApiService usuarioApiService;
     private AlertDialog alertDialog;
-
     UsuarioAdministrador newUser = new UsuarioAdministrador();
 
     @Override
@@ -244,7 +236,6 @@ public class _4_Registrarse_Admi_4 extends AppCompatActivity {
             public void onResponse(Call<UsuarioAdministrador> call, Response<UsuarioAdministrador> response) {
                 if (response.isSuccessful()) {
                     UsuarioAdministrador usuarioAdministrador1 = response.body();
-                    Log.d("Usuario Creado", "Nombre: " + usuarioAdministrador1.getNombre());
                     Toast.makeText(_4_Registrarse_Admi_4.this, "Sus datos se agregaron correctamente", Toast.LENGTH_SHORT).show();
                     iniciarSesion();
 
@@ -275,17 +266,13 @@ public class _4_Registrarse_Admi_4 extends AppCompatActivity {
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if (response.isSuccessful()) {
-                    Log.d("IniciarSesionActivity", "Respuesta recibida: " + response.toString());
-
                     Usuario usuarioResponse = response.body();
 
                     if (usuarioResponse != null) {
-                        Log.d("IniciarSesionActivity", "Respuesta recibida: " + usuarioResponse.toString());
 
                         Integer tipoUsuario = usuarioResponse.getAdmi();
 
                         if (tipoUsuario != null) {
-                                Log.d("IniciarSesionActivity", "Administrador inició sesión: " + usuarioResponse.getId());
                                 sharedpreferencesutil.saveToken(_4_Registrarse_Admi_4.this,usuarioResponse.getToken());
                                 sharedpreferencesutil.saveUserId(_4_Registrarse_Admi_4.this,usuarioResponse.getId());
                                 Intent intent = new Intent(_4_Registrarse_Admi_4.this, _6_Principal_Admi.class);
@@ -302,8 +289,6 @@ public class _4_Registrarse_Admi_4 extends AppCompatActivity {
                     Toast toast = Toast.makeText(getApplicationContext(), "Correo o contraseña incorrecta,por favor vuelve a intentar", Toast.LENGTH_SHORT);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
-
-
                 }
             }
             @Override

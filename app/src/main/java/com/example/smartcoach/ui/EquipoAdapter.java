@@ -1,7 +1,6 @@
 package com.example.smartcoach.ui;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -10,15 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import model.Admi.Equipo;
-import model.Admi.UbicacionxItem;
 
 public class EquipoAdapter extends RecyclerView.Adapter<EquipoAdapter.ViewHolder> {
 

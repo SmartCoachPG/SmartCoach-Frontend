@@ -1,15 +1,8 @@
 package com.example.smartcoach.ui;
+
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Shader;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +12,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,7 +22,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import api.DateSerializer;
 import api.Exercise.RutinaApiService;
 import api.SharedPreferencesUtil;
@@ -57,17 +47,15 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
     private final Map<ImageButton, Integer> originalImages = new HashMap<>();
     private final Map<ImageButton, Integer> selectedImages = new HashMap<>();
     private int selectedDay = -1;
-
     Long userId;
     String token;
     ImageButton imageLunes, imageMartes, imageMiercoles, imageJueves, imageViernes, imageSabado, imageDomingo;
-
     UsuarioClienteApiService usuarioClienteApiService;
     RutinaApiService rutinaApiService;
     List<Rutina> listaRutinas= new ArrayList<>();
     Map<String,Time> duracionRD = new HashMap<>();
-
     Boolean valida = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -294,7 +282,6 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
                             {
                                 Intent intent = new Intent(_95_crear_rutina_usuario.this, _98_ver_rutina_ejercicio_usuario.class);
                                 SharedPreferencesUtil.saveRutina(_95_crear_rutina_usuario.this,"1");
-                                Log.d("RUTINA CREADAAA", "resultado: "+SharedPreferencesUtil.getRutina(_95_crear_rutina_usuario.this));
                                 Toast.makeText(_95_crear_rutina_usuario.this, "Rutina creada", Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                             }
@@ -332,7 +319,6 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
             public void onResponse(Call<UsuarioCliente> call, Response<UsuarioCliente> response) {
                 if (response.isSuccessful()) {
                     UsuarioCliente usuario = response.body();
-                    Log.d("Usuario", "Nombre: " + usuario.getNombre());
                     setTextNombreUser.setText(usuario.getNombre());
                     setTextDuracionRutina.setText("0");
                 } else {
@@ -380,13 +366,11 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                 if (response.isSuccessful()) {
                     valida = response.body();
-                    Log.d("RUTINA USUARIO VALIDA?", "respuesta: "+response.body());
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());
                 }
                 callback.onCompletion();
-
             }
 
             @Override
@@ -405,12 +389,10 @@ public class _95_crear_rutina_usuario extends BaseActivityCliente {
             public void onResponse(Call<List<Rutina>> call, Response<List<Rutina>>response) {
                 if (response.isSuccessful()) {
                     listaRutinas = response.body();
-                    Log.d("Rutinas", "estas son: "+listaRutinas);
                     for(Rutina rut : listaRutinas)
                     {
                         duracionRD.put(rut.getDia(),rut.getDuracion());
                     }
-                    Log.d("ORGANIZAR RD", "lista:"+duracionRD);
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());

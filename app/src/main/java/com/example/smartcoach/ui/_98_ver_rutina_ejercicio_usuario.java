@@ -1,7 +1,7 @@
 package com.example.smartcoach.ui;
+
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,14 +10,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,7 +25,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import api.DateSerializer;
 import api.Exercise.EjercicioProgresoxEjercicioApiService;
 import api.Exercise.ImagenEjercicioApiService;
@@ -46,7 +42,6 @@ import model.Exercise.Rutina;
 import model.User.ProgresoxEjercicio;
 import model.User.UsuarioCliente;
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,21 +55,16 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
     TextView tituloRutinaDia, setTextDuracionRutina, horas;
     Button btnIniciarRutina;
     ImageButton btnModificarRutina;
-
     String dia;
     private final Map<ImageButton, Integer> originalImages = new HashMap<>();
     private final Map<ImageButton, Integer> selectedImages = new HashMap<>();
     private int selectedDay = -1;
-
     ImageButton imageLunes, imageMartes, imageMiercoles, imageJueves, imageViernes, imageSabado, imageDomingo;
-
     Long userId;
     String token;
-
     UsuarioClienteApiService usuarioClienteApiService;
     RutinaApiService rutinaApiService;
     RutinaEjercicioApiService rutinaEjercicioApiService;
-
     EjercicioProgresoxEjercicioApiService ejercicioProgresoxEjercicioApiService;
 
     ImagenEjercicioApiService imagenEjercicioApiService;
@@ -87,10 +77,8 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
     // idEjercicio, Lista imagenes
 
     ImagenEjercicio imagenEjercicio = new ImagenEjercicio();
-
     List<CajaRutina> cajaRutinas = new ArrayList<>();
     CajaRutinaAdapter adapter;
-
     private int completedCalls = 0;
     private int TOTAL_CALLS = 0;
 
@@ -146,12 +134,10 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
             @Override
             public void onCompletion() {
                 cajaRutinas.clear();
-                Log.d("FIN", "rutinas: " + rutinas);
                 llenarEjercicios(new LlenarRutinasCallback() {
                     @Override
                     public void onCompletion() {
                         selectCurrentDay();
-                        Log.d("FIN", "ejercicios: " + ejercicios);
                         llenarProgresos(new LlenarRutinasCallback() {
                             @Override
                             public void onCompletion() {
@@ -159,7 +145,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                                     btnIniciarRutina.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {
-                                            Log.d("INICIAR RUTINA", "Me dan click");
                                             filtrarListas();
                                         }
                                     });
@@ -500,7 +485,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
         Rutina rut = rutinas.get(dia);
         List<Ejercicio> ej = ejercicios.get(rut.getId());
         cajaRutinas.clear();
-        adapter = new CajaRutinaAdapter(cajaRutinas); // Inicializa el adapter aquí
+        adapter = new CajaRutinaAdapter(cajaRutinas);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 

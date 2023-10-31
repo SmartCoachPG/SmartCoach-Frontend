@@ -3,12 +3,8 @@ package com.example.smartcoach.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartcoach.R;
-
-import api.Admi.UsuarioAdministradorApiService;
 
 public abstract class BaseActivityAdmi extends AppCompatActivity {
 

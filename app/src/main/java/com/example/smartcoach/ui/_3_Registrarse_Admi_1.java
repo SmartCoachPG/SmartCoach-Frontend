@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartcoach.R;
 
 public class _3_Registrarse_Admi_1 extends AppCompatActivity {
@@ -66,7 +64,6 @@ public class _3_Registrarse_Admi_1 extends AppCompatActivity {
             }
         });
 
-        // Mostrar el cuadro de diálogo
         builder.show();
     }
 }

@@ -4,8 +4,6 @@ package model.Exercise;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
-
 public class Ejercicio implements Parcelable {
 
     private Long id;
@@ -20,9 +18,7 @@ public class Ejercicio implements Parcelable {
         this.instruccionRespiracion = instruccionRespiracion;
     }
 
-    public Ejercicio(){
-
-    }
+    public Ejercicio(){}
 
     public Long getId() {
         return id;

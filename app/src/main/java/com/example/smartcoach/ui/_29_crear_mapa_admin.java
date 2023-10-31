@@ -7,8 +7,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ImageButton;
 import android.widget.Button;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import com.example.smartcoach.R;
 
 public class _29_crear_mapa_admin extends BaseActivityAdmi{

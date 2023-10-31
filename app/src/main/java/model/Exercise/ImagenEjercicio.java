@@ -1,7 +1,6 @@
 package model.Exercise;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 public class ImagenEjercicio {
 
@@ -15,10 +14,7 @@ public class ImagenEjercicio {
         this.ejercicio = ejercicio;
     }
 
-    public ImagenEjercicio()
-    {
-
-    }
+    public ImagenEjercicio() {}
 
     public Long getId() {
         return id;

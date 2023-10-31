@@ -16,8 +16,7 @@ public class UsuarioCliente extends Usuario{
 
     private Integer grupoMuscularid;
 
-    public UsuarioCliente() {
-    }
+    public UsuarioCliente() {}
 
     public UsuarioCliente(String genero, Date fechaDeNacimiento, Integer gimnasioid, Integer nivelActividadFisicaid, Integer objetivoRutinaid, Integer grupoMuscularid) {
         this.genero = genero;

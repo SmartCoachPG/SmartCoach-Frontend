@@ -4,21 +4,16 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import api.SharedPreferencesUtil;
 import model.Admi.Gimnasio;
 
@@ -49,7 +44,7 @@ public class CajaGimnasioAdapter extends RecyclerView.Adapter<CajaGimnasioAdapte
         holder.barrioGym.setText(gimnasio.getBarrio());
         holder.direccionGym.setText(gimnasio.getDireccion());
 
-        String imageString = gimnasio.getImagenGimnasio(); // Asegúrate de que este método exista y retorne la cadena Base64 de la imagen
+        String imageString = gimnasio.getImagenGimnasio();
         if (imageString != null && !imageString.isEmpty()) {
             byte[] decodedString = Base64.decode(imageString, Base64.DEFAULT);
             Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);

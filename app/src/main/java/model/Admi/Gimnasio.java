@@ -18,10 +18,7 @@ public class Gimnasio {
         this.imagenGimnasio = imagenGimnasio;
     }
 
-    public Gimnasio()
-    {
-
-    }
+    public Gimnasio() {}
 
     public Long getId() {
         return id;

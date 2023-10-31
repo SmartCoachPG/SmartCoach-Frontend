@@ -7,19 +7,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import api.DateSerializer;
 import api.User.RestriccionMedicaApiService;
 import api.retro;
@@ -36,10 +32,8 @@ public class _59_2_registrar_usuario_5 extends AppCompatActivity {
 
     RestriccionMedicaApiService restriccionMedicaApiService;
     List<RestriccionMedica> listaRestriccionMedica = new ArrayList<>();
-
     Button btnAceptar;
     ImageButton btnCerrar;
-
     private MyAdapter adapter;
 
     @Override
@@ -58,7 +52,6 @@ public class _59_2_registrar_usuario_5 extends AppCompatActivity {
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Debug", "btnAceptar click");
                 List<RestriccionMedica> seleccionados = adapter.getItemsSeleccionados();
                 Intent intent = new Intent();
                 intent.putExtra("seleccionados", new ArrayList<>(seleccionados));
@@ -70,8 +63,6 @@ public class _59_2_registrar_usuario_5 extends AppCompatActivity {
         btnCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Debug", "btnCerrar click");
-
                 finish();
             }
         });
@@ -104,14 +95,12 @@ public class _59_2_registrar_usuario_5 extends AppCompatActivity {
     private void llenarListaRestricciones()
     {
         String query = getIntent().getStringExtra("textoBusqueda");
-        Log.d("Debug", "nombre buscar: "+query);
         Call<List<RestriccionMedica>> call = restriccionMedicaApiService.findAll(query);
         call.enqueue(new Callback<List<RestriccionMedica>>() {
             @Override
             public void onResponse(Call<List<RestriccionMedica>> call, Response<List<RestriccionMedica>> response) {
                 if (response.isSuccessful()) {
                     listaRestriccionMedica = response.body();
-                    Log.d("Restriccion medica", "Lista: "+listaRestriccionMedica);
                     mostrarRestricciones();
 
                 } else {

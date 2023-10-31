@@ -11,8 +11,7 @@ public class ObjetivoRutina {
         this.nombre = nombre;
     }
 
-    public ObjetivoRutina() {
-    }
+    public ObjetivoRutina() {}
 
     public Long getId() {
         return id;

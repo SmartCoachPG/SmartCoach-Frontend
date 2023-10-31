@@ -2,7 +2,6 @@ package model.Admi;
 
 
 import java.util.Date;
-
 import model.User.Usuario;
 
 public class UsuarioAdministrador extends Usuario
@@ -14,8 +13,7 @@ public class UsuarioAdministrador extends Usuario
 
     private Integer gimnasioId;
 
-    public UsuarioAdministrador() {
-    }
+    public UsuarioAdministrador() {}
 
     public UsuarioAdministrador(Long cedula, String puesto, Integer verificado, Date fechaDeRenovacion, Integer gimnasioId) {
         this.cedula = cedula;

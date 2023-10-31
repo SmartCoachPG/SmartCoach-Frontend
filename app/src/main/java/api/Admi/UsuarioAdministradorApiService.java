@@ -1,6 +1,5 @@
 package api.Admi;
 
-import api.User.UsuarioApiService;
 import model.Admi.UsuarioAdministrador;
 import retrofit2.Call;
 import retrofit2.http.Body;

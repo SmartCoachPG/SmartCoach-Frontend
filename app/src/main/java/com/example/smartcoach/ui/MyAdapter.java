@@ -1,19 +1,14 @@
 package com.example.smartcoach.ui;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import model.User.RestriccionMedica;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
@@ -21,7 +16,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private List<RestriccionMedica> mData = new ArrayList<>();
     private List<RestriccionMedica> seleccionados = new ArrayList<>();
     private List<RestriccionMedica> seleccionTemporal = new ArrayList<>();
-
     public MyAdapter(List<RestriccionMedica> data) {
         mData = data;
     }

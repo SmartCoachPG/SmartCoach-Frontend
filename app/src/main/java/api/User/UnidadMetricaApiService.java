@@ -1,7 +1,6 @@
 package api.User;
 
 import java.util.List;
-
 import model.User.UnidadMetrica;
 import retrofit2.Call;
 import retrofit2.http.GET;

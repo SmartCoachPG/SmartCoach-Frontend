@@ -1,7 +1,6 @@
 package model.User;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import java.io.Serializable;
 

@@ -6,7 +6,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
 
 public class _26_modificar_equipo_admin_3 extends AppCompatActivity {

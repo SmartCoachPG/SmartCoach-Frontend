@@ -12,8 +12,7 @@ public class GimnasioItem {
         this.cantidad = cantidad;
     }
 
-    public GimnasioItem() {
-    }
+    public GimnasioItem() {}
 
     public int getGimnasioid() {
         return gimnasioid;

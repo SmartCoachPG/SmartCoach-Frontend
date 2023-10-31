@@ -2,7 +2,6 @@ package com.example.smartcoach.ui;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.method.ScrollingMovementMethod;
@@ -14,23 +13,15 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import api.Admi.EquipoApiService;
-import api.Admi.GimnasioApiService;
 import api.Admi.GimnasioItemApiService;
-import api.Admi.UsuarioAdministradorApiService;
 import api.SharedPreferencesUtil;
 import api.retro;
 import model.Admi.Equipo;
@@ -95,7 +86,6 @@ public class CajaEquipoAdapter extends RecyclerView.Adapter<CajaEquipoAdapter.Ca
         String imageString = equipo.getImagen();
         if(imageString!=null)
         {
-            Log.d("IMAGEN CARGANDO", "esta es la imagen: "+imageString);
             byte[] imageBytes = Base64.decode(imageString, Base64.DEFAULT);
             Bitmap decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
             holder.imagenEquipo.setImageBitmap(decodedBitmap);
@@ -158,7 +148,6 @@ public class CajaEquipoAdapter extends RecyclerView.Adapter<CajaEquipoAdapter.Ca
             public void onClick(View v) {
                 EditText cantidad = dialog.findViewById(R.id.cantidadEquipo_16);
                 cantidadE = Integer.parseInt(cantidad.getText().toString());
-                Log.d("CREAR EQUIPO", "idGimnasio: "+idGimnasio+" idEquipo:"+idEquipo+" cantidad:"+cantidadE);
                 crearGimnasioItem(idGimnasio,idEquipo,cantidadE);
                 dialog.dismiss();
             }
@@ -168,7 +157,6 @@ public class CajaEquipoAdapter extends RecyclerView.Adapter<CajaEquipoAdapter.Ca
         botonCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Acciones a realizar cuando se presiona "Cancelar"
                 dialog.dismiss();
             }
         });
@@ -200,7 +188,6 @@ public class CajaEquipoAdapter extends RecyclerView.Adapter<CajaEquipoAdapter.Ca
         botonCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Acciones a realizar cuando se presiona "Cancelar"
                 dialog.dismiss();
             }
         });

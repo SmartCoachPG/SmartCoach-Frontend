@@ -20,17 +20,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageButton;
-
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -38,13 +35,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import api.DateSerializer;
 import api.Exercise.GrupoMuscularApiService;
 import api.User.ObjetivoRutinaApiService;
 import api.retro;
 import model.Exercise.GrupoMuscular;
-import model.Exercise.Musculo;
 import model.Exercise.Rutina;
 import model.User.ObjetivoRutina;
 import model.User.UsuarioCliente;
@@ -125,7 +120,6 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
         btnInfoLeve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Debug", "btnInfoLeve clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_42_Registrar_Usuario_3.this);
                 // Inflar el diseño del diálogo directamente
                 View dialogView = getLayoutInflater().inflate(R.layout._43_informacion_nivel_actividad_leve, null);
@@ -140,7 +134,6 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Cierra el diálogo
                         dialog.dismiss();
                     }
                 });
@@ -151,7 +144,6 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
         btnInfoModerada.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Debug", "btnInfoModerada clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_42_Registrar_Usuario_3.this);
                 // Inflar el diseño del diálogo directamente
                 View dialogView = getLayoutInflater().inflate(R.layout._44_informacion_nivel_actividad_moderado, null);
@@ -166,7 +158,6 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Cierra el diálogo
                         dialog.dismiss();
                     }
                 });
@@ -177,7 +168,6 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
         btnInfoEnergica.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Debug", "btnInfoModerada clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_42_Registrar_Usuario_3.this);
                 // Inflar el diseño del diálogo directamente
                 View dialogView = getLayoutInflater().inflate(R.layout._44_informacion_nivel_actividad_energico, null);
@@ -192,7 +182,6 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
                 btnCerrar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        // Cierra el diálogo
                         dialog.dismiss();
                     }
                 });
@@ -631,16 +620,8 @@ public class _42_Registrar_Usuario_3 extends AppCompatActivity {
             listaRutinas.add(rutina);
         }
 
-        Log.d("Debug", "usuarioCliente: " + usuarioCliente.toString());
-
         // Visualizar el contenido de musculoObjetivo
         int musculoObjetivo = spinnerMusculo.getSelectedItemPosition() + 1;
-        Log.d("Debug", "musculoObjetivo: " + musculoObjetivo);
-
-        // Visualizar el contenido de listaRutinas
-        for (Rutina rutina : listaRutinas) {
-            Log.d("Debug", "Rutina: " + rutina.toString());
-        }
 
         Intent intent = new Intent(_42_Registrar_Usuario_3.this, _45_Registrar_Usuario_4.class);
         intent.putExtra("usuarioCliente",usuarioCliente);

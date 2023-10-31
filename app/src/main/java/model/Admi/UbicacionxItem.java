@@ -1,6 +1,5 @@
 package model.Admi;
 
-import java.io.Serializable;
 
 public class UbicacionxItem {
 
@@ -20,10 +19,7 @@ public class UbicacionxItem {
         this.gimnasioid = gimnasioid;
     }
 
-    public UbicacionxItem()
-    {
-
-    }
+    public UbicacionxItem() {}
 
     public int getMapaid() {
         return mapaid;

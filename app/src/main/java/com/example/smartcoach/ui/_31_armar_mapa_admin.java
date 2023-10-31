@@ -144,19 +144,15 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
             public boolean onDrag(View v, DragEvent event) {
                 switch (event.getAction()) {
                     case DragEvent.ACTION_DRAG_STARTED:
-                        Log.d("BASURA", "Drag started");
                         return true;
 
                     case DragEvent.ACTION_DRAG_ENTERED:
-                        Log.d("BASURA", "Drag entered");
                         return true;
 
                     case DragEvent.ACTION_DRAG_EXITED:
-                        Log.d("BASURA", "Drag exited");
                         return true;
 
                     case DragEvent.ACTION_DROP:
-                        Log.d("BASURA", "Dropped");
                         eliminarItem(()->{
                             Toast.makeText(_31_armar_mapa_admin.this, "Item Eliminado", Toast.LENGTH_SHORT).show();
                         });
@@ -165,7 +161,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                         return true;
 
                     case DragEvent.ACTION_DRAG_ENDED:
-                        Log.d("BASURA", "Drag ended");
                         return true;
                 }
                 return false;
@@ -278,7 +273,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                                             @Override
                                             public void onCompletion() {
                                                 cargarMapa();
-                                                Log.d("CARGANDO IMAGENES", "termino cargarMapa");
 
                                             }
                                         });
@@ -302,7 +296,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                 if (response.isSuccessful()) {
                     UsuarioAdministrador usuario = response.body();
                     if (usuario.getGimnasioId() != null) {
-                        Log.d("Usuario", "Nombre: " + usuario.getNombre());
                         gimnasioId = usuario.getGimnasioId();
                     }
                     callback.onCompletion();
@@ -373,7 +366,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
     }
 
     private void llenarTipoEquipo(_31_armar_mapa_admin.InfoCallback callback) {
-        Log.d("Mostrar", "mirando lista Items: "+listaItems);
 
         if (!listaItems.isEmpty()) {
             for (GimnasioItem gi : listaItems) {
@@ -383,7 +375,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                         @Override
                         public void onResponse(Call<Integer> call, Response<Integer> response) {
                             if (response.isSuccessful()) {
-                                Log.d("Mostrar", "mirando item: "+gi.getItemid()+" el tipo es:"+response.body());
                                 tipoEquipoItem.put(gi.getItemid(), response.body());
                             } else {
                                 // Maneja errores del servidor, por ejemplo, un error 404 o 500.
@@ -451,12 +442,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
     }
 
     private void cargarMapa() {
-        Log.d("FIN", "idGimnasio: " + gimnasioId);
-        Log.d("FIN", "mapas: " + mapas);
-        Log.d("FIN", "listaItems: " + listaItems);
-        Log.d("FIN", "tipo equipo: " + tipoEquipoItem);
-        Log.d("FIN", "iconos: " + iconos);
-        Log.d("FIN", "ubicaciones: " + ubicaciones);
         cargarCuadrados(mapas.get(piso).getAncho(), mapas.get(piso).getAlto(),()->{
             cargarImagenes(()->{});
         });
@@ -510,13 +495,12 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                         boolean gestureHandled = gestureDetector.onTouchEvent(event);
                         if(tipo==1)
                         {
-                            Log.d("Mostrar", "me dieron click");
                             tipo=0;
                             UbicacionxItem item2 = new UbicacionxItem();
                             item2.setCoordenadaX(column);
                             item2.setCoordenadaY(row);
                             if(nuevo(item2).getCoordenadaX()!=0)
-                            {   Log.d("Mostrar", "entro ahi");
+                            {
                                 ubicarEquipo(cuadrado,nuevo(item2));
                             }else {
                                 UbicacionxItem item = buscarUbicacionxItem(column,row);
@@ -578,7 +562,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                                     if (draggedView.getTag() != null) {
                                         int position = (int) draggedView.getTag();
                                         draggedView.setTag(null);
-                                        Log.d("Mostrar", "posicion es: "+position);
                                         if(position<5)
                                         {
                                             UbicacionxItem ubicacionxItem = new UbicacionxItem();
@@ -654,16 +637,10 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
 
                                 ImageView imageView = (ImageView) view;
                                 imageView.setPadding(2,2,2,2);
-                                Log.d("MOSTRAR", "tipoEquipoItem: "+tipoEquipoItem);
-                                Log.d("MOSTRAR", "uxi: "+uxi.getItemid());
-                                Log.d("MOSTRAR", "tipo: "+tipoEquipoItem.get(uxi.getItemid()));
-
                                 int tipo = tipoEquipoItem.get(uxi.getItemid());
                                 int newDrawableId = getResources().getIdentifier(iconos.get(tipo), "drawable", getPackageName());
                                 Drawable newDrawable = ContextCompat.getDrawable(_31_armar_mapa_admin.this, newDrawableId);
-                                Log.d("MOSTRAR", "drawable: "+iconos.get(tipo));
                                 imageView.setImageDrawable(newDrawable);
-                                Log.d("MOSTRAR", "en cuadro: ");
                                 break;
                             }
                         }
@@ -702,12 +679,8 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
         int yBuscar = nuevaPosicion.get(0).getCoordenadaY();
         UbicacionxItem encontrado = buscarUbicacionxItem(xBuscar,yBuscar);
 
-        Log.d("NUEVA posicion", "elemento movido: " + encontrado);
         encontrado.setCoordenadaY(nuevaPosicion.get(1).getCoordenadaY());
         encontrado.setCoordenadaX(nuevaPosicion.get(1).getCoordenadaX());
-
-        Log.d("Nuevo item ", "elemento inicio: " + nuevaPosicion.get(0));
-        Log.d("Nuevo item ", "elemento fin: " + nuevaPosicion.get(1));
 
         Call<UbicacionxItem> call = ubicacionxItemApiService.updateUbicacionxItem(encontrado);
         call.enqueue(new Callback<UbicacionxItem>() {
@@ -750,7 +723,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                     List<UbicacionxItem> actualizado = ubicaciones.get(nuevoItem.getItemid());
                     if(actualizado==null || actualizado.isEmpty())
                     {
-                        Log.d("Update", "creo nuevo gimnasioItem: "+nuevoItem.getItemid());
                         actualizado = new ArrayList<>();
                         actualizado.add(nuevoItem);
                         ubicaciones.put(nuevoItem.getItemid(),actualizado);
@@ -784,28 +756,22 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
     private void updateGimnasioItem(UbicacionxItem ubicacionxItem,int cambio, _31_armar_mapa_admin.InfoCallback callback)
     {
         GimnasioItem actualizar = new GimnasioItem();
-        Log.d("Update", "listaItems: "+listaItems);
         for(GimnasioItem gimnasioItem:listaItems)
         {
             if(gimnasioItem.getItemid()==ubicacionxItem.getItemid())
             {
                 actualizar = gimnasioItem;
-                Log.d("Update", "encontro cambio: "+actualizar);
                 listaItems.remove(actualizar);
                 break;
             }
         }
 
-        Log.d("Update", "modifico lista: "+listaItems);
         int original = actualizar.getCantidad();
-        Log.d("Update", "cantidad items antes: "+actualizar.getCantidad());
         int nuevo = original+cambio;
         actualizar.setCantidad(nuevo);
-        Log.d("Update", "cantidad items despues: "+actualizar.getCantidad());
 
         if(actualizar.getCantidad()>0)
         { // actualizar
-            Log.d("Update", "actualizo cantidad: "+actualizar.getCantidad());
             listaItems.add(actualizar);
             Call<GimnasioItem> call = gimnasioItemApiService.updateGimnasioItem(actualizar);
             call.enqueue(new Callback<GimnasioItem>() {
@@ -828,9 +794,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
             });
         }
         else { // Eliminar gimnasio item
-            Log.d("Update", "elimino"+ actualizar.getCantidad());
             listaItems.remove(actualizar);
-            Log.d("Eliminar", "idGimnasio: "+gimnasioId+" idItem:"+actualizar.getItemid());
             Call<Void> call = gimnasioItemApiService.deleteGimnasioItem(gimnasioId,actualizar.getItemid());
             call.enqueue(new Callback<Void>() {
                 @Override
@@ -886,9 +850,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
 
     private void eliminarItem(_31_armar_mapa_admin.InfoCallback callback)
     {
-        Log.d("Eliminar", "entro a eliminarItem ");
         UbicacionxItem eliminar = buscarUbicacionxItem(nuevaPosicion.get(0).getCoordenadaX(),nuevaPosicion.get(0).getCoordenadaY());
-        Log.d("Eliminar", "voy a eliminar este item: "+eliminar);
 
         // eliminar ubicacionxItem
          eliminarUbicacionItem(eliminar,()->{
@@ -902,7 +864,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
 
     private void eliminarUbicacionItem(UbicacionxItem eliminar,_31_armar_mapa_admin.InfoCallback callback)
     {
-        Log.d("Eliminar", "eliminarUbicacionItem: "+eliminar);
         Call<Void> call = ubicacionxItemApiService.deleteUbicacionxItem(Long.valueOf(eliminar.getId()));
         call.enqueue(new Callback<Void>() {
             @Override
@@ -913,7 +874,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                     actualizar.remove(eliminar);
                     ubicaciones.put(eliminar.getItemid(),actualizar);
                     nuevaPosicion.remove(0);
-                    Log.d("Eliminar", "todo good eliminado: ");
 
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
@@ -1057,20 +1017,15 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
     }
 
     private UbicacionxItem nuevo(UbicacionxItem ub1) {
-        Log.d("Mostrar", " estoy en nuevo añadidos: "+añadidos);
         Set<UbicacionxItem> ubicaciones = añadidos.keySet();
-        Log.d("Mostrar", " estoy en nuevo ubicaciones: "+ubicaciones);
         UbicacionxItem ubicacionxItem = new UbicacionxItem();
         for (UbicacionxItem ub : ubicaciones) {
             if (ub1.getCoordenadaX() == ub.getCoordenadaX()) {
                 if (ub1.getCoordenadaY() == ub.getCoordenadaY()) {
-                    Log.d("Mostrar", "encontre que es nuevo retorno: "+ub);
                     return ub;
                 }
             }
         }
-        Log.d("Mostrar", " no encontre nada: "+ubicaciones);
-
         return ubicacionxItem;
     }
 
@@ -1097,9 +1052,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
 
         llenarEquipos(()->
         {
-            Log.d("MOSTRAR", "Lista equipos: "+listaEquipos);
-            Log.d("MOSTRAR", "Lista nombres: "+nombreTipos);
-
             MapaEquipoAdapter adapter = new MapaEquipoAdapter(gimnasioId,listaEquipos,nombreTipos,ubicacionxItem,dialog,_31_armar_mapa_admin.this,this::onDefinirButtonClick,cuadrado);
             recycler.setAdapter(adapter);
         });
@@ -1115,9 +1067,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
     @Override
     public void onDefinirButtonClick(boolean isClicked,ImageView cuadrado, UbicacionxItem ubicacionxItem) {
         dialog.dismiss();
-        Log.d("Mostrar", "iconos: "+iconos);
-        Log.d("Mostrar", "iconos: "+añadidos);
-        Log.d("Mostrar", "iconos: "+ubicacionxItem);
 
         int newDrawableId = getResources().getIdentifier(iconos.get(añadidos.get(nuevo(ubicacionxItem))), "drawable", getPackageName());
         cuadrado.setImageResource(newDrawableId);

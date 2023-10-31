@@ -3,15 +3,12 @@ package api;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
-
-
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-
 import java.io.IOException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -44,7 +41,6 @@ public class retro {
 
             HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
 
             // Configura el cliente OkHttpClient para utilizar el contexto SSL personalizado
             return new OkHttpClient.Builder()
@@ -115,8 +111,6 @@ public class retro {
             throw new RuntimeException(e);
         }
     }
-
-
 
 
 }

@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.smartcoach.R;
-
 import java.util.List;
 
 public class _111_EquipoAdapter extends RecyclerView.Adapter<_111_EquipoAdapter.ViewHolder> {
@@ -17,14 +16,12 @@ public class _111_EquipoAdapter extends RecyclerView.Adapter<_111_EquipoAdapter.
     private Context context;
     private boolean isMusculo;
 
-    // Constructor para RecyclerView con diseño item_equipo_usado.xml
     public _111_EquipoAdapter(Context context, List<String> listaDeEquipos) {
         this.context = context;
         this.listaDeEquipos = listaDeEquipos;
         this.isMusculo = false;
     }
 
-    // Constructor para RecyclerView con diseño item_musculo_involucrado.xml
     public _111_EquipoAdapter(Context context, List<String> listaDeEquipos, boolean isMusculo) {
         this.context = context;
         this.listaDeEquipos = listaDeEquipos;

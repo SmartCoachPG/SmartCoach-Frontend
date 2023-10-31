@@ -2,7 +2,6 @@ package com.example.smartcoach.ui;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,10 +16,8 @@ import android.widget.TextView;
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import android.view.View;
 import android.widget.Toast;
-
 import java.sql.Time;
 import java.time.Instant;
 import java.time.LocalTime;
@@ -33,7 +30,6 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 import api.DateSerializer;
 import api.Exercise.RutinaApiService;
 import api.SharedPreferencesUtil;
@@ -69,24 +65,19 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
     EditText textoBarraBusqueda;
     Button btnListo;
     ScrollView scrollView;
-
     List<RestriccionMedica> listaRestricciones= new ArrayList<>();
     UsuarioCliente usuarioCliente;
     UsuarioCliente usuarioCliente2;
     int musculoObjetivo;
-
     ArrayList<Rutina> listaRutinas;
-
     ArrayList<Valor> listaValores;
     private static final int REQUEST_CODE = 123;
-
     UsuarioClienteApiService usuarioClienteApiService;
     RutinaApiService rutinaApiService;
     PerfilMedicoApiService perfilMedicoApiService;
     ValorApiService valorApiService;
     UsuarioClienteRestriccionMedicaApiService usuarioClienteRestriccionMedicaApiService;
     UsuarioApiService usuarioApiService;
-
     ProgresoxEjercicioService progresoxEjercicioService;
 
     @Override
@@ -116,10 +107,8 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
         btnBusqueda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Debug", "btnBusqueda clickeado");
                 Intent intent = new Intent(_59_registrar_usuario_5.this, _59_2_registrar_usuario_5.class);
                 intent.putExtra("textoBusqueda",textoBarraBusqueda.getText().toString());
-                Log.d("Debug", "texto busqueda: "+textoBarraBusqueda.getText().toString());
                 startActivityForResult(intent, REQUEST_CODE);
             }
 
@@ -128,7 +117,6 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
         btnListo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Debug", "btnListo clickeado");
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(_59_registrar_usuario_5.this);
 
                 View dialogView = getLayoutInflater().inflate(R.layout._60_mensaje_advertencia_limitaciones_fisicas, null);
@@ -144,9 +132,9 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
                         crearUsuarioCliente(new Runnable() {
                             @Override
                             public void run() {
-                                final CountDownLatch latch = new CountDownLatch(3); // Inicializar con el número de tareas a esperar
+                                final CountDownLatch latch = new CountDownLatch(3);
 
-                                ExecutorService executor = Executors.newFixedThreadPool(3); // Pool de 3 threads para ejecutar las tareas
+                                ExecutorService executor = Executors.newFixedThreadPool(3);
 
                                 executor.submit(new Runnable() {
                                     @Override
@@ -288,10 +276,7 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
             public void onResponse(Call<UsuarioCliente> call, Response<UsuarioCliente> response) {
                 if (response.isSuccessful()) {
                     UsuarioCliente usuarioResponse = response.body();
-                    Log.d("Usuario creado", "info: " + usuarioResponse.toString());
-                    Log.d("Id usuario", "id: " + usuarioResponse.getId());
                     usuarioCliente2 = usuarioResponse;
-                    Log.d("Usuario asignado", "info: " + usuarioCliente.toString());
                     callback.run();
                 } else {
                     Log.e("Error", "Error en la respuesta: " + response.code());
@@ -337,9 +322,7 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
                     public void onResponse(Call<Rutina> call, Response<Rutina> response) {
                         if (response.isSuccessful()) {
                             Rutina rutinaResponse = response.body();
-                            Log.d("Rutina creada", "info: "+rutinaResponse.toString());
                             String rawResponse = response.raw().body().toString();
-                            Log.d("Raw Response", rawResponse);
                         } else {
                             Log.e("Error", "Error en la respuesta: " + response.code());
                         }
@@ -369,7 +352,6 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
             public void onResponse(Call<PerfilMedico> call, Response<PerfilMedico> response) {
                 if (response.isSuccessful()) {
                     PerfilMedico perfilResponse = response.body();
-                    Log.d("´Perfil creado", "info: "+perfilResponse.toString());
                     crearValores(perfilResponse.getId());
                 } else {
                     Log.e("Error", "Error en la respuesta: " + response.code());
@@ -397,7 +379,6 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
                 public void onResponse(Call<Valor> call, Response<Valor> response) {
                     if (response.isSuccessful()) {
                         Valor valorResponse = response.body();
-                        Log.d("´Valor creado", "info: "+valorResponse.toString());
                     } else {
                         Log.e("Error", "Error en la respuesta: " + response.code());
                     }
@@ -413,13 +394,11 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
 
     private void asignarRestriccionesM(Long idUsuario)
     {
-        Log.d("Funcion asignar", "id usuario: "+idUsuario);
         for(RestriccionMedica restriccionMedica : listaRestricciones)
         {
             UsuarioClienteRestriccionMedica newRestriccion = new UsuarioClienteRestriccionMedica();
             newRestriccion.setRestriccionMedicaid(restriccionMedica.getId());
             newRestriccion.setUsuarioClienteid(idUsuario.intValue());
-            Log.d("Restriccion nueva", "restri: "+newRestriccion.toString());
             Call<UsuarioClienteRestriccionMedica> call = usuarioClienteRestriccionMedicaApiService.createRestriccion(newRestriccion);
 
             call.enqueue(new Callback<UsuarioClienteRestriccionMedica>() {
@@ -427,7 +406,6 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
                 public void onResponse(Call<UsuarioClienteRestriccionMedica> call, Response<UsuarioClienteRestriccionMedica> response) {
                     if (response.isSuccessful()) {
                         UsuarioClienteRestriccionMedica USCResponse = response.body();
-                        Log.d("´Restriccion asignada", "info: "+USCResponse.toString());
                     } else {
                         Log.e("Error", "Error en la respuesta: " + response.code());
                     }
@@ -456,23 +434,15 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if (response.isSuccessful()) {
-                    Log.d("IniciarSesionActivity", "Respuesta recibida: " + response.toString());
-
                     Usuario usuarioResponse = response.body();
-
                     if (usuarioResponse != null) {
-                        Log.d("IniciarSesionActivity", "Respuesta recibida: " + usuarioResponse.toString());
-
                         Integer tipoUsuario = usuarioResponse.getAdmi();
 
                         if (tipoUsuario != null) {
-                            Log.d("IniciarSesionActivity", "Usuario inició sesión: " + usuarioResponse.getId());
                             validarRutina(usuarioResponse.getId().intValue(), new _2_IniciarSesionRegistrarse.ValidarRutinaCallback() {
                                 @Override
                                 public void onResult(int resultado) {
-                                    // Aquí manejas el resultado, por ejemplo, guardar en SharedPreferences
                                     sharedpreferencesutil.saveRutina(_59_registrar_usuario_5.this, String.valueOf(resultado));
-                                    Log.d("INICIAR SESION", "RUTINA: " + resultado);
                                 }
                             });
                             sharedpreferencesutil.saveToken(_59_registrar_usuario_5.this,usuarioResponse.getToken());
@@ -517,7 +487,6 @@ public class _59_registrar_usuario_5 extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null && !response.body().isEmpty()) {
                     resultado = 1;
                 }
-                Log.d("VALIDANDO", "RUTINA: "+resultado);
                 callback.onResult(resultado);
             }
 

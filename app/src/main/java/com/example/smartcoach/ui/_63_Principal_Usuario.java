@@ -16,20 +16,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import api.DateSerializer;
 import api.SharedPreferencesUtil;
-
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartcoach.R;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-
-import java.util.Date;
-
 import api.User.ObjetivoRutinaApiService;
 import api.User.UsuarioClienteApiService;
 import api.retro;
@@ -51,6 +39,7 @@ public class _63_Principal_Usuario extends BaseActivityCliente {
     String token;
     UsuarioClienteApiService usuarioClienteApiService;
     ObjetivoRutinaApiService objetivoRutinaApiService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,14 +121,13 @@ public class _63_Principal_Usuario extends BaseActivityCliente {
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
-        dialog.setContentView(R.layout._84_confirmacion_eliminacion_cuenta); // Usa el nombre de tu archivo XML
+        dialog.setContentView(R.layout._84_confirmacion_eliminacion_cuenta);
         dialog.getWindow().setBackgroundDrawable(null);
 
         Button botonConfirmar = dialog.findViewById(R.id.botonConfirmar);
         botonConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Acciones a realizar cuando se presiona "Confirmar"
                 eliminarCuenta();
             }
         });
@@ -148,7 +136,6 @@ public class _63_Principal_Usuario extends BaseActivityCliente {
         botonCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Acciones a realizar cuando se presiona "Cancelar"
                 dialog.dismiss();
             }
         });
@@ -209,8 +196,6 @@ public class _63_Principal_Usuario extends BaseActivityCliente {
             public void onResponse(Call<UsuarioCliente> call, Response<UsuarioCliente> response) {
                 if (response.isSuccessful()) {
                     UsuarioCliente usuario = response.body();
-                    // Haz algo con el objeto Usuario, por ejemplo:
-                    Log.d("Usuario", "Nombre: " + usuario.getNombre());
 
                     nombreUser.setText(usuario.getNombre());
                     if (usuario.getFotoPerfil() != null && !usuario.getFotoPerfil().isEmpty()) {
@@ -254,12 +239,7 @@ public class _63_Principal_Usuario extends BaseActivityCliente {
             public void onResponse(Call<ObjetivoRutina> call, Response<ObjetivoRutina> response) {
                 if (response.isSuccessful()) {
                     ObjetivoRutina objetivoRutina1 = response.body();
-                    // Haz algo con el objeto Usuario, por ejemplo:
-                    Log.d("Usuario", "Nombre: " + objetivoRutina1.getNombre());
-
                     objetivoRutina.setText(objetivoRutina1.getNombre());
-
-
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());

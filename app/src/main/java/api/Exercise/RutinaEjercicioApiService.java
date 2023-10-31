@@ -1,9 +1,7 @@
 package api.Exercise;
 
 import java.util.List;
-
 import model.Exercise.Ejercicio;
-import model.Exercise.Rutina;
 import model.Exercise.RutinaEjercicio;
 import retrofit2.Call;
 import retrofit2.http.Body;

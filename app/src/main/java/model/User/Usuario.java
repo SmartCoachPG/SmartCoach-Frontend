@@ -2,7 +2,6 @@ package model.User;
 
 
 import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 
 public class Usuario implements Serializable {
@@ -17,8 +16,7 @@ public class Usuario implements Serializable {
     private String token;
 
 
-    public Usuario() {
-    }
+    public Usuario() {}
 
     public Usuario(String nombre, String email, String contrasenna, String fotoPerfil,Integer admi) {
         this.nombre = nombre;

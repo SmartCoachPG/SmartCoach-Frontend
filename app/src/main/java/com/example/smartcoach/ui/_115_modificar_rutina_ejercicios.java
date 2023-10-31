@@ -7,19 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,7 +25,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import api.DateSerializer;
 import api.Exercise.EjercicioProgresoxEjercicioApiService;
 import api.Exercise.ImagenEjercicioApiService;
@@ -47,7 +40,6 @@ import model.Exercise.Ejercicio;
 import model.Exercise.ImagenEjercicio;
 import model.Exercise.Rutina;
 import model.User.ProgresoxEjercicio;
-import model.User.UsuarioCliente;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,18 +55,13 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
     private final Map<ImageButton, Integer> originalImages = new HashMap<>();
     private final Map<ImageButton, Integer> selectedImages = new HashMap<>();
     private int selectedDay = -1;
-
     ImageButton imageLunes, imageMartes, imageMiercoles, imageJueves, imageViernes, imageSabado, imageDomingo;
-
     Long userId;
     String token;
-
     UsuarioClienteApiService usuarioClienteApiService;
     RutinaApiService rutinaApiService;
     RutinaEjercicioApiService rutinaEjercicioApiService;
-
     EjercicioProgresoxEjercicioApiService ejercicioProgresoxEjercicioApiService;
-
     ImagenEjercicioApiService imagenEjercicioApiService;
 
     // dia , Rutina
@@ -134,12 +121,10 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
             @Override
             public void onCompletion() {
                 cajaRutinas.clear();
-                Log.d("FIN", "rutinas: " + rutinas);
                 llenarEjercicios(new LlenarRutinasCallback() {
                     @Override
                     public void onCompletion() {
                         selectCurrentDay();
-                        Log.d("FIN", "ejercicios: " + ejercicios);
                         llenarProgresos(new LlenarRutinasCallback() {
                             @Override
                             public void onCompletion() {
@@ -147,7 +132,6 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                                 btnGuardarCambios.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        Log.d("INICIAR RUTINA", "Me dan click");
                                         filtrarListas();
                                     }
                                 });
@@ -446,7 +430,7 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                         {
                             filtrarOpciones(()->
                             {
-                                adapter = new CajaRutinaAdapterM(cajaRutinas,opciones,_115_modificar_rutina_ejercicios.this,btnGuardarCambios,rut.getId()); // Inicializa el adapter aquí
+                                adapter = new CajaRutinaAdapterM(cajaRutinas,opciones,_115_modificar_rutina_ejercicios.this,btnGuardarCambios,rut.getId());
                                 recyclerView.setLayoutManager(new LinearLayoutManager(_115_modificar_rutina_ejercicios.this));
                                 recyclerView.setAdapter(adapter);
                                 adapter.notifyDataSetChanged();// Notifica al adapter que los datos han cambiado

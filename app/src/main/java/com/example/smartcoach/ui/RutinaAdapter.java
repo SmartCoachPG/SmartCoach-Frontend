@@ -9,23 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
-
 import java.util.List;
-
 import model.Exercise.Ejercicio;
 import model.Exercise.ImagenEjercicio;
 
-
-
 public class RutinaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    // Definiendo tipos de vistas
     public static final int IMAGE_VIEW = 0;
     public static final int LAYOUT_ONE = 1;
     public static final int LAYOUT_TWO = 2;
@@ -79,10 +72,8 @@ public class RutinaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         if(position==1)
         {
-            Log.d("RUTINA", "musculos: "+musculosEjercicio);
             LayoutOneViewHolder layoutOneViewHolder = (LayoutOneViewHolder) holder;
             layoutOneViewHolder.bind(equipoEjercicio,musculosEjercicio);
-
         }
 
         if(position==2)

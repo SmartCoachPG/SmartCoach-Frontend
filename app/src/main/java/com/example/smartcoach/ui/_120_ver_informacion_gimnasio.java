@@ -13,14 +13,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.util.Date;
 import java.util.List;
-
 import api.Admi.GimnasioApiService;
 import api.Admi.UbicacionxItemApiService;
 import api.DateSerializer;
@@ -29,7 +26,6 @@ import api.User.UsuarioClienteApiService;
 import api.retro;
 import model.Admi.Gimnasio;
 import model.Admi.UbicacionxItem;
-import model.User.Usuario;
 import model.User.UsuarioCliente;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -43,13 +39,10 @@ public class _120_ver_informacion_gimnasio extends BaseActivityCliente{
     ImageView rectanguloTitulo_120, setImageGym_120;
     TextView titulo_120, descripcion_120, tituloGym_120, textBarrio, barrioGym_120, textDireccion_120, direccionGym_120;
     Button btnVerMapa_120, btnDesuscribirse_120;
-
     UsuarioCliente usuarioCliente;
     Gimnasio gym;
-
     Long userId;
     String token;
-
 
     GimnasioApiService gimnasioApiService;
     UsuarioClienteApiService usuarioClienteApiService;
@@ -110,16 +103,12 @@ public class _120_ver_informacion_gimnasio extends BaseActivityCliente{
     }
     private void cargarInfo()
     {
-        Log.d("GYM INFO", "cargarInfo: ");
         infoUsuario(new InfoCallback() {
             @Override
             public void onCompletion() {
-                Log.d("GYM INFO", "info usuario check: "+usuarioCliente);
-
                 infoGimnasio(new InfoCallback() {
                     @Override
                     public void onCompletion() {
-                        Log.d("GYM INFO", "info gym check: "+gym);
                         mostrarInfo();
                         btnVerMapa_120.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -220,13 +209,11 @@ public class _120_ver_informacion_gimnasio extends BaseActivityCliente{
     {
         usuarioCliente.setGimnasioid(null);
         Call<UsuarioCliente> call = usuarioClienteApiService.updateUsuarioCliente(userId,usuarioCliente);
-        Log.d("DESUS", "desuscribirse: nuevo usuario "+usuarioCliente);
         call.enqueue(new Callback<UsuarioCliente>() {
             @Override
             public void onResponse(Call <UsuarioCliente> call, Response<UsuarioCliente> response) {
                 if (response.isSuccessful()) {
                     usuarioCliente = response.body();
-                    Log.d("DESUS", "listo: nuevo usuario "+usuarioCliente);
                     Toast.makeText(_120_ver_informacion_gimnasio.this, "Gimnasio Desuscrito", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(_120_ver_informacion_gimnasio.this, _127_ver_gimnasios_para_suscribirse.class);
                     startActivity(intent);

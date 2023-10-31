@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartcoach.R;
 
 public class _1_PantallaInicio extends AppCompatActivity {
 
     Button comenzar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

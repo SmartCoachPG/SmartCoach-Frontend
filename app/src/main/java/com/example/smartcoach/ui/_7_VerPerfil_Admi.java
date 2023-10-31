@@ -13,11 +13,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartcoach.R;
-
 import api.Admi.UsuarioAdministradorApiService;
 import api.SharedPreferencesUtil;
 import api.retro;
@@ -99,8 +95,6 @@ public class _7_VerPerfil_Admi extends BaseActivityAdmi {
             public void onResponse(Call<UsuarioAdministrador> call, Response<UsuarioAdministrador> response) {
                 if (response.isSuccessful()) {
                     UsuarioAdministrador usuario = response.body();
-
-                    Log.d("Usuario", "Nombre: " + usuario.getNombre());
 
                     nombreAdmi.setText(usuario.getNombre());
                     puestoAdmi.setText(usuario.getPuesto());

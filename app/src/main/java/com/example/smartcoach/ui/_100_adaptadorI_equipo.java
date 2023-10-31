@@ -1,16 +1,12 @@
 package com.example.smartcoach.ui;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
-
 import java.util.List;
 
 public class _100_adaptadorI_equipo extends RecyclerView.Adapter<_100_adaptadorI_equipo.InnerViewHolder> {

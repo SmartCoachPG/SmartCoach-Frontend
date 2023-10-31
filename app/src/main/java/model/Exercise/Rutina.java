@@ -15,7 +15,6 @@ public class Rutina implements Serializable {
 
     private int grupoMuscularId;
 
-
     public Rutina(Time horaI, Time horaF, String dia, Time duracion, int cantEjercicios, int usuarioClienteId, int grupoMuscularId) {
         this.id = id;
         this.horaI = horaI;

@@ -3,7 +3,6 @@ package api.Admi;
 import java.util.List;
 
 import model.Admi.Equipo;
-import model.Admi.GimnasioItem;
 import model.Admi.TipoEquipo;
 import retrofit2.Call;
 import retrofit2.http.GET;

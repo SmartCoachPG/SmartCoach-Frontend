@@ -4,39 +4,27 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import api.Admi.EquipoApiService;
-import api.Admi.GimnasioApiService;
 import api.Admi.GimnasioItemApiService;
-import api.Admi.MapaApiService;
-import api.Admi.TipoEquipoApiService;
 import api.Admi.UbicacionxItemApiService;
-import api.Admi.UsuarioAdministradorApiService;
 import api.SharedPreferencesUtil;
 import api.retro;
 import model.Admi.Equipo;
-import model.Admi.Gimnasio;
 import model.Admi.GimnasioItem;
 import model.Admi.UbicacionxItem;
 import okhttp3.OkHttpClient;
@@ -57,7 +45,6 @@ public class MapaEquipoAdapter extends  RecyclerView.Adapter<MapaEquipoAdapter.M
         private GimnasioItemApiService gimnasioItemApiService;
         private OnDefinirButtonClickListener listener;
         private ImageView cuadrado;
-
         private int gimnasioId;
 
         boolean tiene= false;
@@ -102,18 +89,14 @@ public class MapaEquipoAdapter extends  RecyclerView.Adapter<MapaEquipoAdapter.M
             holder.definirB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("MOSTRAR", "mirando el item"+ubicacionxItem.getId());
                     int nuevoId = ubicacionxItem.getItemid();
                     ubicacionxItem.setItemid(nuevoId+10);
 
                     if(ubicacionxItem.getId()!=0)
                     {
-                        Log.d("MOSTRAR", "este item es ya existia "+ubicacionxItem);
-                        Log.d("MOSTRAR", "este item es ya id item "+item.getId());
                         definirEquipo(item.getId().intValue());
                     }
                     else {
-                        Log.d("MOSTRAR", "este item es nuevo "+ubicacionxItem);
                         revisarGimnasioItem(()->
                         {
                             if(tiene)
@@ -175,7 +158,6 @@ public class MapaEquipoAdapter extends  RecyclerView.Adapter<MapaEquipoAdapter.M
                 @Override
                 public void onResponse(Call<UbicacionxItem> call, Response<UbicacionxItem> response) {
                     if (response.isSuccessful()) {
-                        Log.d("MOSTRAR", "cree la ubicacionXiTEM "+response.body().toString());
 
                     } else {
                         // Maneja errores del servidor, por ejemplo, un error 404 o 500.
@@ -196,14 +178,11 @@ public class MapaEquipoAdapter extends  RecyclerView.Adapter<MapaEquipoAdapter.M
 
         private void revisarGimnasioItem(_31_armar_mapa_admin.InfoCallback callback)
         {
-            Log.d("MOSTRAR", "voy a mirar si gimnasioItem tiene el item nuevo ");
-            Log.d("MOSTRAR", "info consulta: gimnasioId: "+gimnasioId+" itemid: "+ubicacionxItem.getItemid());
             Call<GimnasioItem> call = gimnasioItemApiService.getGimnasioItem(gimnasioId,ubicacionxItem.getItemid());
             call.enqueue(new Callback<GimnasioItem>() {
                 @Override
                 public void onResponse(Call<GimnasioItem> call, Response<GimnasioItem> response) {
                     if (response.isSuccessful()) {
-                            Log.d("MOSTRAR", "toca actualizar gimnasioItem");
                             gimnasioItem = response.body();
                             tiene = true;
                     } else {
@@ -216,7 +195,6 @@ public class MapaEquipoAdapter extends  RecyclerView.Adapter<MapaEquipoAdapter.M
                 @Override
                 public void onFailure(Call<GimnasioItem> call, Throwable t) {
                     // Maneja errores de red o de conversión de datos
-                    Log.d("MOSTRAR", "toca crear gimnasioItem");
                     Log.e("Error", "Fallo en la petición: " + t.getMessage());
                     callback.onCompletion();
                 }
@@ -225,21 +203,16 @@ public class MapaEquipoAdapter extends  RecyclerView.Adapter<MapaEquipoAdapter.M
 
         private void crearGimnasioItem(_31_armar_mapa_admin.InfoCallback callback)
         {
-            Log.d("MOSTRAR", "voy a crear gimnasio item");
-
             GimnasioItem nuevo = new GimnasioItem();
             nuevo.setCantidad(1);
             nuevo.setGimnasioid(gimnasioId);
             nuevo.setItemid(ubicacionxItem.getItemid());
-
-            Log.d("MOSTRAR", "nuevo "+nuevo);
 
             Call<GimnasioItem> call = gimnasioItemApiService.addGimnasioItem(nuevo);
             call.enqueue(new Callback<GimnasioItem>() {
                 @Override
                 public void onResponse(Call<GimnasioItem> call, Response<GimnasioItem> response) {
                     if (response.isSuccessful()) {
-                        Log.d("MOSTRAR", "cree nuevo gimnasioItem: "+response.body());
                     } else {
                         // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                         Log.e("Error", "Error en la respuesta: " + response.code());

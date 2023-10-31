@@ -1,7 +1,6 @@
 package model.User;
 
 public class NivelActividadFisica {
-
     private Integer id;
     private String titulo;
     private String descripcion;
@@ -13,7 +12,6 @@ public class NivelActividadFisica {
     }
 
     public NivelActividadFisica() {}
-
 
     public Integer getId() {
         return id;

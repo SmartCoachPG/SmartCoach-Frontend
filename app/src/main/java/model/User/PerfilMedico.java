@@ -1,7 +1,6 @@
 package model.User;
 
 import java.util.Date;
-import java.util.Set;
 
 public class PerfilMedico {
 
@@ -16,7 +15,6 @@ public class PerfilMedico {
     }
 
     public PerfilMedico() {}
-
 
     public int getId() {
         return id;

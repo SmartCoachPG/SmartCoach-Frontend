@@ -2,7 +2,6 @@ package model.Exercise;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import model.User.ProgresoxEjercicio;
 
 public class CajaRutina implements Parcelable {
@@ -17,10 +16,7 @@ public class CajaRutina implements Parcelable {
         this.imagenEjercicio = imagenEjercicio;
     }
 
-    public CajaRutina()
-    {
-
-    }
+    public CajaRutina() {}
 
     public Ejercicio getEjercicio() {
         return ejercicio;

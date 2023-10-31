@@ -5,8 +5,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Button;
-
 import com.example.smartcoach.R;
 
 public class _126_lista_gimnasios_vacia extends BaseActivityCliente{

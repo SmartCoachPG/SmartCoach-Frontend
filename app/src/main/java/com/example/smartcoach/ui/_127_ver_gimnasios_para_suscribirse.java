@@ -5,42 +5,25 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-        import android.widget.EditText;
-        import android.widget.ImageButton;
-        import android.widget.ScrollView;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import api.Admi.EquipoApiService;
 import api.Admi.GimnasioApiService;
-import api.Admi.GimnasioItemApiService;
-import api.Admi.UsuarioAdministradorApiService;
 import api.DateSerializer;
 import api.SharedPreferencesUtil;
-import api.TimeDeserializer;
-import api.TimeSerializer;
 import api.User.UsuarioClienteApiService;
 import api.retro;
-import model.Admi.Equipo;
 import model.Admi.Gimnasio;
-import model.Admi.GimnasioItem;
-import model.Admi.UsuarioAdministrador;
 import model.User.UsuarioCliente;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -155,7 +138,6 @@ public class _127_ver_gimnasios_para_suscribirse extends BaseActivityCliente imp
 
             @Override
             public void afterTextChanged(Editable editable) {
-                // Filtra tu lista aquí
                 filter(editable.toString());
             }
         });
@@ -184,8 +166,6 @@ public class _127_ver_gimnasios_para_suscribirse extends BaseActivityCliente imp
 
     public void onSuscribirClick(int gimnasioId)
     {
-        Log.d("SUSCRIBIR", "Me dieron click: ");
-
         suscribirGimnasio(new InfoCallback() {
         @Override
         public void onCompletion () {
@@ -205,7 +185,6 @@ public class _127_ver_gimnasios_para_suscribirse extends BaseActivityCliente imp
 
     private void suscribirGimnasio(_127_ver_gimnasios_para_suscribirse.InfoCallback callback)
     {
-        Log.d("SUSCRIBIR", "entreo a suscribir1: ");
         Call <UsuarioCliente> call = usuarioClienteApiService.getUsuarioById(userId);
         call.enqueue(new Callback <UsuarioCliente>() {
             @Override
@@ -213,7 +192,6 @@ public class _127_ver_gimnasios_para_suscribirse extends BaseActivityCliente imp
                 if (response.isSuccessful()) {
                     temp = response.body();
                     temp.setGimnasioid(SharedPreferencesUtil.getGimnasio(_127_ver_gimnasios_para_suscribirse.this));
-                    Log.d("SUSCRIBIR", "entreo a suscribir1, CLIENTE: "+temp);
                     SharedPreferencesUtil.deleteGimnasio(_127_ver_gimnasios_para_suscribirse.this);
                     callback.onCompletion();
                 }
@@ -228,15 +206,11 @@ public class _127_ver_gimnasios_para_suscribirse extends BaseActivityCliente imp
 
     private void suscribirGimnasio2(_127_ver_gimnasios_para_suscribirse.InfoCallback callback)
     {
-        Log.d("SUSCRIBIR", "entreo a suscribir2: ");
         Call <UsuarioCliente> call = usuarioClienteApiService.updateUsuarioCliente(Long.valueOf(userId),temp);
-        Log.d("SUSCRIBIR", "entreo a suscribir2: cliente "+temp);
-
         call.enqueue(new Callback <UsuarioCliente>() {
             @Override
             public void onResponse(Call <UsuarioCliente> call, Response <UsuarioCliente> response) {
                 if (response.isSuccessful()) {
-                    Log.d("SUSCRIBIR", "entreo a update: ");
                     callback.onCompletion();
                 }
             }

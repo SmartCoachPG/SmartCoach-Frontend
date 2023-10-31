@@ -12,13 +12,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartcoach.R;
-
 import java.text.SimpleDateFormat;
-
 import api.SharedPreferencesUtil;
 import api.User.ObjetivoRutinaApiService;
 import api.User.UsuarioClienteApiService;
@@ -32,17 +27,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
 public class _64_VerPerfil_Usuario extends BaseActivityCliente {
 
     ImageButton flechaRegresar,imagePP,botonModificar;
     TextView nombre_user,objetivoUser,textoIngresoNombre_user,textoIngresoEmail_user,textoIngresoGenero_user,textoFechaNacimiento_user,textoIngresoObjetivo_user;
     Long userId;
     String token;
-
     UsuarioClienteApiService usuarioClienteApiService;
     ObjetivoRutinaApiService objetivoRutinaApiService;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -65,8 +57,6 @@ public class _64_VerPerfil_Usuario extends BaseActivityCliente {
         textoFechaNacimiento_user = findViewById(R.id.textoFechaNacimiento_user_64);
         textoIngresoObjetivo_user = findViewById(R.id.textoIngresoObjetivo_user_64);
         cargarInfo();
-
-
 
         flechaRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,9 +98,6 @@ public class _64_VerPerfil_Usuario extends BaseActivityCliente {
             public void onResponse(Call<UsuarioCliente> call, Response<UsuarioCliente> response) {
                 if (response.isSuccessful()) {
                     UsuarioCliente usuario = response.body();
-                    // Haz algo con el objeto Usuario, por ejemplo:
-                    Log.d("Usuario", "Nombre: " + usuario.getNombre());
-
                     nombre_user.setText(usuario.getNombre());
                     textoIngresoNombre_user.setText(usuario.getNombre());
                     textoIngresoEmail_user.setText(usuario.getEmail());
@@ -169,9 +156,6 @@ public class _64_VerPerfil_Usuario extends BaseActivityCliente {
             public void onResponse(Call<ObjetivoRutina> call, Response<ObjetivoRutina> response) {
                 if (response.isSuccessful()) {
                     ObjetivoRutina objetivoRutina1 = response.body();
-                    // Haz algo con el objeto Usuario, por ejemplo:
-                    Log.d("Usuario", "Nombre: " + objetivoRutina1.getNombre());
-
                     objetivoUser.setText(objetivoRutina1.getNombre());
                     textoIngresoObjetivo_user.setText(objetivoRutina1.getNombre());
 

@@ -1,28 +1,21 @@
 package com.example.smartcoach.ui;
 
 import android.content.Intent;
-import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartcoach.R;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import api.Admi.EquipoApiService;
 import api.Admi.GimnasioApiService;
 import api.Admi.GimnasioItemApiService;
-import api.Admi.ItemApiService;
 import api.Admi.MapaApiService;
 import api.Admi.TipoEquipoApiService;
 import api.Admi.UbicacionxItemApiService;
@@ -30,12 +23,9 @@ import api.Admi.UsuarioAdministradorApiService;
 import api.SharedPreferencesUtil;
 import api.retro;
 import model.Admi.GimnasioItem;
-import model.Admi.Item;
 import model.Admi.Mapa;
-import model.Admi.TipoEquipo;
 import model.Admi.UbicacionxItem;
 import model.Admi.UsuarioAdministrador;
-import model.User.UsuarioCliente;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -183,7 +173,6 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
                     UsuarioAdministrador usuario = response.body();
                     if(usuario.getGimnasioId()!=null)
                     {
-                        Log.d("Usuario", "Nombre: " + usuario.getNombre());
                         gimnasioId = usuario.getGimnasioId();
                     }
                     callback.onCompletion();
@@ -340,12 +329,6 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
 
     private void cargarMapa()
     {
-        Log.d("FIN", "idGimnasio: "+gimnasioId);
-        Log.d("FIN", "mapas: "+mapas);
-        Log.d("FIN", "listaItems: "+listaItems);
-        Log.d("FIN", "tipo equipo: "+tipoEquipoItem);
-        Log.d("FIN", "iconos: "+iconos);
-        Log.d("FIN", "ubicaciones: "+ubicaciones);
         cargarCuadrados(mapas.get(piso).getAncho(),mapas.get(piso).getAlto()+2);
         cargarImagenes();
     }
@@ -380,18 +363,15 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
 
     private void cargarImagenes()
     {
-        Log.d("IMAGENESSS", "lista Items: "+listaItems);
         for(GimnasioItem gi : listaItems)
         {
             List<UbicacionxItem> ubi = ubicaciones.get(gi.getItemid());
             if(!ubi.isEmpty()&&ubi!=null)
             {
-                Log.d("IMAGENESSS", "listaUbi: "+ubi);
                 for(UbicacionxItem uxi : ubi)
                 {
                     if(uxi.getMapaid()==mapas.get(piso).getId())
                     {
-                        Log.d("IMAGENES", "elemento : "+uxi);
                         ImageView imageView = new ImageView(this);
                         GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(uxi.getCoordenadaY()+1), GridLayout.spec(uxi.getCoordenadaX()));  // 0,0 es para la primera fila, primera columna
                         layoutParams.width =  (int) (30 * getResources().getDisplayMetrics().density + 0.5f);

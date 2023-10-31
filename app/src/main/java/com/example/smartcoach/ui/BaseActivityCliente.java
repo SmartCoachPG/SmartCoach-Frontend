@@ -4,19 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartcoach.R;
-
-import api.Admi.EquipoApiService;
-import api.Admi.GimnasioItemApiService;
-import api.Admi.UsuarioAdministradorApiService;
 import api.SharedPreferencesUtil;
 import api.User.UsuarioClienteApiService;
 import api.retro;
-import model.Admi.UsuarioAdministrador;
 import model.User.UsuarioCliente;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -74,7 +66,6 @@ public abstract class BaseActivityCliente extends AppCompatActivity {
 
         btnRutinaCliente.setOnClickListener(v -> {
             String rutina = SharedPreferencesUtil.getRutina(BaseActivityCliente.this);
-            Log.d("RUTINAAAA", "tiene valor: " + rutina);
             if (rutina.equals("0")) {
                 startActivity(new Intent(this, _95_crear_rutina_usuario.class));
             } else {
@@ -86,7 +77,6 @@ public abstract class BaseActivityCliente extends AppCompatActivity {
             idGimnasio(new InfoCallback() {
                 @Override
                 public void onCompletion() {
-                    Log.d("id gimnasio", "tiene valor: " + gimnasioId);
                     abrirGimnasio();
                 }
             });

@@ -1,8 +1,6 @@
 package api.Exercise;
 
 import java.util.List;
-
-import model.Exercise.GrupoMuscular;
 import model.Exercise.ImagenEjercicio;
 import retrofit2.Call;
 import retrofit2.http.GET;

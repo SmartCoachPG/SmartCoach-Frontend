@@ -5,12 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
-
 import java.util.List;
 
 public class _100_adaptadorI_musculos extends RecyclerView.Adapter<_100_adaptadorI_musculos.InnerViewHolder> {
@@ -30,7 +27,6 @@ public class _100_adaptadorI_musculos extends RecyclerView.Adapter<_100_adaptado
 
     @Override
     public void onBindViewHolder(@NonNull InnerViewHolder holder, int position) {
-        Log.d("RUTINA", "en adaptador I: "+musculosEjercicio);
         holder.textView.setText(musculosEjercicio.get(position));
     }
 

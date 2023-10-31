@@ -1,19 +1,14 @@
 package com.example.smartcoach.ui;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import model.User.RestriccionMedica;
 
 public class _25_AdapterEquipo extends RecyclerView.Adapter<_25_AdapterEquipo.ViewHolder> {
@@ -21,7 +16,6 @@ public class _25_AdapterEquipo extends RecyclerView.Adapter<_25_AdapterEquipo.Vi
     private List<RestriccionMedica> mData;
     private List<RestriccionMedica> seleccionados = new ArrayList<>();
     private List<RestriccionMedica> seleccionTemporal = new ArrayList<>();
-
     public _25_AdapterEquipo(List<RestriccionMedica> data) {
         mData = data;
     }
@@ -41,7 +35,7 @@ public class _25_AdapterEquipo extends RecyclerView.Adapter<_25_AdapterEquipo.Vi
         if (seleccionTemporal.contains(item)) {
             holder.itemView.setBackgroundResource(R.drawable.rounded_grey_background);
         } else {
-            holder.itemView.setBackgroundResource(R.drawable.rounded_orange_background); // Fondo predeterminado
+            holder.itemView.setBackgroundResource(R.drawable.rounded_orange_background);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

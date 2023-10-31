@@ -6,14 +6,14 @@ public class GrupoMuscular {
     private String nombre;
     private Integer ubicacion;
 
-    // Constructor
     public GrupoMuscular(Long id, String nombre, Integer ubicacion) {
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
     }
 
-    // Getters y Setters
+    public GrupoMuscular(){}
+
     public Long getId() {
         return id;
     }

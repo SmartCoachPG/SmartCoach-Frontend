@@ -3,19 +3,14 @@ package com.example.smartcoach.ui;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
-
 import java.util.List;
-
 import model.Exercise.CajaRutina;
 
 public class CajaRutinaAdapter extends RecyclerView.Adapter<CajaRutinaAdapter.CajaRutinaViewHolder> {

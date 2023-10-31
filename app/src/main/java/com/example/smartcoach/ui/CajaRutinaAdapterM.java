@@ -15,34 +15,25 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import api.DateSerializer;
 import api.Exercise.EjercicioProgresoxEjercicioApiService;
-import api.Exercise.ImagenEjercicioApiService;
-import api.Exercise.RutinaApiService;
 import api.Exercise.RutinaEjercicioApiService;
 import api.SharedPreferencesUtil;
 import api.TimeDeserializer;
 import api.TimeSerializer;
 import api.User.ProgresoxEjercicioService;
-import api.User.UsuarioClienteApiService;
 import api.retro;
 import model.Exercise.CajaRutina;
-import model.Exercise.EjercicioProgresoxEjercicio;
-import model.Exercise.Rutina;
 import model.Exercise.RutinaEjercicio;
 import model.User.ProgresoxEjercicio;
 import okhttp3.OkHttpClient;
@@ -59,15 +50,12 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
     private List<CajaRutina> opciones;
     private Button btnGuardar;
     private Context context;
-
     int idRutina;
     private List<Integer> anadidos = new ArrayList<>();
     private List<Integer> eliminados = new ArrayList<>();
     int contador=0;
-
     Long userId;
     String token;
-
     RutinaEjercicioApiService rutinaEjercicioApiService;
     ProgresoxEjercicioService progresoxEjercicioService;
     EjercicioProgresoxEjercicioApiService ejercicioProgresoxEjercicioApiService;
@@ -117,7 +105,6 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
         botonConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Acciones a realizar cuando se presiona "Confirmar"
                 dialog.dismiss();
                 if(contador+1<opciones.size())
                 {
@@ -178,9 +165,6 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
     }
 
     private void handleElimination(CajaRutina cajaRutina){
-        Log.d("Eliminando", "quiere eliminar ejercicio: "+ cajaRutina.getEjercicio().getId());
-        Log.d("Elimando", "ejercicio: "+cajaRutinas);
-        Log.d("Elimando", "opciones: "+opciones);
         eliminados.add(cajaRutina.getEjercicio().getId().intValue());
         anadidos.add(opciones.get(contador).getEjercicio().getId().intValue());
     }
@@ -217,7 +201,6 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    Log.d("Eliminar","se borro el ejercicio "+idEjercicio);
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());
@@ -259,7 +242,6 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
             @Override
             public void onResponse(Call<RutinaEjercicio> call, Response<RutinaEjercicio> response) {
                 if (response.isSuccessful()) {
-                    Log.d("Eliminar","se añadio el ejercicio: "+idEjercicio);
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());
@@ -282,7 +264,6 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
             @Override
             public void onResponse(Call<ProgresoxEjercicio> call, Response<ProgresoxEjercicio> response) {
                 if (response.isSuccessful()) {
-                    Log.d("Eliminar","se añadio el progreso para el  "+idEjercicio);
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());
@@ -332,9 +313,6 @@ public class CajaRutinaAdapterM extends RecyclerView.Adapter<CajaRutinaAdapterM.
             btnGuardar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("Eliminar", "quiere guardar cambios");
-                    Log.d("Eliminar", "eliminados "+eliminados);
-                    Log.d("Eliminar", "añadidos"+ anadidos);
                     iniciarPeticiones();
                     // filtrar listas
                     filtrarListas();

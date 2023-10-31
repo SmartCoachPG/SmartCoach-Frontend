@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,19 +14,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.smartcoach.R;
-
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
-
 import model.User.UsuarioCliente;
 
 public class _40_Registrar_Usuario_2 extends AppCompatActivity {
@@ -36,7 +29,6 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
     Spinner spinnerGenero;
     Button btnSiguiente;
     Calendar calendar;
-
     UsuarioCliente usuarioCliente = new UsuarioCliente();
     private AlertDialog alertDialog;
     @Override
@@ -108,7 +100,6 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
         btnSeguir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Cerrar el AlertDialog
                 alertDialog.dismiss();
             }
         });
@@ -218,7 +209,7 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
         Calendar minDateCalendar = new GregorianCalendar(1905, Calendar.JANUARY, 1);
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                R.style.DatePickerDialogTheme, // Usa el nuevo tema personalizado
+                R.style.DatePickerDialogTheme,
                 new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {

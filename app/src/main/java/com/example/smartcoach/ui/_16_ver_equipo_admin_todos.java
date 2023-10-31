@@ -1,34 +1,24 @@
 package com.example.smartcoach.ui;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.smartcoach.R;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import api.Admi.EquipoApiService;
 import api.Admi.GimnasioApiService;
 import api.Admi.GimnasioItemApiService;
@@ -39,10 +29,6 @@ import model.Admi.Equipo;
 import model.Admi.Gimnasio;
 import model.Admi.GimnasioItem;
 import model.Admi.UsuarioAdministrador;
-import model.Exercise.CajaRutina;
-import model.Exercise.Ejercicio;
-import model.Exercise.Rutina;
-import model.User.ProgresoxEjercicio;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,17 +45,13 @@ public class _16_ver_equipo_admin_todos extends BaseActivityAdmi {
     ImageView rectanguloFondoEquipo, imageEquipo;
     RecyclerView recyclerView;
     View otrosMenu;
-
     Long userId;
     String token;
-
     UsuarioAdministradorApiService usuarioAdministradorApiService;
     EquipoApiService equipoApiService;
     GimnasioItemApiService gimnasioItemApiService;
     GimnasioApiService gimnasioApiService;
-
     RecyclerView recyclerView_16;
-
     List<Equipo> listaEquipo = new ArrayList<>();
     List<GimnasioItem> listaEquipoGym = new ArrayList<>();
     UsuarioAdministrador usuarioAdministrador = new UsuarioAdministrador();
@@ -148,7 +130,6 @@ public class _16_ver_equipo_admin_todos extends BaseActivityAdmi {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                // Filtra tu lista aquí
                 filter(editable.toString());
             }
         });
