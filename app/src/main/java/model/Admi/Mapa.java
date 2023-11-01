@@ -1,7 +1,6 @@
 package model.Admi;
 
 public class Mapa {
-
     private Long id;
     private Integer nivel;
     private Integer ancho;

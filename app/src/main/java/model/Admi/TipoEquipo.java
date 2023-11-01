@@ -1,7 +1,6 @@
 package model.Admi;
 
 public class TipoEquipo {
-
     private Long id;
     private String nombre;
 

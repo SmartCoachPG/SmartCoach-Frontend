@@ -5,7 +5,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Ejercicio implements Parcelable {
-
     private Long id;
     private String nombre;
     private String instruccionEjecucion;

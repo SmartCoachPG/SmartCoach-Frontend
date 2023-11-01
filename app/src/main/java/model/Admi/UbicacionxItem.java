@@ -2,7 +2,6 @@ package model.Admi;
 
 
 public class UbicacionxItem {
-
     private long id;
     private int mapaid;
     private int coordenadaX;
