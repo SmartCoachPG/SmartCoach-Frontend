@@ -211,15 +211,17 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 selectedDay = Calendar.MONDAY;
                 restoreOriginalImages();
                 updateSelectedImage(imageLunes);
-                Time time = rutinas.get("Lunes").getDuracion();
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(time);
-                int hours = calendar.get(Calendar.HOUR_OF_DAY);
-                if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
-                else setTextDuracionRutina.setText("0");
+                if(rutinas.get("Lunes")!=null)
+                {
+                    Time time = rutinas.get("Lunes").getDuracion();
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(time);
+                    int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                    if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
+                    else setTextDuracionRutina.setText("0");
+                }
                 dia="Lunes";
                 mostrar();
-
             }
         });
         imageMartes.setOnClickListener(new View.OnClickListener() {
@@ -228,12 +230,15 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 selectedDay = Calendar.TUESDAY;
                 restoreOriginalImages();
                 updateSelectedImage(imageMartes);
-                Time time = rutinas.get("Martes").getDuracion();
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(time);
-                int hours = calendar.get(Calendar.HOUR_OF_DAY);
-                if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
-                else setTextDuracionRutina.setText("0");
+                if(rutinas.get("Martes")!=null)
+                {
+                    Time time = rutinas.get("Martes").getDuracion();
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(time);
+                    int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                    if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
+                    else setTextDuracionRutina.setText("0");
+                }
                 dia="Martes";
                 mostrar();
             }
@@ -244,16 +249,18 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 selectedDay = Calendar.WEDNESDAY;
                 restoreOriginalImages();
                 updateSelectedImage(imageMiercoles);
-                Time time = rutinas.get("Miércoles").getDuracion();
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(time);
-                int hours = calendar.get(Calendar.HOUR_OF_DAY);
-                if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
-                else setTextDuracionRutina.setText("0");
+                if(rutinas.get("Miércoles")!=null)
+                {
+                    Time time = rutinas.get("Miércoles").getDuracion();
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(time);
+                    int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                    if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
+                    else setTextDuracionRutina.setText("0");
+
+                }
                 dia="Miércoles";
                 mostrar();
-
-
             }
         });
         imageJueves.setOnClickListener(new View.OnClickListener() {
@@ -262,15 +269,17 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 selectedDay = Calendar.THURSDAY;
                 restoreOriginalImages();
                 updateSelectedImage(imageJueves);
-                Time time = rutinas.get("Jueves").getDuracion();
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(time);
-                int hours = calendar.get(Calendar.HOUR_OF_DAY);
-                if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
-                else setTextDuracionRutina.setText("0");
+                if(rutinas.get("Jueves")!=null)
+                {
+                    Time time = rutinas.get("Jueves").getDuracion();
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(time);
+                    int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                    if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
+                    else setTextDuracionRutina.setText("0");
+                }
                 dia="Jueves";
                 mostrar();
-
             }
         });
         imageViernes.setOnClickListener(new View.OnClickListener() {
@@ -279,15 +288,17 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 selectedDay = Calendar.FRIDAY;
                 restoreOriginalImages();
                 updateSelectedImage(imageViernes);
-                Time time = rutinas.get("Viernes").getDuracion();
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(time);
-                int hours = calendar.get(Calendar.HOUR_OF_DAY);
-                if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
-                else setTextDuracionRutina.setText("0");
+                if(rutinas.get("Viernes")!=null)
+                {
+                    Time time = rutinas.get("Viernes").getDuracion();
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(time);
+                    int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                    if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
+                    else setTextDuracionRutina.setText("0");
+                }
                 dia="Viernes";
                 mostrar();
-
             }
         });
         imageSabado.setOnClickListener(new View.OnClickListener() {
@@ -296,15 +307,17 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 selectedDay = Calendar.SATURDAY;
                 restoreOriginalImages();
                 updateSelectedImage(imageSabado);
-                Time time = rutinas.get("Sábado").getDuracion();
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(time);
-                int hours = calendar.get(Calendar.HOUR_OF_DAY);
-                if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
-                else setTextDuracionRutina.setText("0");
+                if(rutinas.get("Sábado")!=null)
+                {
+                    Time time = rutinas.get("Sábado").getDuracion();
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(time);
+                    int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                    if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
+                    else setTextDuracionRutina.setText("0");
+                }
                 dia="Sábado";
                 mostrar();
-
             }
         });
         imageDomingo.setOnClickListener(new View.OnClickListener() {
@@ -313,12 +326,15 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 restoreOriginalImages();
                 updateSelectedImage(imageDomingo);
                 selectedDay = Calendar.SUNDAY;
-                Time time = rutinas.get("Domingo").getDuracion();
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(time);
-                int hours = calendar.get(Calendar.HOUR_OF_DAY);
-                if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
-                else setTextDuracionRutina.setText("0");
+                if(rutinas.get("Domingo")!=null)
+                {
+                    Time time = rutinas.get("Domingo").getDuracion();
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(time);
+                    int hours = calendar.get(Calendar.HOUR_OF_DAY);
+                    if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
+                    else setTextDuracionRutina.setText("0");
+                }
                 dia="Domingo";
                 mostrar();
             }
@@ -482,17 +498,14 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
     private void mostrar() {
         RecyclerView recyclerView = findViewById(R.id.recyclerViewEjercicios_98);
         LinearLayout emptyView = findViewById(R.id.empty_view_98);
-        Rutina rut = rutinas.get(dia);
-        List<Ejercicio> ej = ejercicios.get(rut.getId());
-        cajaRutinas.clear();
-        adapter = new CajaRutinaAdapter(cajaRutinas);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
-
-        if (ej.isEmpty()) {
-            recyclerView.setVisibility(View.GONE);
-            emptyView.setVisibility(View.VISIBLE);
-        } else {
+        if(rutinas.get(dia)!=null)
+        {
+            Rutina rut = rutinas.get(dia);
+            List<Ejercicio> ej = ejercicios.get(rut.getId());
+            cajaRutinas.clear();
+            adapter = new CajaRutinaAdapter(cajaRutinas);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            recyclerView.setAdapter(adapter);
             recyclerView.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
 
@@ -511,6 +524,12 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                 });
             }
         }
+        else {
+            recyclerView.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        }
+
+
     }
 
     private void getImagen(Long idEjercicio,LlenarRutinasCallback callback)

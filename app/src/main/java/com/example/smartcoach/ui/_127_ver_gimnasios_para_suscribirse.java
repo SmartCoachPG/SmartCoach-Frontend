@@ -155,7 +155,6 @@ public class _127_ver_gimnasios_para_suscribirse extends BaseActivityCliente imp
                 }
             }
         }
-
         adapter.updateList(filteredList);
     }
 
@@ -214,7 +213,6 @@ public class _127_ver_gimnasios_para_suscribirse extends BaseActivityCliente imp
                     callback.onCompletion();
                 }
             }
-
             @Override
             public void onFailure(Call <UsuarioCliente> call, Throwable t) {
                 Toast.makeText(_127_ver_gimnasios_para_suscribirse.this, "Error de conexión", Toast.LENGTH_SHORT).show();

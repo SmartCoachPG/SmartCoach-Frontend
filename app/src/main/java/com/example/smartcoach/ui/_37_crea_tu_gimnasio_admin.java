@@ -168,8 +168,8 @@ public class _37_crea_tu_gimnasio_admin extends BaseActivityAdmi{
             @Override
             public void onResponse(Call<Gimnasio> call, Response<Gimnasio> response) {
                 if (response.isSuccessful()) {
+                    Log.d("Crear","gimnasio nuevo"+gym);
                     gym = response.body();
-
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());
@@ -190,6 +190,7 @@ public class _37_crea_tu_gimnasio_admin extends BaseActivityAdmi{
         Mapa mapa = new Mapa();
         mapa.setAlto(Integer.parseInt(setTextAltoGimnasio_37.getText().toString()));
         mapa.setAncho(Integer.parseInt(setTextAnchoGimnasio_37.getText().toString()));
+        Log.d("Crear mapa", "el gym: "+gym);
         mapa.setGimnasioId(gym.getId().intValue());
         mapa.setNivel(1);
         mapa.setVersion(1);

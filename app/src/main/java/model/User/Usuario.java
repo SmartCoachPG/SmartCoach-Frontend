@@ -13,6 +13,7 @@ public class Usuario implements Serializable {
     private String fotoPerfil;
     @SerializedName("admi")
     private Integer admi;
+
     private String token;
 
 

@@ -214,7 +214,7 @@ public class _36_modificar_informacion_gimnasio extends BaseActivityAdmi {
                 if (response.isSuccessful()) {
                     List<Mapa> result = response.body();
                     if(!result.isEmpty())
-                    mapa = result.get(0);
+                     mapa = result.get(0);
                 } else {
                     // Maneja errores del servidor, por ejemplo, un error 404 o 500.
                     Log.e("Error", "Error en la respuesta: " + response.code());
