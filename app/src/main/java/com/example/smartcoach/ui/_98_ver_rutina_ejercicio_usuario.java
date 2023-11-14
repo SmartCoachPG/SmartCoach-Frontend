@@ -526,6 +526,7 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
         else {
             recyclerView.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
+            setTextDuracionRutina.setText("0");
         }
 
 
