@@ -82,7 +82,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
     private int completedCalls = 0;
     private int TOTAL_CALLS = 0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
