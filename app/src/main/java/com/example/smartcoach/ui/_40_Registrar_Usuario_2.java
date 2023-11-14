@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,11 +18,33 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.smartcoach.R;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+
+import api.DateSerializer;
+import api.Exercise.EjercicioProgresoxEjercicioApiService;
+import api.Exercise.ImagenEjercicioApiService;
+import api.Exercise.RutinaApiService;
+import api.Exercise.RutinaEjercicioApiService;
+import api.TimeDeserializer;
+import api.TimeSerializer;
+import api.User.UsuarioApiService;
+import api.User.UsuarioClienteApiService;
+import api.retro;
 import model.User.UsuarioCliente;
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class _40_Registrar_Usuario_2 extends AppCompatActivity {
 
@@ -31,11 +54,14 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
     Calendar calendar;
     UsuarioCliente usuarioCliente = new UsuarioCliente();
     private AlertDialog alertDialog;
+    Boolean existe;
+    UsuarioApiService usuarioApiService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout._40_registrar_usuario_2);
+        iniciarPeticiones();
 
         nombre = findViewById(R.id.nombre_40);
         email = findViewById(R.id.email_40);
@@ -77,17 +103,25 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validarCampos() && validarContraseñas()) {
+                String revisarEmail = email.getText().toString();
+                validarEmail(revisarEmail,new _40_Registrar_Usuario_2.InfoCallback()
+                {
+                    @Override
+                    public void onCompletion() {
+                        if (validarCampos() && validarContraseñas()) {
 
-                    String generoSeleccionado = spinnerGenero.getSelectedItem().toString();
-                    String fechaNacimiento = editTextFechaNacimiento.getText().toString();
-                    crearUsuario();
-                    Intent intent = new Intent(_40_Registrar_Usuario_2.this, _42_Registrar_Usuario_3.class);
-                    intent.putExtra("usuarioCliente", usuarioCliente);
-                    startActivity(intent);
-                } else {
-                    mostrarErrorAlertDialog();
-                }
+                            String generoSeleccionado = spinnerGenero.getSelectedItem().toString();
+                            String fechaNacimiento = editTextFechaNacimiento.getText().toString();
+                            crearUsuario();
+                            Intent intent = new Intent(_40_Registrar_Usuario_2.this, _42_Registrar_Usuario_3.class);
+                            intent.putExtra("usuarioCliente", usuarioCliente);
+                            startActivity(intent);
+                        } else {
+                            mostrarErrorAlertDialog();
+                        }
+                    }
+                });
+
             }
         });
     }
@@ -173,6 +207,11 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
             email.setError("Correo electrónico invalido");
             retorno = false;
         }
+        if(existe)
+        {
+            email.setError("Correo invalido, ya esta en uso");
+            retorno = false;
+        }
         if (entradaContraseña.isEmpty()) {
             contraseña.setError("Este campo no puede quedar vacío");
             retorno = false;
@@ -185,7 +224,7 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
             retorno = false;
         }
         // Validar el género seleccionado en el Spinner
-        if (generoSeleccionado.equals("Seleccione")) {
+        if (generoSeleccionado.equals("Genero")) {
             ((TextView) spinnerGenero.getSelectedView()).setError("Por favor, seleccione un género");
             return false;
         }
@@ -239,7 +278,6 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
         datePickerDialog.show();
     }
 
-
     private void crearUsuario()
     {
         usuarioCliente.setNombre(nombre.getText().toString());
@@ -254,6 +292,54 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
             usuarioCliente.setGenero("M");
         }
 
+    }
+
+    interface InfoCallback {
+        void onCompletion();
+    }
+
+    private void iniciarPeticiones() {
+
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Date.class, new DateSerializer())
+                .registerTypeAdapter(Time.class, new TimeSerializer())
+                .registerTypeAdapter(Time.class, new TimeDeserializer())
+                .create();
+
+        OkHttpClient okHttpClient = retro.getUnsafeOkHttpClient()
+                .newBuilder()
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://10.0.2.2:8043/api/")
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        usuarioApiService = retrofit.create(UsuarioApiService.class);
+    }
+
+    private void validarEmail(String email,_40_Registrar_Usuario_2.InfoCallback callback)
+    {
+        Call<Boolean> call = usuarioApiService.checkEmail(email);
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (response.isSuccessful()) {
+                    existe = response.body();
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+                callback.onCompletion();
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
     }
 }
 

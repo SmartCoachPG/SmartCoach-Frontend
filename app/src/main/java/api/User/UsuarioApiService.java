@@ -17,4 +17,7 @@ public interface UsuarioApiService {
         @GET("usuarios/{id}")
         Call<Usuario> getUsuarioById(@Path("id") Long id);
 
+        @GET("usuarios/emailcheck/{email}")
+        Call <Boolean> checkEmail(@Path("email")String email);
+
 }

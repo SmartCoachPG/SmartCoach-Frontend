@@ -43,6 +43,7 @@ public class _4_Registrarse_Admi_4 extends AppCompatActivity {
     private AlertDialog alertDialog;
     UsuarioAdministrador newUser = new UsuarioAdministrador();
 
+    Boolean existe;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
