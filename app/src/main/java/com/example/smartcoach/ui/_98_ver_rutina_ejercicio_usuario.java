@@ -256,7 +256,6 @@ public class _98_ver_rutina_ejercicio_usuario extends BaseActivityCliente {
                     int hours = calendar.get(Calendar.HOUR_OF_DAY);
                     if(time!=null)setTextDuracionRutina.setText(String.valueOf(hours));
                     else setTextDuracionRutina.setText("0");
-
                 }
                 dia="Miércoles";
                 mostrar();

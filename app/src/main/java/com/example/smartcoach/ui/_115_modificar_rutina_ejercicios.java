@@ -191,7 +191,9 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                 updateSelectedImage(imageLunes);
                 dia="Lunes";
                 mostrar();
-            }
+
+                }
+
         });
         imageMartes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,9 +211,6 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                 selectedDay = Calendar.WEDNESDAY;
                 restoreOriginalImages();
                 updateSelectedImage(imageMiercoles);
-                Time time = rutinas.get("Miércoles").getDuracion();
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(time);
                 dia="Miércoles";
                 mostrar();
             }
@@ -222,9 +221,6 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                 selectedDay = Calendar.THURSDAY;
                 restoreOriginalImages();
                 updateSelectedImage(imageJueves);
-                Time time = rutinas.get("Jueves").getDuracion();
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(time);
                 dia="Jueves";
                 mostrar();
             }
@@ -235,9 +231,6 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                 selectedDay = Calendar.FRIDAY;
                 restoreOriginalImages();
                 updateSelectedImage(imageViernes);
-                Time time = rutinas.get("Viernes").getDuracion();
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(time);
                 dia="Viernes";
                 mostrar();
             }
@@ -248,9 +241,6 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                 selectedDay = Calendar.SATURDAY;
                 restoreOriginalImages();
                 updateSelectedImage(imageSabado);
-                Time time = rutinas.get("Sábado").getDuracion();
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(time);
                 dia="Sábado";
                 mostrar();
             }
@@ -261,9 +251,6 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
                 restoreOriginalImages();
                 updateSelectedImage(imageDomingo);
                 selectedDay = Calendar.SUNDAY;
-                Time time = rutinas.get("Domingo").getDuracion();
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(time);
                 dia="Domingo";
                 mostrar();
             }
@@ -404,15 +391,15 @@ public class _115_modificar_rutina_ejercicios extends BaseActivityCliente {
     private void mostrar() {
         RecyclerView recyclerView = findViewById(R.id.recyclerViewEjercicios_115);
         LinearLayout emptyView = findViewById(R.id.empty_view_115);
-        Rutina rut = rutinas.get(dia);
-        List<Ejercicio> ej = ejercicios.get(rut.getId());
-        cajaRutinas.clear();
-        opciones.clear();
 
-        if (ej.isEmpty()) {
+        if (rutinas.get(dia)==null) {
             recyclerView.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
         } else {
+            Rutina rut = rutinas.get(dia);
+            List<Ejercicio> ej = ejercicios.get(rut.getId());
+            cajaRutinas.clear();
+            opciones.clear();
             recyclerView.setVisibility(View.VISIBLE);
             emptyView.setVisibility(View.GONE);
 
