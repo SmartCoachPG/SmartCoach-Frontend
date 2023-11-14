@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SmartCoach</string>
+
+
+    <!-- Opciones para el spinner de elegir género -->
+    <string-array name="opciones_genero">
+        <item>Seleccione</item>
+        <item>Femenino</item>
+        <item>Masculino</item>
+    </string-array>
+
+    <string name="seleccione"></string>
+</resources>

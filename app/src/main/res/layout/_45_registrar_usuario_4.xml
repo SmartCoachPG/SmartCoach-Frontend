@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/f1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="37dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Composicion Corporal"
+            android:textColor="@color/grey"
+            android:textSize="32sp"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Si tienes algún informe de valoración física, puedes ingresar tus datos aquí.  Nosotros nos encargaremos de llevar tu registro.
+Si no tienes ninguno, no te preocupes,
+solo oprime continuar."
+            android:textColor="@color/grey"
+            android:textSize="16sp"
+            android:layout_marginTop="19dp"></TextView>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="25dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <include
+                    android:id="@+id/caja_composicion_corporal_1_45"
+                    layout="@layout/caja_composicion_corporal"
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#F4F4F4"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+                <include
+                    android:id="@+id/caja_composicion_corporal_2_45"
+                    layout="@layout/caja_composicion_corporal"
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F4F4F4"
+                android:orientation="horizontal"></LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <include
+                    android:id="@+id/caja_composicion_corporal_3_45"
+                    layout="@layout/caja_composicion_corporal"
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#F4F4F4"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+                <include
+                    android:id="@+id/caja_composicion_corporal_4_45"
+                    layout="@layout/caja_composicion_corporal"
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F4F4F4"
+                android:orientation="horizontal"></LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <include
+                    android:id="@+id/caja_composicion_corporal_5_45"
+                    layout="@layout/caja_composicion_corporal"
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#F4F4F4"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+                <include
+                    android:id="@+id/caja_composicion_corporal_6_45"
+                    layout="@layout/caja_composicion_corporal"
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F4F4F4"
+                android:orientation="horizontal"></LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <include
+                    android:id="@+id/caja_composicion_corporal_7_45"
+                    layout="@layout/caja_composicion_corporal"
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#F4F4F4"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+                <include
+                    android:id="@+id/caja_composicion_corporal_8_45"
+                    layout="@layout/caja_composicion_corporal"
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F4F4F4"
+                android:orientation="horizontal"></LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <include
+                    android:id="@+id/caja_composicion_corporal_9_45"
+                    layout="@layout/caja_composicion_corporal"
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#F4F4F4"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+                <include
+                    android:id="@+id/caja_composicion_corporal_10_45"
+                    layout="@layout/caja_composicion_corporal"
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F4F4F4"
+                android:orientation="horizontal"></LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <include
+                    android:id="@+id/caja_composicion_corporal_11_45"
+                    layout="@layout/caja_composicion_corporal"
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#F4F4F4"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+                <include
+                    android:id="@+id/caja_composicion_corporal_12_45"
+                    layout="@layout/caja_composicion_corporal"
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#F4F4F4"
+                android:orientation="horizontal"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <include
+                    android:id="@+id/caja_composicion_corporal_13_45"
+                    layout="@layout/caja_composicion_corporal"
+                    android:layout_width="match_parent"
+                    android:layout_height="88dp"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
+                    android:background="#F4F4F4"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            >
+
+            <ImageButton
+                android:id="@+id/boton_siguiente_45"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:src="@drawable/rectangulo_na_sombra"
+                android:background="@android:color/transparent">
+            </ImageButton>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Siguiente"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:gravity="center"></TextView>
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            ></LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

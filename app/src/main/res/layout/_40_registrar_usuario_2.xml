@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/default_margin"
+    android:paddingEnd="@dimen/default_margin"
+    android:paddingTop="@dimen/default_margin"
+    android:paddingBottom="@dimen/default_margin"
+    android:background="@drawable/f1">
+
+    <Button
+        android:id="@+id/btnSiguiente_40"
+        android:layout_width="357dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="#FDA400"
+        android:text="Siguiente"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextFechaNacimiento_40" />
+
+    <EditText
+        android:id="@+id/contraseña_40"
+        android:layout_width="340dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#FDA400"
+        android:ems="10"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_40" />
+
+    <EditText
+        android:id="@+id/validacionContraseña_40"
+        android:layout_width="340dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#FDA400"
+        android:ems="10"
+        android:hint="Validación Contraseña"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contraseña_40" />
+
+    <TextView
+        android:id="@+id/infoGeneral_40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:text="Información General"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/nombre_40"
+        android:layout_width="340dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#FDA400"
+        android:ems="10"
+        android:hint="Nombre y apellido"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcion_40" />
+
+    <TextView
+        android:id="@+id/descripcion_40"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24sp"
+        android:text="Con esta información crearemos tu cuenta."
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoGeneral_40" />
+
+    <EditText
+        android:id="@+id/email_40"
+        android:layout_width="340dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#FDA400"
+        android:ems="10"
+        android:hint="Correo electrónico"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombre_40" />
+
+    <Spinner
+        android:id="@+id/spinnerGenero_40"
+        android:layout_width="340dp"
+        android:textSize="12dp"
+        android:textColor="@color/grisClaro"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="#FDA400"
+        android:spinnerMode="dropdown"
+        android:background="@drawable/lineanaranja"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/validacionContraseña_40" />
+
+    <EditText
+        android:id="@+id/editTextFechaNacimiento_40"
+        android:layout_width="340dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="#FDA400"
+        android:clickable="true"
+        android:focusable="false"
+        android:hint="Fecha de Nacimiento"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerGenero_40" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

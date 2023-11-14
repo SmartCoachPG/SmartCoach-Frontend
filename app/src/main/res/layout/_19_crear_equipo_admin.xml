@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/rectangulo_naranja_superior"
+        android:layout_width="432dp"
+        android:layout_height="121dp"
+        android:background="@drawable/rectangulo_naranja"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/atras_19"
+        android:layout_width="10.85dp"
+        android:layout_height="18.95dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_flecha_izq_b" />
+
+    <TextView
+        android:id="@+id/tituloModificar_19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Crea equipo"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/atras_19"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/descripcionModificar_19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Aquí podrás añadir los equipos que tengas a tu disposición."
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/rectangulo_naranja_superior"
+        app:layout_constraintTop_toBottomOf="@+id/tituloModificar_19" />
+
+
+    <EditText
+        android:id="@+id/setTextnombreEquipo_19"
+        android:layout_width="366dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#FDA400"
+        android:ems="10"
+        android:hint="Ingrese el nombre equipo"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.257"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcionModificar_19" />
+
+    <EditText
+        android:id="@+id/setTextReferenciaEquipo_19"
+        android:layout_width="366dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="#FDA400"
+        android:ems="10"
+        android:hint="Ingrese la referencia equipo"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.257"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setTextnombreEquipo_19" />
+
+    <ImageButton
+        android:id="@+id/imagenEquipo_19"
+        android:layout_width="345dp"
+        android:layout_height="157dp"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setTextReferenciaEquipo_19"
+        app:srcCompat="@drawable/rectangulo_redondeado_gris_claro" />
+
+    <TextView
+        android:id="@+id/textSubaImagen_19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subir imagen del equipo"
+        android:textColor="#FDA400"
+        android:textSize="21dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imagenEquipo_19"
+        app:layout_constraintEnd_toEndOf="@+id/imagenEquipo_19"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="@+id/imagenEquipo_19"
+        app:layout_constraintTop_toTopOf="@+id/imagenEquipo_19"
+        app:layout_constraintVertical_bias="0.218" />
+
+    <ImageButton
+        android:id="@+id/imageSubirImagen_19"
+        android:layout_width="38dp"
+        android:layout_height="41dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/imagenEquipo_19"
+        app:layout_constraintEnd_toEndOf="@+id/imagenEquipo_19"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/imagenEquipo_19"
+        app:layout_constraintTop_toBottomOf="@+id/textSubaImagen_19"
+        app:layout_constraintVertical_bias="0.254"
+        app:srcCompat="@drawable/icon_subir_imagen_na" />
+
+    <TextView
+        android:id="@+id/textoMusculos_19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Músculos que se pueden trabajar"
+        android:textColor="#FDA400"
+        android:textSize="21dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagenEquipo_19" />
+
+    <ScrollView
+        android:id="@+id/scrollView_19"
+        android:layout_width="340dp"
+        android:layout_height="57dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoMusculos_19">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/imageAgregarMusculo_19"
+                android:layout_width="34dp"
+                android:layout_height="29dp"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/icon_mas_n" />
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/rectanguloDescripcion_19"
+        android:layout_width="357dp"
+        android:layout_height="174dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView_19"
+        app:srcCompat="@drawable/rectangulo_redondeado_gris_claro" />
+
+    <EditText
+        android:id="@+id/descripcionEquipo_19"
+        android:layout_width="310dp"
+        android:layout_height="151dp"
+        android:background="@null"
+        android:text="Agregue la descripción del equipo"
+        app:layout_constraintBottom_toBottomOf="@+id/rectanguloDescripcion_19"
+        app:layout_constraintEnd_toEndOf="@+id/rectanguloDescripcion_19"
+        app:layout_constraintHorizontal_bias="0.32"
+        app:layout_constraintStart_toStartOf="@+id/rectanguloDescripcion_19"
+        app:layout_constraintTop_toTopOf="@+id/rectanguloDescripcion_19" />
+
+    <Button
+        android:id="@+id/btnGuardarCambios_19"
+        android:layout_width="357dp"
+        android:layout_height="59dp"
+        android:backgroundTint="#FDA400"
+        android:text="Crear Cambios"
+        app:layout_constraintBottom_toTopOf="@+id/menuAdmin_19"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectanguloDescripcion_19" />
+
+    <include
+        android:id="@+id/menuAdmin_19"
+        layout="@layout/_otros_menu_admi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

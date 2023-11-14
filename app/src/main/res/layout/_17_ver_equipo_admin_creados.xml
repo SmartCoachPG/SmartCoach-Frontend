@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tituloBienvenida_17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Bienvenido"
+        android:textColor="#FDA400"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/setTextAdminName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="setTextAdminName"
+        android:textColor="#FDA400"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloBienvenida_17" />
+
+    <TextView
+        android:id="@+id/descripcion_17"
+        android:layout_width="387dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="12dp"
+        android:text="Aquí podrás ver y modificar todos los elementos que están a tu disposición o eliminarlos."
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setTextAdminName" />
+
+    <View
+        android:id="@+id/view_17"
+        android:layout_width="389dp"
+        android:layout_height="39dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/rectangulo_bl_rounded_na"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcion_17" />
+
+    <EditText
+        android:id="@+id/editTextBuscaEquipo_17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:ems="10"
+        android:hint="Busca un equipo aquí"
+        android:inputType="text"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view_17"
+        app:layout_constraintStart_toStartOf="@+id/view_17"
+        app:layout_constraintTop_toTopOf="@+id/view_17"
+        app:layout_constraintVertical_bias="0.214" />
+
+    <ImageButton
+        android:id="@+id/btnBuscar_17"
+        android:layout_width="19dp"
+        android:layout_height="22dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/view_17"
+        app:layout_constraintEnd_toEndOf="@+id/view_17"
+        app:layout_constraintHorizontal_bias="0.834"
+        app:layout_constraintStart_toEndOf="@+id/editTextBuscaEquipo_17"
+        app:layout_constraintTop_toTopOf="@+id/view_17"
+        app:layout_constraintVertical_bias="0.454"
+        app:srcCompat="@drawable/icon_lupa_rellena_na" />
+
+    <Button
+        android:id="@+id/btnCrearEquipo_17"
+        android:layout_width="387dp"
+        android:layout_height="43dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#FDA400"
+        android:elevation="50dp"
+        android:text="Crear equipo"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_17" />
+
+    <Button
+        android:id="@+id/btnEncuentraEquipo_17"
+        android:layout_width="218dp"
+        android:layout_height="37dp"
+        android:background="@android:color/transparent"
+        android:text="¿No encuentras tu equipo?"
+        android:textColor="@color/grey"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCrearEquipo_17" />
+
+    <ImageView
+        android:id="@+id/rectanguloFondoEquipo_17"
+        android:layout_width="384dp"
+        android:layout_height="459dp"
+        android:layout_marginTop="36dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEncuentraEquipo_17"
+        app:srcCompat="@drawable/rectangulo_alargado_redondeado_n" />
+
+    <Button
+        android:id="@+id/btnTodos_17"
+        android:layout_width="88dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/white"
+        android:text="Todos"
+        android:textAlignment="center"
+        android:textColor="@color/orange"
+        app:layout_constraintBottom_toTopOf="@+id/rectanguloFondoEquipo_17"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEncuentraEquipo_17"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnMios_17"
+        android:layout_width="88dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/orange"
+        android:text="Mios"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/rectanguloFondoEquipo_17"
+        app:layout_constraintEnd_toEndOf="@+id/rectanguloFondoEquipo_17"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/btnTodos_17"
+        app:layout_constraintTop_toBottomOf="@+id/btnEncuentraEquipo_17"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ScrollView
+        android:id="@+id/scrollView_17"
+        android:layout_width="337dp"
+        android:layout_height="394dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rectanguloFondoEquipo_17"
+        app:layout_constraintEnd_toEndOf="@+id/rectanguloFondoEquipo_17"
+        app:layout_constraintStart_toStartOf="@+id/rectanguloFondoEquipo_17"
+        app:layout_constraintTop_toTopOf="@+id/rectanguloFondoEquipo_17">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="459dp"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/equipo_1_17"
+                layout="@layout/caja_equipo_descripcion_creados"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <include
+                android:id="@+id/equipo_2_17"
+                layout="@layout/caja_equipo_descripcion_creados"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <include
+                android:id="@+id/equipo_3_17"
+                layout="@layout/caja_equipo_descripcion_creados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/_otros_menu_admi"
+        layout="@layout/_otros_menu_admi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectanguloFondoEquipo_17"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

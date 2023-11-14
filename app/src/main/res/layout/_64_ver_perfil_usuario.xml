@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/f5">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/rectangulo_naranja_superior"
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:background="@drawable/rectangulo_naranja"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/flechaRegresar_64"
+            android:layout_width="10.85dp"
+            android:layout_height="18.95dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginLeft="28dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.078"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/flecha_regresar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/imagePP_64"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="56dp"
+                    android:layout_marginTop="55dp"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.18"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/icon_pp_predeterminado" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="56dp"
+                    android:layout_marginTop="83dp"
+                    android:src="@drawable/semi_circle"/>
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/nombre_user_64"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="TextView"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.27"
+                    app:layout_constraintStart_toEndOf="@+id/imagePP"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/objetivoUser_64"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="-10dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="TextView"
+                    android:textColor="@color/orange"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.27"
+                    app:layout_constraintStart_toEndOf="@+id/imagePP"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <ImageButton
+        android:id="@+id/boton_modificar_user_64"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/icon_modificar"
+        android:scaleType="centerInside"
+        android:background="@null"
+        android:layout_marginLeft="350dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22dp"
+            android:text="Nombre"
+            android:textColor="@color/black"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/textoIngresoNombre_user_64"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Nombre usuario"
+            android:textSize="12dp"
+            android:inputType="text"
+            android:textColor="@color/grisClaro"
+            android:background="@drawable/lineanaranja"/>
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22dp"
+            android:text="Email"
+            android:textColor="@color/black"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/textoIngresoEmail_user_64"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Email usuario"
+            android:textSize="12dp"
+            android:inputType="text"
+            android:textColor="@color/grisClaro"
+            android:background="@drawable/lineanaranja"/>
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22dp"
+            android:text="Genero"
+            android:textColor="@color/black"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/textoIngresoGenero_user_64"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Genero usuario"
+            android:textSize="12dp"
+            android:inputType="text"
+            android:textColor="@color/grisClaro"
+            android:background="@drawable/lineanaranja"/>
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22dp"
+            android:text="Fecha Nacimiento"
+            android:textColor="@color/black"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/textoFechaNacimiento_user_64"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Fecha nacimiento usuairo"
+            android:textSize="12dp"
+            android:inputType="text"
+            android:textColor="@color/grisClaro"
+            android:background="@drawable/lineanaranja"/>
+
+        <TextView
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22dp"
+            android:text="Objetivo"
+            android:textColor="@color/black"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/textoIngresoObjetivo_user_64"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Objetivo Usuario"
+            android:textSize="12dp"
+            android:inputType="text"
+            android:textColor="@color/grisClaro"
+            android:background="@drawable/lineanaranja"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+        <include
+            layout="@layout/_otros_menu_usuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

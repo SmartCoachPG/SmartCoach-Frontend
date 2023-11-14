@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/f2">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/default_margin"
+        android:paddingEnd="@dimen/default_margin"
+        android:paddingTop="@dimen/default_margin"
+        android:paddingBottom="@dimen/default_margin">
+
+        <TextView
+            android:id="@+id/tituloLimitacionesFisicas_59"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="Limitaciones Físicas"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+        android:id="@+id/descripcionLimitacionesFisicas_59"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Por favor, coméntanos si tienes alguna condición médica que te impida o dificulte hacer algún ejercicio. Esto es importante porque queremos cuidar tu salud."
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloLimitacionesFisicas_59" />
+
+    <ImageButton
+        android:id="@+id/barra_busqueda_b_59"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.313"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descripcionLimitacionesFisicas_59"
+        app:srcCompat="@drawable/rectrangulo_alargado_b" />
+
+    <ImageButton
+        android:id="@+id/rectanguloLargo"
+        android:layout_width="324dp"
+        android:layout_height="388dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/condicionesMedicas"
+        app:srcCompat="@drawable/rectrangulo_alargado_b" />
+
+    <EditText
+        android:id="@+id/texto_barra_busqueda_59"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:backgroundTint="#00000000"
+        android:ems="10"
+        android:hint="Busca condiciones médicas aquí"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="@+id/barra_busqueda_b_59"
+        app:layout_constraintTop_toTopOf="@+id/barra_busqueda_b_59" />
+
+    <ImageButton
+        android:id="@+id/btnBusqueda"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:background="@null"
+        android:contentDescription="Seleccionar para realizar la busqueda"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/barra_busqueda_b_59"
+        app:layout_constraintEnd_toEndOf="@+id/barra_busqueda_b_59"
+        app:layout_constraintStart_toEndOf="@+id/texto_barra_busqueda_59"
+        app:layout_constraintTop_toTopOf="@+id/barra_busqueda_b_59"
+        app:srcCompat="@drawable/icon_lupa_rellena_na" />
+
+    <TextView
+        android:id="@+id/condicionesMedicas"
+        android:layout_width="241dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="16dp"
+        android:text="Condiciones médicas seleccionadas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texto_barra_busqueda_59" />
+
+    <Button
+        android:id="@+id/btnListo_59"
+        android:layout_width="334dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/white"
+        android:text="Listo"
+        android:textColor="#FDA400"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectanguloLargo"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ScrollView
+        android:id="@+id/scrollView_59"
+        android:layout_width="282dp"
+        android:layout_height="356dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rectanguloLargo"
+        app:layout_constraintEnd_toEndOf="@+id/rectanguloLargo"
+        app:layout_constraintStart_toStartOf="@+id/rectanguloLargo"
+        app:layout_constraintTop_toTopOf="@+id/rectanguloLargo">
+
+        <LinearLayout
+            android:id="@+id/linear_layout_inside_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

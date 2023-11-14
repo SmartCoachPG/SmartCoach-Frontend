@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <application
+        android:networkSecurityConfig="@xml/networksecurityconfig"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SmartCoach"
+        tools:targetApi="31" >
+
+        <activity android:name=".ui._1_PantallaInicio"
+        android:label="@string/app_name"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui._2_IniciarSesionRegistrarse"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui._3_Registrarse_Admi_1"
+            android:label="@string/app_name"
+            android:exported="false"/>
+        <activity
+            android:name=".ui._4_Registrarse_Admi_4"
+            android:label="@string/app_name"
+            android:exported="false"/>
+        <activity
+            android:name=".ui._39_Registrar_Usuario_1"
+            android:label="@string/app_name"
+            android:exported="false"/>
+        <activity
+            android:name=".ui._40_Registrar_Usuario_2"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui._63_Principal_Usuario"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui._6_Principal_Admi"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui._7_VerPerfil_Admi"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui._64_VerPerfil_Usuario"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui._8_ModificarPerfil_Admi"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+
+        <activity
+            android:name=".ui._65_ModificarPerfil_Usuario"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui._45_Registrar_Usuario_4"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui._59_registrar_usuario_5"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui._95_crear_rutina_usuario"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+
+        <activity
+            android:name=".ui._27_configurar_mapa_admin"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui._115_modificar_rutina_ejercicios"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._100_iniciar_rutina"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._59_2_registrar_usuario_5"
+            android:theme="@style/DialogActivityTheme"
+            android:label="@string/app_name"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui._23_modificar_equipo"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._17_ver_equipo_admin_creados"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".ui._19_crear_equipo_admin"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._16_ver_equipo_admin_todos"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._98_ver_rutina_ejercicio_usuario"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._35_ver_mapa_admin"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._127_ver_gimnasios_para_suscribirse"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._120_ver_informacion_gimnasio"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._126_lista_gimnasios_vacia"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._29_crear_mapa_admin"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._36_modificar_informacion_gimnasio"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._37_crea_tu_gimnasio_admin"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._42_Registrar_Usuario_3"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._121_ver_mapa_cliente"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui._31_armar_mapa_admin"
+            android:label="@string/app_name"
+            android:exported="false">
+        </activity>
+
+    </application>
+</manifest>

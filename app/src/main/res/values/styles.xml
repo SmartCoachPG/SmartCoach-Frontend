@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">#FDA400</item>
+
+        <!-- Estilo para el DatePickerDialog -->
+        <item name="android:datePickerDialogTheme">@style/DatePickerDialogTheme</item>
+    </style>
+
+    <!-- Estilo para el DatePickerDialog -->
+    <style name="DatePickerDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <!-- Personaliza los colores del calendario -->
+        <item name="colorAccent">#FDA400</item>
+        <!-- Personaliza el color del header -->
+        <item name="android:headerBackground">@color/custom_date_picker_header_color</item>
+
+        <!-- Personaliza el estilo del botón OK -->
+        <item name="android:buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+
+        <!-- Personaliza el estilo del botón Cancel -->
+        <item name="android:buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">#FDA400</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">#FDA400</item>
+    </style>
+
+    <style name="DialogActivityTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="SpinnerTextWhite">
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+
+</resources>

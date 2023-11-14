@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="308dp"
+    android:layout_height="441dp"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:background="@color/white">
+
+    <ImageButton
+        android:id="@+id/btn_cerrar_59_2"
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="right"
+        android:src="@drawable/icon_x_ne"
+        android:background="@android:color/transparent"
+        android:scaleType="centerInside">
+    </ImageButton>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/tituloSeleccioneLF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grisClaro"
+            android:layout_gravity="center_horizontal"
+            android:text="Seleccione las limitaciones físicas"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/lineaLF"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/lineanaranja" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_59_2"
+            android:layout_marginTop="23dp"
+            android:layout_width="match_parent"
+            android:layout_height="254dp"
+            android:layout_marginBottom="10dp">
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <Button
+            android:id="@+id/btnAceptarSLF_59_2"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_gravity="bottom"
+            android:textColor="@color/white"
+            android:text="Aceptar"
+            android:backgroundTint="#FDA400" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
