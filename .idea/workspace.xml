@@ -10,11 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e876029d-e739-41a6-8242-cd33e8d1bd73" name="Changes" comment="Update">
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/smartcoach/ui/_127_ver_gimnasios_para_suscribirse.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/smartcoach/ui/_127_ver_gimnasios_para_suscribirse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/smartcoach/ui/_36_modificar_informacion_gimnasio.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/smartcoach/ui/_36_modificar_informacion_gimnasio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/smartcoach/ui/_37_crea_tu_gimnasio_admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/smartcoach/ui/_37_crea_tu_gimnasio_admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/smartcoach/ui/_98_ver_rutina_ejercicio_usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/smartcoach/ui/_98_ver_rutina_ejercicio_usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/model/User/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/model/User/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/smartcoach/ui/_40_Registrar_Usuario_2.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/smartcoach/ui/_40_Registrar_Usuario_2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +238,7 @@
       </method>
     </configuration>
     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
-      <module name="Tesis.SmartCoach.app.main" />
+      <module name="SmartCoach.app.main" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />

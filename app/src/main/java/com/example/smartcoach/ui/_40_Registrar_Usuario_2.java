@@ -62,7 +62,7 @@ public class _40_Registrar_Usuario_2 extends AppCompatActivity {
         });
 
         //Spinner
-        String[] opcionesGenero = new String[]{"Seleccione", "Femenino", "Masculino"};
+        String[] opcionesGenero = new String[]{"Genero", "Femenino", "Masculino"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcionesGenero);
         adapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerGenero.setAdapter(adapter);

@@ -1,4 +1,4 @@
-#Sun Nov 05 19:57:27 COT 2023
+#Mon Nov 13 20:26:22 COT 2023
 base.0=C\:\\Users\\kamil\\Desktop\\Tesis\\SmartCoach\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\kamil\\Desktop\\Tesis\\SmartCoach\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\kamil\\Desktop\\Tesis\\SmartCoach\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\10\\classes.dex
