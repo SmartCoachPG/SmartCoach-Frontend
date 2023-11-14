@@ -1,18 +1,34 @@
 package com.example.smartcoach.ui;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.smartcoach.R;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 import api.Admi.EquipoApiService;
 import api.Admi.GimnasioApiService;
 import api.Admi.GimnasioItemApiService;
@@ -22,8 +38,10 @@ import api.Admi.UbicacionxItemApiService;
 import api.Admi.UsuarioAdministradorApiService;
 import api.SharedPreferencesUtil;
 import api.retro;
+import model.Admi.Equipo;
 import model.Admi.GimnasioItem;
 import model.Admi.Mapa;
+import model.Admi.TipoEquipo;
 import model.Admi.UbicacionxItem;
 import model.Admi.UsuarioAdministrador;
 import okhttp3.OkHttpClient;
@@ -54,6 +72,10 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
     Map<Integer,String> iconos= new HashMap<>();
     Map<Integer,List<UbicacionxItem>> ubicaciones= new HashMap<>();
     int piso = 1;
+    int tipo=0;
+    Equipo equipoBuscado = new Equipo();
+    String nombreTipo = "";
+    List<String> listaMusculos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -345,15 +367,57 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
 
         for (int i = 0; i < alto; i++) {
             for (int j = 0; j < ancho; j++) {
-                View cuadrado = new View(this);
 
-                GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(
-                        GridLayout.spec(i), GridLayout.spec(j));
+                int row = i;
+                int column = j;
+
+                ImageView cuadrado = new ImageView(this);
+                GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(i), GridLayout.spec(j));
                 layoutParams.width = tamañoCasillaPixels;
                 layoutParams.height = tamañoCasillaPixels;
-
                 cuadrado.setLayoutParams(layoutParams);
                 cuadrado.setBackgroundResource(R.drawable.fondo_mapa);
+
+                GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener()
+                {
+                    @Override
+                    public boolean onSingleTapConfirmed(MotionEvent e) {
+                        tipo =1;
+                        return true;
+                    }
+                    @Override
+                    public void onLongPress(MotionEvent e) {
+                        tipo=2;
+                    }
+                    @Override
+                    public boolean onDown(MotionEvent e)
+                    {
+
+                        return  true;
+                    }
+                });
+
+                cuadrado.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v,MotionEvent event)
+                    {
+                        boolean gestureHandled = gestureDetector.onTouchEvent(event);
+                        if(tipo==1)
+                        {
+                            tipo=0;
+                            UbicacionxItem item2 = new UbicacionxItem();
+                            item2.setCoordenadaX(column);
+                            item2.setCoordenadaY(row);
+                            UbicacionxItem item = buscarUbicacionxItem(column,row);
+                            if(item.getItemid()>10){
+                                    mostrarEquipo(item);
+                            }
+
+                        }
+
+                        return true;
+                    }
+                });
 
                 gridLayout.addView(cuadrado);
             }
@@ -362,6 +426,153 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
         infoCallback.onCompletion();
     }
 
+    private UbicacionxItem buscarUbicacionxItem(int coordenadax,int coordenaday)
+    {
+        UbicacionxItem encontrado = new UbicacionxItem();
+        for (Map.Entry<Integer, List<UbicacionxItem>> entry : ubicaciones.entrySet()) {
+
+            // Obtener la lista de UbicacionxItem de la entrada actual
+            List<UbicacionxItem> listaUbicaciones = entry.getValue();
+
+            // Iterar a través de cada UbicacionxItem en la lista
+            for (UbicacionxItem ubicacion : listaUbicaciones) {
+
+                // Comparar las coordenadas
+                if (ubicacion.getCoordenadaX() == coordenadax && ubicacion.getCoordenadaY() == coordenaday) {
+                    // Si las coordenadas coinciden, retornar la ubicación encontrada
+                    encontrado = ubicacion;
+                    break;
+                }
+            }
+        }
+
+        return encontrado;
+    }
+
+    private void mostrarEquipo(UbicacionxItem ubicacionxItem)
+    {
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(true);
+        dialog.setContentView(R.layout._34_ver_informacion_equipo_ubicado_en_mapa_admin);
+        dialog.getWindow().setBackgroundDrawable(null);
+
+        ImageButton botonX = dialog.findViewById(R.id.btnX_34);
+        ImageView imagen;
+        TextView nombreEquipo,referenciaE,descripE, tipoMaquina;
+        nombreEquipo = dialog.findViewById(R.id.nombreEquipo);
+        referenciaE = dialog.findViewById(R.id.setTextReferencia_34);
+        descripE = dialog.findViewById(R.id.setTextDescripcion_34);
+        imagen = dialog.findViewById(R.id.setImageEquipo_34);
+        tipoMaquina = dialog.findViewById(R.id.itemTipoMaquina_34);
+        RecyclerView recycler = dialog.findViewById(R.id.recyclerViewItemMusculoInvolucrado_34);
+
+        botonX.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        getEquipo(Long.valueOf(ubicacionxItem.getItemid()),()->
+        {
+            nombreEquipo.setText(equipoBuscado.getNombre());
+            referenciaE.setText(equipoBuscado.getReferencia());
+            descripE.setText(equipoBuscado.getDescripcion());
+            if(equipoBuscado.getImagen()!=null)
+            {
+                byte[] imageBytes = Base64.decode(equipoBuscado.getImagen(), Base64.DEFAULT);
+                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+                imagen.setImageBitmap(decodedBitmap);
+            }
+            getTipoEquipoNombre(Long.valueOf(ubicacionxItem.getItemid()),()->
+            {
+                tipoMaquina.setText(nombreTipo);
+
+                getMusculosEquipo(Long.valueOf(ubicacionxItem.getItemid()),()->
+                {
+                    LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+                    recycler.setLayoutManager(layoutManager);
+                    _100_adaptadorI_musculos adapter = new _100_adaptadorI_musculos(listaMusculos);
+                    recycler.setAdapter(adapter);
+                });
+            });
+
+        });
+
+        dialog.show();
+    }
+
+    private void getEquipo(Long itemid,_31_armar_mapa_admin.InfoCallback callback)
+    {
+        Call<Equipo> call = equipoApiService.getById(itemid);
+        call.enqueue(new Callback<Equipo>() {
+            @Override
+            public void onResponse(Call<Equipo> call, Response<Equipo> response) {
+                if (response.isSuccessful()) {
+                    equipoBuscado = response.body();
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+                callback.onCompletion();
+            }
+
+            @Override
+            public void onFailure(Call<Equipo> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+
+    }
+
+    private void getTipoEquipoNombre(Long itemid,_31_armar_mapa_admin.InfoCallback callback)
+    {
+        Call<TipoEquipo> call = equipoApiService.getTipoNameByEquipoId(itemid);
+        call.enqueue(new Callback<TipoEquipo>() {
+            @Override
+            public void onResponse(Call<TipoEquipo> call, Response<TipoEquipo> response) {
+                if (response.isSuccessful()) {
+                    nombreTipo = response.body().getNombre();
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+                callback.onCompletion();
+            }
+
+            @Override
+            public void onFailure(Call<TipoEquipo> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
+
+    private void getMusculosEquipo(Long itemid,_31_armar_mapa_admin.InfoCallback callback)
+    {
+        Call<List<String>> call = equipoApiService.getMusculosByEquipoId(itemid);
+        call.enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                if (response.isSuccessful()) {
+                    if(!response.body().isEmpty())
+                        listaMusculos = response.body();
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+                callback.onCompletion();
+            }
+
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
+        });
+    }
     private void cargarImagenes(_35_ver_mapa_admin.InfoCallback callback)
     {
         for(GimnasioItem gi : listaItems)
@@ -373,17 +584,26 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
                 {
                     if(uxi.getMapaid()==mapas.get(piso).getId())
                     {
-                        ImageView imageView = new ImageView(this);
-                        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(uxi.getCoordenadaY()), GridLayout.spec(uxi.getCoordenadaX()));  // 0,0 es para la primera fila, primera columna
-                        layoutParams.width =  (int) (30 * getResources().getDisplayMetrics().density + 0.5f);
-                        layoutParams.height =  (int) (30 * getResources().getDisplayMetrics().density + 0.5f);
-                        int margin = (int) (1 * getResources().getDisplayMetrics().density + 0.5f);
-                        layoutParams.setMargins(margin,margin,margin,margin);
-                        imageView.setLayoutParams(layoutParams);
-                        int tipo = tipoEquipoItem.get(uxi.getItemid());
-                        int resID = getResources().getIdentifier(iconos.get(tipo), "drawable", getPackageName());
-                        imageView.setImageResource(resID);
-                        gridLayout.addView(imageView);
+                        int row = uxi.getCoordenadaY();
+                        int column = uxi.getCoordenadaX();
+
+                        for (int i = 0; i < gridLayout.getChildCount(); i++) {
+                            View view = gridLayout.getChildAt(i);
+                            GridLayout.LayoutParams layoutParams = (GridLayout.LayoutParams) view.getLayoutParams();
+
+                            if (GridLayout.spec(row).equals(layoutParams.rowSpec) &&
+                                    GridLayout.spec(column).equals(layoutParams.columnSpec) &&
+                                    view instanceof ImageView) {
+
+                                ImageView imageView = (ImageView) view;
+                                imageView.setPadding(2,2,2,2);
+                                int tipo = tipoEquipoItem.get(uxi.getItemid());
+                                int newDrawableId = getResources().getIdentifier(iconos.get(tipo), "drawable", getPackageName());
+                                Drawable newDrawable = ContextCompat.getDrawable(_35_ver_mapa_admin.this, newDrawableId);
+                                imageView.setImageDrawable(newDrawable);
+                                break;
+                            }
+                        }
                     }
                 }
             }
