@@ -60,28 +60,20 @@
     </LinearLayout>
 
     <ScrollView
-        android:fillViewport="true"
-        android:foregroundGravity="center"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
         android:layout_weight="1">
-
         <HorizontalScrollView
-            android:fillViewport="true"
-            android:foregroundGravity="center"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
             <GridLayout
-                android:layout_gravity="center"
-                android:id="@+id/gridLayout_35"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:columnCount="10"
-                android:rowCount="10">
-        </GridLayout>
-    </HorizontalScrollView>
-</ScrollView>
+                android:layout_width="match_parent"
+                android:id="@+id/gridLayout_35"></GridLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+
+
 </LinearLayout>

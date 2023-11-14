@@ -4,10 +4,6 @@
         "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\icon_2_fondo_na.png"
     },
     {
-        "merged": "com.example.smartcoach.app-merged_res-24:/layout_caja_ejercicio_rutina.xml.flat",
-        "source": "com.example.smartcoach.app-main-26:/layout/caja_ejercicio_rutina.xml"
-    },
-    {
         "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\layout__59_registrar_usuario_5.xml.flat",
         "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\layout\\_59_registrar_usuario_5.xml"
     },
@@ -24,12 +20,12 @@
         "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\f5.png"
     },
     {
-        "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_icon_viernes_b.png.flat",
-        "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\icon_viernes_b.png"
-    },
-    {
         "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_rounded_orange_background.xml.flat",
         "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\rounded_orange_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_icon_viernes_b.png.flat",
+        "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\icon_viernes_b.png"
     },
     {
         "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_icon_mancuerna_na_fondo_transp.png.flat",
@@ -56,12 +52,12 @@
         "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\rectangulo_naranja.png"
     },
     {
-        "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_icon_2_fondo_gr.png.flat",
-        "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\icon_2_fondo_gr.png"
-    },
-    {
         "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_ic_launcher_round.png.flat",
         "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_icon_2_fondo_gr.png.flat",
+        "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\icon_2_fondo_gr.png"
     },
     {
         "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_icon_lunes_ne.png.flat",
@@ -80,12 +76,12 @@
         "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\icon_rectangulo_gr.png"
     },
     {
-        "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_icon_domingo_ne.png.flat",
-        "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\icon_domingo_ne.png"
-    },
-    {
         "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\layout__1_pantalla_inicio.xml.flat",
         "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\layout\\_1_pantalla_inicio.xml"
+    },
+    {
+        "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_icon_domingo_ne.png.flat",
+        "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\icon_domingo_ne.png"
     },
     {
         "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_medio_circulo_gr.png.flat",
@@ -112,12 +108,12 @@
         "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\f3.png"
     },
     {
-        "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_rect_blanco.png.flat",
-        "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\rect_blanco.png"
-    },
-    {
         "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_icon_adelantar_fondo_na.png.flat",
         "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\icon_adelantar_fondo_na.png"
+    },
+    {
+        "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_rect_blanco.png.flat",
+        "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\rect_blanco.png"
     },
     {
         "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_icon_basura_x_na.png.flat",
@@ -614,6 +610,10 @@
     {
         "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\drawable_cuadrado_redondeado_na.png.flat",
         "source": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-main-26:\\drawable\\cuadrado_redondeado_na.png"
+    },
+    {
+        "merged": "com.example.smartcoach.app-merged_res-24:/layout__35_ver_mapa_admin.xml.flat",
+        "source": "com.example.smartcoach.app-main-26:/layout/_35_ver_mapa_admin.xml"
     },
     {
         "merged": "C:\\Users\\kamil\\.gradle\\daemon\\8.0\\com.example.smartcoach.app-merged_res-24:\\layout__30_crear_mapa_admi.xml.flat",

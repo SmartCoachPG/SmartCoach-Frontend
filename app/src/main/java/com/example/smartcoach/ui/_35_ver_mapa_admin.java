@@ -329,11 +329,12 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
 
     private void cargarMapa()
     {
-        cargarCuadrados(mapas.get(piso).getAncho(),mapas.get(piso).getAlto()+2);
-        cargarImagenes();
+        cargarCuadrados(mapas.get(piso).getAncho(), mapas.get(piso).getAlto(),()->{
+            cargarImagenes(()->{});
+        });
     }
 
-    private void cargarCuadrados(int ancho,int alto)
+    private void cargarCuadrados(int ancho,int alto,_35_ver_mapa_admin.InfoCallback infoCallback)
     {
         int tamañoCasilla = 32;
         final float scale = getResources().getDisplayMetrics().density;
@@ -358,10 +359,10 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
             }
         }
 
-
+        infoCallback.onCompletion();
     }
 
-    private void cargarImagenes()
+    private void cargarImagenes(_35_ver_mapa_admin.InfoCallback callback)
     {
         for(GimnasioItem gi : listaItems)
         {
@@ -373,7 +374,7 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
                     if(uxi.getMapaid()==mapas.get(piso).getId())
                     {
                         ImageView imageView = new ImageView(this);
-                        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(uxi.getCoordenadaY()+1), GridLayout.spec(uxi.getCoordenadaX()));  // 0,0 es para la primera fila, primera columna
+                        GridLayout.LayoutParams layoutParams = new GridLayout.LayoutParams(GridLayout.spec(uxi.getCoordenadaY()), GridLayout.spec(uxi.getCoordenadaX()));  // 0,0 es para la primera fila, primera columna
                         layoutParams.width =  (int) (30 * getResources().getDisplayMetrics().density + 0.5f);
                         layoutParams.height =  (int) (30 * getResources().getDisplayMetrics().density + 0.5f);
                         int margin = (int) (1 * getResources().getDisplayMetrics().density + 0.5f);
@@ -388,7 +389,6 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
             }
 
         }
-
-
+        callback.onCompletion();
     }
 }

@@ -649,7 +649,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
             }
         }
         callback.onCompletion();
-
     }
 
     private UbicacionxItem buscarUbicacionxItem(int coordenadax,int coordenaday)
