@@ -345,7 +345,6 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
             @Override
             public void onResponse(Call<List<GimnasioItem>> call, Response<List<GimnasioItem>> response) {
                 if (response.isSuccessful()) {
-                    Log.e("GIMNASIO", "cargando item: " + response.body().toString());
                     if (!response.body().isEmpty()) {
                         listaItems = response.body();
                     }
@@ -394,8 +393,9 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                 }
             }
         } else {
-            callback.onCompletion();
         }
+
+        callback.onCompletion();
 
     }
 
@@ -562,6 +562,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                                     if (draggedView.getTag() != null) {
                                         int position = (int) draggedView.getTag();
                                         draggedView.setTag(null);
+                                        // insertar equipos
                                         if(position<5)
                                         {
                                             UbicacionxItem ubicacionxItem = new UbicacionxItem();
@@ -573,6 +574,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                                             targetView.setImageDrawable(newDrawable);
                                             añadidos.put(ubicacionxItem, position);
                                         }
+                                        // insertar elementos
                                         else {
                                             UbicacionxItem ubicacionxItem = new UbicacionxItem();
                                             ubicacionxItem.setCoordenadaY(droppedRow);
@@ -580,7 +582,17 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
                                             targetView.setImageDrawable(draggedDrawable);
                                             ubicacionxItem.setItemid(position-4);
                                             nuevaPosicion.put(0, ubicacionxItem);
-                                            crearNuevoItem(()->{});
+
+                                            if(!listaItems.contains(nuevaPosicion.get(0).getItemid()))
+                                            {
+                                                createGimnasioItem(ubicacionxItem,()->{
+                                                    crearNuevoItem(()->{});
+                                                });
+                                            }
+                                            else {
+                                                crearNuevoItem(()->{});
+                                            }
+
                                         }
                                     }else { //Mover elementos
                                         UbicacionxItem ubicacionxItem = new UbicacionxItem();
@@ -711,6 +723,12 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
         nuevoItem.setMapaid(mapas.get(piso).getId().intValue());
 
         Log.e("Update", "Nuevo item " + nuevoItem.getItemid());
+        if(!listaItems.contains(nuevaPosicion.get(0).getItemid()))
+        {
+           createGimnasioItem(nuevoItem,()->{});
+            Log.d("Update", "se añadio al gym: ");
+        }
+
         Call<UbicacionxItem> call = ubicacionxItemApiService.addUbicacionxItem(nuevoItem);
 
         call.enqueue(new Callback<UbicacionxItem>() {
@@ -751,6 +769,7 @@ public class _31_armar_mapa_admin extends AppCompatActivity implements OnDefinir
             }
         });
     }
+
 
     private void updateGimnasioItem(UbicacionxItem ubicacionxItem,int cambio, _31_armar_mapa_admin.InfoCallback callback)
     {

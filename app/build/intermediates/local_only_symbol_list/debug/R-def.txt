@@ -714,6 +714,7 @@ layout _2_iniciar_sesion_registrarse
 layout _30_crear_mapa_admi
 layout _31_armar_mapa_admin
 layout _33_ubicar_equipo_en_mapa_admin
+layout _34_ver_informacion_equipo
 layout _34_ver_informacion_equipo_ubicado_en_mapa_admin
 layout _35_ver_mapa_admin
 layout _36_modificar_informacion_gimnasio

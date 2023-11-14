@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.smartcoach.R;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -82,6 +83,7 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout._35_ver_mapa_admin);
+        System.gc();
 
         gridLayout = findViewById(R.id.gridLayout_35);
         iniciarPeticiones();
@@ -96,7 +98,6 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
     }
 
@@ -161,13 +162,17 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
                 llenarMapas(new InfoCallback() {
                     @Override
                     public void onCompletion() {
+
                         llenarGimnasioItem(new InfoCallback() {
                             @Override
                             public void onCompletion() {
+
                                 llenarTipoEquipo( new InfoCallback() {
                                 @Override
                                 public void onCompletion() {
+
                                     procesarItems(0,new InfoCallback() {
+
                                         @Override
                                         public void onCompletion() {
                                             cargarMapa();
@@ -247,7 +252,6 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<GimnasioItem>> call, Response<List<GimnasioItem>> response) {
                 if (response.isSuccessful()) {
-                    Log.e("GIMNASIO", "cargando item: " + response.body().toString());
                     if(!response.body().isEmpty())
                     {
                         listaItems = response.body();
@@ -274,7 +278,8 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
         {
             for(GimnasioItem gi : listaItems)
             {
-                if(gi.getItemid()>11)
+                // es un equipo
+                if(gi.getItemid()>=11)
                 {
                     Call<Integer> call = equipoApiService.findTipoEquipoIdByItemId(Long.valueOf(gi.getItemid()));
                     call.enqueue(new Callback<Integer>() {
@@ -296,15 +301,15 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
                         }
                     });
                 }
+                // es un item
                 else {
                     tipoEquipoItem.put(gi.getItemid(),gi.getItemid()+4);
                 }
             }
         }
         else {
-            callback.onCompletion();
         }
-
+        callback.onCompletion();
     }
 
     private void procesarItems(int index, InfoCallback callback) {
@@ -351,7 +356,9 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
 
     private void cargarMapa()
     {
+        Log.d("Cargando", "entre cargar mapa: ");
         cargarCuadrados(mapas.get(piso).getAncho(), mapas.get(piso).getAlto(),()->{
+            Log.d("Cargando", "terminer cargar cuadrados ");
             cargarImagenes(()->{});
         });
     }
@@ -454,7 +461,7 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
-        dialog.setContentView(R.layout._34_ver_informacion_equipo_ubicado_en_mapa_admin);
+        dialog.setContentView(R.layout._34_ver_informacion_equipo);
         dialog.getWindow().setBackgroundDrawable(null);
 
         ImageButton botonX = dialog.findViewById(R.id.btnX_34);
@@ -575,13 +582,17 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
     }
     private void cargarImagenes(_35_ver_mapa_admin.InfoCallback callback)
     {
+        Log.d("Cargando", "entre cargar imagenes: ");
         for(GimnasioItem gi : listaItems)
         {
+            Log.d("Cargando", "entre cargar lista items: "+gi);
             List<UbicacionxItem> ubi = ubicaciones.get(gi.getItemid());
-            if(!ubi.isEmpty()&&ubi!=null)
+            if(ubi!=null)
             {
                 for(UbicacionxItem uxi : ubi)
                 {
+                    Log.d("Cargando", "entre ubicanco el item: "+uxi);
+
                     if(uxi.getMapaid()==mapas.get(piso).getId())
                     {
                         int row = uxi.getCoordenadaY();
@@ -599,16 +610,16 @@ public class _35_ver_mapa_admin extends AppCompatActivity {
                                 imageView.setPadding(2,2,2,2);
                                 int tipo = tipoEquipoItem.get(uxi.getItemid());
                                 int newDrawableId = getResources().getIdentifier(iconos.get(tipo), "drawable", getPackageName());
-                                Drawable newDrawable = ContextCompat.getDrawable(_35_ver_mapa_admin.this, newDrawableId);
-                                imageView.setImageDrawable(newDrawable);
+                                Glide.with(this).load(newDrawableId).into(imageView);
                                 break;
                             }
                         }
                     }
                 }
             }
-
         }
+
+        Log.d("Cargar", "termine ");
         callback.onCompletion();
     }
 }

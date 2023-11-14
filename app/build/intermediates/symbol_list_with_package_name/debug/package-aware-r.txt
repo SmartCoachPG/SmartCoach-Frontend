@@ -3084,6 +3084,7 @@ id fragment_container_view_tag
 id frost
 id ghost_view
 id ghost_view_holder
+id glide_custom_view_target_tag
 id gone
 id graph
 id graph_wrap
@@ -3744,6 +3745,7 @@ layout _2_iniciar_sesion_registrarse
 layout _30_crear_mapa_admi
 layout _31_armar_mapa_admin
 layout _33_ubicar_equipo_en_mapa_admin
+layout _34_ver_informacion_equipo
 layout _34_ver_informacion_equipo_ubicado_en_mapa_admin
 layout _35_ver_mapa_admin
 layout _36_modificar_informacion_gimnasio

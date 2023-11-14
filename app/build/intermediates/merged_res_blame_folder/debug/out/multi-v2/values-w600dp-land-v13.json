@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.smartcoach.app-mergeDebugResources-22:/values-w600dp-land-v13/values-w600dp-land-v13.xml",
+            "outputFile": "com.example.smartcoach.app-mergeDebugResources-23:/values-w600dp-land-v13/values-w600dp-land-v13.xml",
             "map": [
                 {
                     "source": "C:\\Users\\kamil\\.gradle\\caches\\transforms-3\\a965dbd46dad388efad08cc8f6d01086\\transformed\\material-1.5.0\\res\\values-w600dp-land-v13\\values-w600dp-land-v13.xml",

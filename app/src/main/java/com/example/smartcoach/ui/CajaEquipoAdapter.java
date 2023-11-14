@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.smartcoach.R;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import api.Admi.GimnasioItemApiService;
 import api.SharedPreferencesUtil;
@@ -196,13 +197,14 @@ public class CajaEquipoAdapter extends RecyclerView.Adapter<CajaEquipoAdapter.Ca
     }
     private  void eliminarEquipoBD(int idGimnasio, int idItem)
     {
-        for(GimnasioItem gi: gimnasioItems)
-        {
-            if(gi.getItemid()==idItem&&gi.getGimnasioid()==idGimnasio)
-            {
-                gimnasioItems.remove(gi);
+        Iterator<GimnasioItem> iterator = gimnasioItems.iterator();
+        while (iterator.hasNext()) {
+            GimnasioItem gi = iterator.next();
+            if (gi.getItemid() == idItem && gi.getGimnasioid() == idGimnasio) {
+                iterator.remove();
             }
         }
+
         Call<Void> call = gimnasioItemApiService.deleteGimnasioItem(idGimnasio,idItem);
         call.enqueue(new Callback<Void>() {
             @Override
@@ -244,7 +246,6 @@ public class CajaEquipoAdapter extends RecyclerView.Adapter<CajaEquipoAdapter.Ca
             }
         });
     }
-
 
     public void updateList(List<Equipo> newList) {
         equipos = new ArrayList<>();
