@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="409dp"
+        android:layout_height="140dp"
+        android:layout_marginEnd="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rect_blanco" />
+
+    <ImageView
+        android:id="@+id/imageEquipo"
+        android:layout_width="78dp"
+        android:layout_height="101dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/cuadrado_gr" />
+
+    <TextView
+        android:id="@+id/nombreEquipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="Nombre equipo"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintStart_toEndOf="@+id/imageEquipo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nombreReferenciaEquipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        android:text="Referencia"
+        android:textSize="10sp"
+        android:textColor="@color/orange"
+        app:layout_constraintStart_toEndOf="@+id/imageEquipo"
+        app:layout_constraintTop_toBottomOf="@+id/nombreEquipo" />
+
+    <TextView
+        android:id="@+id/desc_equipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Descripción equipo"
+        android:textColor="@color/grey"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/imageEquipo"
+        app:layout_constraintTop_toBottomOf="@+id/nombreReferenciaEquipo" />
+
+    <ImageButton
+        android:id="@+id/btnModificarEquipo"
+        android:layout_width="81dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/desc_equipo"
+        app:srcCompat="@drawable/rectangulo_bl_rounded_na" />
+
+    <TextView
+        android:id="@+id/textbtnModificar"
+        android:layout_width="46dp"
+        android:layout_height="12dp"
+        android:text="Modificar"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnModificarEquipo"
+        app:layout_constraintEnd_toEndOf="@+id/btnModificarEquipo"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="@+id/btnModificarEquipo"
+        app:layout_constraintTop_toTopOf="@+id/btnModificarEquipo"
+        app:layout_constraintVertical_bias="0.428" />
+
+    <ImageButton
+        android:id="@+id/btnEliminar"
+        android:layout_width="81dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="24dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/btnModificarEquipo"
+        app:layout_constraintHorizontal_bias="0.922"
+        app:layout_constraintStart_toEndOf="@+id/imageEquipo"
+        app:layout_constraintTop_toBottomOf="@+id/desc_equipo"
+        app:srcCompat="@drawable/rounded_grey_background" />
+
+    <TextView
+        android:id="@+id/textbtnEliminar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eliminar"
+        android:textSize="10sp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/btnEliminar"
+        app:layout_constraintEnd_toEndOf="@+id/btnEliminar"
+        app:layout_constraintStart_toStartOf="@+id/btnEliminar"
+        app:layout_constraintTop_toTopOf="@+id/btnEliminar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

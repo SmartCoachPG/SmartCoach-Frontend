@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/f1"
+    android:orientation="vertical"
+    android:paddingTop="80dp"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/descripcion_27"
+        android:layout_width="349dp"
+        android:layout_height="104dp"
+        android:text="¡Hola! en este espacio puedes administrar el mapa de tu gimnasio"
+        android:textColor="@color/black"
+        android:textSize="28sp" />
+
+    <Button
+        android:id="@+id/btnVer_27"
+        android:layout_width="315dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#FDA400"
+        android:text="Ver"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btnCrearMapa_27"
+        android:layout_width="315dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="#FDA400"
+        android:text="Crear"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btnModificarInfoMapa_27"
+        android:layout_width="315dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="#FDA400"
+        android:textColor="@color/white"
+        android:text="Modificar Información" />
+
+    <Button
+        android:id="@+id/btnModificarEquiposElementos_27"
+        android:layout_width="315dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="#FDA400"
+        android:textColor="@color/white"
+        android:text="Modificar Equipos &amp; Elementos" />
+
+    <Button
+        android:id="@+id/btnEliminarMapa_27"
+        android:layout_width="315dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="#252525"
+        android:textColor="@color/white"
+        android:text="Eliminar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></View>
+    <include
+        layout="@layout/_otros_menu_admi"
+        android:layout_width="412dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"/>
+</LinearLayout>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/f5">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/rectangulo_naranja_superior"
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:background="@drawable/rectangulo_naranja"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageButton
+                    android:id="@+id/imagePP_admin_6"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="56dp"
+                    android:layout_marginTop="55dp"
+                    android:background="@drawable/circle_background"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.18"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/icon_pp_predeterminado" />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="56dp"
+                    android:layout_marginTop="83dp"
+                    android:src="@drawable/semi_circle"/>
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/nombreAdmin_admin_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="TextView"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.27"
+                    app:layout_constraintStart_toEndOf="@+id/imagePP_admin_6"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/puesto_admin_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="-10dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="TextView"
+                    android:textColor="@color/orange"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.27"
+                    app:layout_constraintStart_toEndOf="@+id/imagePP_admin_6"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/admiCheck_6"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="85dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/icon_check_blanco"/>
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="32dp">
+
+        <ImageButton
+            android:id="@+id/info_admi"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar para ver información personal"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imagePP_admin_6"
+            app:srcCompat="@drawable/icon_user_ne" />
+
+        <TextView
+            android:id="@+id/info_admi_texto_admin_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Información Personal"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"></TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="32dp">
+
+        <ImageButton
+            android:id="@+id/verificacion_admin_6"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar para ver la informacion de verificacion"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imagePP_admin_6"
+            app:srcCompat="@drawable/icon_verificacion_ne" />
+
+        <TextView
+            android:id="@+id/verificacion_admi_texto_admin_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verificación"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"></TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="32dp">
+
+        <ImageButton
+            android:id="@+id/eliminar_cuenta_admin_6"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar para eliminar cuenta"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imagePP_admin_6"
+            app:srcCompat="@drawable/icon_basura_x_ne" />
+
+        <TextView
+            android:id="@+id/eliminar_cuenta_texto_admin_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eliminar cuenta"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"></TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="56dp"
+        android:layout_marginTop="32dp">
+
+        <ImageButton
+            android:id="@+id/cerrar_sesion_admin_6"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@null"
+            android:contentDescription="Seleccionar para cerrar sesion"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imagePP_admin_6"
+            app:srcCompat="@drawable/icon_x_fondo_ne" />
+
+        <TextView
+            android:id="@+id/cerrar_sesion_texto_admin_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cerrar sesión"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/grey"></TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="bottom">
+
+        <include
+            layout="@layout/_otros_menu_admi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+

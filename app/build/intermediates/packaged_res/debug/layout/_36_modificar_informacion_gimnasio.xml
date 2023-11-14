@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/rectanguloTitulo_36"
+        android:layout_width="match_parent"
+        android:layout_height="177dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/rectangulo_naranja" />
+
+    <TextView
+        android:id="@+id/titulo_36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="76dp"
+        android:text="Modificar tu gimnasio"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="@+id/rectanguloTitulo_36"
+        app:layout_constraintTop_toTopOf="@+id/rectanguloTitulo_36" />
+
+    <ImageButton
+        android:id="@+id/btnRegresar_36"
+        android:layout_width="10dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rectanguloTitulo_36"
+        app:srcCompat="@drawable/flecha_regresar" />
+
+    <TextView
+        android:id="@+id/descripcionModificarGym_36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:textSize="18sp"
+        android:text="Indícanos la información que quieres cambiar."
+        app:layout_constraintStart_toStartOf="@+id/rectanguloTitulo_36"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_36" />
+
+    <EditText
+        android:id="@+id/setTextnombreGimnasio_36"
+        android:layout_width="366dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FDA400"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.342"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectanguloTitulo_36" />
+
+    <ImageButton
+        android:id="@+id/imagenGimnasio_36"
+        android:layout_width="348dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="16dp"
+        android:background="@null"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setTextnombreGimnasio_36"
+        app:srcCompat="@drawable/rectangulo_redondeado_gris_claro" />
+
+    <EditText
+        android:id="@+id/setTextDireccionGimnasio_36"
+        android:layout_width="366dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FDA400"
+        android:ems="10"
+        android:hint="Dirección"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.342"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagenGimnasio_36" />
+
+    <EditText
+        android:id="@+id/setTextBarrioGimnasio_36"
+        android:layout_width="366dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FDA400"
+        android:ems="10"
+        android:hint="Barrio"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.342"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setTextDireccionGimnasio_36" />
+
+    <EditText
+        android:id="@+id/setTextAnchoGimnasio_36"
+        android:layout_width="366dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#FDA400"
+        android:ems="10"
+        android:hint="Ancho"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.342"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setTextBarrioGimnasio_36" />
+
+        <EditText
+            android:id="@+id/setTextAltoGimnasio_36"
+            android:layout_width="366dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#FDA400"
+            android:ems="10"
+            android:hint="Alto"
+            android:inputType="number"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.342"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/setTextAnchoGimnasio_36" />
+
+
+        <TextView
+            android:id="@+id/setTextPisosGimnasio_36"
+            android:layout_width="145dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#FDA400"
+            android:ems="10"
+            android:hint="Numeros pisos"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/setTextAltoGimnasio_36" />
+
+        <Button
+            android:id="@+id/btnCrearMapa_36"
+            android:layout_width="357dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="52dp"
+            android:backgroundTint="#FDA400"
+            android:text="Guardar Cambios"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/setTextPisosGimnasio_36" />
+
+        <include
+            layout="@layout/_otros_menu_admi"
+            android:layout_width="414dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnCrearMapa_36" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="359dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintBottom_toBottomOf="@+id/setTextPisosGimnasio_36"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/setTextAltoGimnasio_36"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/lineanaranja" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

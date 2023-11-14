@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/rect_blanco"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="22dp">
+
+        <TextView
+            android:id="@+id/nombreValor_45"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nombre Valor "
+            android:gravity="center"
+            android:textColor="@color/orange">
+        </TextView>
+
+        <ImageButton
+            android:id="@+id/boton_informacion_45"
+            android:layout_width="16.67dp"
+            android:layout_height="16.67dp"
+            android:layout_marginRight="13dp"
+            android:src="@drawable/icon_informacion"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:gravity="center">
+        </ImageButton>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="13dp">
+
+        <EditText
+            android:id="@+id/valor_45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:text="00"
+            android:textColor="@color/grey"
+            android:layout_marginRight="12dp"
+            android:background="@null">
+        </EditText>
+
+        <TextView
+            android:id="@+id/unidad_45"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="KG"
+            android:textColor="@color/orange"
+            ></TextView>
+
+    </LinearLayout>
+
+</LinearLayout>

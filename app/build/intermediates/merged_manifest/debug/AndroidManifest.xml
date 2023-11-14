@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.smartcoach"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="29"
+        android:targetSdkVersion="33" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:debuggable="true"
+        android:extractNativeLibs="false"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/networksecurityconfig"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:testOnly="true"
+        android:theme="@style/Theme.SmartCoach" >
+        <activity
+            android:name="com.example.smartcoach.ui._1_PantallaInicio"
+            android:exported="true"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._2_IniciarSesionRegistrarse"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.example.smartcoach.ui._3_Registrarse_Admi_1"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.example.smartcoach.ui._4_Registrarse_Admi_4"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.example.smartcoach.ui._39_Registrar_Usuario_1"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.example.smartcoach.ui._40_Registrar_Usuario_2"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.example.smartcoach.ui._63_Principal_Usuario"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.example.smartcoach.ui._6_Principal_Admi"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.example.smartcoach.ui._7_VerPerfil_Admi"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.example.smartcoach.ui._64_VerPerfil_Usuario"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.example.smartcoach.ui._8_ModificarPerfil_Admi"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.example.smartcoach.ui._65_ModificarPerfil_Usuario"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.example.smartcoach.ui._45_Registrar_Usuario_4"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.example.smartcoach.ui._59_registrar_usuario_5"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.example.smartcoach.ui._95_crear_rutina_usuario"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.example.smartcoach.ui._27_configurar_mapa_admin"
+            android:exported="false"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.example.smartcoach.ui._115_modificar_rutina_ejercicios"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._100_iniciar_rutina"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._59_2_registrar_usuario_5"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/DialogActivityTheme" />
+        <activity
+            android:name="com.example.smartcoach.ui._23_modificar_equipo"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._17_ver_equipo_admin_creados"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._19_crear_equipo_admin"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._16_ver_equipo_admin_todos"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._98_ver_rutina_ejercicio_usuario"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._35_ver_mapa_admin"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._127_ver_gimnasios_para_suscribirse"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._120_ver_informacion_gimnasio"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._126_lista_gimnasios_vacia"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._29_crear_mapa_admin"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._36_modificar_informacion_gimnasio"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._37_crea_tu_gimnasio_admin"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._42_Registrar_Usuario_3"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._121_ver_mapa_cliente"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="com.example.smartcoach.ui._31_armar_mapa_admin"
+            android:exported="false"
+            android:label="@string/app_name" >
+        </activity>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="com.example.smartcoach.androidx-startup"
+            android:exported="false" >
+            <meta-data
+                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                android:value="androidx.startup" />
+        </provider>
+    </application>
+
+</manifest>

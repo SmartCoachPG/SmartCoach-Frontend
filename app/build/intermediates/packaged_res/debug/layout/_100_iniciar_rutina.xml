@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#3a3a3a">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/setTextNombreEjercicio_100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Nombre ejercicio"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guión_100" />
+
+    <TextView
+        android:id="@+id/numero_serie_inicial_100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="68dp"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/guión_100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="68dp"
+        android:text="-"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintStart_toEndOf="@+id/numero_serie_inicial_100"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/numero_serie_final_100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.219"
+        app:layout_constraintStart_toEndOf="@+id/guión_100"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="76dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="28dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_mapa_fondo_na" />
+
+    <ImageView
+        android:id="@+id/barragris_100"
+        android:layout_width="405dp"
+        android:layout_height="111dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setTextNombreEjercicio_100"
+        app:srcCompat="@drawable/rectangulo_alargado_br_sombra" />
+
+    <TextView
+        android:id="@+id/numeroTotalseries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        app:layout_constraintStart_toStartOf="@+id/barragris_100"
+        app:layout_constraintTop_toBottomOf="@+id/setTextNombreEjercicio_100" />
+
+    <TextView
+        android:id="@+id/nombreSeries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="7dp"
+        android:text="Series"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/barragris_100"
+        app:layout_constraintTop_toBottomOf="@+id/numeroTotalseries" />
+
+    <TextView
+        android:id="@+id/numeroTotalRepeticiones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="20dp"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        app:layout_constraintStart_toEndOf="@+id/numeroTotalseries"
+        app:layout_constraintTop_toTopOf="@+id/barragris_100" />
+
+    <TextView
+        android:id="@+id/nombreRepeticiones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:text="Repeticiones"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/barragris_100"
+        app:layout_constraintStart_toEndOf="@+id/numeroTotalseries"
+        app:layout_constraintTop_toBottomOf="@+id/numeroTotalRepeticiones"
+        app:layout_constraintVertical_bias="0.194" />
+
+    <TextView
+        android:id="@+id/pesoMaquina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="28dp"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        app:layout_constraintStart_toEndOf="@+id/numeroTotalRepeticiones"
+        app:layout_constraintTop_toBottomOf="@+id/setTextNombreEjercicio_100" />
+
+    <TextView
+        android:id="@+id/nombrePeso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="4dp"
+        android:text="Peso"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/nombreRepeticiones"
+        app:layout_constraintTop_toBottomOf="@+id/pesoMaquina" />
+
+    <TextView
+        android:id="@+id/nombreLbs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="Lbs"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/pesoMaquina"
+        app:layout_constraintTop_toTopOf="@+id/barragris_100" />
+
+    <TextView
+        android:id="@+id/tiempoDescanso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="20dp"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        app:layout_constraintStart_toEndOf="@+id/nombreLbs"
+        app:layout_constraintTop_toTopOf="@+id/barragris_100" />
+
+    <TextView
+        android:id="@+id/nombreSgs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:text="sgs"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/barragris_100"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tiempoDescanso"
+        app:layout_constraintTop_toTopOf="@+id/barragris_100" />
+
+    <TextView
+        android:id="@+id/nombreDescanso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="Descanso"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/barragris_100"
+        app:layout_constraintHorizontal_bias="0.662"
+        app:layout_constraintStart_toEndOf="@+id/nombrePeso"
+        app:layout_constraintTop_toBottomOf="@+id/tiempoDescanso" />
+
+        <ImageView
+            android:id="@+id/rectanguloSeries_100"
+            android:layout_width="397dp"
+            android:layout_height="99dp"
+            android:layout_marginTop="52dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.214"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewEjercicios_100"
+            app:srcCompat="@drawable/rectangulo_grueso_gr" />
+
+        <Chronometer
+        android:id="@+id/tiempoIniciarPausa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:text="00:00"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/rectanguloSeries_100"
+        app:layout_constraintStart_toStartOf="@+id/rectanguloSeries_100"
+        app:layout_constraintTop_toTopOf="@+id/rectanguloSeries_100"
+        app:layout_constraintVertical_bias="0.213" />
+
+    <TextView
+        android:id="@+id/nombrePausa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:text="Pausa"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/rectanguloSeries_100"
+        app:layout_constraintStart_toStartOf="@+id/rectanguloSeries_100"
+        app:layout_constraintTop_toBottomOf="@+id/tiempoIniciarPausa"
+        app:layout_constraintVertical_bias="0.212" />
+
+    <TextView
+        android:id="@+id/numeroSeries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="0"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/rectanguloSeries_100"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toEndOf="@+id/tiempoIniciarPausa"
+        app:layout_constraintTop_toTopOf="@+id/rectanguloSeries_100" />
+
+    <TextView
+        android:id="@+id/nombreContSeries"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Series"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/rectanguloSeries_100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toEndOf="@+id/nombrePausa"
+        app:layout_constraintTop_toBottomOf="@+id/numeroSeries"
+        app:layout_constraintVertical_bias="0.257" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewEjercicios_100"
+            android:layout_width="323dp"
+            android:orientation="horizontal"
+            android:scaleType="fitCenter"
+            android:layout_height="320dp"
+            android:layout_marginTop="32dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.545"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barragris_100" />
+
+        <ImageButton
+        android:id="@+id/btnPlay_100"
+        android:layout_width="80dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="56dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnAdelantar_100"
+        app:layout_constraintTop_toBottomOf="@+id/rectanguloSeries_100"
+        app:layout_constraintVertical_bias="0.458"
+        app:srcCompat="@drawable/icon_play_fondo_na" />
+
+    <ImageButton
+        android:id="@+id/btnMute_100"
+        android:layout_width="48dp"
+        android:layout_height="44dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnPlay_100"
+        app:layout_constraintHorizontal_bias="0.546"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectanguloSeries_100"
+        app:layout_constraintVertical_bias="0.507"
+        app:srcCompat="@drawable/icon_mute_fondo_na" />
+
+    <ImageButton
+        android:id="@+id/btnAdelantar_100"
+        android:layout_width="48dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="60dp"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rectanguloSeries_100"
+        app:srcCompat="@drawable/icon_adelantar_fondo_na" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

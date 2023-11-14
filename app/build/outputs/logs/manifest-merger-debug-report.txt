@@ -1,0 +1,523 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:2:1-211:12
+INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:2:1-211:12
+INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:2:1-211:12
+INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:2:1-211:12
+MERGED from [com.google.android.material:material:1.5.0] C:\Users\kamil\.gradle\caches\transforms-3\a965dbd46dad388efad08cc8f6d01086\transformed\material-1.5.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\kamil\.gradle\caches\transforms-3\72b9050c158450da8c5e67c572121f7d\transformed\constraintlayout-2.1.3\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat:1.4.1] C:\Users\kamil\.gradle\caches\transforms-3\07087a925c2fa9cf908b06c8fc21f437\transformed\appcompat-1.4.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.security:security-crypto:1.1.0-alpha01] C:\Users\kamil\.gradle\caches\transforms-3\142ce285cb16633fe2bb51a3f7c75d3b\transformed\security-crypto-1.1.0-alpha01\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\453a69a9d6f52c4c104a2eaab1c33f1f\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\kamil\.gradle\caches\transforms-3\e1467e7620ed65b0f9ec090c601e5f8d\transformed\fragment-1.3.6\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.2.4] C:\Users\kamil\.gradle\caches\transforms-3\b3ca2191f251ab1a3412db475d4f84ac\transformed\activity-1.2.4\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.4.1] C:\Users\kamil\.gradle\caches\transforms-3\8eb0c7b9303c3515b49022815b589885\transformed\appcompat-resources-1.4.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\220abe624ecd09c07ef8f271042358c1\transformed\emoji2-views-helper-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.emoji2:emoji2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\42f3b83b8e9a0a0c79e5fc3ff6d2d869\transformed\emoji2-1.0.0\AndroidManifest.xml:17:1-37:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\kamil\.gradle\caches\transforms-3\0f3876d718237e4aa54a5f967de1cea1\transformed\drawerlayout-1.1.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\671a06b1893081f2c8ad60f3958f34d7\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\1f4b61fda69cec2bfe9851c9de8356b5\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\kamil\.gradle\caches\transforms-3\98523101c9963e531757127a1e8b685c\transformed\transition-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\cc60296bcd6f42dfa5f76f9c0a5cc1a3\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\b2cd8d669c990a22e05180b75bd6a08f\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\34512101be2ed2f5fdc74ffc413b7aa8\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\07be97de1f7472e5f0cdb709fab67338\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\ce51b2fe61819d8e2b7ab01a204a2296\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\9e1d4f8f0375e8e046d4b4131d85e943\transformed\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\e91f1a245fe7eb126d46a398f486f2d7\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.7.0] C:\Users\kamil\.gradle\caches\transforms-3\a11b41a9c65e3bb3d5437e5ac8426594\transformed\core-1.7.0\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\65dfa7529cda83889e241e7b460f7ec4\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] C:\Users\kamil\.gradle\caches\transforms-3\92305b4a9417699064a9bb6ace10de8d\transformed\lifecycle-viewmodel-savedstate-2.3.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\a26fddbbb2354a16681dc63f919b4a79\transformed\savedstate-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] C:\Users\kamil\.gradle\caches\transforms-3\2d7c1799714963dbe266ef0132ae460e\transformed\lifecycle-viewmodel-2.3.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\64a2d392994452577a480e11197fabd6\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\kamil\.gradle\caches\transforms-3\0c7bb944f3e4dca76f0e2467ecc7ea80\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\kamil\.gradle\caches\transforms-3\a37af28ce1785a92cd0521bcc7cc1858\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:17:1-37:12
+MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\b261447059f0f93246c165b082fe5974\transformed\startup-runtime-1.0.0\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\4af3a9806a4049ea0bb1410c585b3c1b\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\kamil\.gradle\caches\transforms-3\24d05789bc059f70888719f9e9eeba98\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] C:\Users\kamil\.gradle\caches\transforms-3\603706a810a8a9ee72ee003e393c56df\transformed\lifecycle-livedata-core-2.3.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] C:\Users\kamil\.gradle\caches\transforms-3\975b8ca52c078c8d68ea3a5e43b65443\transformed\lifecycle-runtime-2.4.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\kamil\.gradle\caches\transforms-3\bf97780cd6c8e42a6f56dbc470e67515\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\f3521e625b4ba3bfb9db345ad459607d\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\d0ba5a155415781d35e9bc5bbfe349c2\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\3720f74479d1bf1b71b3563ead82bc28\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\89d7c0a63c4c68190d59f33c4abce116\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\8723be3de5470b4177388d8ccdff9a04\transformed\annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
+INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:2:1-211:12
+INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:2:1-211:12
+INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:2:1-211:12
+	package
+		INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:2:1-211:12
+		INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:2:1-211:12
+		INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:2:1-211:12
+		INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:4:5-67
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:4:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:5:5-78
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:5:22-76
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:6:5-79
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:6:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:7:5-80
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:7:22-78
+application
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:8:5-210:19
+MERGED from [com.google.android.material:material:1.5.0] C:\Users\kamil\.gradle\caches\transforms-3\a965dbd46dad388efad08cc8f6d01086\transformed\material-1.5.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.5.0] C:\Users\kamil\.gradle\caches\transforms-3\a965dbd46dad388efad08cc8f6d01086\transformed\material-1.5.0\AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\kamil\.gradle\caches\transforms-3\72b9050c158450da8c5e67c572121f7d\transformed\constraintlayout-2.1.3\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\kamil\.gradle\caches\transforms-3\72b9050c158450da8c5e67c572121f7d\transformed\constraintlayout-2.1.3\AndroidManifest.xml:9:5-20
+MERGED from [androidx.emoji2:emoji2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\42f3b83b8e9a0a0c79e5fc3ff6d2d869\transformed\emoji2-1.0.0\AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.emoji2:emoji2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\42f3b83b8e9a0a0c79e5fc3ff6d2d869\transformed\emoji2-1.0.0\AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.core:core:1.7.0] C:\Users\kamil\.gradle\caches\transforms-3\a11b41a9c65e3bb3d5437e5ac8426594\transformed\core-1.7.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.7.0] C:\Users\kamil\.gradle\caches\transforms-3\a11b41a9c65e3bb3d5437e5ac8426594\transformed\core-1.7.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\kamil\.gradle\caches\transforms-3\0c7bb944f3e4dca76f0e2467ecc7ea80\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\kamil\.gradle\caches\transforms-3\0c7bb944f3e4dca76f0e2467ecc7ea80\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\kamil\.gradle\caches\transforms-3\a37af28ce1785a92cd0521bcc7cc1858\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\kamil\.gradle\caches\transforms-3\a37af28ce1785a92cd0521bcc7cc1858\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\b261447059f0f93246c165b082fe5974\transformed\startup-runtime-1.0.0\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\b261447059f0f93246c165b082fe5974\transformed\startup-runtime-1.0.0\AndroidManifest.xml:25:5-31:19
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.7.0] C:\Users\kamil\.gradle\caches\transforms-3\a11b41a9c65e3bb3d5437e5ac8426594\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+	android:supportsRtl
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:16:9-35
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:14:9-41
+	android:fullBackupContent
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:12:9-54
+	android:roundIcon
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:15:9-54
+	tools:targetApi
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:18:9-29
+	android:icon
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:13:9-43
+	android:allowBackup
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:10:9-35
+	android:theme
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:17:9-48
+	android:networkSecurityConfig
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:9:9-67
+	android:dataExtractionRules
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:11:9-65
+activity#com.example.smartcoach.ui._1_PantallaInicio
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:20:9-27:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:21:9-41
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:22:9-32
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:20:19-55
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:23:9-26:25
+action#android.intent.action.MAIN
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:24:13-65
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:24:21-62
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:25:13-73
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:25:23-70
+activity#com.example.smartcoach.ui._2_IniciarSesionRegistrarse
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:29:9-32:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:31:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:32:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:30:13-59
+activity#com.example.smartcoach.ui._3_Registrarse_Admi_1
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:34:9-37:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:36:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:37:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:35:13-53
+activity#com.example.smartcoach.ui._4_Registrarse_Admi_4
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:38:9-41:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:40:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:41:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:39:13-53
+activity#com.example.smartcoach.ui._39_Registrar_Usuario_1
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:42:9-45:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:44:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:45:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:43:13-55
+activity#com.example.smartcoach.ui._40_Registrar_Usuario_2
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:46:9-49:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:48:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:49:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:47:13-55
+activity#com.example.smartcoach.ui._63_Principal_Usuario
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:51:9-54:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:53:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:54:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:52:13-53
+activity#com.example.smartcoach.ui._6_Principal_Admi
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:56:9-59:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:58:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:59:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:57:13-49
+activity#com.example.smartcoach.ui._7_VerPerfil_Admi
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:61:9-64:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:63:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:64:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:62:13-49
+activity#com.example.smartcoach.ui._64_VerPerfil_Usuario
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:66:9-69:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:68:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:69:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:67:13-53
+activity#com.example.smartcoach.ui._8_ModificarPerfil_Admi
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:71:9-74:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:73:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:74:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:72:13-55
+activity#com.example.smartcoach.ui._65_ModificarPerfil_Usuario
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:77:9-80:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:79:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:80:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:78:13-59
+activity#com.example.smartcoach.ui._45_Registrar_Usuario_4
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:82:9-85:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:84:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:85:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:83:13-55
+activity#com.example.smartcoach.ui._59_registrar_usuario_5
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:87:9-90:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:89:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:90:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:88:13-55
+activity#com.example.smartcoach.ui._95_crear_rutina_usuario
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:92:9-95:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:94:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:95:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:93:13-56
+activity#com.example.smartcoach.ui._27_configurar_mapa_admin
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:98:9-101:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:100:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:101:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:99:13-57
+activity#com.example.smartcoach.ui._115_modificar_rutina_ejercicios
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:103:9-107:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:105:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:106:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:104:13-64
+activity#com.example.smartcoach.ui._100_iniciar_rutina
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:109:9-113:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:111:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:112:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:110:13-51
+activity#com.example.smartcoach.ui._59_2_registrar_usuario_5
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:115:9-119:39
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:118:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:119:13-37
+	android:theme
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:117:13-55
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:116:13-57
+activity#com.example.smartcoach.ui._23_modificar_equipo
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:121:9-125:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:123:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:124:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:122:13-52
+activity#com.example.smartcoach.ui._17_ver_equipo_admin_creados
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:127:9-131:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:129:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:130:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:128:13-60
+activity#com.example.smartcoach.ui._19_crear_equipo_admin
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:132:9-136:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:134:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:135:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:133:13-54
+activity#com.example.smartcoach.ui._16_ver_equipo_admin_todos
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:138:9-142:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:140:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:141:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:139:13-58
+activity#com.example.smartcoach.ui._98_ver_rutina_ejercicio_usuario
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:144:9-148:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:146:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:147:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:145:13-64
+activity#com.example.smartcoach.ui._35_ver_mapa_admin
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:150:9-154:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:152:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:153:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:151:13-50
+activity#com.example.smartcoach.ui._127_ver_gimnasios_para_suscribirse
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:156:9-160:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:158:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:159:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:157:13-67
+activity#com.example.smartcoach.ui._120_ver_informacion_gimnasio
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:162:9-166:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:164:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:165:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:163:13-61
+activity#com.example.smartcoach.ui._126_lista_gimnasios_vacia
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:168:9-172:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:170:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:171:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:169:13-58
+activity#com.example.smartcoach.ui._29_crear_mapa_admin
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:174:9-178:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:176:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:177:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:175:13-52
+activity#com.example.smartcoach.ui._36_modificar_informacion_gimnasio
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:180:9-184:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:182:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:183:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:181:13-66
+activity#com.example.smartcoach.ui._37_crea_tu_gimnasio_admin
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:186:9-190:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:188:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:189:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:187:13-58
+activity#com.example.smartcoach.ui._42_Registrar_Usuario_3
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:192:9-196:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:194:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:195:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:193:13-55
+activity#com.example.smartcoach.ui._121_ver_mapa_cliente
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:198:9-202:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:200:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:201:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:199:13-53
+activity#com.example.smartcoach.ui._31_armar_mapa_admin
+ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:204:9-208:20
+	android:label
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:206:13-45
+	android:exported
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:207:13-37
+	android:name
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml:205:13-52
+uses-sdk
+INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+MERGED from [com.google.android.material:material:1.5.0] C:\Users\kamil\.gradle\caches\transforms-3\a965dbd46dad388efad08cc8f6d01086\transformed\material-1.5.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.5.0] C:\Users\kamil\.gradle\caches\transforms-3\a965dbd46dad388efad08cc8f6d01086\transformed\material-1.5.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\kamil\.gradle\caches\transforms-3\72b9050c158450da8c5e67c572121f7d\transformed\constraintlayout-2.1.3\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\kamil\.gradle\caches\transforms-3\72b9050c158450da8c5e67c572121f7d\transformed\constraintlayout-2.1.3\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat:1.4.1] C:\Users\kamil\.gradle\caches\transforms-3\07087a925c2fa9cf908b06c8fc21f437\transformed\appcompat-1.4.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat:1.4.1] C:\Users\kamil\.gradle\caches\transforms-3\07087a925c2fa9cf908b06c8fc21f437\transformed\appcompat-1.4.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.security:security-crypto:1.1.0-alpha01] C:\Users\kamil\.gradle\caches\transforms-3\142ce285cb16633fe2bb51a3f7c75d3b\transformed\security-crypto-1.1.0-alpha01\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.security:security-crypto:1.1.0-alpha01] C:\Users\kamil\.gradle\caches\transforms-3\142ce285cb16633fe2bb51a3f7c75d3b\transformed\security-crypto-1.1.0-alpha01\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\453a69a9d6f52c4c104a2eaab1c33f1f\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\453a69a9d6f52c4c104a2eaab1c33f1f\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\kamil\.gradle\caches\transforms-3\e1467e7620ed65b0f9ec090c601e5f8d\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\kamil\.gradle\caches\transforms-3\e1467e7620ed65b0f9ec090c601e5f8d\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.4] C:\Users\kamil\.gradle\caches\transforms-3\b3ca2191f251ab1a3412db475d4f84ac\transformed\activity-1.2.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.2.4] C:\Users\kamil\.gradle\caches\transforms-3\b3ca2191f251ab1a3412db475d4f84ac\transformed\activity-1.2.4\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.4.1] C:\Users\kamil\.gradle\caches\transforms-3\8eb0c7b9303c3515b49022815b589885\transformed\appcompat-resources-1.4.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.4.1] C:\Users\kamil\.gradle\caches\transforms-3\8eb0c7b9303c3515b49022815b589885\transformed\appcompat-resources-1.4.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.emoji2:emoji2-views-helper:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\220abe624ecd09c07ef8f271042358c1\transformed\emoji2-views-helper-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.emoji2:emoji2-views-helper:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\220abe624ecd09c07ef8f271042358c1\transformed\emoji2-views-helper-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.emoji2:emoji2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\42f3b83b8e9a0a0c79e5fc3ff6d2d869\transformed\emoji2-1.0.0\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.emoji2:emoji2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\42f3b83b8e9a0a0c79e5fc3ff6d2d869\transformed\emoji2-1.0.0\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\kamil\.gradle\caches\transforms-3\0f3876d718237e4aa54a5f967de1cea1\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\kamil\.gradle\caches\transforms-3\0f3876d718237e4aa54a5f967de1cea1\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\671a06b1893081f2c8ad60f3958f34d7\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\671a06b1893081f2c8ad60f3958f34d7\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\1f4b61fda69cec2bfe9851c9de8356b5\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\1f4b61fda69cec2bfe9851c9de8356b5\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\kamil\.gradle\caches\transforms-3\98523101c9963e531757127a1e8b685c\transformed\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\kamil\.gradle\caches\transforms-3\98523101c9963e531757127a1e8b685c\transformed\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\cc60296bcd6f42dfa5f76f9c0a5cc1a3\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\cc60296bcd6f42dfa5f76f9c0a5cc1a3\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\b2cd8d669c990a22e05180b75bd6a08f\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\b2cd8d669c990a22e05180b75bd6a08f\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\34512101be2ed2f5fdc74ffc413b7aa8\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\34512101be2ed2f5fdc74ffc413b7aa8\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\07be97de1f7472e5f0cdb709fab67338\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\07be97de1f7472e5f0cdb709fab67338\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\ce51b2fe61819d8e2b7ab01a204a2296\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\ce51b2fe61819d8e2b7ab01a204a2296\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\9e1d4f8f0375e8e046d4b4131d85e943\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\9e1d4f8f0375e8e046d4b4131d85e943\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\e91f1a245fe7eb126d46a398f486f2d7\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\e91f1a245fe7eb126d46a398f486f2d7\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.7.0] C:\Users\kamil\.gradle\caches\transforms-3\a11b41a9c65e3bb3d5437e5ac8426594\transformed\core-1.7.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.7.0] C:\Users\kamil\.gradle\caches\transforms-3\a11b41a9c65e3bb3d5437e5ac8426594\transformed\core-1.7.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\65dfa7529cda83889e241e7b460f7ec4\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\65dfa7529cda83889e241e7b460f7ec4\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] C:\Users\kamil\.gradle\caches\transforms-3\92305b4a9417699064a9bb6ace10de8d\transformed\lifecycle-viewmodel-savedstate-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1] C:\Users\kamil\.gradle\caches\transforms-3\92305b4a9417699064a9bb6ace10de8d\transformed\lifecycle-viewmodel-savedstate-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\a26fddbbb2354a16681dc63f919b4a79\transformed\savedstate-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\a26fddbbb2354a16681dc63f919b4a79\transformed\savedstate-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] C:\Users\kamil\.gradle\caches\transforms-3\2d7c1799714963dbe266ef0132ae460e\transformed\lifecycle-viewmodel-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] C:\Users\kamil\.gradle\caches\transforms-3\2d7c1799714963dbe266ef0132ae460e\transformed\lifecycle-viewmodel-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\64a2d392994452577a480e11197fabd6\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\64a2d392994452577a480e11197fabd6\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\kamil\.gradle\caches\transforms-3\0c7bb944f3e4dca76f0e2467ecc7ea80\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\kamil\.gradle\caches\transforms-3\0c7bb944f3e4dca76f0e2467ecc7ea80\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\kamil\.gradle\caches\transforms-3\a37af28ce1785a92cd0521bcc7cc1858\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\kamil\.gradle\caches\transforms-3\a37af28ce1785a92cd0521bcc7cc1858\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\b261447059f0f93246c165b082fe5974\transformed\startup-runtime-1.0.0\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\b261447059f0f93246c165b082fe5974\transformed\startup-runtime-1.0.0\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\4af3a9806a4049ea0bb1410c585b3c1b\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\4af3a9806a4049ea0bb1410c585b3c1b\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\kamil\.gradle\caches\transforms-3\24d05789bc059f70888719f9e9eeba98\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] C:\Users\kamil\.gradle\caches\transforms-3\24d05789bc059f70888719f9e9eeba98\transformed\lifecycle-livedata-2.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] C:\Users\kamil\.gradle\caches\transforms-3\603706a810a8a9ee72ee003e393c56df\transformed\lifecycle-livedata-core-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.3.1] C:\Users\kamil\.gradle\caches\transforms-3\603706a810a8a9ee72ee003e393c56df\transformed\lifecycle-livedata-core-2.3.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] C:\Users\kamil\.gradle\caches\transforms-3\975b8ca52c078c8d68ea3a5e43b65443\transformed\lifecycle-runtime-2.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.4.0] C:\Users\kamil\.gradle\caches\transforms-3\975b8ca52c078c8d68ea3a5e43b65443\transformed\lifecycle-runtime-2.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\kamil\.gradle\caches\transforms-3\bf97780cd6c8e42a6f56dbc470e67515\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\kamil\.gradle\caches\transforms-3\bf97780cd6c8e42a6f56dbc470e67515\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\f3521e625b4ba3bfb9db345ad459607d\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\f3521e625b4ba3bfb9db345ad459607d\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\d0ba5a155415781d35e9bc5bbfe349c2\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\d0ba5a155415781d35e9bc5bbfe349c2\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\3720f74479d1bf1b71b3563ead82bc28\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\3720f74479d1bf1b71b3563ead82bc28\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\89d7c0a63c4c68190d59f33c4abce116\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\89d7c0a63c4c68190d59f33c4abce116\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\8723be3de5470b4177388d8ccdff9a04\transformed\annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\kamil\.gradle\caches\transforms-3\8723be3de5470b4177388d8ccdff9a04\transformed\annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
+INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\kamil\Desktop\Tesis\SmartCoach\app\src\main\AndroidManifest.xml
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\42f3b83b8e9a0a0c79e5fc3ff6d2d869\transformed\emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\kamil\.gradle\caches\transforms-3\a37af28ce1785a92cd0521bcc7cc1858\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\kamil\.gradle\caches\transforms-3\a37af28ce1785a92cd0521bcc7cc1858\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\b261447059f0f93246c165b082fe5974\transformed\startup-runtime-1.0.0\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\b261447059f0f93246c165b082fe5974\transformed\startup-runtime-1.0.0\AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\42f3b83b8e9a0a0c79e5fc3ff6d2d869\transformed\emoji2-1.0.0\AndroidManifest.xml:30:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\42f3b83b8e9a0a0c79e5fc3ff6d2d869\transformed\emoji2-1.0.0\AndroidManifest.xml:28:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\42f3b83b8e9a0a0c79e5fc3ff6d2d869\transformed\emoji2-1.0.0\AndroidManifest.xml:29:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\42f3b83b8e9a0a0c79e5fc3ff6d2d869\transformed\emoji2-1.0.0\AndroidManifest.xml:27:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\42f3b83b8e9a0a0c79e5fc3ff6d2d869\transformed\emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\42f3b83b8e9a0a0c79e5fc3ff6d2d869\transformed\emoji2-1.0.0\AndroidManifest.xml:33:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.0.0] C:\Users\kamil\.gradle\caches\transforms-3\42f3b83b8e9a0a0c79e5fc3ff6d2d869\transformed\emoji2-1.0.0\AndroidManifest.xml:32:17-75
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\kamil\.gradle\caches\transforms-3\a37af28ce1785a92cd0521bcc7cc1858\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\kamil\.gradle\caches\transforms-3\a37af28ce1785a92cd0521bcc7cc1858\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\kamil\.gradle\caches\transforms-3\a37af28ce1785a92cd0521bcc7cc1858\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78

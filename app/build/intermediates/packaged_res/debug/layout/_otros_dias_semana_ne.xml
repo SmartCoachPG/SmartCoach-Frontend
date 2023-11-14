@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageButton
+        android:id="@+id/imageLunes"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:background="@null"
+        android:contentDescription="Seleccionar para el lunes"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_lunes_ne" />
+
+    <ImageButton
+        android:id="@+id/imageJueves"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:background="@null"
+        android:contentDescription="Seleccionar para el jueves"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toEndOf="@+id/imageMiercoles"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_jueves_ne" />
+
+    <ImageButton
+        android:id="@+id/imageViernes"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:background="@null"
+        android:contentDescription="Seleccionar para el viernes"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toEndOf="@+id/imageJueves"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_viernes_ne" />
+
+    <ImageButton
+        android:id="@+id/imageDomingo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:background="@null"
+        android:contentDescription="Seleccionar para el Domingo"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintStart_toEndOf="@+id/imageSabado"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_domingo_ne" />
+
+    <ImageButton
+        android:id="@+id/imageMiercoles"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:background="@null"
+        android:contentDescription="Seleccionar para el miercoles"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toEndOf="@+id/imageMartes"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_miercoles_ne" />
+
+    <ImageButton
+        android:id="@+id/imageMartes"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:background="@null"
+        android:contentDescription="Seleccionar para el martes"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toEndOf="@+id/imageLunes"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_martes_ne" />
+
+    <ImageButton
+        android:id="@+id/imageSabado"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:background="@null"
+        android:contentDescription="Seleccionar para el Sabado"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toEndOf="@+id/imageViernes"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_sabado_ne" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
