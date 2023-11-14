@@ -76,11 +76,20 @@ public class _4_Registrarse_Admi_4 extends AppCompatActivity {
         btnsiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validarCampos() && validarContraseñas()) {
-                    crearUsuarioAdministrador();
-                } else {
-                    mostrarErrorAlertDialog();
-                }
+                String revisarEmail= email.getText().toString();
+                validarEmail(revisarEmail,new _4_Registrarse_Admi_4.InfoCallback()
+                {
+                    @Override
+                    public void onCompletion()
+                    {
+                        if (validarCampos() && validarContraseñas()) {
+                            crearUsuarioAdministrador();
+                        } else {
+                            mostrarErrorAlertDialog();
+                        }
+                    }
+                });
+
             }
         });
     }
@@ -170,6 +179,11 @@ public class _4_Registrarse_Admi_4 extends AppCompatActivity {
         }
         if(entradaCorreo.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(entradaCorreo).matches()){
             email.setError("Correo electrónico invalido");
+            retorno = false;
+        }
+        if(existe)
+        {
+            email.setError("Correo invalido, ya esta en uso");
             retorno = false;
         }
         if (entradaContraseña.isEmpty()) {
@@ -297,6 +311,35 @@ public class _4_Registrarse_Admi_4 extends AppCompatActivity {
                 Log.d("IniciarSesionActivity", "Error en la llamada API", t);
             }
 
+        });
+
+
+    }
+
+    interface InfoCallback {
+        void onCompletion();
+    }
+
+    private void validarEmail(String email,_4_Registrarse_Admi_4.InfoCallback callback)
+    {
+        Call<Boolean> call = usuarioApiService.checkEmail(email);
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                if (response.isSuccessful()) {
+                    existe = response.body();
+                } else {
+                    // Maneja errores del servidor, por ejemplo, un error 404 o 500.
+                    Log.e("Error", "Error en la respuesta: " + response.code());
+                }
+                callback.onCompletion();
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                // Maneja errores de red o de conversión de datos
+                Log.e("Error", "Fallo en la petición: " + t.getMessage());
+            }
         });
     }
 
