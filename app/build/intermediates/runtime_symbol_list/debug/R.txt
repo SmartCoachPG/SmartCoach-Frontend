@@ -2477,8 +2477,10 @@ int drawable fondo_dos_ovalos 0x7f080073
 int drawable fondo_mapa 0x7f080074
 int drawable ic_clock_black_24dp 0x7f080075
 int drawable ic_keyboard_black_24dp 0x7f080076
+int drawable ic_launcher 0x7f080150
 int drawable ic_launcher_background 0x7f080077
 int drawable ic_launcher_foreground 0x7f080078
+int drawable ic_launcher_round 0x7f080151
 int drawable ic_m3_chip_check 0x7f080079
 int drawable ic_m3_chip_checked_circle 0x7f08007a
 int drawable ic_m3_chip_close 0x7f08007b

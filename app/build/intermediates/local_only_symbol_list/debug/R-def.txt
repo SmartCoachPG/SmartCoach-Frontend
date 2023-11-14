@@ -33,8 +33,10 @@ drawable flecha_regresar
 drawable fondo_blanco_ovalo
 drawable fondo_dos_ovalos
 drawable fondo_mapa
+drawable ic_launcher
 drawable ic_launcher_background
 drawable ic_launcher_foreground
+drawable ic_launcher_round
 drawable icon_1_fondo_gr
 drawable icon_1_fondo_na
 drawable icon_2_fondo_gr
